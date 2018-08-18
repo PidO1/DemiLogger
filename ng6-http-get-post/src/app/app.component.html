@@ -1,0 +1,28 @@
+
+<label>Get a Profile</label>
+  <br>
+    <label>Name:</label>
+  <br>
+  <input type="text" (keyup)="onNameKeyUp($event)">
+    <br>
+      <button (click)="getProfile()">Get Profile</button>
+    <div *ngIf="found">
+      <span>{{ name }}'s age is {{ age }}</span>
+    </div>
+  <br>
+  <hr>
+    <label>Post a Profile</label>
+      <br>
+        <label>Name:</label>
+      <br>
+        <input type="text" (keyup)="onNameTyped($event)">
+      <br>
+        <label>Age:</label>
+      <br>
+    <input type="text" (keyup)="onAgeTyped($event)">
+  <br>
+<button (click)="postProfile()">Post Profile</button>
+<br>
+<div *ngIf="posted">
+  <span>{{ nameTyped }} and {{ ageTyped }} has been posted as new data</span>
+</div>
