@@ -5,9 +5,16 @@ router.get('/',(req,res,next)=>{res.status(200)
   .json({message:'hanteer dosente GET requests'})}
 );
 
-router.post('/',(req,res,next)=>{res.status(201)
-  .json({message:'hanteer dosente POST requests'})}
-);
+router.post('/',(req,res,next)=>{
+const lecturer ={
+  name: req.body.name,
+  surname : req.body.surname,
+  NWUnumber: req.body.NWUnumber
+};
+
+  res.status(201).json({message:'hanteer dosente POST requests',newLecturer:lecturer})
+
+});
 router.get('/:dosentID',(req,res,next)=>
 {const id = req.params.dosentID
   if(id==='special')

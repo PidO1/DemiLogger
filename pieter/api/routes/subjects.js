@@ -6,7 +6,10 @@ router.get('/',(req,res,next)=>{
 });
 
 router.post('/',(req,res,next)=>{
-  res.status(201).json({message:'Subject ADDED'});
+  const subject = { name: req.body.name,
+  code: req.body.code,
+semester: req.body.semester }
+  res.status(201).json({message:'Subject ADDED', newSubject : subject});
 });
 router.get('/:subjectID',(req,res,next)=>{
   res.status(201).json({message:'Subject FOUND by ID',subjectid:req.params.subjectID});
