@@ -4,12 +4,12 @@ export interface ConfigOptions {
     value?: string;
     global?: boolean;
 }
-export default class ConfigCommand extends Command {
+export declare class ConfigCommand extends Command {
     readonly name: string;
     readonly description: string;
     readonly arguments: string[];
     readonly options: Option[];
-    run(options: ConfigOptions): void;
+    run(options: ConfigOptions): 1 | undefined;
     private get(config, options);
     private set(options);
 }

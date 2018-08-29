@@ -10,8 +10,29 @@ import { logging } from '@angular-devkit/core';
 import { Observable } from 'rxjs';
 import { Url } from 'url';
 import { FileEntry, MergeStrategy, Tree } from '../tree/interface';
-import { Workflow } from '../workflow';
-import { TaskConfigurationGenerator, TaskExecutor, TaskId } from './task';
+import { Workflow } from '../workflow/interface';
+export interface TaskConfiguration<T = {}> {
+    name: string;
+    dependencies?: Array<TaskId>;
+    options?: T;
+}
+export interface TaskConfigurationGenerator<T = {}> {
+    toConfiguration(): TaskConfiguration<T>;
+}
+export declare type TaskExecutor<T = {}> = (options: T | undefined, context: SchematicContext) => Promise<void> | Observable<void>;
+export interface TaskExecutorFactory<T> {
+    readonly name: string;
+    create(options?: T): Promise<TaskExecutor> | Observable<TaskExecutor>;
+}
+export interface TaskId {
+    readonly id: number;
+}
+export interface TaskInfo {
+    readonly id: number;
+    readonly priority: number;
+    readonly configuration: TaskConfiguration;
+    readonly context: SchematicContext;
+}
 /**
  * The description (metadata) of a collection. This type contains every information the engine
  * needs to run. The CollectionMetadataT type parameter contains additional metadata that you
@@ -130,4 +151,4 @@ export declare type AsyncFileOperator = (tree: FileEntry) => Observable<FileEntr
  * know which types is the schematic or collection metadata, as they are both tooling specific.
  */
 export declare type Source = (context: SchematicContext) => Tree | Observable<Tree>;
-export declare type Rule = (tree: Tree, context: SchematicContext) => Tree | Observable<Tree> | void;
+export declare type Rule = (tree: Tree, context: SchematicContext) => Tree | Observable<Tree> | Rule | void;

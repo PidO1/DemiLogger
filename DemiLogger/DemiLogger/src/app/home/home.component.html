@@ -1,179 +1,69 @@
-
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
-        /* Remove the navbar's default margin-bottom and rounded borders */
-      .navbar {
-        margin-bottom: 0;
-        border-radius: 0;
-      }
-
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
+    .carousel-inner img {
+      -webkit-filter: grayscale(90%);
+      filter: grayscale(90%); /* make all photos black and white */
+      width: 100%; /* Set width to 100% */
+      margin: auto;
     }
-
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
+    .carousel-caption h3 {
+      color: #fff !important;
     }
-
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
       }
-      .row.content {height:auto;}
     }
   </style>
 </head>
-<body style="background-color: transparent">
 
-<div class="container-fluid text-center">
-  <div class="row content">
-    <div class="col-sm-2 sidenav img-rounded" style="opacity: 0.7; background-color: black">
-      <p><a href="#">ITRW 321</a></p>
-      <p><a href="#">ITRW 322</a></p>
-      <p><a href="#">ITRW 324</a></p>
-    </div>
-    <div class="col-sm-8 text-left img-rounded" style="background-color: black; opacity: 0.4; height: max-content">
-      <h1 style="color: white">Welcome</h1>
-      <p style="color: white">This is QUADOSH industries and we are busy to develop a Demi system for the NWU potch campus. </p>
-      <p style="color: white">To make the logistics of life as smooth as possible for students, staff and visitors, a well-oiled network of support service departments is hard at work behind the scenes.</p>
-      <p style="color: white">Some support service departments are centralised at the Institutional Office in Potchefstroom as they are used by everyone in the university community. Examples are the Career Centre, Human Resources and the Language Directorate.</p>
-      <p style="color: white">Because we want to see our students succeed, we make sure they have access to academic support, libraries, computers, bursary aid, health and wellness services, among many other support services. To bring these services as close as possible to our students, the departments providing them are usually based at the campuses.</p>
-      <p style="color: white">Some support service departments are centralised at the Institutional Office in Potchefstroom as they are used by everyone in the university community. Examples are the Career Centre, Human Resources and the Language Directorate.</p>
-      <p style="color: white">Because we want to see our students succeed, we make sure they have access to academic support, libraries, computers, bursary aid, health and wellness services, among many other support services. To bring these services as close as possible to our students, the departments providing them are usually based at the campuses.</p>
-      <hr>
-      <h3 style="color: white"></h3>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
 
-      <h3 style="color: white">Developpers</h3>
-      <p style="color: white">Pieter Swanepoel - Back-end developer</p>
-      <p style="color: white">Wardie van Tonder - Front-end developer</p>
-      <p style="color: white">Danie Nortje - Front-end developer</p>
-    </div>
-    <div class="col-sm-2 sidenav img-rounded" style="background-color: black; opacity: 0.7">
-      <div class="row-content" style="background-color: black; opacity: 0.7">
-        <p style="color: white">Anouncements</p>
-      </div>
-      <div class="row-content" style="background-color: black; opacity: 0.7">
-        <p style="color: white">Resources</p>
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="/src/app/fotos/39879189-office-wallpapers.jpg" alt="news" style="width: 100vw; height: 100vh">
+      <div class="carousel-caption">
+        <h3>News</h3>
+        <p>This is a newly developed Lecturer assistant system with the purpose to ease the administration and communication between students, lecturers and the office administrator.</p>
       </div>
     </div>
-  </div>
-</div>
 
-
-
-<div id="band" class="container text-center" style="background-color: black; opacity: 1; width: 100%">
-  <h3 style="color: white">THE Staff</h3>
-  <p style="color: white"><em>School of Computer Science and Information Systems</em></p>
-  <p style="color: white">What is Computer Science and Information Systems?
-    There is an urgent need in South Africa (and globally) for computer scientists and information technologists.  The different programmes in the School of Computer Science and Information Systems (SCSIS) aim to equip graduates with degree-level expertise and applicable skills in the field of Computer Science and Information Systems.
-
-    The goal is to provide our students with complete and systematic knowledge and skills of at least one modern relevant programming language, phases of a relevant system development life cycle (SDLC), database techniques and technologies, IT project planning and management techniques, and human-computer interfaces. They should be able to contribute in a professional and ethical manner to the design, development and delivery of computerised systems according to business needs and principles. Students are expected to have knowledge and understanding of the value of information in enterprises and of the technical functioning and processing of information sources, to make a meaningful contribution to strategic decision-making and management of information and information sources.
-
-    With the basic and applied skills that the student will acquire through successful completion of these qualifications, he/she will also be prepared and eligible to continue with postgraduate studies in the specialised fields of Computer Science and Information Systems at NQF level 8, thus either a BSc Hons degree or a Postgraduate Diploma in cognate fields.</p>
-  <br>
-  <div class="row">
-    <div class="col-sm-4">
-      <p class="text-center" style="color: white"><strong>Ms Annette van der Merwe</strong></p><br>
-      <a href="#demo" data-toggle="collapse">
-        <img src="/src/app/fotos/Me_Annette_vanderMerwe.jpg" class="img-circle person" alt="Random Name" width="150" height="200">
-      </a>
-      <div id="demo" class="collapse">
-        <p>Lecturer</p>
-        <p>Annette.VanDerMerwe@nwu.ac.za</p>
-        <p>Building G3, room G18, Potchefstroom</p>
+    <div class="item">
+      <img src="/src/app/fotos/black-and-gray-photo-of-person-in-front-of-computer-monitor-wallpaper.jpg" alt="IT" style="width: 100vw; height: 90vh">
+      <div class="carousel-caption">
+        <h3>Information Technology</h3>
+        <p>Lecturer Assistents</p>
       </div>
     </div>
-    <div class="col-sm-4">
-      <p class="text-center" style="color: white"><strong>Ms Kobie Fourie</strong></p><br>
-      <a href="#demo2" data-toggle="collapse">
-        <img src="/src/app/fotos/Me_Kobie_Fourie.jpg" class="img-circle person" alt="Random Name" width="150" height="200">
-      </a>
-      <div id="demo2" class="collapse">
-        <p>Subject group secretary</p>
-        <p>Kobie.Fourie@nwu.ac.za</p>
-        <p>Building G3, room G01, Potchefstroom</p>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <p class="text-center" style="color: white"><strong>Mr Henry Foulds</strong></p><br>
-      <a href="#demo3" data-toggle="collapse">
-        <img src="/src/app/fotos/Mr_Henry_Foulds.jpg" class="img-circle person" alt="Random Name" width="150" height="200">
-      </a>
-      <div id="demo3" class="collapse">
-        <p>Lecturer</p>
-        <p>Henry.Foulds@nwu.ac.za</p>
-        <p>Building G3, basement, Potchefstroom</p>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <p class="text-center" style="color: white"><strong>Prof Günther Drevin</strong></p><br>
-      <a href="#demo4" data-toggle="collapse">
-        <img src="/src/app/fotos/Prof_Gunther_Drevin.jpg" class="img-circle person" alt="Random Name" width="150" height="200">
-      </a>
-      <div id="demo4" class="collapse">
-        <p>Professor</p>
-        <p>gunther.drevin@nwu.ac.za</p>
-        <p>Building G3, room G16, Potchefstroom</p>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <p class="text-center" style="color: white"><strong>Prof Estelle Taylor</strong></p><br>
-      <a href="#demo5" data-toggle="collapse">
-        <img src="/src/app/fotos/Prof_Estelle_Taylor.jpg" class="img-circle person" alt="Random Name" width="150" height="200">
-      </a>
-      <div id="demo5" class="collapse">
-        <p>Acting Director: School of Computer Science and Information Systems and Associate Professor</p>
-        <p>estelle.taylor@nwu.ac.za</p>
-        <p>Building G3, room G06, Potchefstroom</p>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <p class="text-center" style="color: white"><strong>Mr Dirk Snyman</strong></p><br>
-      <a href="#demo6" data-toggle="collapse">
-        <img src="/src/app/fotos/Mr_Dirk_Snyman.jpg" class="img-circle person" alt="Random Name" width="150" height="200">
-      </a>
-      <div id="demo6" class="collapse">
-        <p>Lecturer</p>
-        <p>dirk.snyman@nwu.ac.za</p>
-        <p>Building G3, room G03, Potchefstroom</p>
+
+    <div class="item">
+      <img src="/src/app/fotos/marketing-office-internet-267507.jpg" alt="demi-system" style="width: 100vw; height: 90vh">
+      <div class="carousel-caption">
+        <h3>Demi-system</h3>
+        <p>Administration and Communication</p>
       </div>
     </div>
   </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
-
-
-<footer class="footer col-sm-4" style="background-color: gray; border-color: gray; align-content: left">
-  <h4 style="color: white">Postal Address:</h4>
-  <p style="color: white">Private Bag X6001</p>
-  <p style="color: white">Potchefstroom Campus</p>
-  <p style="color: white">North-West University</p>
-  <p style="color: white">2520</p>
-</footer>
-<footer class="footer col-sm-4" style="background-color: gray; border-color: gray; align-content: right">
-  <h4 style="color: white">Ms Kobie Fourie</h4>
-  <p style="color: white">Subject group secretary</p>
-  <p style="color: white">+27 18 299 2531</p>
-  <p style="color: white">Kobie.Fourie@nwu.ac.za</p>
-  <p style="color: white">Building G3, room G01, Potchefstroom</p>
-</footer>
-<footer class="footer col-sm-4" style="background-color: gray; border-color: gray; align-content: right">
-  <h4 style="color: white">Mr Henry Foulds</h4>
-  <p style="color: white">Lecturer</p>
-  <p style="color: white">+27 18 299 2532</p>
-  <p style="color: white">Henry.Foulds@nwu.ac.za</p>
-  <p style="color: white">Building G3, basement, Potchefstroom</p>
-</footer>
-
-</body>
+<!--</body>-->
 

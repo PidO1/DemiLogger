@@ -1,17 +1,19 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+import { ArchitectCommand, ArchitectCommandOptions } from '../models/architect-command';
 import { CommandScope, Option } from '../models/command';
-import { ArchitectCommand } from '../models/architect-command';
-export interface Options {
-    project?: string;
-    configuration?: string;
-    prod: boolean;
-}
-export default class ServeCommand extends ArchitectCommand {
+export declare class ServeCommand extends ArchitectCommand {
     readonly name: string;
     readonly target: string;
     readonly description: string;
     static aliases: string[];
-    readonly scope: CommandScope;
+    static scope: CommandScope;
     readonly options: Option[];
-    validate(_options: Options): boolean;
-    run(options: Options): Promise<number>;
+    validate(_options: ArchitectCommandOptions): boolean;
+    run(options: ArchitectCommandOptions): Promise<number>;
 }

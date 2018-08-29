@@ -1,10 +1,12 @@
-<form class="container-fluid img-rounded" style="background-color: black; opacity: 0.7; padding: 25px">
+<form class="container-fluid img-rounded" style="background-color: black; opacity: 0.7; padding: 25px; padding-top: 2.1cm">
   <h2 style="color: white">Appointment Form for Student Assistant, Supplementary Instruction (SI) Leader</h2>
   <p style="color: white">•	Please complete all information in full or the appointment cannot be finalised. INCOMPLETE FORMS MAY DELAY PAYMENT.</p>
   <p style="color: white">•	This appointment is valid only for the period applied for and must be signed by all responsible signatories.</p>
   <p style="color: white">•	All pages need to be initialled. If corrections are made, no Tipex is permissible. The error must be struck out and be signed at.</p>
   <p style="color: white">•	Reasons for temporary appointment (indicate with an x below and attach a motivation).</p>
+  <hr>
 
+  <h2 style="color: white">Section A: Personal particulars of temporary employees</h2>
   <div class="form-group">
     <label class="control-label" style="color: white">Copy of ID:</label>
     <input type="file" class="filestyle" data-icon="false" style="background-color: white">
@@ -212,12 +214,121 @@
     <label style="color: white">Highest Qualification:</label>
     <input type="highestqualification" class="form-control" id="highestqualification" style="width: 350px">
   </div>
+  <hr>
+
+  <h2 style="color: white">If a foreign student assistant</h2>
+  <div class="form-group">
+    <label class="control-label" style="color: white">Copy of Passport:</label>
+    <input type="file" class="filestyle" data-icon="false" style="background-color: white">
+  </div>
+
+  <div class="form-group">
+    <label class="control-label" style="color: white">Study Permit:</label>
+    <input type="file" class="filestyle" data-icon="false" style="background-color: white">
+  </div>
+
+  <div class="form-group">
+    <label class="control-label" style="color: white">Permission to Conduct Work Form:</label>
+    <input type="file" class="filestyle" data-icon="false" style="background-color: white">
+  </div>
+
+  <div class="form-group">
+    <label style="color: white">Passport Nr:</label>
+    <input type="passportnumber" class="form-control" id="passportnumber" style="width: 350px">
+  </div>
+
+  <div class="form-group">
+    <label style="color: white">Passport Expiry Date:</label>
+    <input type="expirydate" class="form-control" placeholder="DD/MM/YYYY" id="expirydate" style="width: 350px">
+  </div>
+
+  <div class="form-group">
+    <label style="color: white">Work Permit Nr:</label>
+    <input type="permitnumber" class="form-control" id="permitnumber" style="width: 350px">
+  </div>
+
+  <div class="form-group">
+    <label style="color: white">Work Permit Expiry Date:</label>
+    <input type="permitexpiry" class="form-control" placeholder="DD/MM/YYYY" id="permitexpiry" style="width: 350px">
+  </div>
+
+  <hr>
+  <h2 style="color: white">Section B: Bank details (No payment will be made if these details are not provided.)</h2>
+  <div class="form-group">
+    <label style="color: white">Account type:</label>
+    <div class="checkbox">
+      <label style="color: white"><input type="checkbox" value="">Current(cheque)</label>
+    </div>
+    <div class="checkbox">
+      <label style="color: white"><input type="checkbox" value="">Savings</label>
+    </div>
+    <div class="checkbox">
+      <label style="color: white"><input type="checkbox" value="">Transmission</label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label style="color: white">Bank branch code:</label>
+    <input type="bankbranch" class="form-control" id="bankbranch" style="width: 350px">
+  </div>
+
+  <div class="form-group">
+    <label style="color: white">Account Nr:</label>
+    <input type="accountnumber" class="form-control" id="accountnumber" style="width: 350px">
+  </div>
+
+  <div class="form-group">
+    <label style="color: white">Name of bank:</label>
+    <input type="bankname" class="form-control" id="bankname" style="width: 350px">
+  </div>
+
+  <label style="color: white">Account holder:</label>
+  <div class="form-group">
+    <label style="color: white">Surname:</label>
+    <input type="holdersurname" class="form-control" id="holdersurname" style="width: 350px">
+    <label style="color: white">Initials:</label>
+    <input type="holderinitials" class="form-control" id="holderinitials" style="width: 350px">
+  </div>
+
+  <div class="form-group">
+    <label style="color: white">Account type:</label>
+    <div class="checkbox">
+      <label style="color: white"><input type="checkbox" value="">Own account</label>
+    </div>
+    <div class="checkbox">
+      <label style="color: white"><input type="checkbox" value="">Joint account</label>
+    </div>
+    <div class="checkbox">
+      <label style="color: white"><input type="checkbox" value="">3rd party</label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label style="color: white">Date:</label>
+    <input type="date" class="form-control" placeholder="DD/MM/YYYY" id="date" style="width: 350px">
+  </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-<footer class="container-fluid text-center panel-footer" style="background-color: gray; border-color: gray; bottom: 0">
-  <p style="color: white">Administrator: Cobie - 0836314009</p>
-  <p style="color: white">Fax: 04685</p>
-  <p style="color: white">Support Services: General</p>
+<footer class="footer col-sm-4" style="background-color: gray; border-color: gray; align-content: left">
+  <h4 style="color: white">Postal Address:</h4>
+  <p style="color: white">Private Bag X6001</p>
+  <p style="color: white">Potchefstroom Campus</p>
+  <p style="color: white">North-West University</p>
+  <p style="color: white">2520</p>
+</footer>
+<footer class="footer col-sm-4" style="background-color: gray; border-color: gray; align-content: right">
+  <h4 style="color: white">Ms Kobie Fourie</h4>
+  <p style="color: white">Subject group secretary</p>
+  <p style="color: white">+27 18 299 2531</p>
+  <p style="color: white">Kobie.Fourie@nwu.ac.za</p>
+  <p style="color: white">Building G3, room G01, Potchefstroom</p>
+</footer>
+<footer class="footer col-sm-4" style="background-color: gray; border-color: gray; align-content: right">
+  <h4 style="color: white">Mr Henry Foulds</h4>
+  <p style="color: white">Lecturer</p>
+  <p style="color: white">+27 18 299 2532</p>
+  <p style="color: white">Henry.Foulds@nwu.ac.za</p>
+  <p style="color: white">Building G3, basement, Potchefstroom</p>
 </footer>

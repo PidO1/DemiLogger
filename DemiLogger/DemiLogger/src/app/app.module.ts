@@ -10,12 +10,16 @@ import { HomeComponent } from './home/home.component';
 import { FormsComponent } from './forms/forms.component';
 import { ApplicationFormComponent } from './forms/application-form/application-form.component';
 import { RegisterComponent } from './login/register/register.component';
+import { AboutComponent } from './about/about.component';
+import { InfoComponent } from './info/info.component';
 
 
 const appRoutes: Routes = [
   { path: 'home', component:  HomeComponent },
   { path: 'form', component:  ApplicationFormComponent },
   { path: 'login', component:  LoginComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'info', component: InfoComponent },
   { path: 'login/register', component:  RegisterComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
@@ -29,6 +33,8 @@ const appRoutes: Routes = [
     FormsComponent,
     ApplicationFormComponent,
     RegisterComponent,
+    AboutComponent,
+    InfoComponent,
   ],
   imports: [
     BrowserModule,

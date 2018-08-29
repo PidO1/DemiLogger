@@ -1,8 +1,16 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 import { logging } from '@angular-devkit/core';
 export interface CommandConstructor {
     new (context: CommandContext, logger: logging.Logger): Command;
+    readonly name: string;
     aliases: string[];
-    scope: CommandScope.everywhere;
+    scope: CommandScope;
 }
 export declare enum CommandScope {
     everywhere = 0,
@@ -31,7 +39,8 @@ export declare abstract class Command<T = any> {
     argStrategy: ArgumentStrategy;
     hidden: boolean;
     unknown: boolean;
-    scope: CommandScope;
+    static scope: CommandScope;
+    static aliases: string[];
     protected readonly logger: logging.Logger;
     protected readonly project: any;
 }
