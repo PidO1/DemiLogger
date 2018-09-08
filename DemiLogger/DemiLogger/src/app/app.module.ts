@@ -14,6 +14,8 @@ import { AboutComponent } from './about/about.component';
 import { InfoComponent } from './info/info.component';
 import { QueriesComponent } from './queries/queries.component';
 import { ManageComponent } from './manage/manage.component';
+import {PgpdServiceService} from "./pgpd-service.service";
+import {Http, HttpModule} from "@angular/http";
 
 
 const appRoutes: Routes = [
@@ -45,9 +47,10 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpModule
   ],
-  providers: [],
+  providers: [PgpdServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

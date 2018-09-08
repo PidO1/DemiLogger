@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from "@angular/forms";
+import {PgpdServiceService} from "../../pgpd-service.service";
 
 @Component({
   selector: 'app-application-form',
@@ -16,14 +18,19 @@ export class ApplicationFormComponent implements OnInit {
   accounttype = ['Current(cheque)', 'Savings', 'Transmission'];
   accountinfo = ['Own account', 'Joint account', '3rd party'];
 
-  constructor() { }
+  constructor(private submitService: PgpdServiceService) { }
 
   ngOnInit() {
   }
 
-  onSubmit(form: ngForm)
+  onSubmit(form: NgForm)
   {
-    console.log(form);
+    console.log(form.value);
+    this.submitService.storeApplicationFormData(form.value)
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
   }
 
 }
