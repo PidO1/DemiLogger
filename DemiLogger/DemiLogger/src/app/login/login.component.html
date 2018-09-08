@@ -1,21 +1,17 @@
 <body style="background-color: transparent; padding-top: 2.1cm">
-<div  class="img-rounded center-block" align="center" style="opacity: 0.6; background-color: black; width: fit-content; padding: 10px">
-<h2 style="color: white">Login</h2>
-  <label style="color: white">Username</label>
-  <input type="text" class="form-control" style="width: 200px;"/>
-  <label style="color: white">Password</label>
-  <input type="password" class="form-control" style="width: 200px;"/>
-  <br>
-  <div class="form-group form-check">
-    <label class="form-check-label" style="color: white">
-      <input class="form-check-input" type="checkbox"> Remember me
-    </label>
-  </div>
-  <button class="btn btn-primary" routerLink="/info">Login</button>
-  <br>
-  <p style="color: white">
-  <a href="#" routerLink="register" style="color: deepskyblue">Register</a>
-    - if you don't have an account!
-  </p>
+<div class="container-fluid img-rounded"
+     style="background-color: black; opacity: 0.7; width: fit-content; padding: 10px">
+  <h1>Login</h1>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" class="form-control" ngModel name="username" required style="width: 20vw">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" class="form-control" ngModel name="password" required style="width: 20vw">
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Login</button>
+  </form>
 </div>
 </body>
