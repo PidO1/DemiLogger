@@ -1,0 +1,14 @@
+h1, h2, h3, h4, label, p
+{
+  color: white;
+}
+
+input
+{
+  width: 20vw;
+}
+input.ng-invalid.ng-touched
+{
+  border: 1px solid red;
+  width: 20vw;
+}

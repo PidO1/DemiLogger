@@ -1,360 +1,312 @@
-<form class="container-fluid img-rounded" style="background-color: black; opacity: 0.7; padding: 25px; padding-top: 2.1cm">
-  <h2 style="color: white">Appointment Form for Student Assistant, Supplementary Instruction (SI) Leader</h2>
-  <p style="color: white">•	Please complete all information in full or the appointment cannot be finalised. INCOMPLETE FORMS MAY DELAY PAYMENT.</p>
-  <p style="color: white">•	This appointment is valid only for the period applied for and must be signed by all responsible signatories.</p>
-  <p style="color: white">•	All pages need to be initialled. If corrections are made, no Tipex is permissible. The error must be struck out and be signed at.</p>
-  <p style="color: white">•	Reasons for temporary appointment (indicate with an x below and attach a motivation).</p>
-  <hr>
+<body style="background-color: transparent; padding-top: 2.1cm">
+<div class="container-fluid img-rounded"
+     style="background-color: black; opacity: 0.7; width: fit-content; padding: 10px">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <h2>Appointment Form for Student Assistant, Supplementary Instruction (SI) Leader</h2>
+    <p>• Please complete all information in full or the appointment cannot be finalised. INCOMPLETE FORMS MAY DELAY
+      PAYMENT.</p>
+    <p>• This appointment is valid only for the period applied for and must be signed by all responsible
+      signatories.</p>
+    <p>• All pages need to be initialled. If corrections are made, no Tipex is permissible. The error must be struck out
+      and be signed at.</p>
+    <p>• Reasons for temporary appointment (indicate with an x below and attach a motivation).</p>
+    <hr>
 
-  <h2 style="color: white">Section A: Personal particulars of temporary employees</h2>
-  <div class="form-group">
-    <label class="control-label" style="color: white">Copy of ID:</label>
-    <input type="file" class="filestyle" data-icon="false" style="background-color: white">
-  </div>
-
-  <div class="form-group">
-    <label class="control-label" style="color: white">Proof of Student Registration:</label>
-    <input type="file" class="filestyle" data-icon="false" style="background-color: white">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Student number:</label>
-    <input type="Student number" class="form-control" id="Student number" style="width: 120px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Title:</label>
-    <input type="title" class="form-control" id="title" style="width: 120px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Initials:</label>
-    <input type="initials" class="form-control" placeholder="e.g initial1,initial2" id="initials" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Surname:</label>
-    <input type="surname" class="form-control" id="surname" style="width: 120px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Full Names:</label>
-    <input type="fullname" class="form-control" placeholder="e.g Name, Name" id="fullname" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Preferred Name:</label>
-    <input type="preferredname" class="form-control" id="preferredname" style="width: 120px">
-  </div>
-
-  <br>
-  <label style="color: white">Module you want to assist in:</label>
-  <div class="form-group">
-    <label style="color: white">Module 1:</label>
-    <input type="module1" class="form-control" id="module1" style="width: 120px">
-  </div>
-  <div class="form-group">
-    <label style="color: white">Module 2:</label>
-    <input type="module2" class="form-control" id="module2" style="width: 120px">
-  </div>
-  <div class="form-group">
-    <label style="color: white">Module 3:</label>
-    <input type="module3" class="form-control" id="module3" style="width: 120px">
-  </div>
-
-  <br>
-  <label style="color: white">Your mark of specific module:</label>
-  <div class="form-group">
-    <label style="color: white">Module 1:</label>
-    <input type="moduleMark1" class="form-control" id="moduleMark1" style="width: 120px">
-  </div>
-  <div class="form-group">
-    <label style="color: white">Module 2:</label>
-    <input type="moduleMark2" class="form-control" id="moduleMark2" style="width: 120px">
-  </div>
-  <div class="form-group">
-    <label style="color: white">Module 3:</label>
-    <input type="moduleMark3" class="form-control" id="moduleMark3" style="width: 120px">
-  </div>
-
-  <br>
-  <div class="form-group">
-    <label style="color: white">Extension:</label>
-    <input type="extension" class="form-control" value="992531" id="extension" style="width: 120px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Internal Box:</label>
-    <input type="internalbox" class="form-control" value="107" id="internalbox" style="width: 120px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Gender:</label>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Male</label>
+    <h2 style="color: white">Section A: Personal particulars of temporary employees</h2>
+    <div class="form-group">
+      <label class="control-label" style="color: white">Copy of ID:</label>
+      <input type="file" class="filestyle" data-icon="false" style="background-color: white">
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Female</label>
+
+    <div class="form-group">
+      <label class="control-label" style="color: white">Proof of Student Registration:</label>
+      <input type="file" class="filestyle" data-icon="false" style="background-color: white">
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Other</label>
+
+    <div class="form-group">
+      <label for="studentNumber">Student number:</label>
+      <input type="number" id="studentNumber" class="form-control" ngModel name="studentNumber" required>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label style="color: white">Marital Status:</label>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Single</label>
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" class="form-control" ngModel name="title" required>
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Married</label>
+
+    <div class="form-group">
+      <label for="initials">Initials:</label>
+      <input type="text" id="initials" class="form-control" placeholder="e.g initial1,initial2" ngModel name="initials"
+             required>
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Divorced</label>
+
+    <div class="form-group">
+      <label for="surname">Surname:</label>
+      <input type="text" class="form-control" id="surname" ngModel name="surname" required>
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Widowed</label>
+
+    <div class="form-group">
+      <label for="fullname">Full Names:</label>
+      <input type="text" class="form-control" placeholder="e.g Name, Name" id="fullname" ngModel name="fullname"
+             required>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label style="color: white">Maiden Name:</label>
-    <input type="maidenname" class="form-control" id="maidenname" style="width: 120px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Correspondance Preference:</label>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">English</label>
+    <div class="form-group">
+      <label for="preferredname">Preferred Name:</label>
+      <input type="text" class="form-control" id="preferredname" ngModel name="preferredname" required>
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Afrikaans</label>
+
+    <br>
+    <label>Module you want to assist in:</label>
+    <div class="form-group">
+      <label for="module1">Module 1:</label>
+      <input type="text" class="form-control" id="module1" placeholder="e.g ITRW324" ngModel name="module1" required>
     </div>
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Race (for statistical use):</label>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">African</label>
+    <div class="form-group">
+      <label for="module2">Module 2:</label>
+      <input type="text" class="form-control" id="module2" placeholder="e.g ITRW324" ngModel name="module2">
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Coloured</label>
+    <div class="form-group">
+      <label for="module3">Module 3:</label>
+      <input type="text" class="form-control" id="module3" placeholder="e.g ITRW324" ngModel name="module3">
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Indian</label>
+
+    <br>
+    <label>Your mark of specific module:</label>
+    <div class="form-group">
+      <label for="moduleMark1">Module 1:</label>
+      <input type="text" class="form-control" id="moduleMark1" placeholder="e.g 95%" ngModel name="moduleMark1"
+             required>
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">White</label>
+    <div class="form-group">
+      <label for="moduleMark2">Module 2:</label>
+      <input type="text" class="form-control" id="moduleMark2" placeholder="e.g 95%" ngModel name="moduleMark2">
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Other</label>
+    <div class="form-group">
+      <label for="moduleMark3">Module 3:</label>
+      <input type="text" class="form-control" id="moduleMark3" placeholder="e.g 95%" ngModel name="moduleMark3">
     </div>
-  </div>
 
-  <div class="form-group">
-    <label style="color: white">Date of Birth:</label>
-    <input type="dateofbirth" class="form-control" placeholder="DD/MM/YYYY" id="dateofbirth" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Home Language:</label>
-    <input type="homelanguage" class="form-control" id="homelanguage" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Nationality:</label>
-    <input type="nationality" class="form-control" id="nationality" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">ID Number:</label>
-    <input type="idnumber" class="form-control" id="idnumber" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Income Tax Nr:</label>
-    <input type="taxnumber" class="form-control" id="taxnumber" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Residential Address:</label>
-    <input type="residentialaddress" class="form-control" id="residentialaddress" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Postal Address:</label>
-    <input type="postaladdress" class="form-control" id="postaladdress" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Zip Code:</label>
-    <input type="code" class="form-control" id="code" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Home Telephone Nr:</label>
-    <input type="hometelephonenumber" class="form-control" id="hometelephonenumber" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Mobile Nr:</label>
-    <input type="mobilenumber" class="form-control" id="mobilenumber" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">E-mail address:</label>
-    <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Where you previously employed by NWU?</label>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Yes</label>
+    <br>
+    <div class="form-group">
+      <label for="extension">Extension:</label>
+      <input type="text" class="form-control" placeholder="e.g 992531" id="extension" ngModel name="extension">
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">No</label>
+
+    <div class="form-group">
+      <label for="internalbox">Internal Box:</label>
+      <input type="text" class="form-control" placeholder="e.g 107" id="internalbox" ngModel name="internalbox">
     </div>
-  </div>
 
-  <div class="form-group">
-    <label style="color: white">Are you employed by an employer other than the NWU?</label>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Yes</label>
+    <label>Gender:</label>
+    <div class="radio" *ngFor="let gender of gender">
+      <label><input type="radio" name="gender" ngModel [value]="gender" required>{{ gender }}</label>
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">No</label>
+
+    <label>Marital Status:</label>
+    <div class="radio" *ngFor="let maritalStatus of maritalStatus">
+      <label><input type="radio" name="maritalStatus" ngModel [value]="maritalStatus" required>{{ maritalStatus
+        }}</label>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label style="color: white">Are you self-employed?</label>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Yes</label>
+    <div class="form-group">
+      <label for="maidenname">Maiden Name:</label>
+      <input type="text" class="form-control" id="maidenname" ngModel name="maidenname">
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">No</label>
+
+    <label>Correspondance Preference:</label>
+    <div class="radio" *ngFor="let correspondancePreference of correspondancePreference">
+      <label><input type="radio" name="correspondancePreference" ngModel [value]="correspondancePreference" required>{{
+        correspondancePreference }}</label>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label style="color: white">Highest Qualification:</label>
-    <input type="highestqualification" class="form-control" id="highestqualification" style="width: 350px">
-  </div>
-  <hr>
-
-  <h2 style="color: white">If a foreign student assistant</h2>
-  <div class="form-group">
-    <label class="control-label" style="color: white">Copy of Passport:</label>
-    <input type="file" class="filestyle" data-icon="false" style="background-color: white">
-  </div>
-
-  <div class="form-group">
-    <label class="control-label" style="color: white">Study Permit:</label>
-    <input type="file" class="filestyle" data-icon="false" style="background-color: white">
-  </div>
-
-  <div class="form-group">
-    <label class="control-label" style="color: white">Permission to Conduct Work Form:</label>
-    <input type="file" class="filestyle" data-icon="false" style="background-color: white">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Passport Nr:</label>
-    <input type="passportnumber" class="form-control" id="passportnumber" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Passport Expiry Date:</label>
-    <input type="expirydate" class="form-control" placeholder="DD/MM/YYYY" id="expirydate" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Work Permit Nr:</label>
-    <input type="permitnumber" class="form-control" id="permitnumber" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Work Permit Expiry Date:</label>
-    <input type="permitexpiry" class="form-control" placeholder="DD/MM/YYYY" id="permitexpiry" style="width: 350px">
-  </div>
-
-  <hr>
-  <h2 style="color: white">Section B: Bank details (No payment will be made if these details are not provided.)</h2>
-  <div class="form-group">
-    <label style="color: white">Account type:</label>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Current(cheque)</label>
+    <label>Race (for statistical use):</label>
+    <div class="radio" *ngFor="let race of race">
+      <label><input type="radio" name="race" ngModel [value]="race" required>{{ race }}</label>
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Savings</label>
+
+    <div class="form-group">
+      <label for="dateofbirth">Date of Birth:</label>
+      <input type="text" class="form-control" placeholder="DD/MM/YYYY" id="dateofbirth" ngModel name="dateofbirth"
+             required>
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Transmission</label>
+
+    <div class="form-group">
+      <label for="homelanguage">Home Language:</label>
+      <input type="text" class="form-control" id="homelanguage" ngModel name="homelanguage">
     </div>
-  </div>
 
-  <div class="form-group">
-    <label style="color: white">Bank branch code:</label>
-    <input type="bankbranch" class="form-control" id="bankbranch" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Account Nr:</label>
-    <input type="accountnumber" class="form-control" id="accountnumber" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Name of bank:</label>
-    <input type="bankname" class="form-control" id="bankname" style="width: 350px">
-  </div>
-
-  <label style="color: white">Account holder:</label>
-  <div class="form-group">
-    <label style="color: white">Surname:</label>
-    <input type="holdersurname" class="form-control" id="holdersurname" style="width: 350px">
-    <label style="color: white">Initials:</label>
-    <input type="holderinitials" class="form-control" placeholder="e.g Initial1,Initial2" id="holderinitials" style="width: 350px">
-  </div>
-
-  <div class="form-group">
-    <label style="color: white">Account type:</label>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Own account</label>
+    <div class="form-group">
+      <label for="nationality">Nationality:</label>
+      <input type="text" class="form-control" id="nationality" ngModel name="nationality" required>
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">Joint account</label>
+
+    <div class="form-group">
+      <label for="idnumber">ID Number:</label>
+      <input type="text" class="form-control" id="idnumber" ngModel name="idnumber" required>
     </div>
-    <div class="checkbox">
-      <label style="color: white"><input type="checkbox" value="">3rd party</label>
+
+    <div class="form-group">
+      <label for="taxnumber">Income Tax Nr:</label>
+      <input type="text" class="form-control" id="taxnumber" ngModel name="taxnumber" required>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label style="color: white">Date:</label>
-    <input type="date" class="form-control" placeholder="DD/MM/YYYY" id="date" style="width: 350px">
-  </div>
+    <div class="form-group">
+      <label for="residentialaddress">Residential Address:</label>
+      <input type="text" class="form-control" id="residentialaddress" ngModel name="residentialaddress" required>
+    </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <div class="form-group">
+      <label for="postaladdress">Postal Address:</label>
+      <input type="text" class="form-control" id="postaladdress" ngModel name="postaladdress">
+    </div>
 
+    <div class="form-group">
+      <label for="code">Zip Code:</label>
+      <input type="text" class="form-control" id="code" ngModel name="code">
+    </div>
+
+    <div class="form-group">
+      <label for="hometelephonenumber">Home Telephone Nr:</label>
+      <input type="text" class="form-control" id="hometelephonenumber" ngModel name="hometelephonenumber">
+    </div>
+
+    <div class="form-group">
+      <label for="mobilenumber">Mobile Nr:</label>
+      <input type="text" class="form-control" id="mobilenumber" ngModel name="mobilenumber">
+    </div>
+
+    <div class="form-group">
+      <label for="email">E-mail address:</label>
+      <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" ngModel name="email" email
+             #email="ngModel" required>
+    </div>
+    <span class="help-block" *ngIf="!email.valid && email.touched" style="color: red">Please enter a valid email!</span>
+
+    <label>Where you previously employed by NWU?</label>
+    <div class="radio" *ngFor="let previouslyemployed of previouslyemployed">
+      <label><input type="radio" name="previouslyemployed" ngModel [value]="previouslyemployed" required>{{
+        previouslyemployed }}</label>
+    </div>
+
+    <label>Are you employed by an employer other than the NWU?</label>
+    <div class="radio" *ngFor="let otheremployer of otheremployer">
+      <label><input type="radio" name="otheremployer" ngModel [value]="otheremployer" required>{{ otheremployer
+        }}</label>
+    </div>
+
+    <label>Are you self-employed?</label>
+    <div class="radio" *ngFor="let selfemployed of selfemployed">
+      <label><input type="radio" name="selfemployed" ngModel [value]="selfemployed" required>{{ selfemployed }}</label>
+    </div>
+
+    <div class="form-group">
+      <label for="highestqualification">Highest Qualification:</label>
+      <input type="text" class="form-control" id="highestqualification" ngModel name="highestqualification">
+    </div>
+    <hr>
+
+    <h2>If a foreign student assistant</h2>
+    <div class="form-group">
+      <label class="control-label" for="passport">Copy of Passport:</label>
+      <input type="file" class="filestyle" id="passport" data-icon="false" ngModel name="passport">
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="studypermit">Study Permit:</label>
+      <input type="file" class="filestyle" id="studypermit" data-icon="false" ngModel name="studypermit">
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="permissiontoconduct">Permission to Conduct Work Form:</label>
+      <input type="file" class="filestyle" id="permissiontoconduct" data-icon="false" ngModel
+             name="permissiontoconduct">
+    </div>
+
+    <div class="form-group">
+      <label for="passportnumber">Passport Nr:</label>
+      <input type="text" class="form-control" id="passportnumber" ngModel name="passportnumber">
+    </div>
+
+    <div class="form-group">
+      <label for="expirydate">Passport Expiry Date:</label>
+      <input type="text" class="form-control" id="expirydate" placeholder="DD/MM/YYYY" ngModel name="expirydate">
+    </div>
+
+    <div class="form-group">
+      <label for="permitnumber">Work Permit Nr:</label>
+      <input type="text" class="form-control" id="permitnumber" ngModel name="permitnumber">
+    </div>
+
+    <div class="form-group">
+      <label for="permitexpiry">Work Permit Expiry Date:</label>
+      <input type="text" class="form-control" placeholder="DD/MM/YYYY" id="permitexpiry" ngModel name="permitexpiry">
+    </div>
+
+    <hr>
+    <h2 style="color: white">Section B: Bank details (No payment will be made if these details are not provided.)</h2>
+    <label>Account type:</label>
+    <div class="radio" *ngFor="let accounttype of accounttype">
+      <label><input type="radio" name="accounttype" ngModel [value]="accounttype" required>{{ accounttype }}</label>
+    </div>
+
+    <div class="form-group">
+      <label for="bankbranch">Bank branch code:</label>
+      <input type="text" class="form-control" id="bankbranch" ngModel name="bankbranch" required>
+    </div>
+
+    <div class="form-group">
+      <label for="accountnumber">Account Nr:</label>
+      <input type="text" class="form-control" id="accountnumber" ngModel name="accountnumber" required>
+    </div>
+
+    <div class="form-group">
+      <label for="bankname">Name of bank:</label>
+      <input type="text" class="form-control" id="bankname" ngModel name="bankname" required>
+    </div>
+
+    <label style="color: white">Account holder:</label>
+    <div class="form-group">
+      <label for="holdersurname">Surname:</label>
+      <input type="text" class="form-control" id="holdersurname" ngModel name="holdersurname" required>
+    </div>
+    <div class="form-group">
+      <label for="holderinitials">Initials:</label>
+      <input type="text" class="form-control" placeholder="e.g Initial1,Initial2" id="holderinitials" ngModel
+             name="holderinitials" required>
+    </div>
+
+    <label>Account Info:</label>
+    <div class="radio" *ngFor="let accountinfo of accountinfo">
+      <label><input type="radio" name="accountinfo" ngModel [value]="accountinfo" required>{{ accountinfo }}</label>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Date:</label>
+      <input type="text" class="form-control" placeholder="DD/MM/YYYY" id="date" ngModel name="date" required>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+  </form>
+</div>
+</body>
 <footer class="footer col-sm-4" style="background-color: gray; border-color: gray; align-content: left">
-  <h4 style="color: white">Postal Address:</h4>
-  <p style="color: white">Private Bag X6001</p>
-  <p style="color: white">Potchefstroom Campus</p>
-  <p style="color: white">North-West University</p>
-  <p style="color: white">2520</p>
+  <h4>Postal Address:</h4>
+  <p>Private Bag X6001</p>
+  <p>Potchefstroom Campus</p>
+  <p>North-West University</p>
+  <p>2520</p>
 </footer>
 <footer class="footer col-sm-4" style="background-color: gray; border-color: gray; align-content: right">
-  <h4 style="color: white">Ms Kobie Fourie</h4>
-  <p style="color: white">Subject group secretary</p>
-  <p style="color: white">+27 18 299 2531</p>
-  <p style="color: white">Kobie.Fourie@nwu.ac.za</p>
-  <p style="color: white">Building G3, room G01, Potchefstroom</p>
+  <h4>Ms Kobie Fourie</h4>
+  <p>Subject group secretary</p>
+  <p>+27 18 299 2531</p>
+  <p>Kobie.Fourie@nwu.ac.za</p>
+  <p>Building G3, room G01, Potchefstroom</p>
 </footer>
 <footer class="footer col-sm-4" style="background-color: gray; border-color: gray; align-content: right">
-  <h4 style="color: white">Mr Henry Foulds</h4>
-  <p style="color: white">Lecturer</p>
-  <p style="color: white">+27 18 299 2532</p>
-  <p style="color: white">Henry.Foulds@nwu.ac.za</p>
-  <p style="color: white">Building G3, basement, Potchefstroom</p>
+  <h4>Mr Henry Foulds</h4>
+  <p>Lecturer</p>
+  <p>+27 18 299 2532</p>
+  <p>Henry.Foulds@nwu.ac.za</p>
+  <p>Building G3, basement, Potchefstroom</p>
 </footer>
