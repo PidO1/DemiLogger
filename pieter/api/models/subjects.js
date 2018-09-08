@@ -4,6 +4,6 @@ const subjectSchema = mongoose.Schema({_id: mongoose.Schema.Types.ObjectId,
 Module_Code: String,
 Core: String,
 Credits: Number,
-description: String,
+Description: String,
 });
 module.exports = mongoose.model('Subject',subjectSchema);

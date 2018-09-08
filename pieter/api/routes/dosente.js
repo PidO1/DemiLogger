@@ -3,46 +3,52 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Dosent = require('../models/dosente');
 
-
 router.get('/',(req,res,next)=>{
   Dosent.find()
-  .select("name surname NWUnumber _id")
+  .select("Title Name Surname NWU_Number Role Telephone_Number Email_Address")
   .exec()
   .then(doc=>{console.log(doc);
-        const response ={count : doc.length, 
-        dosente :doc.map(docs =>{return{ name: docs.name,
-        surname: docs.surname,
-         NWUnumber: docs.NWUnumber,
-        _id : docs._id ,
+        const response ={count : doc.length,
+        dosente :doc.map(docs =>{return{ Title: docs.Title,
+        Name: docs.Name,
+        Surname: docs.Surname,
+        NWU_Number: docs.NWU_Number,
+        Role: docs.Role,
+        Telephone_Number: docs.Telephone_Number,
+        Email_Address: docs.Email_Address,
+        _id : docs._id,
       request: {type:'GET',
       url:`http://localhost:3000/dosente/${docs._id}` } };} ) };
       res.status(200).json(response);
   })
   .catch( (err) =>{console.log(err); res.status(200).json({error:err});});
-
 });
-
 
 router.post('/',(req,res,next)=>{
-
 const dosent = new Dosent({ _id:mongoose.Types.ObjectId(),
-name:req.body.name,
-surname : req.body.surname,
-NWUnumber: req.body.NWUnumber
+Name: req.body.Name,
+Surname: req.body.Surname,
+NWU_Number: req.body.NWU_Number,
+Role: req.body.Role,
+Telephone_Number: req.body.Telephone_Number,
+Email_Address: req.body.Email_Address,
 });
+
 dosent.save()
 .then(result=>{console.log(result);   res.status(201).json({message:'Dosent created success',
-createdDosent:{ name : result.name,
-  surname : result.surname,
-_id: result._id,
-NWUnumber: result.NWUnumber,
+createdDosent:{
+  Name: result.Name,
+  Surname: result.Surname,
+  NWU_Number: result.NWU_Number,
+  Role: result.Role,
+  Telephone_Number: result.Telephone_Number,
+  Email_Address: result.Email_Address,
+  _id: result._id,
 request :{type: 'GET',
 url:`http://localhost:3000/dosente/${result._id}` } } });})
 .catch((err)=>{console.log(err);res.status(500).json({error : err});});
-
-
-
 });
+////////////////////////////////////////////////////////////////////////////////////////
 router.get('/:dosentID',(req,res,next)=>
 {const id = req.params.dosentID
     Dosent.findById(id)
@@ -59,7 +65,6 @@ router.get('/:dosentID',(req,res,next)=>
   })
     .catch(err=>{console.log(err);
     res.status(500).json(err);});
-
 });
 
 
@@ -79,7 +84,7 @@ router.patch('/:dosentID',(req,res,next)=>{
   })
   .catch(err=>{
     console.log(err);
-    res.status(200).json({error:err});
+    res.status(500).json({error:err});
   });
 });
 
@@ -95,7 +100,6 @@ router.delete('/:dosentID',(req,res,next)=>
     console.log(err);
     res.status(500).json({error:err});
   });
-
 });
 
 module.exports = router;

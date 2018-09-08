@@ -12,6 +12,8 @@ import { ApplicationFormComponent } from './forms/application-form/application-f
 import { RegisterComponent } from './login/register/register.component';
 import { AboutComponent } from './about/about.component';
 import { InfoComponent } from './info/info.component';
+import { QueriesComponent } from './queries/queries.component';
+import { ManageComponent } from './manage/manage.component';
 
 
 const appRoutes: Routes = [
@@ -21,6 +23,8 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'info', component: InfoComponent },
   { path: 'login/register', component:  RegisterComponent },
+  { path: 'queries', component: QueriesComponent },
+  { path: 'manage', component: ManageComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
@@ -35,6 +39,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     AboutComponent,
     InfoComponent,
+    QueriesComponent,
+    ManageComponent,
   ],
   imports: [
     BrowserModule,

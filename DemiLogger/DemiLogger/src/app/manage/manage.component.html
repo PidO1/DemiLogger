@@ -1,0 +1,39 @@
+
+<!--<body style="background-color: transparent; padding-top: 2.1cm">-->
+  <!--<div class="container-fluid img-rounded" style="background-color: black; opacity: 0.7; padding: 15px">-->
+    <!--<label style="color: white">Announcemet</label>-->
+    <!--<input type="text" class="form-control" (input)="onNewAnnouncement($event)" [(ngModel)]="announcement">-->
+    <!--<button class="btn btn-primary" (click)=" createAnnouncement()"> Submit</button>-->
+    <!--<p style="color: white" *ngIf="newAnnouncement">{{ announcement }}</p>-->
+  <!--</div>-->
+<!--</body>-->
+
+<script>
+  angular.module("announcement", ["ngStorage"])
+    .controller("AnnouncementController", function($scope, $localStorage) {
+
+      $scope.save = function() {
+        $localStorage.message = $scope.zafer;
+        console.log(zafer);
+      }
+
+      $scope.load = function() {
+        $scope.zafer = $localStorage.message;
+
+      }
+
+    })
+
+</script>
+
+<body ng-app="announcement" style="background-color: transparent; padding-top: 2.1cm">
+<div ng-controller="AnnouncementController" ng-init="load()">
+
+  <input type="text" ng-model="zafer">
+
+  <button ng-click="save()">Update</button>
+
+
+
+</div>
+</body>

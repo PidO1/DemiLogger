@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const studentsSchema = mongoose.Schema({_id:mongoose.Schema.Types.ObjectId,
-Personal_ID: String,
-Registration_Form: String,
+Personal_ID: String,//foto
+Registration_Form: String,//foto
 Student_Number: Number,
 Title: String,
 Initials: String,
@@ -31,9 +31,9 @@ Previously_Applied: String,
 Elsewhere_Applied: String,
 Self_Employed: String,
 Highest_Qualification: String,
-Passport: String,
-Study_Permit: String,
-Permission_to_Conduct_Work_Form: String,
+Passport: String,//foto
+Study_Permit: String,//foto
+Permission_to_Conduct_Work_Form: String,//foto
 Passport_Number: String,
 Passport_Expiry_Date: String,
 Work_Permit_Number: String,
@@ -48,4 +48,6 @@ Account_Holder_Initials: String,
 Account_Type_Info: String,
 Account_Date: String
 });
-module.exports = mongoose.model('Dosent',studenysSchema);
+
+
+module.exports = mongoose.model('Student',studentsSchema);
