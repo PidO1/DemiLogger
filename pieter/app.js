@@ -4,14 +4,15 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const  mongoose = require('mongoose');
+
+
 
 //local packages
 const dosentRoute = require('./api/routes/dosente');
 const vakkeRoute = require('./api/routes/subjects');
-const studentRoute = require('./api/routes/students');
+const demiRoute = require('./api/routes/Demi');
 
-mongoose.connect('mongodb://localhost:27017/DemiLogger',{ useNewUrlParser: true });
+
 console.log('APP.js net voor middleware');
 app.use(morgan('dev'));
 
@@ -32,7 +33,7 @@ next();
 //routes to handle requests///////
 app.use('/dosente',dosentRoute);
 app.use('/subjects',vakkeRoute);
-app.use('/students',studentRoute);
+app.use('/demi',demiRoute);
 
 app.use((req,res,next)=>{
   const error = new Error('not found');
