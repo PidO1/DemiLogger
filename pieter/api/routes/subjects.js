@@ -1,95 +1,55 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-const Subject = require('../models/subjects');
+<<<<<<< HEAD
+const mysql = require('promise-mysql');
 
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
+
+
+var con = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  password: "bib",
+  database: 'demilogger'
+});
+=======
+
+>>>>>>> Develop
 router.get('/',(req,res,next)=>{
-  Subject.find()
-  .select("Module_Code Core Credits Description")
-  .exec()
-  .then(doc=>{console.log(doc);
-        const response ={count : doc.length,
-        subjects :doc.map(docs =>{return{
-        Module_Code: docs.Module_Code,
-        Core: docs.Core,
-        Credits: docs.Credits,
-        Description: docs.Description,
-        _id : docs._id,
-      request: {type:'GET',
-      url:`http://localhost:3000/subjects/${docs._id}` } };} ) };
-      res.status(200).json(response);
-  })
-  .catch( (err) =>{console.log(err); res.status(200).json({error:err});});
+  res.status(200).json({message:'Subjects were fetched'});
 });
 
+<<<<<<< HEAD
+router.post('/',jsonParser,(req,res,next)=>{
+  var post = { ModuleNaam: con.escape(req.body.name),
+    ModuleCode: req.body.code,
+    Credits: req.body.credits };
+    
+    var sql = 'INSERT INTO Module set ?';
+        console.log(post);
+      con.getConnection()
+      .then(function(connection) {
+        connection.query(sql,post,(err,ress)=>{if(err){console.log(err);}});
+        res.status(201).json({message: post});
+      })
+      .catch(function(err) {
+        console.log('error');
+        res.status(404).json({error:err});
+      });
+  
+=======
 router.post('/',(req,res,next)=>{
-const subjects = new Subject({ _id:mongoose.Types.ObjectId(),
-  Module_Code: req.body.Module_Code,
-  Core: req.body.Core,
-  Credits: req.body.Credits,
-  Description: req.body.Description,
+  const subject = { name: req.body.name,
+  code: req.body.code,
+semester: req.body.semester }
+  res.status(201).json({message:'Subject ADDED', newSubject : subject});
+>>>>>>> Develop
 });
-
-subjects.save()
-.then(result=>{console.log(result);   res.status(201).json({message:'Subject created success',
-createdSubject:{
-Module_Code: result.Module_Code,
-Core: result.Core,
-Credits: result.Credits,
-Description: result.Description,
-_id: result._id,
-request :{type: 'GET',
-url:`http://localhost:3000/subjects/${result._id}` } } });})
-.catch((err)=>{console.log(err);res.status(500).json({error : err});});
+router.get('/:subjectID',(req,res,next)=>{
+  res.status(201).json({message:'Subject FOUND by ID',subjectid:req.params.subjectID});
 });
-
-router.get('/:subjectID',(req,res,next)=>
-{const id = req.params.subjectID
-    Subject.findById(id)
-    .exec()
-    .then(doc =>{console.log(doc);
-      if(doc)
-      {
-        res.status(200).json(doc);
-      }
-    else
-    {
-        res.status(404).json({message: 'Subject not found'});
-    }
-  })
-    .catch(err=>{console.log(err);
-    res.status(500).json({message:'could not find the desired subject',error: err.message});});
+router.delete('/:subjectID',(req,res,next)=>{
+  res.status(201).json({message:'Subject DELETED',subjectid:req.params.subjectID});
 });
-
-router.patch('/:subjectID',(req,res,next)=>{
-  const subjectID = req.params.subjectID;
-  const updateOps = {};
-  for(const ops of req.body){
-    updateOps[ops.propName] = ops.value;
-  }
-  Subject.updateOne({_id:subjectID},{ $set:updateOps})//UPDATE
-  .exec()
-  .then(result=>{
-    console.log(res);
-    res.status(200).json(result);
-  })
-  .catch(err=>{
-    console.log(err);
-    res.status(500).json({error:err});
-  });
-});
-
-router.delete('/:subjectID',(req,res,next)=>
-{ const subjectID = req.params.subjectID;
-  Subject.findOneAndDelete({_id:subjectID})
-  .exec()
-  .then(result=>{
-    res.status(200).json(result);
-  })
-  .catch(err=>{
-    console.log(err);
-    res.status(500).json({error:err});
-  });
-});
-
 module.exports = router;

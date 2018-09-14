@@ -1,20 +1,32 @@
 //NPM packages
+<<<<<<< HEAD
 console.log('APP.js started');
+=======
+>>>>>>> Develop
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const  mongoose = require('mongoose');
+<<<<<<< HEAD
+
+
 
 //local packages
 const dosentRoute = require('./api/routes/dosente');
 const vakkeRoute = require('./api/routes/subjects');
-const studentRoute = require('./api/routes/students');
+const demiRoute = require('./api/routes/Demi');
 
-mongoose.connect('mongodb://localhost:27017/DemiLogger',{ useNewUrlParser: true });
+
 console.log('APP.js net voor middleware');
 app.use(morgan('dev'));
 
+=======
+//local packages
+const dosentRoute = require('./api/routes/dosente');
+const vakkeRoute = require('./api/routes/subjects');
+
+app.use(morgan('dev'));
+>>>>>>> Develop
 //CORS ERROR HANDLING INGEBOU***********
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -32,7 +44,10 @@ next();
 //routes to handle requests///////
 app.use('/dosente',dosentRoute);
 app.use('/subjects',vakkeRoute);
-app.use('/students',studentRoute);
+<<<<<<< HEAD
+app.use('/demi',demiRoute);
+=======
+>>>>>>> Develop
 
 app.use((req,res,next)=>{
   const error = new Error('not found');
@@ -50,4 +65,7 @@ app.use((error,req,res,next)=>{
 
 });
 module.exports = app;
+<<<<<<< HEAD
 // mongod.exe --dbpath /Users/User/mongodata      C:\Program Files\MongoDB\Server\4.0
+=======
+>>>>>>> Develop
