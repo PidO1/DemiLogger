@@ -140,5 +140,5 @@ router.patch('/:demiID',(req,res,next)=>{
 router.delete('/:dosentID',(req,res,next)=>{ 
 
 });
-
+console.log('test');
 module.exports = router;
