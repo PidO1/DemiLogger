@@ -12,7 +12,13 @@ export class PgpdServiceService {
     const header = new Headers({'Content-Type': 'application/json'});
     return this.http.post('https://udemy-ng-http-d1134.firebaseio.com/login.json', loginData, {headers: header})
   }
+
   storeApplicationFormData(formData: any[]) {
+    const header = new Headers({'Content-Type': 'application/json'});
+    return this.http.post('https://udemy-ng-http-d1134.firebaseio.com/form.json', formData, {headers: header})
+  }
+
+  storeRegisterData(formData: any[]) {
     const header = new Headers({'Content-Type': 'application/json'});
     return this.http.post('https://udemy-ng-http-d1134.firebaseio.com/form.json', formData, {headers: header})
   }
