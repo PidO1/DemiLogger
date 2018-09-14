@@ -46,8 +46,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+<<<<<<< Updated upstream
           <entry key="css" value="4" />
           <entry key="html" value="49" />
+=======
+          <entry key="css" value="5" />
+          <entry key="html" value="50" />
+>>>>>>> Stashed changes
           <entry key="js" value="2" />
           <entry key="json" value="2" />
           <entry key="ts" value="20" />
@@ -55,8 +60,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+<<<<<<< Updated upstream
           <entry key="CSS" value="4" />
           <entry key="HTML" value="49" />
+=======
+          <entry key="CSS" value="5" />
+          <entry key="HTML" value="50" />
+>>>>>>> Stashed changes
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="2" />
           <entry key="TypeScript" value="20" />
@@ -64,14 +74,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="166" />
+          <entry key="css" value="175" />
           <entry key="html" value="9379" />
           <entry key="ts" value="985" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="166" />
+          <entry key="CSS" value="175" />
           <entry key="HTML" value="9379" />
           <entry key="TypeScript" value="985" />
         </counts>
@@ -120,6 +130,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DemiLogger/src/app/info/info.component.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="434">
               <caret line="81" column="109" selection-start-line="81" selection-start-column="109" selection-end-line="81" selection-end-column="109" />
               <folding>
@@ -127,16 +138,34 @@
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+=======
+            <state relative-caret-position="221">
+              <caret line="217" lean-forward="true" selection-start-line="217" selection-end-line="217" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="e#7757#7775#0" expanded="true" />
+                <element signature="n#style#0;n#footer#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#footer#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#footer#2;n#!!top" expanded="true" />
+>>>>>>> Stashed changes
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< Updated upstream
         <entry file="file://$PROJECT_DIR$/DemiLogger/src/app/info/info.component.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
               <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+=======
+        <entry file="file://$PROJECT_DIR$/DemiLogger/src/app/forms/application-form/application-form.component.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
@@ -160,8 +189,11 @@
         <option value="$PROJECT_DIR$/DemiLogger/src/app/manage/manage.component.html" />
         <option value="$PROJECT_DIR$/DemiLogger/src/app/info/info.component.ts" />
         <option value="$PROJECT_DIR$/DemiLogger/src/app/login/login.component.css" />
+<<<<<<< Updated upstream
         <option value="$PROJECT_DIR$/DemiLogger/src/app/forms/application-form/application-form.component.css" />
         <option value="$PROJECT_DIR$/DemiLogger/src/app/forms/application-form/application-form.component.html" />
+=======
+>>>>>>> Stashed changes
         <option value="$PROJECT_DIR$/DemiLogger/src/app/login/login.component.html" />
         <option value="$PROJECT_DIR$/DemiLogger/src/app/login/login.component.ts" />
         <option value="$PROJECT_DIR$/DemiLogger/src/app/app.module.ts" />
@@ -169,6 +201,11 @@
         <option value="$PROJECT_DIR$/DemiLogger/src/app/forms/application-form/application-form.component.ts" />
         <option value="$PROJECT_DIR$/DemiLogger/src/app/info/info.component.css" />
         <option value="$PROJECT_DIR$/DemiLogger/src/app/info/info.component.html" />
+<<<<<<< Updated upstream
+=======
+        <option value="$PROJECT_DIR$/DemiLogger/src/app/forms/application-form/application-form.component.css" />
+        <option value="$PROJECT_DIR$/DemiLogger/src/app/forms/application-form/application-form.component.html" />
+>>>>>>> Stashed changes
       </list>
     </option>
   </component>
@@ -597,7 +634,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< Updated upstream
     <option name="totallyTimeSpent" value="76533000" />
+=======
+    <option name="totallyTimeSpent" value="77280000" />
+>>>>>>> Stashed changes
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -744,13 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DemiLogger/src/app/forms/application-form/application-form.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="15" selection-start-column="15" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DemiLogger/src/app/login/login.component.css">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -831,5 +865,30 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
+=======
+    <entry file="file://$PROJECT_DIR$/DemiLogger/src/app/forms/application-form/application-form.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DemiLogger/src/app/forms/application-form/application-form.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="217" lean-forward="true" selection-start-line="217" selection-end-line="217" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="e#7757#7775#0" expanded="true" />
+            <element signature="n#style#0;n#footer#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#footer#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#footer#2;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+>>>>>>> Stashed changes
   </component>
 </project>
