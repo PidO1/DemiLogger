@@ -10,7 +10,7 @@ export class PgpdServiceService {
 
   storeLoginData(loginData: any[]) {
     const header = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('https://udemy-ng-http-d1134.firebaseio.com/login.json', loginData, {headers: header})
+    return this.http.post('http://192.168.1.8:3000/demi/login', loginData, {headers: header})
   }
 
   storeApplicationFormData(formData: any[]) {
@@ -20,6 +20,6 @@ export class PgpdServiceService {
 
   storeRegisterData(formData: any[]) {
     const header = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('https://udemy-ng-http-d1134.firebaseio.com/form.json', formData, {headers: header})
+    return this.http.post('http://192.168.1.8:3000/demi/register', formData, {headers: header})
   }
 }
