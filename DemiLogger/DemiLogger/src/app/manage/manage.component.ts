@@ -7,20 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageComponent implements OnInit {
 
-  announcement = 'No announcement.';
-  newAnnouncement = 'newAnnouncent';
 
   constructor() { }
 
   ngOnInit() {
   }
-  createAnnouncement()
-  {
-    this.announcement = this.newAnnouncement;
-  }
 
-  onNewAnnouncement(event: Event)
-  {
-    this.announcement = (<HTMLInputElement>event.target).value;
-  }
+
+
 }
