@@ -1,20 +1,77 @@
 <body style="background-color: transparent; padding-top: 2.1cm">
-<div class="container-fluid img-rounded" style="background-color: black; opacity: 0.7; width: fit-content; padding: 10px">
+<div class="container-fluid img-rounded" style="background-color: black; opacity: 0.7; width: 100vw; padding: 10px">
   <ngb-tabset>
     <ngb-tab title="Announcement">
       <ng-template ngbTabContent>
-        <form  (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <form  (ngSubmit)="onSubmitAnnouncement(f)" #f="ngForm">
+          <label>Send announcement to:</label>
+          <br>
           <select>
             <option value="val1">All</option>
             <option value="val2">Students</option>
             <option value="val3">Lecturers</option>
           </select>
           <br>
-          <label>Please add a announcement?</label>
+          <label>Announcement:</label>
           <br>
-          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px; width: 80vw"></textarea>
+          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px; width: 97vw"></textarea>
           <br>
-          <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Login</button>
+          <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+        </form>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Add Lecturers">
+      <ng-template ngbTabContent>
+        <form (ngSubmit)="onSubmitLecturer(d)" #d="ngForm">
+          <div class="form-group">
+            <label for="name">Preferred Name:</label>
+            <input type="text" class="form-control" id="name" ngModel name="name" pattern="[a-zA-Z ]*"
+                   required name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                 class="alert alert-danger" style="width: 35vw">
+
+              <div *ngIf="name.errors.required">
+                A name is required.
+              </div>
+              <div *ngIf="name.errors.pattern">
+                Can only contain letters.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" class="form-control" id="surname" ngModel name="surname" pattern="[a-zA-Z ]*" required
+                   #surname="ngModel">
+            <div *ngIf="surname.invalid && (surname.dirty || surname.touched)"
+                 class="alert alert-danger" style="width: 35vw">
+
+              <div *ngIf="surname.errors.required">
+                Surname is required.
+              </div>
+              <div *ngIf="surname.errors.pattern">
+                Can only contain letters.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss" pattern="[a-zA-Z ]*" maxlength="4"
+                   ngModel name="title" required #title="ngModel">
+            <div *ngIf="title.invalid && (title.dirty || title.touched)"
+                 class="alert alert-danger" style="width: 35vw">
+
+              <div *ngIf="title.errors.required">
+                Title is required.
+              </div>
+              <div *ngIf="title.errors.maxlength">
+                Title cannot be longer than 4 characters.
+              </div>
+              <div *ngIf="title.errors.pattern">
+                Can only contain letters.
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit" [disabled]="!d.valid">Submit</button>
         </form>
       </ng-template>
     </ngb-tab>

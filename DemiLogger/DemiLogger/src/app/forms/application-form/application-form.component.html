@@ -12,15 +12,16 @@
     <p>• Reasons for temporary appointment (indicate with an x below and attach a motivation).</p>
     <hr>
 
-    <h2 style="color: white">Section A: Personal particulars of temporary employees</h2>
+    <h2>Section A: Personal particulars of temporary employees</h2>
     <div class="form-group">
-      <label class="control-label" style="color: white">Copy of ID:</label>
-      <input type="file" class="filestyle" data-icon="false" required>
+      <label class="control-label" for="copyid">Copy of ID:</label>
+      <input type="file" class="filestyle" id="copyid" name="copyid" data-icon="false" required (change)="onFileSelected($event)">
+      <button type="button" (click)="onUpload()">Upload</button>
     </div>
 
     <div class="form-group">
-      <label class="control-label" style="color: white">Proof of Student Registration:</label>
-      <input type="file" class="filestyle" data-icon="false" required>
+      <label class="control-label" for="studentregistration">Proof of Student Registration:</label>
+      <input type="file" class="filestyle" data-icon="false" id="studentregistration" ngModel name="studentregistration" required>
     </div>
 
     <div class="form-group">
@@ -44,7 +45,7 @@
 
     <div class="form-group">
       <label for="title">Title:</label>
-      <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss" pattern="[a-zA-Z ]*" maxlength="4"
+      <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss"  pattern="[a-zA-Z ]*" maxlength="4"
              ngModel name="title" required #title="ngModel">
       <div *ngIf="title.invalid && (title.dirty || title.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -122,67 +123,67 @@
       </div>
     </div>
 
-    <br>
-    <label>Module you want to assist in:</label>
-    <div class="form-group">
-      <label for="module1">Module 1:</label>
-      <input type="text" class="form-control" id="module1" placeholder="e.g ITRW324" ngModel name="module1" required
-             #module1="ngModel">
-      <div *ngIf="module1.invalid && (module1.dirty || module1.touched)"
-           class="alert alert-danger" style="width: 35vw">
+    <!--<br>-->
+    <!--<label>Module you want to assist in:</label>-->
+    <!--<div class="form-group">-->
+      <!--<label for="module1">Module 1:</label>-->
+      <!--<input type="text" class="form-control" id="module1" value placeholder="e.g ITRW324" ngModel name="module1" required-->
+             <!--#module1="ngModel">-->
+      <!--<div *ngIf="module1.invalid && (module1.dirty || module1.touched)"-->
+           <!--class="alert alert-danger" style="width: 35vw">-->
 
-        <div *ngIf="module1.errors.required">
-          A module code is required.
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="module2">Module 2:</label>
-      <input type="text" class="form-control" id="module2" placeholder="e.g ITRW324" ngModel name="module2"
-             #module2="ngModel">
-      <div *ngIf="module2.invalid && (module2.dirty || module2.touched)"
-           class="alert alert-danger" style="width: 35vw">
+        <!--<div *ngIf="module1.errors.required">-->
+          <!--A module code is required.-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<label for="module2">Module 2:</label>-->
+      <!--<input type="text" class="form-control" id="module2" placeholder="e.g ITRW324" ngModel name="module2"-->
+             <!--#module2="ngModel">-->
+      <!--<div *ngIf="module2.invalid && (module2.dirty || module2.touched)"-->
+           <!--class="alert alert-danger" style="width: 35vw">-->
 
-        <div *ngIf="module2.errors.required">
-          A module code is required.
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="module3">Module 3:</label>
-      <input type="text" class="form-control" id="module3" placeholder="e.g ITRW324" ngModel name="module3"
-             #module3="ngModel">
-      <div *ngIf="module3.invalid && (module3.dirty || module3.touched)"
-           class="alert alert-danger" style="width: 35vw">
+        <!--<div *ngIf="module2.errors.required">-->
+          <!--A module code is required.-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<label for="module3">Module 3:</label>-->
+      <!--<input type="text" class="form-control" id="module3" placeholder="e.g ITRW324" ngModel name="module3"-->
+             <!--#module3="ngModel">-->
+      <!--<div *ngIf="module3.invalid && (module3.dirty || module3.touched)"-->
+           <!--class="alert alert-danger" style="width: 35vw">-->
 
-        <div *ngIf="module3.errors.required">
-          A name is required.
-        </div>
-      </div>
-    </div>
+        <!--<div *ngIf="module3.errors.required">-->
+          <!--A name is required.-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
-    <br>
-    <label>Your mark of specific module:</label>
-    <div class="form-group">
-      <label for="moduleMark1">Module 1:</label>
-      <input type="text" class="form-control" id="moduleMark1" placeholder="e.g 95%" ngModel name="moduleMark1" required
-             #moduleMark1="ngModel">
-      <div *ngIf="moduleMark1.invalid && (moduleMark1.dirty || moduleMark1.touched)"
-           class="alert alert-danger" style="width: 35vw">
+    <!--<br>-->
+    <!--<label>Your mark of specific module:</label>-->
+    <!--<div class="form-group">-->
+      <!--<label for="moduleMark1">Module 1:</label>-->
+      <!--<input type="text" class="form-control" id="moduleMark1" placeholder="e.g 95%" ngModel name="moduleMark1" required-->
+             <!--#moduleMark1="ngModel">-->
+      <!--<div *ngIf="moduleMark1.invalid && (moduleMark1.dirty || moduleMark1.touched)"-->
+           <!--class="alert alert-danger" style="width: 35vw">-->
 
-        <div *ngIf="moduleMark1.errors.required">
-          A module mark is required.
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="moduleMark2">Module 2:</label>
-      <input type="text" class="form-control" id="moduleMark2" placeholder="e.g 95%" ngModel name="moduleMark2">
-    </div>
-    <div class="form-group">
-      <label for="moduleMark3">Module 3:</label>
-      <input type="text" class="form-control" id="moduleMark3" placeholder="e.g 95%" ngModel name="moduleMark3">
-    </div>
+        <!--<div *ngIf="moduleMark1.errors.required">-->
+          <!--A module mark is required.-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<label for="moduleMark2">Module 2:</label>-->
+      <!--<input type="text" class="form-control" id="moduleMark2" placeholder="e.g 95%" ngModel name="moduleMark2">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<label for="moduleMark3">Module 3:</label>-->
+      <!--<input type="text" class="form-control" id="moduleMark3" placeholder="e.g 95%" ngModel name="moduleMark3">-->
+    <!--</div>-->
 
     <br>
     <div class="form-group">
@@ -261,7 +262,7 @@
       <!--required>-->
       <div class="input-group">
         <input class="form-control" placeholder="yyyy-mm-dd"
-               name="dataofbirth" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" id="dateofbirth" required>
+               name="dataofbirth" [(ngModel)]="model" [minDate]="minDate" this.min ngbDatepicker #d="ngbDatepicker" id="dateofbirth" required>
         <div class="input-group-append">
           <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
         </div>
@@ -270,7 +271,7 @@
 
     <div class="form-group">
       <label for="homelanguage">Home Language:</label>
-      <input type="text" class="form-control" id="homelanguage" ngModel name="homelanguage" pattern="[a-zA-Z ]*"
+      <input type="text" class="form-control" id="homelanguage" ngModel name="homelanguage"  pattern="[a-zA-Z ]*"
              required #homelanguage="ngModel">
       <div *ngIf="homelanguage.invalid && (homelanguage.dirty || homelanguage.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -487,7 +488,7 @@
       <!--<input type="text" class="form-control" id="expirydate" placeholder="DD/MM/YYYY" ngModel name="expirydate">-->
       <div class="input-group">
         <input class="form-control" placeholder="yyyy-mm-dd"
-               name="expirydate" [(ngModel)]="model" ngbDatepicker #r="ngbDatepicker" id="expirydate">
+               name="expirydate" [(ngModel)]="model1" ngbDatepicker #r="ngbDatepicker" id="expirydate">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary calendar" (click)="r.toggle()" type="button"></button>
         </div>
@@ -512,7 +513,7 @@
       <!--<input type="text" class="form-control" placeholder="DD/MM/YYYY" id="permitexpiry" ngModel name="permitexpiry">-->
       <div class="input-group">
         <input class="form-control" placeholder="yyyy-mm-dd"
-               name="permitexpiry" [(ngModel)]="model" ngbDatepicker #e="ngbDatepicker" id="permitexpiry">
+               name="permitexpiry" [(ngModel)]="model2" ngbDatepicker #e="ngbDatepicker" id="permitexpiry">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button>
         </div>
@@ -619,7 +620,7 @@
       <!--<input type="text" class="form-control" placeholder="DD/MM/YYYY" id="date" ngModel name="date" required>-->
       <div class="input-group">
         <input class="form-control" placeholder="yyyy-mm-dd"
-               name="date" [(ngModel)]="model" ngbDatepicker #c="ngbDatepicker" id="date">
+               name="date" [(ngModel)]="model3" ngbDatepicker #c="ngbDatepicker" id="date">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary calendar" (click)="c.toggle()" type="button"></button>
         </div>
