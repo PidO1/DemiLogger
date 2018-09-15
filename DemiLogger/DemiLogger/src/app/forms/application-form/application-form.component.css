@@ -7,9 +7,22 @@ input
 {
   width: 20vw;
   background-color: white;
+  color: black;
 }
+/*input[type=number]::-webkit-inner-spin-button,*/
+/*input[type=number]::-webkit-outer-spin-button*/
+/*{*/
+  /*-webkit-appearance: none;*/
+  /*margin: 0;*/
+/*}*/
+
 input.ng-invalid.ng-touched
 {
   border: 1px solid red;
   width: 20vw;
+}
+input.ng-valid.ng-touched
+{
+  border: 1px green;
+  border-style: solid;
 }

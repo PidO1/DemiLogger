@@ -15,7 +15,7 @@ export class PgpdServiceService {
 
   storeApplicationFormData(formData: any[]) {
     const header = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('https://udemy-ng-http-d1134.firebaseio.com/form.json', formData, {headers: header})
+    return this.http.patch('http://192.168.1.8:3000/demi/applicationform', formData, {headers: header})
   }
 
   storeRegisterData(formData: any[]) {

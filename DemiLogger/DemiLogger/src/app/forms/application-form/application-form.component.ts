@@ -17,7 +17,7 @@ export class ApplicationFormComponent implements OnInit {
   selfemployed = ['Yes', 'No'];
   accounttype = ['Current(cheque)', 'Savings', 'Transmission'];
   accountinfo = ['Own account', 'Joint account', '3rd party'];
-
+  model;
   constructor(private submitService: PgpdServiceService) { }
 
   ngOnInit() {
