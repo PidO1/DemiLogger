@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-<<<<<<< HEAD
 const mysql = require('promise-mysql');
 
 var bodyParser = require('body-parser');
@@ -13,14 +12,10 @@ var con = mysql.createPool({
   password: "bib",
   database: 'demilogger'
 });
-=======
-
->>>>>>> Develop
 router.get('/',(req,res,next)=>{
   res.status(200).json({message:'Subjects were fetched'});
 });
 
-<<<<<<< HEAD
 router.post('/',jsonParser,(req,res,next)=>{
   var post = { ModuleNaam: con.escape(req.body.name),
     ModuleCode: req.body.code,
@@ -38,13 +33,6 @@ router.post('/',jsonParser,(req,res,next)=>{
         res.status(404).json({error:err});
       });
   
-=======
-router.post('/',(req,res,next)=>{
-  const subject = { name: req.body.name,
-  code: req.body.code,
-semester: req.body.semester }
-  res.status(201).json({message:'Subject ADDED', newSubject : subject});
->>>>>>> Develop
 });
 router.get('/:subjectID',(req,res,next)=>{
   res.status(201).json({message:'Subject FOUND by ID',subjectid:req.params.subjectID});

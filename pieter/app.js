@@ -1,13 +1,9 @@
 //NPM packages
-<<<<<<< HEAD
 console.log('APP.js started');
-=======
->>>>>>> Develop
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-<<<<<<< HEAD
 
 
 
@@ -15,18 +11,12 @@ const bodyParser = require('body-parser');
 const dosentRoute = require('./api/routes/dosente');
 const vakkeRoute = require('./api/routes/subjects');
 const demiRoute = require('./api/routes/Demi');
+const userRoute = require('./api/routes/user');
 
 
 console.log('APP.js net voor middleware');
 app.use(morgan('dev'));
 
-=======
-//local packages
-const dosentRoute = require('./api/routes/dosente');
-const vakkeRoute = require('./api/routes/subjects');
-
-app.use(morgan('dev'));
->>>>>>> Develop
 //CORS ERROR HANDLING INGEBOU***********
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -44,10 +34,8 @@ next();
 //routes to handle requests///////
 app.use('/dosente',dosentRoute);
 app.use('/subjects',vakkeRoute);
-<<<<<<< HEAD
 app.use('/demi',demiRoute);
-=======
->>>>>>> Develop
+app.use('/user',userRoute);
 
 app.use((req,res,next)=>{
   const error = new Error('not found');
@@ -58,6 +46,7 @@ app.use((req,res,next)=>{
 });
 app.use((error,req,res,next)=>{
   res.status(error.status || 500);
+  console.log(error);
   res.json({
     error:{ message: error.message}
 
@@ -65,7 +54,4 @@ app.use((error,req,res,next)=>{
 
 });
 module.exports = app;
-<<<<<<< HEAD
 // mongod.exe --dbpath /Users/User/mongodata      C:\Program Files\MongoDB\Server\4.0
-=======
->>>>>>> Develop
