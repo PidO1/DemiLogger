@@ -1,8 +1,18 @@
+input
+{
+  width: 20vw;
+}
 input.ng-invalid.ng-touched
 {
   border: 1px solid red;
+}
+input.ng-valid.ng-touched
+{
+  border: 1px green;
+  border-style: solid;
 }
 h1, label, p, button
 {
   color: white;
 }
+

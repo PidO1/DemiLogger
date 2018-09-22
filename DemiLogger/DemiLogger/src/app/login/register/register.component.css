@@ -6,10 +6,13 @@ h1, h2, h3, h4, label, p
 input
 {
   width: 20vw;
-  background-color: white;
 }
 input.ng-invalid.ng-touched
 {
   border: 1px solid red;
-  width: 20vw;
+}
+input.ng-valid.ng-touched
+{
+  border: 1px green;
+  border-style: solid;
 }

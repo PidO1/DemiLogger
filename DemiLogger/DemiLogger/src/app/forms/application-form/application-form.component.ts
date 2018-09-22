@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {PgpdServiceService} from "../../pgpd-service.service";
 import { HttpClient } from "@angular/common/http";
+import {Data} from "@angular/router";
 
 @Component({
   selector: 'app-application-form',
@@ -25,35 +26,44 @@ export class ApplicationFormComponent implements OnInit {
   minDate = {year: 1940, month: 1, day: 1};
 
   selectedFile: File = null;
+  selectedDataValue: string;
+  selectedDataName: string;
+   fd = new FormData();
+
+  constructor(private http: HttpClient){}
+  // constructor(private submitService: PgpdServiceService) { }
+
+  onDataSelected(event)
+  {
+    console.log(event);
+    this.selectedDataValue = event.target.value;
+    this.selectedDataName = event.target.name;
+    this.fd.append (this.selectedDataName, this.selectedDataValue);
+  }
+
+  onRadioSelected(event)
+  {
+    console.log(event);
+    this.selectedDataValue = event.target.id;
+    this.selectedDataName = event.target.name;
+    this.fd.append (this.selectedDataName, this.selectedDataValue);
+  }
+
   onFileSelected(event)
   {
     console.log(event);
     this.selectedFile = <File>event.target.files[0];
+    this.fd.append('image', this.selectedFile, this.selectedFile.name);
   }
+
   onUpload()
   {
-    const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name);
-    // fd.append()
-    this.http.post('http://192.168.1.8:3000/demi/applicationform', fd)
+    this.http.post('http://192.168.1.8:3000/demi/applicationform', this.fd)
       .subscribe(res =>{
         console.log(res);
       })
   }
-  constructor(private http: HttpClient){}
-  // constructor(private submitService: PgpdServiceService) { }
 
   ngOnInit() {
   }
-
-  // onSubmit(form: NgForm)
-  // {
-  //   console.log(form.value);
-  //   this.submitService.storeApplicationFormData(form.value)
-  //     .subscribe(
-  //       (response) => console.log(response),
-  //       (error) => console.log(error)
-  //     );
-  // }
-
 }
