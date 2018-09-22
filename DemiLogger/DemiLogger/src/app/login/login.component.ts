@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {PgpdServiceService} from "../pgpd-service.service";
+import * as jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-login',
@@ -8,21 +9,22 @@ import {PgpdServiceService} from "../pgpd-service.service";
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  // defaultQuestion = 'pet';
-  // answer = '';
-  // gender = ['male', 'female'];
 
-  constructor(private submitService: PgpdServiceService) { }
-
-  ngOnInit() {
-  }
-
+  constructor(private submitService: PgpdServiceService) {}
+  ngOnInit() {}
+  // tokenDecode="";
+  // token="";
   onSubmit(form: NgForm)
   {
-    console.log(form.value);
+    // console.log(form.value);
+
     this.submitService.storeLoginData(form.value)
       .subscribe(
-        (response) => console.log(response),
+        (response) => {
+          console.log(response);
+          localStorage.setItem('token', response._body);
+          console.log(localStorage.setItem('token', response._body);
+        },
         (error) => console.log(error)
       );
   }
