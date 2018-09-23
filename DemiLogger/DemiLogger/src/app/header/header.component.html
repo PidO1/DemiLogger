@@ -76,8 +76,7 @@
         <!-- <li><a routerLink="manage"><span class="glyphicon glyphicon-cog" routerLink="manage"></span> Manage</a></li> -->
         <li><button class="btn btn-success"
                     id="btnManage"
-                    routerLink="manage" 
-                    *ngIf="buttonDisabled">
+                    (click)="routeManage($event)">
                     <span class="glyphicon glyphicon-cog"></span> Manage</button></li>
       </ul>
     </div>

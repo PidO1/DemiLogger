@@ -1,3 +1,4 @@
+import { HeaderComponent } from './../header/header.component';
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {PgpdServiceService} from '../pgpd-service.service';
@@ -10,12 +11,11 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private submitService: PgpdServiceService) {}
+  constructor(private submitService: PgpdServiceService, private enableButton: HeaderComponent) {}
   ngOnInit() {}
   // tokenDecode="";
   // token="";
-  onSubmit(form: NgForm)
-  {
+  onSubmit(form: NgForm) {
     // console.log(form.value);
 
     this.submitService.storeLoginData(form.value)
@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
         (response) => {
           console.log(response);
           localStorage.setItem('token', response._body);
-          console.log(localStorage.setItem('token', response._body));
         },
         (error) => console.log(error)
       );
