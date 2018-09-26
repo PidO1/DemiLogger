@@ -118,7 +118,7 @@
       </div>
     </div>
 
-    <!--<br>-->
+    <br>
     <!--<label>Module you want to assist in:</label>-->
     <!--<div class="form-group">-->
       <!--<label for="module1">Module 1:</label>-->
@@ -132,6 +132,7 @@
         <!--</div>-->
       <!--</div>-->
     <!--</div>-->
+
     <!--<div class="form-group">-->
       <!--<label for="module2">Module 2:</label>-->
       <!--<input type="text" class="form-control" id="module2" placeholder="e.g ITRW324" ngModel name="module2"-->
@@ -253,372 +254,346 @@
 
     <div class="form-group">
       <label for="dateofbirth">Date of Birth:</label>
-      <div class="input-group">
-        <input class="form-control" placeholder="yyyy-mm-dd"
-               name="dataofbirth" [(ngModel)]="model" [minDate]="minDate" this.min ngbDatepicker #d="ngbDatepicker" id="dateofbirth" (change)="onDataSelected($event)" required>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+        <input type="text" class="form-control" id="dateofbirth" placeholder="yyyy-mm-dd" ngModel (change)="onDataSelected($event)" name="dateofbirth">
+    </div>
+
+    <div class="form-group">
+      <label for="homelanguage">Home Language:</label>
+      <input type="text" class="form-control" id="homelanguage" ngModel name="homelanguage" (change)="onDataSelected($event)" pattern="[a-zA-Z ]*"
+             required #homelanguage="ngModel">
+      <div *ngIf="homelanguage.invalid && (homelanguage.dirty || homelanguage.touched)"
+           class="alert alert-danger" style="width: 35vw">
+
+        <div *ngIf="homelanguage.errors.required">
+          Home language is required.
+        </div>
+        <div *ngIf="homelanguage.errors.pattern">
+          Must only contain letters.
         </div>
       </div>
     </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="homelanguage">Home Language:</label>-->
-      <!--<input type="text" class="form-control" id="homelanguage" ngModel name="homelanguage"  pattern="[a-zA-Z ]*"-->
-             <!--required #homelanguage="ngModel">-->
-      <!--<div *ngIf="homelanguage.invalid && (homelanguage.dirty || homelanguage.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="nationality">Nationality:</label>
+      <input type="text" class="form-control" id="nationality" ngModel name="nationality" (change)="onRadioSelected($event)" pattern="[a-zA-Z ]*" required
+             #nationality="ngModel">
+      <div *ngIf="nationality.invalid && (nationality.dirty || nationality.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="homelanguage.errors.required">-->
-          <!--Home language is required.-->
-        <!--</div>-->
-        <!--<div *ngIf="homelanguage.errors.pattern">-->
-          <!--Must only contain letters.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="nationality.errors.required">
+          Nationality is required.
+        </div>
+        <div *ngIf="nationality.errors.pattern">
+          Must only contain letters.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="nationality">Nationality:</label>-->
-      <!--<input type="text" class="form-control" id="nationality" ngModel name="nationality" pattern="[a-zA-Z ]*" required-->
-             <!--#nationality="ngModel">-->
-      <!--<div *ngIf="nationality.invalid && (nationality.dirty || nationality.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="idnumber">ID Number:</label>
+      <input type="text" class="form-control" id="idnumber" ngModel name="idnumber" (change)="onDataSelected($event)" maxlength="13" minlength="13"
+             pattern="\d*" required #idnumber="ngModel">
+      <div *ngIf="idnumber.invalid && (idnumber.dirty || idnumber.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="nationality.errors.required">-->
-          <!--Nationality is required.-->
-        <!--</div>-->
-        <!--<div *ngIf="nationality.errors.pattern">-->
-          <!--Must only contain letters.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="idnumber.errors.required">
+          ID number is required.
+        </div>
+        <div *ngIf="idnumber.errors.minlength">
+          ID number must be 13 characters long.
+        </div>
+        <div *ngIf="idnumber.errors.pattern">
+          Must only contain numbers.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="idnumber">ID Number:</label>-->
-      <!--<input type="text" class="form-control" id="idnumber" ngModel name="idnumber" maxlength="13" minlength="13"-->
-             <!--pattern="\d*" required #idnumber="ngModel">-->
-      <!--<div *ngIf="idnumber.invalid && (idnumber.dirty || idnumber.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="taxnumber">Income Tax Nr:</label>
+      <input type="text" class="form-control" id="taxnumber" ngModel name="taxnumber" (change)="onDataSelected($event)" pattern="\d*" required
+             #taxnumber="ngModel">
+      <div *ngIf="taxnumber.invalid && (taxnumber.dirty || taxnumber.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="idnumber.errors.required">-->
-          <!--ID number is required.-->
-        <!--</div>-->
-        <!--<div *ngIf="idnumber.errors.minlength">-->
-          <!--ID number must be 13 characters long.-->
-        <!--</div>-->
-        <!--<div *ngIf="idnumber.errors.pattern">-->
-          <!--Must only contain numbers.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="taxnumber.errors.required">
+          Tax number is required.
+        </div>
+        <div *ngIf="taxnumber.errors.pattern">
+          Must only contain numbers.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="taxnumber">Income Tax Nr:</label>-->
-      <!--<input type="text" class="form-control" id="taxnumber" ngModel name="taxnumber" pattern="\d*" required-->
-             <!--#taxnumber="ngModel">-->
-      <!--<div *ngIf="taxnumber.invalid && (taxnumber.dirty || taxnumber.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="residentialaddress">Residential Address:</label>
+      <input type="text" class="form-control" id="residentialaddress" ngModel (change)="onDataSelected($event)" name="residentialaddress" required
+             #residentialaddress="ngModel">
+      <div *ngIf="residentialaddress.invalid && (residentialaddress.dirty || residentialaddress.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="taxnumber.errors.required">-->
-          <!--Tax number is required.-->
-        <!--</div>-->
-        <!--<div *ngIf="taxnumber.errors.pattern">-->
-          <!--Must only contain numbers.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="residentialaddress.errors.required">
+          Residential address is required.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="residentialaddress">Residential Address:</label>-->
-      <!--<input type="text" class="form-control" id="residentialaddress" ngModel name="residentialaddress" required-->
-             <!--#residentialaddress="ngModel">-->
-      <!--<div *ngIf="residentialaddress.invalid && (residentialaddress.dirty || residentialaddress.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="postaladdress">Postal Address:</label>
+      <input type="text" class="form-control" id="postaladdress" (change)="onDataSelected($event)" ngModel name="postaladdress" required
+             #postaladdress="ngModel">
+      <div *ngIf="postaladdress.invalid && (postaladdress.dirty || postaladdress.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="residentialaddress.errors.required">-->
-          <!--Residential address is required.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="postaladdress.errors.required">
+          Postal address is required.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="postaladdress">Postal Address:</label>-->
-      <!--<input type="text" class="form-control" id="postaladdress" ngModel name="postaladdress" required-->
-             <!--#postaladdress="ngModel">-->
-      <!--<div *ngIf="postaladdress.invalid && (postaladdress.dirty || postaladdress.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="code">Zip Code:</label>
+      <input type="text" class="form-control" id="code" ngModel name="code" (change)="onDataSelected($event)" pattern="\d*" required #code="ngModel">
+      <div *ngIf="code.invalid && (code.dirty || code.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="postaladdress.errors.required">-->
-          <!--Postal address is required.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="code.errors.required">
+          Zip code is required.
+        </div>
+        <div *ngIf="code.errors.pattern">
+          Must only contain numbers.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="code">Zip Code:</label>-->
-      <!--<input type="text" class="form-control" id="code" ngModel name="code" pattern="\d*" required #code="ngModel">-->
-      <!--<div *ngIf="code.invalid && (code.dirty || code.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="hometelephonenumber">Home Telephone Nr:</label>
+      <input type="text" class="form-control" id="hometelephonenumber" maxlength="10" (change)="onDataSelected($event)" minlength="10" ngModel
+             name="hometelephonenumber" #hometelephonenumber="ngModel">
+      <div *ngIf="hometelephonenumber.invalid && (hometelephonenumber.dirty || hometelephonenumber.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="code.errors.required">-->
-          <!--Zip code is required.-->
-        <!--</div>-->
-        <!--<div *ngIf="code.errors.pattern">-->
-          <!--Must only contain numbers.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="hometelephonenumber.errors.minlength">
+          Must be 10 characters long.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="hometelephonenumber">Home Telephone Nr:</label>-->
-      <!--<input type="text" class="form-control" id="hometelephonenumber" maxlength="10" minlength="10" ngModel-->
-             <!--name="hometelephonenumber" #hometelephonenumber="ngModel">-->
-      <!--<div *ngIf="hometelephonenumber.invalid && (hometelephonenumber.dirty || hometelephonenumber.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="mobilenumber">Mobile Nr:</label>
+      <input type="text" class="form-control" id="mobilenumber" (change)="onDataSelected($event)" ngModel name="mobilenumber" maxlength="10"
+             minlength="10" #mobilenumber="ngModel" required>
+      <div *ngIf="mobilenumber.invalid && (mobilenumber.dirty || mobilenumber.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="hometelephonenumber.errors.minlength">-->
-          <!--Must be 10 characters long.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="mobilenumber.errors.required">
+          Mobile number is required.
+        </div>
+        <div *ngIf="mobilenumber.errors.minlength">
+          Must be 10 characters long.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="mobilenumber">Mobile Nr:</label>-->
-      <!--<input type="text" class="form-control" id="mobilenumber" ngModel name="mobilenumber" maxlength="10"-->
-             <!--minlength="10" #mobilenumber="ngModel" required>-->
-      <!--<div *ngIf="mobilenumber.invalid && (mobilenumber.dirty || mobilenumber.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="email">E-mail address:</label>
+      <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" (change)="onDataSelected($event)" ngModel name="email" email
+             #email="ngModel" required>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="mobilenumber.errors.required">-->
-          <!--Mobile number is required.-->
-        <!--</div>-->
-        <!--<div *ngIf="mobilenumber.errors.minlength">-->
-          <!--Must be 10 characters long.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="email.errors.required">
+          E-mail address is required.
+        </div>
+        <div *ngIf="email.errors.email">
+          Not a valid E-mail address.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="email">E-mail address:</label>-->
-      <!--<input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" ngModel name="email" email-->
-             <!--#email="ngModel" required>-->
-      <!--<div *ngIf="email.invalid && (email.dirty || email.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <label>Where you previously employed by NWU?</label>
+    <div class="radio" *ngFor="let previouslyemployed of previouslyemployed">
+      <label><input type="radio" name="previouslyemployed" ngModel [value]="previouslyemployed" (change)="onRadioSelected($event)" required>{{
+        previouslyemployed }}</label>
+    </div>
 
-        <!--<div *ngIf="email.errors.required">-->
-          <!--E-mail address is required.-->
-        <!--</div>-->
-        <!--<div *ngIf="email.errors.email">-->
-          <!--Not a valid E-mail address.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+    <label>Are you employed by an employer other than the NWU?</label>
+    <div class="radio" *ngFor="let otheremployer of otheremployer">
+      <label><input type="radio" name="otheremployer" ngModel [value]="otheremployer" (change)="onRadioSelected($event)" required>{{ otheremployer
+        }}</label>
+    </div>
 
-    <!--<label>Where you previously employed by NWU?</label>-->
-    <!--<div class="radio" *ngFor="let previouslyemployed of previouslyemployed">-->
-      <!--<label><input type="radio" name="previouslyemployed" ngModel [value]="previouslyemployed" required>{{-->
-        <!--previouslyemployed }}</label>-->
-    <!--</div>-->
+    <label>Are you self-employed?</label>
+    <div class="radio" *ngFor="let selfemployed of selfemployed">
+      <label><input type="radio" name="selfemployed" ngModel [value]="selfemployed" (change)="onRadioSelected($event)" required>{{ selfemployed }}</label>
+    </div>
 
-    <!--<label>Are you employed by an employer other than the NWU?</label>-->
-    <!--<div class="radio" *ngFor="let otheremployer of otheremployer">-->
-      <!--<label><input type="radio" name="otheremployer" ngModel [value]="otheremployer" required>{{ otheremployer-->
-        <!--}}</label>-->
-    <!--</div>-->
+    <div class="form-group">
+      <label for="highestqualification">Highest Qualification:</label>
+      <input type="text" class="form-control" id="highestqualification" ngModel name="highestqualification" (change)="onDataSelected($event)" required
+             #highestqualification="ngModel">
+      <div *ngIf="highestqualification.invalid && (highestqualification.dirty || highestqualification.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-    <!--<label>Are you self-employed?</label>-->
-    <!--<div class="radio" *ngFor="let selfemployed of selfemployed">-->
-      <!--<label><input type="radio" name="selfemployed" ngModel [value]="selfemployed" required>{{ selfemployed }}</label>-->
-    <!--</div>-->
+        <div *ngIf="highestqualification.errors.required">
+          Highest qualification is required.
+        </div>
+      </div>
+    </div>
+    <hr>
 
-    <!--<div class="form-group">-->
-      <!--<label for="highestqualification">Highest Qualification:</label>-->
-      <!--<input type="text" class="form-control" id="highestqualification" ngModel name="highestqualification" required-->
-             <!--#highestqualification="ngModel">-->
-      <!--<div *ngIf="highestqualification.invalid && (highestqualification.dirty || highestqualification.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <h2>If a foreign student assistant</h2>
+    <div class="form-group">
+      <label class="control-label" for="passport">Copy of Passport:</label>
+      <input type="file" class="filestyle" id="passport" data-icon="false" ngModel (change)="onFileSelected($event)" name="passport">
+    </div>
 
-        <!--<div *ngIf="highestqualification.errors.required">-->
-          <!--Highest qualification is required.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<hr>-->
+    <div class="form-group">
+      <label class="control-label" for="studypermit">Study Permit:</label>
+      <input type="file" class="filestyle" id="studypermit" data-icon="false" ngModel (change)="onFileSelected($event)" name="studypermit">
+    </div>
 
-    <!--<h2>If a foreign student assistant</h2>-->
-    <!--<div class="form-group">-->
-      <!--<label class="control-label" for="passport">Copy of Passport:</label>-->
-      <!--<input type="file" class="filestyle" id="passport" data-icon="false" ngModel name="passport">-->
-    <!--</div>-->
+    <div class="form-group">
+      <label class="control-label" for="permissiontoconduct">Permission to Conduct Work Form:</label>
+      <input type="file" class="filestyle" id="permissiontoconduct" data-icon="false" (change)="onFileSelected($event)" ngModel
+             name="permissiontoconduct">
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label class="control-label" for="studypermit">Study Permit:</label>-->
-      <!--<input type="file" class="filestyle" id="studypermit" data-icon="false" ngModel name="studypermit">-->
-    <!--</div>-->
+    <div class="form-group">
+      <label for="passportnumber">Passport Nr:</label>
+      <input type="text" class="form-control" id="passportnumber" ngModel name="passportnumber" (change)="onDataSelected($event)" pattern="\d*"
+             #passportnumber="ngModel">
+      <div *ngIf="passportnumber.invalid && (passportnumber.dirty || passportnumber.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-    <!--<div class="form-group">-->
-      <!--<label class="control-label" for="permissiontoconduct">Permission to Conduct Work Form:</label>-->
-      <!--<input type="file" class="filestyle" id="permissiontoconduct" data-icon="false" ngModel-->
-             <!--name="permissiontoconduct">-->
-    <!--</div>-->
+        <div *ngIf="passportnumber.errors.pattern">
+          Must only contain numbers.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="passportnumber">Passport Nr:</label>-->
-      <!--<input type="text" class="form-control" id="passportnumber" ngModel name="passportnumber" pattern="\d*"-->
-             <!--#passportnumber="ngModel">-->
-      <!--<div *ngIf="passportnumber.invalid && (passportnumber.dirty || passportnumber.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="expirydate">Passport Expiry Date:</label>
+      <input type="text" class="form-control" id="expirydate" placeholder="yyyy-mm-dd" ngModel (change)="onDataSelected($event)" name="expirydate">
+    </div>
 
-        <!--<div *ngIf="passportnumber.errors.pattern">-->
-          <!--Must only contain numbers.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+    <div class="form-group">
+      <label for="permitnumber">Work Permit Nr:</label>
+      <input type="text" class="form-control" id="permitnumber" pattern="\d*" ngModel name="permitnumber"
+             #permitnumber="ngModel" (change)="onDataSelected($event)">
+      <div *ngIf="permitnumber.invalid && (permitnumber.dirty || permitnumber.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-    <!--<div class="form-group">-->
-      <!--<label for="expirydate">Passport Expiry Date:</label>-->
-      <!--&lt;!&ndash;<input type="text" class="form-control" id="expirydate" placeholder="DD/MM/YYYY" ngModel name="expirydate">&ndash;&gt;-->
-      <!--<div class="input-group">-->
-        <!--<input class="form-control" placeholder="yyyy-mm-dd"-->
-               <!--name="expirydate" [(ngModel)]="model1" ngbDatepicker #r="ngbDatepicker" id="expirydate">-->
-        <!--<div class="input-group-append">-->
-          <!--<button class="btn btn-outline-secondary calendar" (click)="r.toggle()" type="button"></button>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="permitnumber.errors.pattern">
+          Must only contain numbers.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="permitnumber">Work Permit Nr:</label>-->
-      <!--<input type="text" class="form-control" id="permitnumber" pattern="\d*" ngModel name="permitnumber"-->
-             <!--#permitnumber="ngModel">-->
-      <!--<div *ngIf="permitnumber.invalid && (permitnumber.dirty || permitnumber.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="permitexpiry">Work Permit Expiry Date:</label>
+      <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="permitexpiry" (change)="onDataSelected($event)" ngModel name="permitexpiry">
+    </div>
 
-        <!--<div *ngIf="permitnumber.errors.pattern">-->
-          <!--Must only contain numbers.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+    <hr>
+    <h2 style="color: white">Section B: Bank details (No payment will be made if these details are not provided.)</h2>
+    <label>Account type:</label>
+    <div class="radio" *ngFor="let accounttype of accounttype">
+      <label><input type="radio" name="accounttype" ngModel [value]="accounttype" (change)="onRadioSelected($event)" required>{{ accounttype }}</label>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="permitexpiry">Work Permit Expiry Date:</label>-->
-      <!--&lt;!&ndash;<input type="text" class="form-control" placeholder="DD/MM/YYYY" id="permitexpiry" ngModel name="permitexpiry">&ndash;&gt;-->
-      <!--<div class="input-group">-->
-        <!--<input class="form-control" placeholder="yyyy-mm-dd"-->
-               <!--name="permitexpiry" [(ngModel)]="model2" ngbDatepicker #e="ngbDatepicker" id="permitexpiry">-->
-        <!--<div class="input-group-append">-->
-          <!--<button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"></button>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+    <div class="form-group">
+      <label for="bankbranch">Bank branch code:</label>
+      <input type="text" class="form-control" id="bankbranch" ngModel name="bankbranch" (change)="onDataSelected($event)" required pattern="\d*"
+             #bankbranch="ngModel" maxlength="6" minlength="6">
+      <div *ngIf="bankbranch.invalid && (bankbranch.dirty || bankbranch.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-    <!--<hr>-->
-    <!--<h2 style="color: white">Section B: Bank details (No payment will be made if these details are not provided.)</h2>-->
-    <!--<label>Account type:</label>-->
-    <!--<div class="radio" *ngFor="let accounttype of accounttype">-->
-      <!--<label><input type="radio" name="accounttype" ngModel [value]="accounttype" required>{{ accounttype }}</label>-->
-    <!--</div>-->
+        <div *ngIf="bankbranch.errors.minlength">
+          Must be only 6 characters long.
+        </div>
+        <div *ngIf="bankbranch.errors.required">
+          Bank branch code required.
+        </div>
+        <div *ngIf="bankbranch.errors.pattern">
+          Must only contain numbers.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="bankbranch">Bank branch code:</label>-->
-      <!--<input type="text" class="form-control" id="bankbranch" ngModel name="bankbranch" required pattern="\d*"-->
-             <!--#bankbranch="ngModel" maxlength="6" minlength="6">-->
-      <!--<div *ngIf="bankbranch.invalid && (bankbranch.dirty || bankbranch.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="accountnumber">Account Nr:</label>
+      <input type="text" class="form-control" id="accountnumber" ngModel name="accountnumber" (change)="onDataSelected($event)" required pattern="\d*"
+             #accountnumber="ngModel">
+      <div *ngIf="accountnumber.invalid && (accountnumber.dirty || accountnumber.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="bankbranch.errors.minlength">-->
-          <!--Must be only 6 characters long.-->
-        <!--</div>-->
-        <!--<div *ngIf="bankbranch.errors.required">-->
-          <!--Bank branch code required.-->
-        <!--</div>-->
-        <!--<div *ngIf="bankbranch.errors.pattern">-->
-          <!--Must only contain numbers.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="accountnumber.errors.required">
+          Bank branch code required.
+        </div>
+        <div *ngIf="accountnumber.errors.pattern">
+          Must only contain numbers.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="accountnumber">Account Nr:</label>-->
-      <!--<input type="text" class="form-control" id="accountnumber" ngModel name="accountnumber" required pattern="\d*"-->
-             <!--#accountnumber="ngModel">-->
-      <!--<div *ngIf="accountnumber.invalid && (accountnumber.dirty || accountnumber.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="bankname">Name of bank:</label>
+      <input type="text" class="form-control" id="bankname" ngModel name="bankname" (change)="onDataSelected($event)" pattern="[a-zA-Z ]*" required
+             #bankname="ngModel">
+      <div *ngIf="bankname.invalid && (bankname.dirty || bankname.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="accountnumber.errors.required">-->
-          <!--Bank branch code required.-->
-        <!--</div>-->
-        <!--<div *ngIf="accountnumber.errors.pattern">-->
-          <!--Must only contain numbers.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="bankname.errors.required">
+          Bank name required.
+        </div>
+        <div *ngIf="bankname.errors.pattern">
+          Must only contain letters.
+        </div>
+      </div>
+    </div>
 
-    <!--<div class="form-group">-->
-      <!--<label for="bankname">Name of bank:</label>-->
-      <!--<input type="text" class="form-control" id="bankname" ngModel name="bankname" pattern="[a-zA-Z ]*" required-->
-             <!--#bankname="ngModel">-->
-      <!--<div *ngIf="bankname.invalid && (bankname.dirty || bankname.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <label style="color: white">Account holder:</label>
+    <div class="form-group">
+      <label for="holdersurname">Surname:</label>
+      <input type="text" class="form-control" id="holdersurname" ngModel name="holdersurname" (change)="onDataSelected($event)" pattern="[a-zA-Z ]*"
+             required #holdersurname="ngModel">
+      <div *ngIf="holdersurname.invalid && (holdersurname.dirty || holdersurname.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="bankname.errors.required">-->
-          <!--Bank name required.-->
-        <!--</div>-->
-        <!--<div *ngIf="bankname.errors.pattern">-->
-          <!--Must only contain letters.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="holdersurname.errors.required">
+          Account holder surname required.
+        </div>
+        <div *ngIf="holdersurname.errors.pattern">
+          Must only contain letters.
+        </div>
+      </div>
+    </div>
 
-    <!--<label style="color: white">Account holder:</label>-->
-    <!--<div class="form-group">-->
-      <!--<label for="holdersurname">Surname:</label>-->
-      <!--<input type="text" class="form-control" id="holdersurname" ngModel name="holdersurname" pattern="[a-zA-Z ]*"-->
-             <!--required #holdersurname="ngModel">-->
-      <!--<div *ngIf="holdersurname.invalid && (holdersurname.dirty || holdersurname.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <div class="form-group">
+      <label for="holderinitials">Initials:</label>
+      <input type="text" class="form-control" placeholder="e.g EA" id="holderinitials" (change)="onDataSelected($event)" ngModel name="holderinitials"
+             pattern="[a-zA-Z ]*" required #holderinitials="ngModel">
+      <div *ngIf="holderinitials.invalid && (holderinitials.dirty || holderinitials.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="holdersurname.errors.required">-->
-          <!--Account holder surname required.-->
-        <!--</div>-->
-        <!--<div *ngIf="holdersurname.errors.pattern">-->
-          <!--Must only contain letters.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-      <!--<label for="holderinitials">Initials:</label>-->
-      <!--<input type="text" class="form-control" placeholder="e.g EA" id="holderinitials" ngModel name="holderinitials"-->
-             <!--pattern="[a-zA-Z ]*" required #holderinitials="ngModel">-->
-      <!--<div *ngIf="holderinitials.invalid && (holderinitials.dirty || holderinitials.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+        <div *ngIf="holderinitials.errors.required">
+          Account holder initials required.
+        </div>
+        <div *ngIf="holderinitials.errors.pattern">
+          Must only contain letters.
+        </div>
+      </div>
+    </div>
 
-        <!--<div *ngIf="holderinitials.errors.required">-->
-          <!--Account holder initials required.-->
-        <!--</div>-->
-        <!--<div *ngIf="holderinitials.errors.pattern">-->
-          <!--Must only contain letters.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+    <label>Account Info:</label>
+    <div class="radio" *ngFor="let accountinfo of accountinfo">
+      <label><input type="radio" name="accountinfo" ngModel [value]="accountinfo" (change)="onRadioSelected($event)" required>{{ accountinfo }}</label>
+    </div>
 
-    <!--<label>Account Info:</label>-->
-    <!--<div class="radio" *ngFor="let accountinfo of accountinfo">-->
-      <!--<label><input type="radio" name="accountinfo" ngModel [value]="accountinfo" required>{{ accountinfo }}</label>-->
-    <!--</div>-->
-
-    <!--<div class="form-group">-->
-      <!--<label for="date">Date:</label>-->
-      <!--&lt;!&ndash;<input type="text" class="form-control" placeholder="DD/MM/YYYY" id="date" ngModel name="date" required>&ndash;&gt;-->
-      <!--<div class="input-group">-->
-        <!--<input class="form-control" placeholder="yyyy-mm-dd"-->
-               <!--name="date" [(ngModel)]="model3" ngbDatepicker #c="ngbDatepicker" id="date">-->
-        <!--<div class="input-group-append">-->
-          <!--<button class="btn btn-outline-secondary calendar" (click)="c.toggle()" type="button"></button>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+    <div class="form-group">
+      <label for="date">Date:</label>
+      <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="date" ngModel (change)="onDataSelected($event)" name="date" required>
+    </div>
 
     <button class="btn btn-primary" type="submit" (click)="onUpload()" [disabled]="!f.valid">Submit</button>
   </form>
