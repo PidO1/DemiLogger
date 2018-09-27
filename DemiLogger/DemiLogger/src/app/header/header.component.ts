@@ -21,12 +21,12 @@ export class HeaderComponent {
   routeManage(event) {
     if (sessionStorage.length === 0) {
       alert('Please log in.');
-    } else if (sessionStorage.length === 1) {
+    } else {
         this.token = jwt_decode(sessionStorage.getItem('token'));
-        if (this.token.demi === 0) {
-          alert('Administrator permissions required.');
-        } else {
+        if (this.token.admin === 1) {
           this.router.navigate(['/manage']);
+        } else if (this.token.admin === 0) {
+          alert('Administrator permissions required.');
         }
     }
   }
