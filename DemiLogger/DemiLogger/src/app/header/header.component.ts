@@ -11,10 +11,23 @@ export class HeaderComponent {
   constructor(private router: Router) { }
   token = {};
   setCss = false;
+  routeLogin(event) {
+    if (sessionStorage.length === 1) {
+      alert('Already logged in.');
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
   routeManage(event) {
-    this.token = jwt_decode(localStorage.getItem('token'));
-    if (this.token.demi === 0) {
-      this.router.navigate(['/manage']);
+    if (sessionStorage.length === 0) {
+      alert('Please log in.');
+    } else if (sessionStorage.length === 1) {
+        this.token = jwt_decode(sessionStorage.getItem('token'));
+        if (this.token.demi === 0) {
+          alert('Administrator permissions required.');
+        } else {
+          this.router.navigate(['/manage']);
+        }
     }
   }
 }

@@ -13,16 +13,12 @@ export class LoginComponent implements OnInit {
 
   constructor(private submitService: PgpdServiceService, private enableButton: HeaderComponent) {}
   ngOnInit() {}
-  // tokenDecode="";
-  // token="";
   onSubmit(form: NgForm) {
-    // console.log(form.value);
-
     this.submitService.storeLoginData(form.value)
       .subscribe(
         (response) => {
           console.log(response);
-          localStorage.setItem('token', response._body);
+          sessionStorage.setItem('token', response._body);
         },
         (error) => console.log(error)
       );
