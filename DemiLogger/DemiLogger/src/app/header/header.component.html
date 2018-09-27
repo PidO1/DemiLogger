@@ -43,29 +43,28 @@
     <div class="collapse navbar-collapse" style="padding-top: 12px">
       <ul class="nav navbar-nav">
         <!-- <li><a href="#" routerLink="home" style="transition-duration: 0.4s;cursor: pointer; border-radius: 30px; padding: 2px 24px"><h4>Home</h4></a></li> -->
-        <li><button class="btn btn-success" 
-                    
+        <li><button class="btn btn-success"
                     routerLink="home">Home</button></li>
       </ul>
       <ul class="nav navbar-nav">
         <!-- <li><a href="#" routerLink="info" style="transition-duration: 0.4s;cursor: pointer; border-radius: 30px; padding: 2px 24px"><h4>Info</h4></a></li> -->
-        <li><button class="btn btn-success" 
-                    routerLink="info">Info</button></li>
+        <li><button class="btn btn-success"
+                    (click)="routeInfo($event)">Info</button></li>
       </ul>
       <ul class="nav navbar-nav">
         <!-- <li><a href="#" routerLink="form" style="transition-duration: 0.4s;cursor: pointer; border-radius: 30px; padding: 2px 24px"><h4>Forms</h4></a></li> -->
         <li><button class="btn btn-success" 
-                    routerLink="form">Forms</button></li>
+                    (click)="routeForm($event)">Forms</button></li>
       </ul>
       <ul class="nav navbar-nav">
         <!-- <li><a href="#" routerLink="queries" style="transition-duration: 0.4s;cursor: pointer; border-radius: 30px; padding: 2px 24px"><h4>Queries</h4></a></li> -->
         <li><button class="btn btn-success" 
-                    routerLink="queries">Queries</button></li>
+                    (click)="routeQueries($event)">Queries</button></li>
       </ul>
       <ul class="nav navbar-nav">
         <!-- <li><a href="#" routerLink="about" style="transition-duration: 0.4s;cursor: pointer; border-radius: 30px; padding: 2px 24px"><h4>About</h4></a></li> -->
         <li><button class="btn btn-success" 
-                    routerLink="about">About</button></li>
+                    (click)="routeAbout($event)">About</button></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <!-- <li><a href="#" routerLink="login"><span class="glyphicon glyphicon-log-in" routerLink="login"></span> Login</a></li> -->

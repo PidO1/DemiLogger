@@ -11,6 +11,34 @@ export class HeaderComponent {
   constructor(private router: Router) { }
   token = {};
   setCss = false;
+  routeAbout(event) {
+    if (sessionStorage.length === 0) {
+      alert('Please login.');
+    } else {
+      this.router.navigate(['/about']);
+    }
+  }
+  routeQueries(event) {
+    if (sessionStorage.length === 0) {
+      alert('Please login.');
+    } else {
+      this.router.navigate(['/queries']);
+    }
+  }
+  routeForm(event) {
+    if (sessionStorage.length === 0) {
+      alert('Please login.');
+    } else {
+      this.router.navigate(['/form']);
+    }
+  }
+  routeInfo(event) {
+    if (sessionStorage.length === 0) {
+      alert('Please login.');
+    } else {
+      this.router.navigate(['/info']);
+    }
+  }
   routeLogin(event) {
     if (sessionStorage.length === 1) {
       alert('Already logged in.');
@@ -20,7 +48,7 @@ export class HeaderComponent {
   }
   routeManage(event) {
     if (sessionStorage.length === 0) {
-      alert('Please log in.');
+      alert('Please login.');
     } else {
         this.token = jwt_decode(sessionStorage.getItem('token'));
         if (this.token.admin === 1) {
