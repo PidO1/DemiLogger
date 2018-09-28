@@ -10,7 +10,7 @@ export class PgpdServiceService {
 
   storeLoginData(loginData: any[]) {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post('http://192.168.1.8:3000/user.login', loginData, {headers: header});
+    return this.http.post('http://192.168.1.8:3000/user/login', loginData, {headers: header});
   }
 
   storeApplicationFormData(formData: any[]) {
@@ -32,13 +32,13 @@ export class PgpdServiceService {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post('https://demi-371a7.firebaseio.com/data.json', formData, {headers: header});
   }
-  // http://192.168.1.8:3000/demi/lecturer
-  // getToken() {
-  //   return sessionStorage.getItem('token');
-  // }
 
-  getStudentInfo()
-  {
+  // http://192.168.1.8:3000/demi/lecturer
+  getToken() {
+    return sessionStorage.getItem('token');
+  }
+
+  getStudentInfo() {
     return this.http.get('https://demi-371a7.firebaseio.com/data.json');
   }
 }

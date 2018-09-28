@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {PgpdServiceService} from "../../pgpd-service.service";
-import { HttpClient } from "@angular/common/http";
-import {Data} from "@angular/router";
+import {NgForm} from '@angular/forms';
+import {PgpdServiceService} from '../../pgpd-service.service';
+import { HttpClient } from '@angular/common/http';
+import {Data} from '@angular/router';
 
 @Component({
   selector: 'app-application-form',
@@ -30,38 +30,34 @@ export class ApplicationFormComponent implements OnInit {
   selectedDataName: string;
    fd = new FormData();
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {}
   // constructor(private submitService: PgpdServiceService) { }
 
-  onDataSelected(event)
-  {
+  onDataSelected(event) {
     console.log(event);
     this.selectedDataValue = event.target.value;
     this.selectedDataName = event.target.name;
     this.fd.append (this.selectedDataName, this.selectedDataValue);
   }
 
-  onRadioSelected(event)
-  {
+  onRadioSelected(event) {
     console.log(event);
     this.selectedDataValue = event.target.id;
     this.selectedDataName = event.target.name;
     this.fd.append (this.selectedDataName, this.selectedDataValue);
   }
 
-  onFileSelected(event)
-  {
+  onFileSelected(event) {
     console.log(event);
     this.selectedFile = <File>event.target.files[0];
     this.fd.append('image', this.selectedFile, this.selectedFile.name);
   }
 
-  onUpload()
-  {
+  onUpload() {
     this.http.post('http://192.168.1.8:3000/demi/applicationform', this.fd)
-      .subscribe(res =>{
+      .subscribe(res => {
         console.log(res);
-      })
+      });
   }
 
   ngOnInit() {

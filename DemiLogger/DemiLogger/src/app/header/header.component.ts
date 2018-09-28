@@ -22,7 +22,16 @@ export class HeaderComponent {
     if (sessionStorage.length === 0) {
       alert('Please login.');
     } else {
-      this.router.navigate(['/queries']);
+      this.token = jwt_decode(sessionStorage.getItem('token'));
+        // @ts-ignore
+      if (this.token.admin === 1) {
+          this.router.navigate(['/queries']);
+        } else {
+        // @ts-ignore
+        if (this.token.admin === 0) {
+          alert('Administrator permissions required.');
+        }
+      }
     }
   }
   routeForm(event) {
@@ -57,8 +66,8 @@ export class HeaderComponent {
         } else {
         // @ts-ignore
         if (this.token.admin === 0) {
-                  alert('Administrator permissions required.');
-                }
+          alert('Administrator permissions required.');
+        }
       }
     }
   }

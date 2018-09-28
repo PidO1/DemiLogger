@@ -1,0 +1,28 @@
+h2 {
+    opacity: 1;
+    color: white;
+}
+h3 {
+    opacity: 1;
+    color: white;
+}
+h4 {
+    opacity: 1;
+    color: white;
+}
+p {
+    color: white;
+    opacity: 1;
+}
+#mainDiv {
+    background-color: black;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 25px;
+    opacity: 0.8;
+    position: center;
+    height: 380px;
+}
+.glyphicon {
+    font-size: 50px;
+}
