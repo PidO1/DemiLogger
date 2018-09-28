@@ -181,6 +181,7 @@
     <ngb-tab title="Add Students">
       <ng-template ngbTabContent>
         <button class="btn btn-primary" (click)="onGetStudentApplication()">Get student applications</button>
+        <form #f="ngForm">
         <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid img-rounded" style="padding: 25px; padding-top: 2.1cm">
           <tr>
             <th>Student Number</th>
@@ -191,23 +192,18 @@
             <th>Apply</th>
           </tr>
           <tbody>
-          <td>{{nwunumber}}</td>
-          <td>student title</td>
-          <td>student surname</td>
-          <td>ITRW324</td>
-          <td>75%</td>
-          <td>
-            <div class="form-group">
-              <div class="checkbox">
-                <label><input type="checkbox" value="Yes">Yes</label>
-              </div>
-              <div class="checkbox">
-                <label><input type="checkbox" value="No">No</label>
-              </div>
-            </div>
+          <td>{{data.nwunumber | json}}</td>
+          <td>{{data.title | json}}</td>
+          <td>{{data.surname | json}}</td>
+          <td>{{data.modul | json}}</td>
+          <td>{{data.modulMark | json}}</td>
+          <td style="align: left">
+            <input type="checkbox" [(ngModel)]="theCheckbox" name="apply" data-md-icheck (change)="toggleVisibility($event)" (change)="onDataSelected($event)" required/>
           </td>
           </tbody>
         </table>
+          <button class="btn btn-primary" type="submit" (click)="onUpload()" [disabled]="!f.valid">Submit</button>
+        </form>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>

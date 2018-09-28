@@ -28,7 +28,7 @@ export class ApplicationFormComponent implements OnInit {
   selectedFile: File = null;
   selectedDataValue: string;
   selectedDataName: string;
-   fd = new FormData();
+  fd = new FormData();
 
   constructor(private http: HttpClient){}
   // constructor(private submitService: PgpdServiceService) { }

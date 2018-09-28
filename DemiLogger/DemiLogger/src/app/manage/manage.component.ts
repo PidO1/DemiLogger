@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { PgpdServiceService } from "../pgpd-service.service";
-import { Response } from '@angular/http';
+import {HttpClient} from "../../../node_modules/@angular/common/http";
 
 @Component({
   selector: 'app-manage',
@@ -9,9 +9,10 @@ import { Response } from '@angular/http';
   styleUrls: ['./manage.component.css']
 })
 export class ManageComponent implements OnInit {
-  nwunumberjson: string = '';
-
-  constructor(private submitService: PgpdServiceService) { }
+  data;
+  theCheckbox = false;
+  marked = false;
+  constructor(private submitService: PgpdServiceService, private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -39,11 +40,37 @@ export class ManageComponent implements OnInit {
   {
     this.submitService.getStudentInfo()
       .subscribe(
-        (response: Response) => {
-          const data = response.json();
-          console.log(data);
+        (response) => {
+          // @ts-ignore
+          this.data = response;
+          console.log(this.data);
         },
         (error) => console.log(error)
       );
+  }
+
+  toggleVisibility(e){
+    this.marked= e.target.checked;
+  }
+
+  selectedDataCheked: string;
+  selectedDataName: string;
+  fd = new FormData();
+
+  onDataSelected(event)
+  {
+    console.log(event);
+    this.selectedDataCheked = event.target.checked;
+    this.selectedDataName = event.target.name;
+    this.fd.append (this.selectedDataName, this.selectedDataCheked);
+  }
+
+  onUpload()
+  {
+    this.fd.append('nwunumber', this.data.nwunumber);
+    this.http.post('http://192.168.1.8:3000/', this.fd)
+      .subscribe(res =>{
+        console.log(res);
+      })
   }
 }
