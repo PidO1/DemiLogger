@@ -3,8 +3,8 @@
   <ngb-tabset>
     <ngb-tab title="Announcement">
       <ng-template ngbTabContent>
-        <form (ngSubmit)="onSubmitAnnouncement(f)" #f="ngForm">
-          <label for="to">Send announcement to:</label>
+        <form  (ngSubmit)="onSubmitAnnouncement(f)" #f="ngForm" ngForm="disabled">
+          <label>Send announcement to:</label>
           <br>
           <select type="text" class="form-control" id="to" name="to" ngModel required>
             <option value="All">All</option>

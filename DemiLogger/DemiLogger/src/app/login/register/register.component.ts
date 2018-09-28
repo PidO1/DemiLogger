@@ -14,8 +14,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(form: NgForm)
-  {
+  onSubmit(form: NgForm) {
     console.log(form.value);
     this.submitService.storeRegisterData(form.value)
       .subscribe(
