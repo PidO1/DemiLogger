@@ -51,11 +51,15 @@ export class HeaderComponent {
       alert('Please login.');
     } else {
         this.token = jwt_decode(sessionStorage.getItem('token'));
-        if (this.token.admin === 1) {
+        // @ts-ignore
+      if (this.token.admin === 1) {
           this.router.navigate(['/manage']);
-        } else if (this.token.admin === 0) {
-          alert('Administrator permissions required.');
-        }
+        } else {
+        // @ts-ignore
+        if (this.token.admin === 0) {
+                  alert('Administrator permissions required.');
+                }
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -30,10 +30,16 @@ export class PgpdServiceService {
 
   storeLecturerData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post('http://192.168.1.8:3000/demi/lecturer', formData, {headers: header});
+    return this.http.post('https://demi-371a7.firebaseio.com/data.json', formData, {headers: header});
   }
-  getToken() {
-    return localStorage.getItem('token');
+  // http://192.168.1.8:3000/demi/lecturer
+  // getToken() {
+  //   return sessionStorage.getItem('token');
+  // }
+
+  getStudentInfo()
+  {
+    return this.http.get('https://demi-371a7.firebaseio.com/data.json');
   }
 }
 

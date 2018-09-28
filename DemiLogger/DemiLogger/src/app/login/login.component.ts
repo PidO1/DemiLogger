@@ -20,10 +20,12 @@ export class LoginComponent implements OnInit {
         (response) => {
           console.log(response);
           if (sessionStorage.length < 0) {
+            // @ts-ignore
             sessionStorage.setItem('token', response._body);
             this.router.navigate(['/home']);
           } else {
             sessionStorage.clear();
+            // @ts-ignore
             sessionStorage.setItem('token', response._body);
             this.router.navigate(['/home']);
           }

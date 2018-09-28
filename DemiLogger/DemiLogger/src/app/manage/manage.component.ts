@@ -41,15 +41,7 @@ export class ManageComponent implements OnInit {
       .subscribe(
         (response: Response) => {
           const data = response.json();
-          // for (const studentInfo of data)
-          // {
-          //   studentInfo.nwunumber = 'nwu' + studentInfo.nwunumber;
-          //   studentInfo.password;
-          //   console.log(studentInfo)
-          // }
-          console.log(data)
-          this.nwunumberjson = data.nwunumber;
-          console.log(this.nwunumberjson)
+          console.log(data);
         },
         (error) => console.log(error)
       );
