@@ -12,6 +12,7 @@ const dosentRoute = require('./api/routes/dosente');
 const vakkeRoute = require('./api/routes/subjects');
 const demiRoute = require('./api/routes/Demi');
 const userRoute = require('./api/routes/user');
+const anounceRoute = require('./api/routes/anounce');
 
 
 console.log('APP.js net voor middleware');
@@ -36,6 +37,8 @@ app.use('/dosente',dosentRoute);
 app.use('/subjects',vakkeRoute);
 app.use('/demi',demiRoute);
 app.use('/user',userRoute);
+app.use('/anounce',anounceRoute);
+
 
 app.use((req,res,next)=>{
   const error = new Error('not found');
