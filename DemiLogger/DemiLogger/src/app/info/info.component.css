@@ -2,3 +2,44 @@ h1, h2, h3, h4, label, p, li
 {
   color: white;
 }
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+#row {
+  display: flex;
+}
+#bodyCenter {
+  background-color: black;
+  opacity: 0.7;
+  flex: 4;
+  padding-bottom: 20px;
+  border-radius: 15px;
+}
+#bodyLeft {
+  background-color: black;
+  opacity: 0.9;
+  padding: 20px;
+  flex: 1;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+#bodyRight {
+  background-color: black;
+  opacity: 0.9;
+  padding: 20px;
+  flex: 1;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+#footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: black;
+  opacity: 0.9;
+  padding-top: 8px;
+}

@@ -24,12 +24,12 @@ export class LoginComponent implements OnInit {
           if (sessionStorage.length < 0) {
             // @ts-ignore
             sessionStorage.setItem('token', response.body);
-            // this.router.navigate(['/home']);
+            this.router.navigate(['/home']);
           } else {
             sessionStorage.clear();
             // @ts-ignore
             sessionStorage.setItem('token', response.body);
-            // this.router.navigate(['/home']);
+            this.router.navigate(['/home']);
           }
         },
         (error) => console.log(error)
