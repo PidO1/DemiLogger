@@ -19,7 +19,7 @@ import {PgpdServiceService} from './pgpd-service.service';
 import {Http, HttpModule} from '@angular/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SaApplicationFormComponent } from './forms/sa-application-form/sa-application-form.component';
-// import { TokenInterceptor } from './token.interceptor';
+import { TokenInterceptor } from './token.interceptor';
 
 const appRoutes: Routes = [
   { path: 'home', component:  HomeComponent },
@@ -58,11 +58,11 @@ const appRoutes: Routes = [
   ],
   providers: [
     PgpdServiceService,
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: TokenInterceptor,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

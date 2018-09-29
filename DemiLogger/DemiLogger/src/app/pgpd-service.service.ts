@@ -38,9 +38,9 @@ export class PgpdServiceService {
     return this.http.post('https://demi-371a7.firebaseio.com/data.json', formData, {headers: header});
   }
   // http://192.168.1.8:3000/demi/lecturer
-  // getToken() {
-  //   return sessionStorage.getItem('token');
-  // }
+  getToken() {
+    return sessionStorage.getItem('token');
+  }
 
   getStudentInfo()
   {

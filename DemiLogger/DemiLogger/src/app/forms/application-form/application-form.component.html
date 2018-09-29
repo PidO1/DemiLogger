@@ -11,17 +11,20 @@
     <h2>Section A: Personal particulars of temporary employees</h2>
     <div class="form-group">
       <label class="control-label" for="copyid">Copy of ID:</label>
-      <input type="file" class="filestyle" id="copyid" name="copyid" data-icon="false" required (change)="onFileSelected($event)">
+      <input type="file" class="filestyle" id="copyid" name="copyid" data-icon="false" required
+             (change)="onFileSelected($event)">
     </div>
 
     <div class="form-group">
       <label class="control-label" for="studentregistration">Proof of Student Registration:</label>
-      <input type="file" class="filestyle" data-icon="false" id="studentregistration" name="studentregistration" required (change)="onFileSelected($event)">
+      <input type="file" class="filestyle" data-icon="false" id="studentregistration" name="studentregistration"
+             required (change)="onFileSelected($event)">
     </div>
 
     <div class="form-group">
       <label for="nwunumber">NWU number:</label>
-      <input type="text" id="nwunumber" class="form-control" value="27678822" ngModel (change)="onDataSelected($event)" name="nwunumber" pattern="\d*" maxlength="8"
+      <input type="text" id="nwunumber" class="form-control" value="27678822" ngModel (change)="onDataSelected($event)"
+             name="nwunumber" pattern="\d*" maxlength="8"
              minlength="8" #nwunumber="ngModel">
       <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -40,7 +43,8 @@
 
     <div class="form-group">
       <label for="title">Title:</label>
-      <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss"  (change)="onDataSelected($event)" pattern="[a-zA-Z ]*" maxlength="4"
+      <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss" (change)="onDataSelected($event)"
+             pattern="[a-zA-Z ]*" maxlength="4"
              ngModel name="title" required #title="ngModel">
       <div *ngIf="title.invalid && (title.dirty || title.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -59,7 +63,8 @@
 
     <div class="form-group">
       <label for="initials">Initials:</label>
-      <input type="text" id="initials" class="form-control" placeholder="e.g EA" (change)="onDataSelected($event)" pattern="[a-zA-Z ]*" ngModel
+      <input type="text" id="initials" class="form-control" placeholder="e.g EA" (change)="onDataSelected($event)"
+             pattern="[a-zA-Z ]*" ngModel
              name="initials" required #initials="ngModel">
       <div *ngIf="title.invalid && (title.dirty || title.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -75,7 +80,8 @@
 
     <div class="form-group">
       <label for="surname">Surname:</label>
-      <input type="text" class="form-control" id="surname" ngModel name="surname" (change)="onDataSelected($event)" pattern="[a-zA-Z ]*" required
+      <input type="text" class="form-control" id="surname" ngModel name="surname" (change)="onDataSelected($event)"
+             pattern="[a-zA-Z ]*" required
              #surname="ngModel">
       <div *ngIf="surname.invalid && (surname.dirty || surname.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -91,7 +97,8 @@
 
     <div class="form-group">
       <label for="fullname">Full Names:</label>
-      <input type="text" class="form-control" placeholder="e.g Name, Name" id="fullname" (change)="onDataSelected($event)" ngModel name="fullname"
+      <input type="text" class="form-control" placeholder="e.g Name, Name" id="fullname"
+             (change)="onDataSelected($event)" ngModel name="fullname"
              required #fullname="ngModel">
       <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -104,7 +111,8 @@
 
     <div class="form-group">
       <label for="preferredname">Preferred Name:</label>
-      <input type="text" class="form-control" id="preferredname" ngModel name="preferredname" (change)="onDataSelected($event)" pattern="[a-zA-Z ]*"
+      <input type="text" class="form-control" id="preferredname" ngModel name="preferredname"
+             (change)="onDataSelected($event)" pattern="[a-zA-Z ]*"
              required #preferredname="ngModel">
       <div *ngIf="preferredname.invalid && (preferredname.dirty || preferredname.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -119,72 +127,75 @@
     </div>
 
     <br>
-    <!--<label>Module you want to assist in:</label>-->
-    <!--<div class="form-group">-->
-      <!--<label for="module1">Module 1:</label>-->
-      <!--<input type="text" class="form-control" id="module1" value placeholder="e.g ITRW324" ngModel name="module1" required-->
-             <!--#module1="ngModel">-->
-      <!--<div *ngIf="module1.invalid && (module1.dirty || module1.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+    <label>Module you want to assist in:</label>
+    <div class="form-group">
+      <label for="module1">Module 1:</label>
+      <input type="text" class="form-control" id="module1" value placeholder="e.g ITRW324" ngModel name="module1"
+             required
+             #module1="ngModel">
+      <div *ngIf="module1.invalid && (module1.dirty || module1.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="module1.errors.required">-->
-          <!--A module code is required.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+        <div *ngIf="module1.errors.required">
+          A module code is required.
+        </div>
+      </div>
+    </div>
+    <h4>Optional</h4>
+    <div class="form-group">
+      <label for="module2">Module 2:</label>
+      <input type="text" class="form-control" id="module2" placeholder="e.g ITRW324" ngModel name="module2"
+             #module2="ngModel">
+      <div *ngIf="module2.invalid && (module2.dirty || module2.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-    <!--<div class="form-group">-->
-      <!--<label for="module2">Module 2:</label>-->
-      <!--<input type="text" class="form-control" id="module2" placeholder="e.g ITRW324" ngModel name="module2"-->
-             <!--#module2="ngModel">-->
-      <!--<div *ngIf="module2.invalid && (module2.dirty || module2.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+        <div *ngIf="module2.errors.required">
+          A module code is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="module3">Module 3:</label>
+      <input type="text" class="form-control" id="module3" placeholder="e.g ITRW324" ngModel name="module3"
+             #module3="ngModel">
+      <div *ngIf="module3.invalid && (module3.dirty || module3.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-        <!--<div *ngIf="module2.errors.required">-->
-          <!--A module code is required.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-      <!--<label for="module3">Module 3:</label>-->
-      <!--<input type="text" class="form-control" id="module3" placeholder="e.g ITRW324" ngModel name="module3"-->
-             <!--#module3="ngModel">-->
-      <!--<div *ngIf="module3.invalid && (module3.dirty || module3.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
+        <div *ngIf="module3.errors.required">
+          A name is required.
+        </div>
+      </div>
+    </div>
 
-        <!--<div *ngIf="module3.errors.required">-->
-          <!--A name is required.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+    <br>
+    <label>Your mark of specific module:</label>
+    <div class="form-group">
+      <label for="moduleMark1">Module 1:</label>
+      <input type="text" class="form-control" id="moduleMark1" placeholder="e.g 95%" ngModel name="moduleMark1" required
+             #moduleMark1="ngModel">
+      <div *ngIf="moduleMark1.invalid && (moduleMark1.dirty || moduleMark1.touched)"
+           class="alert alert-danger" style="width: 35vw">
 
-    <!--<br>-->
-    <!--<label>Your mark of specific module:</label>-->
-    <!--<div class="form-group">-->
-      <!--<label for="moduleMark1">Module 1:</label>-->
-      <!--<input type="text" class="form-control" id="moduleMark1" placeholder="e.g 95%" ngModel name="moduleMark1" required-->
-             <!--#moduleMark1="ngModel">-->
-      <!--<div *ngIf="moduleMark1.invalid && (moduleMark1.dirty || moduleMark1.touched)"-->
-           <!--class="alert alert-danger" style="width: 35vw">-->
-
-        <!--<div *ngIf="moduleMark1.errors.required">-->
-          <!--A module mark is required.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-      <!--<label for="moduleMark2">Module 2:</label>-->
-      <!--<input type="text" class="form-control" id="moduleMark2" placeholder="e.g 95%" ngModel name="moduleMark2">-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-      <!--<label for="moduleMark3">Module 3:</label>-->
-      <!--<input type="text" class="form-control" id="moduleMark3" placeholder="e.g 95%" ngModel name="moduleMark3">-->
-    <!--</div>-->
+        <div *ngIf="moduleMark1.errors.required">
+          A module mark is required.
+        </div>
+      </div>
+    </div>
+    <h4>Optional</h4>
+    <div class="form-group">
+      <label for="moduleMark2">Module 2:</label>
+      <input type="text" class="form-control" id="moduleMark2" placeholder="e.g 95%" ngModel name="moduleMark2">
+    </div>
+    <div class="form-group">
+      <label for="moduleMark3">Module 3:</label>
+      <input type="text" class="form-control" id="moduleMark3" placeholder="e.g 95%" ngModel name="moduleMark3">
+    </div>
 
     <br>
     <div class="form-group">
       <label for="extension">Extension:</label>
-      <input type="text" class="form-control" placeholder="e.g 992531" (change)="onDataSelected($event)" pattern="\d*" id="extension" ngModel
+      <input type="text" class="form-control" placeholder="e.g 992531" (change)="onDataSelected($event)" pattern="\d*"
+             id="extension" ngModel
              name="extension" required #extension="ngModel">
       <div *ngIf="extension.invalid && (extension.dirty || extension.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -200,7 +211,8 @@
 
     <div class="form-group">
       <label for="internalbox">Internal Box:</label>
-      <input type="text" class="form-control" placeholder="e.g 107" (change)="onDataSelected($event)" id="internalbox" pattern="\d*" ngModel
+      <input type="text" class="form-control" placeholder="e.g 107" (change)="onDataSelected($event)" id="internalbox"
+             pattern="\d*" ngModel
              name="internalbox" #internalbox="ngModel">
       <div *ngIf="internalbox.invalid && (internalbox.dirty || internalbox.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -216,18 +228,21 @@
 
     <label>Gender:</label>
     <div class="radio" *ngFor="let gender of gender">
-      <label><input type="radio" name="gender" ngModel [value]="gender" id="{{gender}}" (change)="onRadioSelected($event)" required>{{ gender }}</label>
+      <label><input type="radio" name="gender" ngModel [value]="gender" id="{{gender}}"
+                    (change)="onRadioSelected($event)" required>{{ gender }}</label>
     </div>
 
     <label>Marital Status:</label>
     <div class="radio" *ngFor="let maritalStatus of maritalStatus">
-      <label><input type="radio" name="maritalStatus" ngModel [value]="maritalStatus" id="{{maritalStatus}}" (change)="onRadioSelected($event)" required>{{ maritalStatus
+      <label><input type="radio" name="maritalStatus" ngModel [value]="maritalStatus" id="{{maritalStatus}}"
+                    (change)="onRadioSelected($event)" required>{{ maritalStatus
         }}</label>
     </div>
 
     <div class="form-group">
       <label for="maidenname">Maiden Name:</label>
-      <input type="text" class="form-control" id="maidenname" ngModel name="maidenname" (change)="onDataSelected($event)" pattern="[a-zA-Z ]*" required
+      <input type="text" class="form-control" id="maidenname" ngModel name="maidenname"
+             (change)="onDataSelected($event)" pattern="[a-zA-Z ]*" required
              #maidenname="ngModel">
       <div *ngIf="maidenname.invalid && (maidenname.dirty || maidenname.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -243,23 +258,27 @@
 
     <label>Correspondance Preference:</label>
     <div class="radio" *ngFor="let correspondancePreference of correspondancePreference">
-      <label><input type="radio" name="correspondancePreference" ngModel [value]="correspondancePreference" id="{{correspondancePreference}}" (change)="onRadioSelected($event)" required>{{
+      <label><input type="radio" name="correspondancePreference" ngModel [value]="correspondancePreference"
+                    id="{{correspondancePreference}}" (change)="onRadioSelected($event)" required>{{
         correspondancePreference }}</label>
     </div>
 
     <label>Race (for statistical use):</label>
     <div class="radio" *ngFor="let race of race">
-      <label><input type="radio" name="race" ngModel [value]="race" (change)="onRadioSelected($event)" id="{{race}}" required>{{ race }}</label>
+      <label><input type="radio" name="race" ngModel [value]="race" (change)="onRadioSelected($event)" id="{{race}}"
+                    required>{{ race }}</label>
     </div>
 
     <div class="form-group">
       <label for="dateofbirth">Date of Birth:</label>
-        <input type="text" class="form-control" id="dateofbirth" placeholder="yyyy-mm-dd" ngModel (change)="onDataSelected($event)" name="dateofbirth">
+      <input type="text" class="form-control" id="dateofbirth" placeholder="yyyy-mm-dd" ngModel
+             (change)="onDataSelected($event)" name="dateofbirth">
     </div>
 
     <div class="form-group">
       <label for="homelanguage">Home Language:</label>
-      <input type="text" class="form-control" id="homelanguage" ngModel name="homelanguage" (change)="onDataSelected($event)" pattern="[a-zA-Z ]*"
+      <input type="text" class="form-control" id="homelanguage" ngModel name="homelanguage"
+             (change)="onDataSelected($event)" pattern="[a-zA-Z ]*"
              required #homelanguage="ngModel">
       <div *ngIf="homelanguage.invalid && (homelanguage.dirty || homelanguage.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -275,7 +294,8 @@
 
     <div class="form-group">
       <label for="nationality">Nationality:</label>
-      <input type="text" class="form-control" id="nationality" ngModel name="nationality" (change)="onRadioSelected($event)" pattern="[a-zA-Z ]*" required
+      <input type="text" class="form-control" id="nationality" ngModel name="nationality"
+             (change)="onRadioSelected($event)" pattern="[a-zA-Z ]*"  required
              #nationality="ngModel">
       <div *ngIf="nationality.invalid && (nationality.dirty || nationality.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -291,7 +311,8 @@
 
     <div class="form-group">
       <label for="idnumber">ID Number:</label>
-      <input type="text" class="form-control" id="idnumber" ngModel name="idnumber" (change)="onDataSelected($event)" maxlength="13" minlength="13"
+      <input type="text" class="form-control" id="idnumber" ngModel name="idnumber" (change)="onDataSelected($event)"
+             maxlength="13" minlength="13"
              pattern="\d*" required #idnumber="ngModel">
       <div *ngIf="idnumber.invalid && (idnumber.dirty || idnumber.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -310,7 +331,8 @@
 
     <div class="form-group">
       <label for="taxnumber">Income Tax Nr:</label>
-      <input type="text" class="form-control" id="taxnumber" ngModel name="taxnumber" (change)="onDataSelected($event)" pattern="\d*" required
+      <input type="text" class="form-control" id="taxnumber" ngModel name="taxnumber" (change)="onDataSelected($event)"
+             pattern="\d*" required
              #taxnumber="ngModel">
       <div *ngIf="taxnumber.invalid && (taxnumber.dirty || taxnumber.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -326,7 +348,8 @@
 
     <div class="form-group">
       <label for="residentialaddress">Residential Address:</label>
-      <input type="text" class="form-control" id="residentialaddress" ngModel (change)="onDataSelected($event)" name="residentialaddress" required
+      <input type="text" class="form-control" id="residentialaddress" ngModel (change)="onDataSelected($event)"
+             name="residentialaddress" required
              #residentialaddress="ngModel">
       <div *ngIf="residentialaddress.invalid && (residentialaddress.dirty || residentialaddress.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -339,7 +362,8 @@
 
     <div class="form-group">
       <label for="postaladdress">Postal Address:</label>
-      <input type="text" class="form-control" id="postaladdress" (change)="onDataSelected($event)" ngModel name="postaladdress" required
+      <input type="text" class="form-control" id="postaladdress" (change)="onDataSelected($event)" ngModel
+             name="postaladdress" required
              #postaladdress="ngModel">
       <div *ngIf="postaladdress.invalid && (postaladdress.dirty || postaladdress.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -352,7 +376,8 @@
 
     <div class="form-group">
       <label for="code">Zip Code:</label>
-      <input type="text" class="form-control" id="code" ngModel name="code" (change)="onDataSelected($event)" pattern="\d*" required #code="ngModel">
+      <input type="text" class="form-control" id="code" ngModel name="code" (change)="onDataSelected($event)"
+             pattern="\d*" required #code="ngModel">
       <div *ngIf="code.invalid && (code.dirty || code.touched)"
            class="alert alert-danger" style="width: 35vw">
 
@@ -367,7 +392,8 @@
 
     <div class="form-group">
       <label for="hometelephonenumber">Home Telephone Nr:</label>
-      <input type="text" class="form-control" id="hometelephonenumber" maxlength="10" (change)="onDataSelected($event)" minlength="10" ngModel
+      <input type="text" class="form-control" id="hometelephonenumber" maxlength="10" (change)="onDataSelected($event)"
+             minlength="10" ngModel
              name="hometelephonenumber" #hometelephonenumber="ngModel">
       <div *ngIf="hometelephonenumber.invalid && (hometelephonenumber.dirty || hometelephonenumber.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -380,7 +406,8 @@
 
     <div class="form-group">
       <label for="mobilenumber">Mobile Nr:</label>
-      <input type="text" class="form-control" id="mobilenumber" (change)="onDataSelected($event)" ngModel name="mobilenumber" maxlength="10"
+      <input type="text" class="form-control" id="mobilenumber" (change)="onDataSelected($event)" ngModel
+             name="mobilenumber" maxlength="10"
              minlength="10" #mobilenumber="ngModel" required>
       <div *ngIf="mobilenumber.invalid && (mobilenumber.dirty || mobilenumber.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -396,7 +423,8 @@
 
     <div class="form-group">
       <label for="email">E-mail address:</label>
-      <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" (change)="onDataSelected($event)" ngModel name="email" email
+      <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email"
+             (change)="onDataSelected($event)" ngModel name="email" email
              #email="ngModel" required>
       <div *ngIf="email.invalid && (email.dirty || email.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -412,24 +440,28 @@
 
     <label>Where you previously employed by NWU?</label>
     <div class="radio" *ngFor="let previouslyemployed of previouslyemployed">
-      <label><input type="radio" name="previouslyemployed" ngModel [value]="previouslyemployed" (change)="onRadioSelected($event)" required>{{
+      <label><input type="radio" name="previouslyemployed" ngModel [value]="previouslyemployed"
+                    (change)="onRadioSelected($event)" required>{{
         previouslyemployed }}</label>
     </div>
 
     <label>Are you employed by an employer other than the NWU?</label>
     <div class="radio" *ngFor="let otheremployer of otheremployer">
-      <label><input type="radio" name="otheremployer" ngModel [value]="otheremployer" (change)="onRadioSelected($event)" required>{{ otheremployer
+      <label><input type="radio" name="otheremployer" ngModel [value]="otheremployer" (change)="onRadioSelected($event)"
+                    required>{{ otheremployer
         }}</label>
     </div>
 
     <label>Are you self-employed?</label>
     <div class="radio" *ngFor="let selfemployed of selfemployed">
-      <label><input type="radio" name="selfemployed" ngModel [value]="selfemployed" (change)="onRadioSelected($event)" required>{{ selfemployed }}</label>
+      <label><input type="radio" name="selfemployed" ngModel [value]="selfemployed" (change)="onRadioSelected($event)"
+                    required>{{ selfemployed }}</label>
     </div>
 
     <div class="form-group">
       <label for="highestqualification">Highest Qualification:</label>
-      <input type="text" class="form-control" id="highestqualification" ngModel name="highestqualification" (change)="onDataSelected($event)" required
+      <input type="text" class="form-control" id="highestqualification" ngModel name="highestqualification"
+             (change)="onDataSelected($event)" required
              #highestqualification="ngModel">
       <div *ngIf="highestqualification.invalid && (highestqualification.dirty || highestqualification.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -444,23 +476,27 @@
     <h2>Foreign Details</h2>
     <div class="form-group">
       <label class="control-label" for="passport">Copy of Passport:</label>
-      <input type="file" class="filestyle" id="passport" data-icon="false" ngModel (change)="onFileSelected($event)" name="passport" required>
+      <input type="file" class="filestyle" id="passport" data-icon="false" ngModel (change)="onFileSelected($event)"
+             name="passport" required>
     </div>
 
     <div class="form-group">
       <label class="control-label" for="studypermit">Study Permit:</label>
-      <input type="file" class="filestyle" id="studypermit" data-icon="false" ngModel (change)="onFileSelected($event)" name="studypermit" required>
+      <input type="file" class="filestyle" id="studypermit" data-icon="false" ngModel (change)="onFileSelected($event)"
+             name="studypermit" required>
     </div>
 
     <div class="form-group">
       <label class="control-label" for="permissiontoconduct">Permission to Conduct Work Form:</label>
-      <input type="file" class="filestyle" id="permissiontoconduct" data-icon="false" (change)="onFileSelected($event)" ngModel
+      <input type="file" class="filestyle" id="permissiontoconduct" data-icon="false" (change)="onFileSelected($event)"
+             ngModel
              name="permissiontoconduct" required>
     </div>
 
     <div class="form-group">
       <label for="passportnumber">Passport Nr:</label>
-      <input type="text" class="form-control" id="passportnumber" ngModel name="passportnumber" (change)="onDataSelected($event)" pattern="\d*"
+      <input type="text" class="form-control" id="passportnumber" ngModel name="passportnumber"
+             (change)="onDataSelected($event)" pattern="\d*"
              #passportnumber="ngModel" required>
       <div *ngIf="passportnumber.invalid && (passportnumber.dirty || passportnumber.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -473,7 +509,8 @@
 
     <div class="form-group">
       <label for="expirydate">Passport Expiry Date:</label>
-      <input type="text" class="form-control" id="expirydate" placeholder="yyyy-mm-dd" ngModel (change)="onDataSelected($event)" name="expirydate" required>
+      <input type="text" class="form-control" id="expirydate" placeholder="yyyy-mm-dd" ngModel
+             (change)="onDataSelected($event)" name="expirydate" required>
     </div>
 
     <div class="form-group">
@@ -491,19 +528,22 @@
 
     <div class="form-group">
       <label for="permitexpiry">Work Permit Expiry Date:</label>
-      <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="permitexpiry" (change)="onDataSelected($event)" ngModel name="permitexpiry" required>
+      <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="permitexpiry"
+             (change)="onDataSelected($event)" ngModel name="permitexpiry" required>
     </div>
 
     <hr>
     <h2 style="color: white">Section B: Bank details (No payment will be made if these details are not provided.)</h2>
     <label>Account type:</label>
     <div class="radio" *ngFor="let accounttype of accounttype">
-      <label><input type="radio" name="accounttype" ngModel [value]="accounttype" (change)="onRadioSelected($event)" required>{{ accounttype }}</label>
+      <label><input type="radio" name="accounttype" ngModel [value]="accounttype" (change)="onRadioSelected($event)"
+                    required>{{ accounttype }}</label>
     </div>
 
     <div class="form-group">
       <label for="bankbranch">Bank branch code:</label>
-      <input type="text" class="form-control" id="bankbranch" ngModel name="bankbranch" (change)="onDataSelected($event)" required pattern="\d*"
+      <input type="text" class="form-control" id="bankbranch" ngModel name="bankbranch"
+             (change)="onDataSelected($event)" required pattern="\d*"
              #bankbranch="ngModel" maxlength="6" minlength="6">
       <div *ngIf="bankbranch.invalid && (bankbranch.dirty || bankbranch.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -522,7 +562,8 @@
 
     <div class="form-group">
       <label for="accountnumber">Account Nr:</label>
-      <input type="text" class="form-control" id="accountnumber" ngModel name="accountnumber" (change)="onDataSelected($event)" required pattern="\d*"
+      <input type="text" class="form-control" id="accountnumber" ngModel name="accountnumber"
+             (change)="onDataSelected($event)" required pattern="\d*"
              #accountnumber="ngModel">
       <div *ngIf="accountnumber.invalid && (accountnumber.dirty || accountnumber.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -538,7 +579,8 @@
 
     <div class="form-group">
       <label for="bankname">Name of bank:</label>
-      <input type="text" class="form-control" id="bankname" ngModel name="bankname" (change)="onDataSelected($event)" pattern="[a-zA-Z ]*" required
+      <input type="text" class="form-control" id="bankname" ngModel name="bankname" (change)="onDataSelected($event)"
+             pattern="[a-zA-Z ]*" required
              #bankname="ngModel">
       <div *ngIf="bankname.invalid && (bankname.dirty || bankname.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -555,7 +597,8 @@
     <label style="color: white">Account holder:</label>
     <div class="form-group">
       <label for="holdersurname">Surname:</label>
-      <input type="text" class="form-control" id="holdersurname" ngModel name="holdersurname" (change)="onDataSelected($event)" pattern="[a-zA-Z ]*"
+      <input type="text" class="form-control" id="holdersurname" ngModel name="holdersurname"
+             (change)="onDataSelected($event)" pattern="[a-zA-Z ]*"
              required #holdersurname="ngModel">
       <div *ngIf="holdersurname.invalid && (holdersurname.dirty || holdersurname.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -571,7 +614,8 @@
 
     <div class="form-group">
       <label for="holderinitials">Initials:</label>
-      <input type="text" class="form-control" placeholder="e.g EA" id="holderinitials" (change)="onDataSelected($event)" ngModel name="holderinitials"
+      <input type="text" class="form-control" placeholder="e.g EA" id="holderinitials" (change)="onDataSelected($event)"
+             ngModel name="holderinitials"
              pattern="[a-zA-Z ]*" required #holderinitials="ngModel">
       <div *ngIf="holderinitials.invalid && (holderinitials.dirty || holderinitials.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -587,12 +631,14 @@
 
     <label>Account Info:</label>
     <div class="radio" *ngFor="let accountinfo of accountinfo">
-      <label><input type="radio" name="accountinfo" ngModel [value]="accountinfo" (change)="onRadioSelected($event)" required>{{ accountinfo }}</label>
+      <label><input type="radio" name="accountinfo" ngModel [value]="accountinfo" (change)="onRadioSelected($event)"
+                    required>{{ accountinfo }}</label>
     </div>
 
     <div class="form-group">
       <label for="date">Date:</label>
-      <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="date" ngModel (change)="onDataSelected($event)" name="date" required>
+      <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="date" ngModel
+             (change)="onDataSelected($event)" name="date" required>
     </div>
 
     <button class="btn btn-primary" type="submit" (click)="onUpload()" [disabled]="!f.valid">Submit</button>
