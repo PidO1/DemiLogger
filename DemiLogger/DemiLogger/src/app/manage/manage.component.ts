@@ -35,42 +35,93 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-
-  // onGetStudentApplication()
-  // {
-  //   this.submitService.getStudentInfo()
-  //     .subscribe(
-  //       (response) => {
-  //         // @ts-ignore
-  //         this.data = response;
-  //         console.log(this.data);
-  //       },
-  //       (error) => console.log(error)
-  //     );
-  // }
+   arr = 0;
+  onGetStudentApplication()
+  {
+    this.submitService.getStudentInfo()
+      .subscribe(
+        (response) => {
+          // @ts-ignore
+          this.data = response;
+          console.log(this.data);
+        },
+        (error) => console.log(error)
+      );
+  }
+  apply = ['Yes', 'No'];
+  selectedDataValue: string;
+  selectedDataName: string;
+  fd = new FormData();
+  onRadioSelected(event) {
+    console.log(event);
+    this.selectedDataValue = event.target.id;
+    this.selectedDataName = event.target.name;
+    if (this.fd.has(this.selectedDataName)) {
+      this.fd.delete(this.selectedDataName);
+      this.fd.append(this.selectedDataName, this.selectedDataValue);
+    }
+    else {
+      this.fd.append(this.selectedDataName, this.selectedDataValue);
+    }
+  }
+  nextStudent(){
+    this.selectedDataValue = this.data[this.arr].NwuNumber;
+    this.selectedDataName = "NwuNumber";
+    if (this.fd.has(this.selectedDataName)) {
+      this.fd.delete(this.selectedDataName);
+      this.fd.append(this.selectedDataName, this.selectedDataValue);
+    }
+    else {
+      this.fd.append(this.selectedDataName, this.selectedDataValue);
+    }
+    this.arr++;
+  }
 
   toggleVisibility(e){
     this.marked= e.target.checked;
   }
 
-  // selectedDataCheked: string;
-  // selectedDataName: string;
-  // fd = new FormData();
+  // CreateTableFromJSON() {
+  //   // EXTRACT VALUE FOR HTML HEADER.
+  //   // ('Book ID', 'Book Name', 'Category' and 'Price')
+  //   var col = [];
+  //   for (var i = 0; i < this.data.length; i++) {
+  //     for (var key in this.data[i]) {
+  //       if (col.indexOf(key) === -1) {
+  //         col.push(key);
+  //       }
+  //     }
+  //   }
   //
-  // onDataSelected(event)
-  // {
-  //   console.log(event);
-  //   this.selectedDataCheked = event.target.checked;
-  //   this.selectedDataName = event.target.name;
-  //   this.fd.append (this.selectedDataName, this.selectedDataCheked);
-  // }
+  //   // CREATE DYNAMIC TABLE.
+  //   var table = document.createElement("table");
   //
-  // onUpload()
-  // {
-  //   this.fd.append('nwunumber', this.data.nwunumber);
-  //   this.http.post('http://192.168.1.8:3000/', this.fd)
-  //     .subscribe(res =>{
-  //       console.log(res);
-  //     })
+  //   // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+  //
+  //   var tr = table.insertRow(-1);                   // TABLE ROW.
+  //
+  //   for (var i = 0; i < col.length; i++) {
+  //     var th = document.createElement("th");      // TABLE HEADER.
+  //     th.innerHTML = col[i];
+  //     tr.appendChild(th);
+  //   }
+  //
+  //   // ADD JSON DATA TO THE TABLE AS ROWS.
+  //   for (var i = 0; i < this.data.length; i++) {
+  //
+  //     tr = table.insertRow(-1);
+  //
+  //     for (var j = 0; j < col.length; j++) {
+  //       var tabCell = tr.insertCell(-1);
+  //       tabCell.innerHTML = this.data[i][col[j]];
+  //     }
+  //   }
+  //
+  //   // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+  //   var divContainer = document.getElementById("showData");
+  //   divContainer.innerHTML = "";
+  //   divContainer.appendChild(table);
   // }
+
+
 }

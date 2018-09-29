@@ -1,0 +1,96 @@
+<body style="background-color: transparent; padding-top: 2.1cm">
+<div class="container-fluid img-rounded"
+     style="background-color: black; opacity: 0.7; width: fit-content; padding: 10px">
+  <h1>Module Application</h1>
+  <p>Please fill this form in for every module you want to apply for!!!!!</p>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="form-group">
+      <label for="nwunumber">NWU number:</label>
+      <input type="text" id="nwunumber"
+             class="form-control"
+             ngModel
+             name="nwunumber"
+             pattern="\d*"
+             maxlength="8"
+             minlength="8"
+             required
+             #nwunumber="ngModel">
+      <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)"
+           class="alert alert-danger"
+           style="width: 20vw">
+        <div *ngIf="nwunumber.errors.required">
+          NWU number is required.
+        </div>
+        <div *ngIf="nwunumber.errors.minlength">
+          NWU number must be 8 characters long.
+        </div>
+        <div *ngIf="nwunumber.errors.pattern">
+          Must only be numbers.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="surname">Surname:</label>
+      <input type="text" class="form-control" id="surname" ngModel name="surname"
+             pattern="[a-zA-Z ]*" required
+             #surname="ngModel">
+      <div *ngIf="surname.invalid && (surname.dirty || surname.touched)"
+           class="alert alert-danger" style="width: 35vw">
+
+        <div *ngIf="surname.errors.required">
+          Surname is required.
+        </div>
+        <div *ngIf="surname.errors.pattern">
+          Can only contain letters.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="fullname">Full Names:</label>
+      <input type="text" class="form-control" placeholder="e.g Name, Name" id="fullname" ngModel name="fullname"
+             required #fullname="ngModel">
+      <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)"
+           class="alert alert-danger" style="width: 35vw">
+
+        <div *ngIf="fullname.errors.required">
+          A name is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="module1">Module you want to assist in:</label>
+      <input type="text" class="form-control" id="module1" value placeholder="e.g ITRW324" ngModel name="module1"
+             required
+             #module1="ngModel">
+      <div *ngIf="module1.invalid && (module1.dirty || module1.touched)"
+           class="alert alert-danger" style="width: 35vw">
+
+        <div *ngIf="module1.errors.required">
+          A module code is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="moduleMark1">Your mark of specific module:</label>
+      <input type="text" class="form-control" id="moduleMark1" placeholder="e.g 95%" ngModel name="moduleMark1" required
+             #moduleMark1="ngModel">
+      <div *ngIf="moduleMark1.invalid && (moduleMark1.dirty || moduleMark1.touched)"
+           class="alert alert-danger" style="width: 35vw">
+
+        <div *ngIf="moduleMark1.errors.required">
+          A module mark is required.
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary"
+            type="submit"
+            [disabled]="!f.valid">Submit
+    </button>
+  </form>
+</div>
+</body>

@@ -25,6 +25,13 @@ export class HeaderComponent {
       this.router.navigate(['/forms/application-form']);
     }
   }
+  moduleApp(event) {
+    if (sessionStorage.length === 0) {
+      alert('Please login.');
+    } else {
+      this.router.navigate(['/forms/moduleapplication']);
+    }
+  }
   routeAbout(event) {
     if (sessionStorage.length === 0) {
       alert('Please login.');

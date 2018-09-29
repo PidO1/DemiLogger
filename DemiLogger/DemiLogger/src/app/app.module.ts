@@ -20,6 +20,7 @@ import {Http, HttpModule} from '@angular/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SaApplicationFormComponent } from './forms/sa-application-form/sa-application-form.component';
 import { TokenInterceptor } from './token.interceptor';
+import { ModuleapplicationComponent } from './forms/moduleapplication/moduleapplication.component';
 
 const appRoutes: Routes = [
   { path: 'home', component:  HomeComponent },
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
   { path: 'manage', component: ManageComponent },
   { path: 'forms/sa-application-form', component: SaApplicationFormComponent},
   { path: 'forms/application-form', component: ApplicationFormComponent},
+  { path: 'forms/moduleapplication', component: ModuleapplicationComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
@@ -47,6 +49,7 @@ const appRoutes: Routes = [
     InfoComponent,
     ManageComponent,
     SaApplicationFormComponent,
+    ModuleapplicationComponent,
   ],
   imports: [
     BrowserModule,
