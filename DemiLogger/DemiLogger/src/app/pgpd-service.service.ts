@@ -44,7 +44,7 @@ export class PgpdServiceService {
 
   getStudentInfo()
   {
-    return this.http.get('http://192.168.1.8:3000/');
+    return this.http.get('http://192.168.1.8:3000/demi/all');
   }
 }
 

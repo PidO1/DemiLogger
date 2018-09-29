@@ -11,6 +11,21 @@ export class HeaderComponent {
   constructor(private router: Router) { }
   token = {};
   setCss = false;
+
+  studentSA(event) {
+    if (sessionStorage.length === 0) {
+      alert('Please login.');
+    } else {
+      this.router.navigate(['/forms/sa-application-form']);
+    }
+  }
+  studentFO(event) {
+    if (sessionStorage.length === 0) {
+      alert('Please login.');
+    } else {
+      this.router.navigate(['/forms/application-form']);
+    }
+  }
   routeAbout(event) {
     if (sessionStorage.length === 0) {
       alert('Please login.');
@@ -23,13 +38,6 @@ export class HeaderComponent {
       alert('Please login.');
     } else {
       this.router.navigate(['/queries']);
-    }
-  }
-  routeForm(event) {
-    if (sessionStorage.length === 0) {
-      alert('Please login.');
-    } else {
-      this.router.navigate(['/form']);
     }
   }
   routeInfo(event) {

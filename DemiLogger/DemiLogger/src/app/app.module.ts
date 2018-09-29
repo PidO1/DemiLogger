@@ -14,11 +14,11 @@ import { ApplicationFormComponent } from './forms/application-form/application-f
 import { RegisterComponent } from './login/register/register.component';
 import { AboutComponent } from './about/about.component';
 import { InfoComponent } from './info/info.component';
-import { QueriesComponent } from './queries/queries.component';
 import { ManageComponent } from './manage/manage.component';
 import {PgpdServiceService} from './pgpd-service.service';
 import {Http, HttpModule} from '@angular/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SaApplicationFormComponent } from './forms/sa-application-form/sa-application-form.component';
 // import { TokenInterceptor } from './token.interceptor';
 
 const appRoutes: Routes = [
@@ -28,8 +28,9 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'info', component: InfoComponent },
   { path: 'login/register', component:  RegisterComponent },
-  { path: 'queries', component: QueriesComponent },
   { path: 'manage', component: ManageComponent },
+  { path: 'forms/sa-application-form', component: SaApplicationFormComponent},
+  { path: 'forms/application-form', component: ApplicationFormComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
@@ -44,8 +45,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     AboutComponent,
     InfoComponent,
-    QueriesComponent,
     ManageComponent,
+    SaApplicationFormComponent,
   ],
   imports: [
     BrowserModule,

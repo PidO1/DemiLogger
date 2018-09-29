@@ -441,27 +441,27 @@
     </div>
     <hr>
 
-    <h2>If a foreign student assistant</h2>
+    <h2>Foreign Details</h2>
     <div class="form-group">
       <label class="control-label" for="passport">Copy of Passport:</label>
-      <input type="file" class="filestyle" id="passport" data-icon="false" ngModel (change)="onFileSelected($event)" name="passport">
+      <input type="file" class="filestyle" id="passport" data-icon="false" ngModel (change)="onFileSelected($event)" name="passport" required>
     </div>
 
     <div class="form-group">
       <label class="control-label" for="studypermit">Study Permit:</label>
-      <input type="file" class="filestyle" id="studypermit" data-icon="false" ngModel (change)="onFileSelected($event)" name="studypermit">
+      <input type="file" class="filestyle" id="studypermit" data-icon="false" ngModel (change)="onFileSelected($event)" name="studypermit" required>
     </div>
 
     <div class="form-group">
       <label class="control-label" for="permissiontoconduct">Permission to Conduct Work Form:</label>
       <input type="file" class="filestyle" id="permissiontoconduct" data-icon="false" (change)="onFileSelected($event)" ngModel
-             name="permissiontoconduct">
+             name="permissiontoconduct" required>
     </div>
 
     <div class="form-group">
       <label for="passportnumber">Passport Nr:</label>
       <input type="text" class="form-control" id="passportnumber" ngModel name="passportnumber" (change)="onDataSelected($event)" pattern="\d*"
-             #passportnumber="ngModel">
+             #passportnumber="ngModel" required>
       <div *ngIf="passportnumber.invalid && (passportnumber.dirty || passportnumber.touched)"
            class="alert alert-danger" style="width: 35vw">
 
@@ -473,13 +473,13 @@
 
     <div class="form-group">
       <label for="expirydate">Passport Expiry Date:</label>
-      <input type="text" class="form-control" id="expirydate" placeholder="yyyy-mm-dd" ngModel (change)="onDataSelected($event)" name="expirydate">
+      <input type="text" class="form-control" id="expirydate" placeholder="yyyy-mm-dd" ngModel (change)="onDataSelected($event)" name="expirydate" required>
     </div>
 
     <div class="form-group">
       <label for="permitnumber">Work Permit Nr:</label>
       <input type="text" class="form-control" id="permitnumber" pattern="\d*" ngModel name="permitnumber"
-             #permitnumber="ngModel" (change)="onDataSelected($event)">
+             #permitnumber="ngModel" (change)="onDataSelected($event)" required>
       <div *ngIf="permitnumber.invalid && (permitnumber.dirty || permitnumber.touched)"
            class="alert alert-danger" style="width: 35vw">
 
@@ -491,7 +491,7 @@
 
     <div class="form-group">
       <label for="permitexpiry">Work Permit Expiry Date:</label>
-      <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="permitexpiry" (change)="onDataSelected($event)" ngModel name="permitexpiry">
+      <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="permitexpiry" (change)="onDataSelected($event)" ngModel name="permitexpiry" required>
     </div>
 
     <hr>

@@ -8,6 +8,7 @@
       border-radius: 30px;
       padding: 2px 10px;
     }
+
     .btn-success {
       background-color: transparent;
       border-color: transparent;
@@ -16,22 +17,35 @@
       opacity: 0.7;
       outline: none;
     }
+
     .btn-success:active {
-      background-color:transparent;
-      border-color:transparent;
+      background-color: transparent;
+      border-color: transparent;
       outline: none;
     }
+
     .btn-success:hover {
-      background-color:transparent;
-      border-color:transparent;
+      background-color: transparent;
+      border-color: transparent;
       outline: none;
     }
+
     .glyphicon-cog {
       font-size: 15px
     }
+
     .glyphicon-log-in {
       font-size: 15px
     }
+
+    .dropdown-item {
+      background-color: transparent;
+      border-color: transparent;
+      color: black;
+      opacity: 0.7;
+      outline: none;
+    }
+
   </style>
 </head>
 <nav class="navbar navbar-inverse navbar-fixed-top" style="opacity: 0.9; background-color: black; height: 2cm">
@@ -43,41 +57,59 @@
     <div class="collapse navbar-collapse" style="padding-top: 12px">
       <ul class="nav navbar-nav">
         <!-- <li><a href="#" routerLink="home" style="transition-duration: 0.4s;cursor: pointer; border-radius: 30px; padding: 2px 24px"><h4>Home</h4></a></li> -->
-        <li><button class="btn btn-success"
-                    routerLink="home">Home</button></li>
+        <li>
+          <button class="btn btn-success"
+                  routerLink="home">Home
+          </button>
+        </li>
       </ul>
       <ul class="nav navbar-nav">
         <!-- <li><a href="#" routerLink="info" style="transition-duration: 0.4s;cursor: pointer; border-radius: 30px; padding: 2px 24px"><h4>Info</h4></a></li> -->
-        <li><button class="btn btn-success"
-                    (click)="routeInfo($event)">Info</button></li>
+        <li>
+          <button class="btn btn-success"
+                  (click)="routeInfo($event)">Info
+          </button>
+        </li>
       </ul>
       <ul class="nav navbar-nav">
         <!-- <li><a href="#" routerLink="form" style="transition-duration: 0.4s;cursor: pointer; border-radius: 30px; padding: 2px 24px"><h4>Forms</h4></a></li> -->
-        <li><button class="btn btn-success" 
-                    (click)="routeForm($event)">Forms</button></li>
-      </ul>
-      <ul class="nav navbar-nav">
-        <!-- <li><a href="#" routerLink="queries" style="transition-duration: 0.4s;cursor: pointer; border-radius: 30px; padding: 2px 24px"><h4>Queries</h4></a></li> -->
-        <li><button class="btn btn-success" 
-                    (click)="routeQueries($event)">Queries</button></li>
+        <li>
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-success" id="dropdown" ngbDropdownToggle>Forms</button>
+            <div id="drpdown" ngbDropdownMenu aria-labelledby="dropdown" style="background-color: darkgray; width: auto">
+              <button class="dropdown-item" (click)="studentSA($event)">SA Students</button>
+              <br>
+              <button class="dropdown-item" (click)="studentFO($event)">Foreign student</button>
+            </div>
+          </div>
+        </li>
       </ul>
       <ul class="nav navbar-nav">
         <!-- <li><a href="#" routerLink="about" style="transition-duration: 0.4s;cursor: pointer; border-radius: 30px; padding: 2px 24px"><h4>About</h4></a></li> -->
-        <li><button class="btn btn-success" 
-                    (click)="routeAbout($event)">About</button></li>
+        <li>
+          <button class="btn btn-success"
+                  (click)="routeAbout($event)">About
+          </button>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      <!-- <li><a href="#" routerLink="login"><span class="glyphicon glyphicon-log-in" routerLink="login"></span> Login</a></li> -->
-      <li><button class="btn btn-success"
+        <!-- <li><a href="#" routerLink="login"><span class="glyphicon glyphicon-log-in" routerLink="login"></span> Login</a></li> -->
+        <li>
+          <button class="btn btn-success"
                   (click)="routeLogin($event)">
-                  <span class="glyphicon glyphicon-log-in"></span> Login</button></li>
-    </ul>
+            <span class="glyphicon glyphicon-log-in"></span> Login
+          </button>
+        </li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- <li><a routerLink="manage"><span class="glyphicon glyphicon-cog" routerLink="manage"></span> Manage</a></li> -->
-        <li><button class="btn btn-success"
-                    id="btnManage"
-                    (click)="routeManage($event)">
-                    <span class="glyphicon glyphicon-cog"></span> Manage</button></li>
+        <li>
+          <button class="btn btn-success"
+                  id="btnManage"
+                  (click)="routeManage($event)">
+            <span class="glyphicon glyphicon-cog"></span> Manage
+          </button>
+        </li>
       </ul>
     </div>
   </div>

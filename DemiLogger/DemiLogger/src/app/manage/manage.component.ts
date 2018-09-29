@@ -36,41 +36,41 @@ export class ManageComponent implements OnInit {
       );
   }
 
-  onGetStudentApplication()
-  {
-    this.submitService.getStudentInfo()
-      .subscribe(
-        (response) => {
-          // @ts-ignore
-          this.data = response;
-          console.log(this.data);
-        },
-        (error) => console.log(error)
-      );
-  }
+  // onGetStudentApplication()
+  // {
+  //   this.submitService.getStudentInfo()
+  //     .subscribe(
+  //       (response) => {
+  //         // @ts-ignore
+  //         this.data = response;
+  //         console.log(this.data);
+  //       },
+  //       (error) => console.log(error)
+  //     );
+  // }
 
   toggleVisibility(e){
     this.marked= e.target.checked;
   }
 
-  selectedDataCheked: string;
-  selectedDataName: string;
-  fd = new FormData();
-
-  onDataSelected(event)
-  {
-    console.log(event);
-    this.selectedDataCheked = event.target.checked;
-    this.selectedDataName = event.target.name;
-    this.fd.append (this.selectedDataName, this.selectedDataCheked);
-  }
-
-  onUpload()
-  {
-    this.fd.append('nwunumber', this.data.nwunumber);
-    this.http.post('http://192.168.1.8:3000/', this.fd)
-      .subscribe(res =>{
-        console.log(res);
-      })
-  }
+  // selectedDataCheked: string;
+  // selectedDataName: string;
+  // fd = new FormData();
+  //
+  // onDataSelected(event)
+  // {
+  //   console.log(event);
+  //   this.selectedDataCheked = event.target.checked;
+  //   this.selectedDataName = event.target.name;
+  //   this.fd.append (this.selectedDataName, this.selectedDataCheked);
+  // }
+  //
+  // onUpload()
+  // {
+  //   this.fd.append('nwunumber', this.data.nwunumber);
+  //   this.http.post('http://192.168.1.8:3000/', this.fd)
+  //     .subscribe(res =>{
+  //       console.log(res);
+  //     })
+  // }
 }
