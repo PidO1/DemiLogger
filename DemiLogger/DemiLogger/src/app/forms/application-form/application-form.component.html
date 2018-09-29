@@ -131,7 +131,7 @@
     <div class="form-group">
       <label for="module1">Module 1:</label>
       <input type="text" class="form-control" id="module1" value placeholder="e.g ITRW324" ngModel name="module1"
-             required
+             required (change)="onDataSelected($event)"
              #module1="ngModel">
       <div *ngIf="module1.invalid && (module1.dirty || module1.touched)"
            class="alert alert-danger" style="width: 35vw">
@@ -145,7 +145,7 @@
     <div class="form-group">
       <label for="module2">Module 2:</label>
       <input type="text" class="form-control" id="module2" placeholder="e.g ITRW324" ngModel name="module2"
-             #module2="ngModel">
+             #module2="ngModel" (change)="onDataSelected($event)">
       <div *ngIf="module2.invalid && (module2.dirty || module2.touched)"
            class="alert alert-danger" style="width: 35vw">
 
@@ -157,7 +157,7 @@
     <div class="form-group">
       <label for="module3">Module 3:</label>
       <input type="text" class="form-control" id="module3" placeholder="e.g ITRW324" ngModel name="module3"
-             #module3="ngModel">
+             #module3="ngModel" (change)="onDataSelected($event)">
       <div *ngIf="module3.invalid && (module3.dirty || module3.touched)"
            class="alert alert-danger" style="width: 35vw">
 
@@ -172,7 +172,7 @@
     <div class="form-group">
       <label for="moduleMark1">Module 1:</label>
       <input type="text" class="form-control" id="moduleMark1" placeholder="e.g 95%" ngModel name="moduleMark1" required
-             #moduleMark1="ngModel">
+             #moduleMark1="ngModel" (change)="onDataSelected($event)">
       <div *ngIf="moduleMark1.invalid && (moduleMark1.dirty || moduleMark1.touched)"
            class="alert alert-danger" style="width: 35vw">
 
@@ -184,11 +184,11 @@
     <h4>Optional</h4>
     <div class="form-group">
       <label for="moduleMark2">Module 2:</label>
-      <input type="text" class="form-control" id="moduleMark2" placeholder="e.g 95%" ngModel name="moduleMark2">
+      <input type="text" class="form-control" id="moduleMark2" placeholder="e.g 95%" ngModel name="moduleMark2" (change)="onDataSelected($event)">
     </div>
     <div class="form-group">
       <label for="moduleMark3">Module 3:</label>
-      <input type="text" class="form-control" id="moduleMark3" placeholder="e.g 95%" ngModel name="moduleMark3">
+      <input type="text" class="form-control" id="moduleMark3" placeholder="e.g 95%" ngModel name="moduleMark3" (change)="onDataSelected($event)">
     </div>
 
     <br>
@@ -256,11 +256,11 @@
       </div>
     </div>
 
-    <label>Correspondance Preference:</label>
-    <div class="radio" *ngFor="let correspondancePreference of correspondancePreference">
-      <label><input type="radio" name="correspondancePreference" ngModel [value]="correspondancePreference"
-                    id="{{correspondancePreference}}" (change)="onRadioSelected($event)" required>{{
-        correspondancePreference }}</label>
+    <label>Correspondence Preference:</label>
+    <div class="radio" *ngFor="let correspondencePreference of correspondencePreference">
+      <label><input type="radio" name="correspondencePreference" ngModel [value]="correspondencePreference"
+                    id="{{correspondencePreference}}" (change)="onRadioSelected($event)" required>{{
+        correspondencePreference }}</label>
     </div>
 
     <label>Race (for statistical use):</label>
@@ -441,21 +441,21 @@
     <label>Where you previously employed by NWU?</label>
     <div class="radio" *ngFor="let previouslyemployed of previouslyemployed">
       <label><input type="radio" name="previouslyemployed" ngModel [value]="previouslyemployed"
-                    (change)="onRadioSelected($event)" required>{{
+                    (change)="onRadioSelected($event)" required id="{{previouslyemployed}}">{{
         previouslyemployed }}</label>
     </div>
 
     <label>Are you employed by an employer other than the NWU?</label>
     <div class="radio" *ngFor="let otheremployer of otheremployer">
       <label><input type="radio" name="otheremployer" ngModel [value]="otheremployer" (change)="onRadioSelected($event)"
-                    required>{{ otheremployer
+                    required id="{{otheremployer}}">{{ otheremployer
         }}</label>
     </div>
 
     <label>Are you self-employed?</label>
     <div class="radio" *ngFor="let selfemployed of selfemployed">
       <label><input type="radio" name="selfemployed" ngModel [value]="selfemployed" (change)="onRadioSelected($event)"
-                    required>{{ selfemployed }}</label>
+                    required id="{{selfemployed}}">{{ selfemployed }}</label>
     </div>
 
     <div class="form-group">
@@ -537,7 +537,7 @@
     <label>Account type:</label>
     <div class="radio" *ngFor="let accounttype of accounttype">
       <label><input type="radio" name="accounttype" ngModel [value]="accounttype" (change)="onRadioSelected($event)"
-                    required>{{ accounttype }}</label>
+                    required id="{{accounttype}}">{{ accounttype }}</label>
     </div>
 
     <div class="form-group">
@@ -632,7 +632,7 @@
     <label>Account Info:</label>
     <div class="radio" *ngFor="let accountinfo of accountinfo">
       <label><input type="radio" name="accountinfo" ngModel [value]="accountinfo" (change)="onRadioSelected($event)"
-                    required>{{ accountinfo }}</label>
+                    required id="{{accountinfo}}">{{ accountinfo }}</label>
     </div>
 
     <div class="form-group">

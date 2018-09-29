@@ -12,7 +12,7 @@ import {Data} from '@angular/router';
 export class ApplicationFormComponent implements OnInit {
   gender = ['male', 'female'];
   maritalStatus = ['Single', 'Married', 'Divorced', 'Widowed'];
-  correspondancePreference = ['English', 'Afrikaans'];
+  correspondencePreference = ['English', 'Afrikaans'];
   race = ['African', 'Coloured', 'Indian', 'White', 'Other'];
   previouslyemployed = ['Yes', 'No'];
   otheremployer = ['Yes', 'No'];
@@ -31,20 +31,31 @@ export class ApplicationFormComponent implements OnInit {
   fd = new FormData();
 
   constructor(private http: HttpClient) {}
-  // constructor(private submitService: PgpdServiceService) { }
 
   onDataSelected(event) {
     console.log(event);
     this.selectedDataValue = event.target.value;
     this.selectedDataName = event.target.name;
-    this.fd.append (this.selectedDataName, this.selectedDataValue);
+    if (this.fd.has(this.selectedDataName)) {
+      this.fd.delete(this.selectedDataName);
+      this.fd.append(this.selectedDataName, this.selectedDataValue);
+    }
+    else {
+      this.fd.append(this.selectedDataName, this.selectedDataValue);
+    }
   }
 
   onRadioSelected(event) {
     console.log(event);
     this.selectedDataValue = event.target.id;
     this.selectedDataName = event.target.name;
-    this.fd.append (this.selectedDataName, this.selectedDataValue);
+    if (this.fd.has(this.selectedDataName)) {
+      this.fd.delete(this.selectedDataName);
+      this.fd.append(this.selectedDataName, this.selectedDataValue);
+    }
+    else {
+      this.fd.append(this.selectedDataName, this.selectedDataValue);
+    }
   }
 
   onFileSelected(event) {
@@ -57,7 +68,8 @@ export class ApplicationFormComponent implements OnInit {
     this.http.post('http://192.168.1.8:3000/demi/applicationform/foreign', this.fd)
       .subscribe(res => {
         console.log(res);
-      });
+        console.log(this.fd);
+      })
   }
 
   ngOnInit() {
