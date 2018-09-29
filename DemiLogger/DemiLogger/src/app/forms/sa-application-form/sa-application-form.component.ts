@@ -56,7 +56,7 @@ export class SaApplicationFormComponent implements OnInit {
 
   onUpload()
   {
-    this.http.post('http://192.168.1.8:3000/demi/applicationform', this.fd)
+    this.http.post('http://192.168.1.8:3000/demi/applicationform/sa', this.fd)
       .subscribe(res =>{
         console.log(res);
       })
