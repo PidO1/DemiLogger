@@ -1,4 +1,3 @@
-import { Template } from '@angular/compiler/src/render3/r3_ast';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
@@ -65,8 +64,8 @@ export class HeaderComponent {
         } else {
         // @ts-ignore
         if (this.token.admin === 0) {
-                  alert('Administrator permissions required.');
-                }
+          alert('Administrator permissions required.');
+        }
       }
     }
   }

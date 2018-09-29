@@ -15,7 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         request = request.clone({
           setHeaders: {
-            Authorization: `Bearer ${this.pgpd.getToken()}`
+            Authorization: `${this.pgpd.getToken()}`
           }
         });
         return next.handle(request);

@@ -10,7 +10,7 @@ export class PgpdServiceService {
 
   storeLoginData(loginData: any[]) {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post('http://192.168.1.8:3000/user.login', loginData, {headers: header});
+    return this.http.post('http://192.168.1.8:3000/user/login', loginData, {headers: header});
   }
 
   storeApplicationFormData(formData: any[]) {

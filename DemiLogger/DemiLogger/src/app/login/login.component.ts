@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {PgpdServiceService} from '../pgpd-service.service';
 import { Router, RouterModule } from '@angular/router';
-import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +11,10 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private submitService: PgpdServiceService, private enableButton: HeaderComponent, private router: Router) {}
+  constructor(private submitService: PgpdServiceService,
+              private enableButton: HeaderComponent,
+              private router: Router) {}
+
   ngOnInit() {}
   onSubmit(form: NgForm) {
     this.submitService.storeLoginData(form.value)
@@ -21,13 +23,13 @@ export class LoginComponent implements OnInit {
           console.log(response);
           if (sessionStorage.length < 0) {
             // @ts-ignore
-            sessionStorage.setItem('token', response._body);
-            this.router.navigate(['/home']);
+            sessionStorage.setItem('token', response.body);
+            // this.router.navigate(['/home']);
           } else {
             sessionStorage.clear();
             // @ts-ignore
-            sessionStorage.setItem('token', response._body);
-            this.router.navigate(['/home']);
+            sessionStorage.setItem('token', response.body);
+            // this.router.navigate(['/home']);
           }
         },
         (error) => console.log(error)
