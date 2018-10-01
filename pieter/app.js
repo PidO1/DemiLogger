@@ -13,6 +13,7 @@ const vakkeRoute = require('./api/routes/subjects');
 const demiRoute = require('./api/routes/Demi');
 const userRoute = require('./api/routes/user');
 const anounceRoute = require('./api/routes/anounce');
+const applicationRoute = require('./api/routes/application');
 
 
 console.log('APP.js net voor middleware');
@@ -38,6 +39,7 @@ app.use('/subjects',vakkeRoute);
 app.use('/demi',demiRoute);
 app.use('/user',userRoute);
 app.use('/anounce',anounceRoute);
+app.use('/application',applicationRoute);
 
 
 app.use((req,res,next)=>{
