@@ -1,4 +1,4 @@
-label
+h1, h2, h3, h4,label, p, li
 {
   color: white;
 }
@@ -30,13 +30,13 @@ table, th , td {
   padding: 5px;
   color: black;
 }
-table tr:nth-child(odd) {
-  background-color: #f1f1f1;
+table thead {
+  background-color: purple;
 }
-table tr:nth-child(even) {
-  background-color: #ffffff;
+table tbody {
+  background-color: black;
 }
-label,td
+label,td,tr
 {
-  color: black;
+  color: white;
 }

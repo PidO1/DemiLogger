@@ -4,7 +4,7 @@
     <ngb-tab title="Announcement">
       <ng-template ngbTabContent>
         <form  (ngSubmit)="onSubmitAnnouncement(f)" #f="ngForm" ngForm="disabled">
-          <label>Send announcement to:</label>
+          <label style="color: white">Send announcement to:</label>
           <br>
           <select type="text" class="form-control" id="to" name="to" ngModel required>
             <option value="All">All</option>
@@ -12,7 +12,7 @@
             <option value="Lecturers">Lecturers</option>
           </select>
           <br>
-          <label for="anouncement">Announcement:</label>
+          <label for="anouncement" style="color: white">Announcement:</label>
           <br>
           <textarea type="text" id="anouncement" ngModel name="anouncement" placeholder="Write something.."
                     style="height:200px; width: 97vw" required></textarea>
@@ -29,7 +29,7 @@
         <form (ngSubmit)="onSubmitLecturer(d)" #d="ngForm">
 
           <div class="form-group">
-            <label for="preferredname">Preferred Name:</label>
+            <label for="preferredname" style="color: white">Preferred Name:</label>
             <input type="text" class="form-control" id="preferredname" ngModel name="preferredname" pattern="[a-zA-Z ]*"
                    required name="preferredname" maxlength="20" #preferredname="ngModel">
             <div *ngIf="preferredname.invalid && (preferredname.dirty || preferredname.touched)"
@@ -48,7 +48,7 @@
           </div>
 
           <div class="form-group">
-            <label for="surname">Surname:</label>
+            <label for="surname" style="color: white">Surname:</label>
             <input type="text" class="form-control" id="surname" ngModel name="surname" pattern="[a-zA-Z ]*" required
                    #surname="ngModel" maxlength="20">
             <div *ngIf="surname.invalid && (surname.dirty || surname.touched)"
@@ -67,7 +67,7 @@
           </div>
 
           <div class="form-group">
-            <label for="title">Title:</label>
+            <label for="title" style="color: white">Title:</label>
             <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss" pattern="[a-zA-Z ]*"
                    maxlength="4"
                    ngModel name="title" required #title="ngModel">
@@ -87,7 +87,7 @@
           </div>
 
           <div class="form-group">
-            <label for="nwunumber">NWU number:</label>
+            <label for="nwunumber" style="color: white">NWU number:</label>
             <input type="text" id="nwunumber" class="form-control" ngModel name="nwunumber" pattern="\d*" maxlength="8"
                    minlength="8" required #nwunumber="ngModel">
             <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)"
@@ -106,7 +106,7 @@
           </div>
 
           <div class="form-group">
-            <label for="role">Role:</label>
+            <label for="role" style="color: white">Role:</label>
             <input type="text" id="role" class="form-control" placeholder="Lecturer" pattern="[a-zA-Z ]*" maxlength="20"
                    ngModel name="role" required #role="ngModel">
             <div *ngIf="role.invalid && (role.dirty || role.touched)"
@@ -125,7 +125,7 @@
           </div>
 
           <div class="form-group">
-            <label for="telephonenumber">Telephone number:</label>
+            <label for="telephonenumber" style="color: white">Telephone number:</label>
             <input type="text" id="telephonenumber" class="form-control" pattern="\d*" maxlength="10"
                    ngModel name="telephonenumber" required #telephonenumber="ngModel">
             <div *ngIf="telephonenumber.invalid && (telephonenumber.dirty || telephonenumber.touched)"
@@ -144,7 +144,7 @@
           </div>
 
           <div class="form-group">
-            <label for="email">E-mail address:</label>
+            <label for="email" style="color: white">E-mail address:</label>
             <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" ngModel name="email"
                    email
                    #email="ngModel" required maxlength="50">
@@ -164,7 +164,7 @@
           </div>
 
           <div class="form-group">
-            <label for="password">Password:</label>
+            <label for="password" style="color: white">Password:</label>
             <input type="password" id="password" class="form-control" ngModel name="password" required
                    #password="ngModel">
             <div *ngIf="password.invalid && (password.dirty || password.touched)"
@@ -188,9 +188,9 @@
       <ng-template ngbTabContent>
         <br>
         <button class="btn btn-primary" (click)="onGetStudentApplication()">Get student applications</button>
-        <!--<button class="btn btn-primary" onclick="CreateTableFromJSON()">Generate table</button>-->
         <form #f="ngForm">
         <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid img-rounded" style="padding: 25px; padding-top: 2.1cm">
+          <thead style="color: purple">
           <tr>
             <th>Student Number</th>
             <th>Full name</th>
@@ -199,75 +199,29 @@
             <th>Assistong module mark</th>
             <th>Apply</th>
           </tr>
-          <tbody>
+          </thead>
+          <tbody style="background-color: black">
           <tr>
           <td>{{data[arr].NwuNumber | json}}</td>
           <td>{{data[arr].Fullnames | json}}</td>
           <td>{{data[arr].Surname | json}}</td>
           <td>{{data[arr].module1 | json}}</td>
           <td>{{data[arr].modulemark1 | json}}</td>
-          <td style="align: left">
+          <td style="align: left; width: 160px">
             <div class="radio" *ngFor="let apply of apply">
               <label><input type="radio" name="apply" ngModel id="{{apply}}" [value]="apply"
-                            (change)="onRadioSelected($event)" required>{{
+                            (change)="onRadioSelected($event)" required style="width: 100%">{{
                 apply }}</label>
             </div>
           </td>
           </tr>
           </tbody>
         </table>
-
-          <p id="showData"></p>
           <button class="btn btn-primary" type="submit" (click)="nextStudent()" [disabled]="!f.valid">Submit</button>
         </form>
-        <!--<input type="button" onclick="CreateTableFromJSON()" value="Create Table From JSON" />-->
-        <p id="showData"></p>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
-
 </div>
 </body>
-<!--<script>-->
-  <!--function CreateTableFromJSON() {-->
-    <!--// EXTRACT VALUE FOR HTML HEADER.-->
-    <!--// ('Book ID', 'Book Name', 'Category' and 'Price')-->
-    <!--var col = [];-->
-    <!--for (var i = 0; i < data.length; i++) {-->
-      <!--for (var key in data[i]) {-->
-        <!--if (col.indexOf(key) === -1) {-->
-          <!--col.push(key);-->
-        <!--}-->
-      <!--}-->
-    <!--}-->
 
-    <!--// CREATE DYNAMIC TABLE.-->
-    <!--var table = document.createElement("table");-->
-
-    <!--// CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.-->
-
-    <!--var tr = table.insertRow(-1);                   // TABLE ROW.-->
-
-    <!--for (var i = 0; i < col.length; i++) {-->
-      <!--var th = document.createElement("th");      // TABLE HEADER.-->
-      <!--th.innerHTML = col[i];-->
-      <!--tr.appendChild(th);-->
-    <!--}-->
-
-    <!--// ADD JSON DATA TO THE TABLE AS ROWS.-->
-    <!--for (var i = 0; i < data.length; i++) {-->
-
-      <!--tr = table.insertRow(-1);-->
-
-      <!--for (var j = 0; j < col.length; j++) {-->
-        <!--var tabCell = tr.insertCell(-1);-->
-        <!--tabCell.innerHTML = data[i][col[j]];-->
-      <!--}-->
-    <!--}-->
-
-    <!--// FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.-->
-    <!--var divContainer = document.getElementById("showData");-->
-    <!--divContainer.innerHTML = "";-->
-    <!--divContainer.appendChild(table);-->
-  <!--}-->
-<!--</script>-->

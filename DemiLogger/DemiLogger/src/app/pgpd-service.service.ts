@@ -44,7 +44,7 @@ export class PgpdServiceService {
 
   storeModuleData(moduleData: any[]) {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post('http://192.168.1.8:3000/user/login', moduleData, {headers: header});
+    return this.http.post('https://demi-371a7.firebaseio.com/data.json', moduleData, {headers: header});
   }
 
   getStudentInfo()

@@ -3,9 +3,11 @@
      style="background-color: black; opacity: 0.7; width: fit-content; padding: 10px">
   <form #f="ngForm">
     <h2>Appointment Form for Student Assistant, Supplementary Instruction (SI) Leader</h2>
-    <p>• Please complete all information in full or the appointment cannot be finalised. INCOMPLETE FORMS MAY DELAY
-      PAYMENT.</p>
-    <p>• This appointment is valid only for the period applied for.</p>
+    <ul>
+      <li>Please complete all information in full or the appointment cannot be finalised. INCOMPLETE FORMS MAY DELAY
+        PAYMENT.</li>
+      <li> This appointment is valid only for the period applied for.</li>
+    </ul>
     <hr>
 
     <h2>Section A: Personal particulars of temporary employees</h2>
@@ -126,72 +128,6 @@
       </div>
     </div>
 
-    <br>
-    <label>Module you want to assist in:</label>
-    <div class="form-group">
-      <label for="module1">Module 1:</label>
-      <input type="text" class="form-control" id="module1" value placeholder="e.g ITRW324" ngModel name="module1"
-             required (change)="onDataSelected($event)"
-             #module1="ngModel">
-      <div *ngIf="module1.invalid && (module1.dirty || module1.touched)"
-           class="alert alert-danger" style="width: 35vw">
-
-        <div *ngIf="module1.errors.required">
-          A module code is required.
-        </div>
-      </div>
-    </div>
-    <h4>Optional</h4>
-    <div class="form-group">
-      <label for="module2">Module 2:</label>
-      <input type="text" class="form-control" id="module2" placeholder="e.g ITRW324" ngModel name="module2"
-             #module2="ngModel" (change)="onDataSelected($event)">
-      <div *ngIf="module2.invalid && (module2.dirty || module2.touched)"
-           class="alert alert-danger" style="width: 35vw">
-
-        <div *ngIf="module2.errors.required">
-          A module code is required.
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="module3">Module 3:</label>
-      <input type="text" class="form-control" id="module3" placeholder="e.g ITRW324" ngModel name="module3"
-             #module3="ngModel" (change)="onDataSelected($event)">
-      <div *ngIf="module3.invalid && (module3.dirty || module3.touched)"
-           class="alert alert-danger" style="width: 35vw">
-
-        <div *ngIf="module3.errors.required">
-          A name is required.
-        </div>
-      </div>
-    </div>
-
-    <br>
-    <label>Your mark of specific module:</label>
-    <div class="form-group">
-      <label for="moduleMark1">Module 1:</label>
-      <input type="text" class="form-control" id="moduleMark1" placeholder="e.g 95%" ngModel name="moduleMark1" required
-             #moduleMark1="ngModel" (change)="onDataSelected($event)">
-      <div *ngIf="moduleMark1.invalid && (moduleMark1.dirty || moduleMark1.touched)"
-           class="alert alert-danger" style="width: 35vw">
-
-        <div *ngIf="moduleMark1.errors.required">
-          A module mark is required.
-        </div>
-      </div>
-    </div>
-    <h4>Optional</h4>
-    <div class="form-group">
-      <label for="moduleMark2">Module 2:</label>
-      <input type="text" class="form-control" id="moduleMark2" placeholder="e.g 95%" ngModel name="moduleMark2" (change)="onDataSelected($event)">
-    </div>
-    <div class="form-group">
-      <label for="moduleMark3">Module 3:</label>
-      <input type="text" class="form-control" id="moduleMark3" placeholder="e.g 95%" ngModel name="moduleMark3" (change)="onDataSelected($event)">
-    </div>
-
-    <br>
     <div class="form-group">
       <label for="extension">Extension:</label>
       <input type="text" class="form-control" placeholder="e.g 992531" (change)="onDataSelected($event)" pattern="\d*"
@@ -564,6 +500,7 @@
              (change)="onDataSelected($event)" name="date" required>
     </div>
 
+    <p>NB! In order to apply for a module you want to assist in, please go to the module form!</p>
     <button class="btn btn-primary" type="submit" (click)="onUpload()" [disabled]="!f.valid">Submit</button>
   </form>
 </div>
