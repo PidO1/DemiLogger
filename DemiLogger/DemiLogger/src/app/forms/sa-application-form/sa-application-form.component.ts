@@ -63,13 +63,7 @@ export class SaApplicationFormComponent implements OnInit {
   onFileSelected(event) {
     console.log(event);
     this.selectedFile = <File>event.target.files[0];
-    if (this.fd.has('image')) {
-      this.fd.delete('image');
-      this.fd.append('image', this.selectedFile, this.selectedFile.name);
-    }
-    else {
-      this.fd.append('image', this.selectedFile, this.selectedFile.name);
-    }
+    this.fd.append('image', this.selectedFile, this.selectedFile.name);
   }
 
   onUpload() {

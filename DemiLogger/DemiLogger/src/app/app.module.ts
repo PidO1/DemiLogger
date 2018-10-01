@@ -19,6 +19,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SaApplicationFormComponent } from './forms/sa-application-form/sa-application-form.component';
 import { TokenInterceptor } from './token.interceptor';
 import { ModuleapplicationComponent } from './forms/moduleapplication/moduleapplication.component';
+import { DataTableModule } from "angular5-data-table";
 
 const appRoutes: Routes = [
   { path: 'home', component:  HomeComponent },
@@ -53,6 +54,7 @@ const appRoutes: Routes = [
     NgbModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
+    // DataTableModule.forRoot(),
     HttpModule
   ],
   providers: [

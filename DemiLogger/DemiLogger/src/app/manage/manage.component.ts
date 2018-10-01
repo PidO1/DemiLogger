@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { PgpdServiceService } from "../pgpd-service.service";
 import {HttpClient} from "../../../node_modules/@angular/common/http";
+import { DataTableResource } from 'angular5-data-table';
+import { DataTable } from "angular5-data-table";
+// import { DataTableModule } from "angular5-data-table";
 
 @Component({
   selector: 'app-manage',
@@ -10,9 +13,10 @@ import {HttpClient} from "../../../node_modules/@angular/common/http";
 })
 export class ManageComponent implements OnInit {
   data;
-  theCheckbox = false;
-  marked = false;
-  constructor(private submitService: PgpdServiceService, private http: HttpClient) { }
+
+  constructor(private submitService: PgpdServiceService, private http: HttpClient) {
+    this.itemResource.count().then(count => this.itemCount = count);
+  }
 
   ngOnInit() {
   }
@@ -35,6 +39,17 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
+
+  onSubmitModule(form: NgForm)
+  {
+    console.log(form.value);
+    this.submitService.storeAddModule(form.value)
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
+  }
+
    arr = 0;
   onGetStudentApplication()
   {
@@ -77,5 +92,28 @@ export class ManageComponent implements OnInit {
       this.fd.append(this.selectedDataName, this.selectedDataValue);
     }
     this.arr++;
+  }
+
+  itemResource = this.data;
+  items = [];
+  itemCount = 0;
+  limits = [10, 20, 40, 80];
+
+
+  reloadItems(params) {
+    this.itemResource.query(params).then(items => this.items = items);
+  }
+
+  // special properties:
+  rowClick(rowEvent) {
+    console.log('Clicked: ' + rowEvent.row.item.name);
+  }
+
+  rowDoubleClick(rowEvent) {
+    alert('Double clicked: ' + rowEvent.row.item.name);
+  }
+
+  rowTooltip(item) {
+    return item.jobTitle;
   }
 }
