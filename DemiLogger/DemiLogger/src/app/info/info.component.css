@@ -5,7 +5,6 @@ h1, h2, h3, h4, label, p, li
 html {
   height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 #row {
   display: flex;
@@ -16,6 +15,7 @@ html {
   flex: 4;
   padding-bottom: 20px;
   border-radius: 15px;
+  position: relative;
 }
 #bodyLeft {
   background-color: black;
@@ -24,6 +24,7 @@ html {
   flex: 1;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  position: relative;
 }
 #bodyRight {
   background-color: black;
@@ -32,14 +33,14 @@ html {
   flex: 1;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
+  position: relative;
 }
 #footer {
-  position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 1rem;
+  width: 100%;
   background-color: black;
-  opacity: 0.9;
-  padding-top: 8px;
+  opacity: 0.9; 
+  position: absolute;
 }
