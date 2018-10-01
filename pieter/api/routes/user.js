@@ -58,7 +58,7 @@ var hashing = bcrypt.hash(req.body.password,saltRounds,(err,hash)=>{
   else
     {
       console.log('password hash success');
-     var post  = {NwuNumber : req.body.nwunumber ,pasword: hash, Email: req.body.email, demi:0,admins:0,dosent:0};
+     var post  = {NwuNumber : req.body.nwunumber ,pasword: hash, Email: req.body.email, demi:0,admins:1,dosent:0};
      var sql = 'INSERT INTO users set ?';
         console.log(post);
       con.getConnection()
@@ -81,6 +81,7 @@ var hashing = bcrypt.hash(req.body.password,saltRounds,(err,hash)=>{
 });
 
 router.post('/login',jsonParser,(req,res,next)=>{
+ 
     var sql = 'SELECT * FROM users WHERE NwuNumber = ?';
     var Snr = req.body.nwunumber;
     var pasword = req.body.password;
@@ -89,13 +90,13 @@ router.post('/login',jsonParser,(req,res,next)=>{
       var conn = connection;
       return connection.query(sql,[Snr]);
   }).then(function(rows){
-    // var mailOptions = {
-    //     from: 'demilogger@gmail.com',
-    //     to: rows[0].Email,
-    //     cc: 'killroy980@gmail.com',
-    //     subject: 'Security  Demi Work',
-    //     text: 'You have just Logged Into your DemiLogger Account'
-    //   };
+    var mailOptions = {
+        from: 'demilogger@gmail.com',
+        to: rows[0].Email,
+        cc: 'killroy980@gmail.com',
+        subject: 'Security  Demi Work',
+        text: 'You have just Logged Into your DemiLogger Account'
+      };
     bcrypt.compare(pasword,rows[0].pasword,(err,response)=>{
       if(err)
       {
@@ -103,29 +104,30 @@ router.post('/login',jsonParser,(req,res,next)=>{
       }
       if(response)
       {
-        // transporter.sendMail(mailOptions, function(error, info){
-        //     if (error) {
-        //       console.log(error);
-        //     } else {
-        //       console.log('Email sent: ' + info.response);
-        //     }
-        //   });
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
 
           const tokenv = jwt.sign({
               demi:rows[0].demi,
-              NwuNumber : rows[0].NwuNumber
+              NwuNumber : rows[0].NwuNumber,
+              admin: rows[0].admins,
+              dosent : rows[0].dosent
               
             },
             JWT_private,
             {
               expiresIn: '1h'
             });
-            return res.send(tokenv);
+            return res.status(200).json({body:tokenv});
       }
       res.status(401).json({message:'Authentication failed'});
     });
-    console.log(rows[0].pasword); 
-    console.log(rows);
+    
   })
     .catch(err=>{ if(err){res.status(500).json({message:'login Failed'});
     console.log(err);
