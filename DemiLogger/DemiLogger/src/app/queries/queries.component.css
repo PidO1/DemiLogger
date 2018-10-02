@@ -1,0 +1,42 @@
+h1, h2, h3, h4,label, p, li
+{
+  color: white;
+}
+
+input
+{
+  width: 20vw;
+  background-color: white;
+  color: black;
+}
+input.ng-invalid.ng-touched
+{
+  border: 1px solid red;
+  width: 20vw;
+}
+input.ng-valid.ng-touched
+{
+  border: 1px green;
+  border-style: solid;
+}
+
+select
+{
+  width: 15vw;
+}
+table, th , td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+  color: black;
+}
+table thead {
+  background-color: purple;
+}
+table tbody {
+  background-color: black;
+}
+label,td,tr
+{
+  color: white;
+}

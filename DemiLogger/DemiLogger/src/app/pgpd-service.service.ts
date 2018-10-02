@@ -22,6 +22,10 @@ export class PgpdServiceService {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post('http://192.168.1.8:3000/demi/announcment', formData, {headers: header});
   }
+  storeLecturerAnnouncementData(formData: any[]) {
+    const header = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.post('http://192.168.1.8:3000/demi/announcment', formData, {headers: header});
+  }
 
   storeLecturerData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
