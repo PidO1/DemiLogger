@@ -15,7 +15,7 @@ export class PgpdServiceService {
 
   storeRegisterData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post('http://192.168.1.8:3000/demi/register', formData, {headers: header});
+    return this.http.post('http://192.168.1.8:3000/user/register', formData, {headers: header});
   }
 
   storeAnnouncementData(formData: any[]) {
@@ -25,19 +25,14 @@ export class PgpdServiceService {
 
   storeLecturerData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post('https://demi-371a7.firebaseio.com/data.json', formData, {headers: header});
+    return this.http.post('\'http://192.168.1.8:3000/dosente/register', formData, {headers: header});
   }
 
   storeAddModule(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post('https://demi-371a7.firebaseio.com/data.json', formData, {headers: header});
+    return this.http.post('http://192.168.1.8:3000/subjects/', formData, {headers: header});
   }
 
-  storeStudentApproval(formData: any[]) {
-    const header = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post('https://demi-371a7.firebaseio.com/data.json', formData, {headers: header});
-  }
-  // http://192.168.1.8:3000/demi/lecturer
   getToken() {
     return sessionStorage.getItem('token');
   }

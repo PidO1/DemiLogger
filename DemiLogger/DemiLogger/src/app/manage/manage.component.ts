@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from "@angular/forms";
-import { PgpdServiceService } from "../pgpd-service.service";
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from "@angular/forms";
+import {PgpdServiceService} from "../pgpd-service.service";
 import {HttpClient} from "../../../node_modules/@angular/common/http";
-import { DataTableResource } from 'angular5-data-table';
-import { DataTable } from "angular5-data-table";
-// import { DataTableModule } from "angular5-data-table";
 
 @Component({
   selector: 'app-manage',
@@ -15,14 +12,12 @@ export class ManageComponent implements OnInit {
   data;
 
   constructor(private submitService: PgpdServiceService, private http: HttpClient) {
-    this.itemResource.count().then(count => this.itemCount = count);
   }
 
   ngOnInit() {
   }
 
-  onSubmitAnnouncement(form: NgForm)
-  {
+  onSubmitAnnouncement(form: NgForm) {
     console.log(form.value);
     this.submitService.storeAnnouncementData(form.value)
       .subscribe(
@@ -30,8 +25,8 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-  onSubmitLecturer(form: NgForm)
-  {
+
+  onSubmitLecturer(form: NgForm) {
     console.log(form.value);
     this.submitService.storeLecturerData(form.value)
       .subscribe(
@@ -40,8 +35,7 @@ export class ManageComponent implements OnInit {
       );
   }
 
-  onSubmitModule(form: NgForm)
-  {
+  onSubmitModule(form: NgForm) {
     console.log(form.value);
     this.submitService.storeAddModule(form.value)
       .subscribe(
@@ -50,9 +44,9 @@ export class ManageComponent implements OnInit {
       );
   }
 
-   arr = 0;
-  onGetStudentApplication()
-  {
+  arr = 0;
+
+  onGetStudentApplication() {
     this.submitService.getStudentInfo()
       .subscribe(
         (response) => {
@@ -63,57 +57,35 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
+
   apply = ['Yes', 'No'];
-  selectedDataValue: string;
-  selectedDataName: string;
+  demiID: string;
+  moduleID: string;
+  demiIDValue: string;
+  moduleIDValue: string;
+  condition = '';
   fd = new FormData();
 
   onRadioSelected(event) {
     console.log(event);
-    this.selectedDataValue = event.target.id;
-    this.selectedDataName = event.target.name;
-    if (this.fd.has(this.selectedDataName)) {
-      this.fd.delete(this.selectedDataName);
-      this.fd.append(this.selectedDataName, this.selectedDataValue);
-    }
-    else {
-      this.fd.append(this.selectedDataName, this.selectedDataValue);
-    }
+    this.condition = event.target.id;
+    this.fd.append('ITRW324','27678822')
   }
 
-  nextStudent(){
-    this.selectedDataValue = this.data[this.arr].NwuNumber;
-    this.selectedDataName = "NwuNumber";
-    if (this.fd.has(this.selectedDataName)) {
-      this.fd.delete(this.selectedDataName);
-      this.fd.append(this.selectedDataName, this.selectedDataValue);
+  nextStudent() {
+    if (this.condition === 'Yes') {
+    this.http.post('http://192.168.1.8:3000/application/accept', this.data[this.arr])
+          .subscribe(res => {
+            console.log(res);
+          })
     }
-    else {
-      this.fd.append(this.selectedDataName, this.selectedDataValue);
+    else if(this.condition === 'No'){
+      this.http.post('http://192.168.1.8:3000/application/delete', this.data[this.arr])
+        .subscribe(res => {
+          console.log(res);
+        })
     }
     this.arr++;
   }
 
-  itemResource = this.data;
-  items = [];
-  itemCount = 0;
-  limits = [10, 20, 40, 80];
-
-
-  reloadItems(params) {
-    this.itemResource.query(params).then(items => this.items = items);
-  }
-
-  // special properties:
-  rowClick(rowEvent) {
-    console.log('Clicked: ' + rowEvent.row.item.name);
-  }
-
-  rowDoubleClick(rowEvent) {
-    alert('Double clicked: ' + rowEvent.row.item.name);
-  }
-
-  rowTooltip(item) {
-    return item.jobTitle;
-  }
 }

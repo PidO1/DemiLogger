@@ -36,36 +36,6 @@
     </div>
 
     <div class="form-group">
-      <label for="surname">Surname:</label>
-      <input type="text" class="form-control" id="surname" ngModel name="surname"
-             pattern="[a-zA-Z ]*" required
-             #surname="ngModel">
-      <div *ngIf="surname.invalid && (surname.dirty || surname.touched)"
-           class="alert alert-danger" style="width: 35vw">
-
-        <div *ngIf="surname.errors.required">
-          Surname is required.
-        </div>
-        <div *ngIf="surname.errors.pattern">
-          Can only contain letters.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="fullname">Full Names:</label>
-      <input type="text" class="form-control" placeholder="e.g Name, Name" id="fullname" ngModel name="fullname"
-             required #fullname="ngModel">
-      <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)"
-           class="alert alert-danger" style="width: 35vw">
-
-        <div *ngIf="fullname.errors.required">
-          A name is required.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
       <label for="module1">Module you want to assist in:</label>
       <input type="text" class="form-control" id="module1" value placeholder="e.g ITRW324" ngModel name="module1"
              required
@@ -80,13 +50,13 @@
     </div>
 
     <div class="form-group">
-      <label for="moduleMark1">Your mark of specific module:</label>
-      <input type="text" class="form-control" id="moduleMark1" placeholder="e.g 95%" ngModel name="moduleMark1" required
-             #moduleMark1="ngModel">
-      <div *ngIf="moduleMark1.invalid && (moduleMark1.dirty || moduleMark1.touched)"
+      <label for="moduleMark">Your mark of specific module:</label>
+      <input type="text" class="form-control" id="moduleMark" placeholder="e.g 95%" ngModel name="moduleMark" required
+             #moduleMark="ngModel">
+      <div *ngIf="moduleMark.invalid && (moduleMark.dirty || moduleMark.touched)"
            class="alert alert-danger" style="width: 35vw">
 
-        <div *ngIf="moduleMark1.errors.required">
+        <div *ngIf="moduleMark.errors.required">
           A module mark is required.
         </div>
       </div>
