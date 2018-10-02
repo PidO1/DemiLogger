@@ -1,0 +1,12 @@
+h2, h3, h4, p {
+    opacity: 1;
+    color: white;
+}
+footer {
+    width: 100%;
+    background-color: black;
+    opacity: 0.9;
+    height: auto;
+    clear: both;
+    margin-top: 14.7%;
+}

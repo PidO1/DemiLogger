@@ -1,28 +1,52 @@
-h1, h2, h3, h4, label, p, li
-{
+h1, h2, h3, h4, label, p, li {
   color: white;
 }
-
-input
-{
+#main {
+  background-color: black; 
+  opacity: 0.7; 
+  width: fit-content; 
+  border-radius: 15px; 
+  padding: 20px;
+}
+#btnSubmit {
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: white;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+}
+#btnSubmit:hover {
+  transition-duration: 0.2s;
+  background-color: black;
+  color: white;
+  border-color: white;
+  opacity: 1;
+}
+#btnSubmit:active {
+  background-color: transparent;
+  border-color: transparent;
+  background: none;
+  border: none;
+  outline: none;
+}
+#btnSubmit:focus {
+  background-color: transparent;
+    border-color: transparent;
+    background: none;
+    border: none;
+    outline: none;
+}
+input {
   width: 20vw;
   background-color: white;
   color: black;
 }
-/*input[type=number]::-webkit-inner-spin-button,*/
-/*input[type=number]::-webkit-outer-spin-button*/
-/*{*/
-/*-webkit-appearance: none;*/
-/*margin: 0;*/
-/*}*/
-
-input.ng-invalid.ng-touched
-{
+input.ng-invalid.ng-touched {
   border: 1px solid red;
   width: 20vw;
 }
-input.ng-valid.ng-touched
-{
+input.ng-valid.ng-touched {
   border: 1px green;
   border-style: solid;
 }

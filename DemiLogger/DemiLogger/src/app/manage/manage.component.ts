@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {PgpdServiceService} from "../pgpd-service.service";
-import {HttpClient} from "../../../node_modules/@angular/common/http";
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { PgpdServiceService } from '../pgpd-service.service';
+import {HttpClient} from '../../../node_modules/@angular/common/http';
 
 @Component({
   selector: 'app-manage',
@@ -10,6 +10,14 @@ import {HttpClient} from "../../../node_modules/@angular/common/http";
 })
 export class ManageComponent implements OnInit {
   data;
+  theCheckbox = false;
+  marked = false;
+  arr = 0;
+  apply = ['Yes', 'No'];
+  selectedDataValue: string;
+  selectedDataName: string;
+  fd = new FormData();
+  constructor(private submitService: PgpdServiceService, private http: HttpClient) { }
 
   constructor(private submitService: PgpdServiceService, private http: HttpClient) {
   }
@@ -25,7 +33,6 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-
   onSubmitLecturer(form: NgForm) {
     console.log(form.value);
     this.submitService.storeLecturerData(form.value)
@@ -34,6 +41,7 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
+  onGetStudentApplication() {
 
   onSubmitModule(form: NgForm) {
     console.log(form.value);
@@ -57,15 +65,6 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-
-  apply = ['Yes', 'No'];
-  demiID: string;
-  moduleID: string;
-  demiIDValue: string;
-  moduleIDValue: string;
-  condition = '';
-  fd = new FormData();
-
   onRadioSelected(event) {
     console.log(event);
     this.condition = event.target.id;

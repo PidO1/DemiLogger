@@ -1,8 +1,8 @@
-<body style="background-color: transparent; padding-top: 2.1cm">
-<div class="container-fluid img-rounded"
-     style="background-color: black; opacity: 0.7; width: fit-content; padding: 10px">
+<br><br><br><br><br><br>
+<body>
+<div id="main" class="container-fluid img-rounded">
   <form #f="ngForm">
-    <h2>Appointment Form for Student Assistant, Supplementary Instruction (SI) Leader</h2>
+    <h2 class="text-center">South African Appointment Form<br/> for Student Assistant, Supplementary Instruction (SI) Leader</h2>
     <ul>
       <li>Please complete all information in full or the appointment cannot be finalised. INCOMPLETE FORMS MAY DELAY
         PAYMENT.</li>
@@ -10,7 +10,7 @@
     </ul>
     <hr>
 
-    <h2>Section A: Personal particulars of temporary employees</h2>
+    <h3>Section A: Personal particulars of temporary employees</h3>
     <div class="form-group">
       <label class="control-label" for="copyid">Copy of ID:</label>
       <input type="file" class="filestyle" id="copyid" name="copyid" data-icon="false" required
@@ -392,7 +392,7 @@
     </div>
     <hr>
 
-    <h2 style="color: white">Section B: Bank details (No payment will be made if these details are not provided.)</h2>
+    <h3>Section B: Bank details (No payment will be made if these details are not provided.)</h3>
     <label>Account type:</label>
     <div class="radio" *ngFor="let accounttype of accounttype">
       <label><input type="radio" name="accounttype" ngModel [value]="accounttype" id="{{accounttype}}" (change)="onRadioSelected($event)"
@@ -453,7 +453,7 @@
       </div>
     </div>
 
-    <label style="color: white">Account holder:</label>
+    <label>Account holder:</label>
     <div class="form-group">
       <label for="holdersurname">Surname:</label>
       <input type="text" class="form-control" id="holdersurname" ngModel name="holdersurname"
@@ -501,28 +501,9 @@
     </div>
 
     <p>NB! In order to apply for a module you want to assist in, please go to the module form!</p>
-    <button class="btn btn-primary" type="submit" (click)="onUpload()" [disabled]="!f.valid">Submit</button>
+    <div>
+    <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="onUpload()" [disabled]="!f.valid">Submit</button>
+    </div>
   </form>
 </div>
 </body>
-<footer class="footer col-sm-4" style="background-color: gray; border-color: gray; align-content: left">
-  <h4>Postal Address:</h4>
-  <p>Private Bag X6001</p>
-  <p>Potchefstroom Campus</p>
-  <p>North-West University</p>
-  <p>2520</p>
-</footer>
-<footer class="footer col-sm-4" style="background-color: gray; border-color: gray; align-content: right">
-  <h4>Ms Kobie Fourie</h4>
-  <p>Subject group secretary</p>
-  <p>+27 18 299 2531</p>
-  <p>Kobie.Fourie@nwu.ac.za</p>
-  <p>Building G3, room G01, Potchefstroom</p>
-</footer>
-<footer class="footer col-sm-4" style="background-color: gray; border-color: gray; align-content: right">
-  <h4>Mr Henry Foulds</h4>
-  <p>Lecturer</p>
-  <p>+27 18 299 2532</p>
-  <p>Henry.Foulds@nwu.ac.za</p>
-  <p>Building G3, basement, Potchefstroom</p>
-</footer>

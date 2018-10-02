@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
   constructor(private router: Router) { }
@@ -43,7 +44,16 @@ export class HeaderComponent {
     if (sessionStorage.length === 0) {
       alert('Please login.');
     } else {
-      this.router.navigate(['/queries']);
+        this.token = jwt_decode(sessionStorage.getItem('token'));
+        // @ts-ignore
+      if (this.token.dosent === 1) {
+          this.router.navigate(['/queries']);
+        } else {
+        // @ts-ignore
+        if (this.token.dosent === 0) {
+          alert('Lecturer permissions required.');
+        }
+      }
     }
   }
   routeInfo(event) {

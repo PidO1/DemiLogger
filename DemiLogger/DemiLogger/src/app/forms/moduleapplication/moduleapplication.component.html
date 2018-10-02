@@ -1,13 +1,13 @@
-<body style="background-color: transparent; padding-top: 2.1cm">
-<div class="container-fluid img-rounded"
-     style="background-color: black; opacity: 0.7; width: fit-content; padding: 10px">
-  <h1>Module Application</h1>
+<br><br><br><br><br><br>
+<body>
+<div id="main" class="container-fluid img-rounded">
+  <h2 class="text-center">Module Application</h2>
   <ul>
     <li>A student can only apply for 3 modules.</li>
-    <li>Please fill this form in for every module you want to apply for!!!!!</li>
-    <li>Please make sure that you filled in a student application form before you apply for a spesific module (A student
-      application form must only be filled in once!)</li>
+    <li>Please fill this form in for every module you want to apply for!</li>
+    <li>Please make sure that you filled in a student application form before you apply for a spesific module (Only one application per student!)</li>
   </ul>
+  <hr>
   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
     <div class="form-group">
       <label for="nwunumber">NWU number:</label>
@@ -62,7 +62,7 @@
       </div>
     </div>
 
-    <button class="btn btn-primary"
+    <button id="btnSubmit" class="btn btn-primary"
             type="submit"
             [disabled]="!f.valid">Submit
     </button>

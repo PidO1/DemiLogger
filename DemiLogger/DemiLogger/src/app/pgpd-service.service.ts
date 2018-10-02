@@ -25,7 +25,7 @@ export class PgpdServiceService {
 
   storeLecturerData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post('\'http://192.168.1.8:3000/dosente/register', formData, {headers: header});
+    return this.http.post('http://192.168.1.8:3000/dosente/register', formData, {headers: header});
   }
 
   storeAddModule(formData: any[]) {
