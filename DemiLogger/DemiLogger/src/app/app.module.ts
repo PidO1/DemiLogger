@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -20,6 +20,7 @@ import { SaApplicationFormComponent } from './forms/sa-application-form/sa-appli
 import { TokenInterceptor } from './token.interceptor';
 import { ModuleapplicationComponent } from './forms/moduleapplication/moduleapplication.component';
 import { FooterComponent } from './footer/footer.component';
+import { QueriesComponent } from './queries/queries.component';
 
 const appRoutes: Routes = [
   { path: 'home', component:  HomeComponent },
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
   { path: 'forms/sa-application-form', component: SaApplicationFormComponent},
   { path: 'forms/application-form', component: ApplicationFormComponent},
   { path: 'forms/moduleapplication', component: ModuleapplicationComponent},
+  { path: 'queries', component: QueriesComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
@@ -48,6 +50,7 @@ const appRoutes: Routes = [
     SaApplicationFormComponent,
     ModuleapplicationComponent,
     FooterComponent,
+    QueriesComponent,
   ],
   imports: [
     BrowserModule,

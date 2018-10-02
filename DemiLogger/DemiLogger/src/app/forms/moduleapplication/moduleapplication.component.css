@@ -16,8 +16,37 @@ input.ng-valid.ng-touched {
 }
 #main {
   background-color: black; 
-  opacity: 0.7; width: 
-  fit-content; 
-  padding: 10px;
-  border-radius: 15px;
+  opacity: 0.7; 
+  width: fit-content; 
+  border-radius: 15px; 
+  padding: 20px;
+}
+#btnSubmit {
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: white;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+}
+#btnSubmit:hover {
+  transition-duration: 0.2s;
+  background-color: black;
+  color: white;
+  border-color: white;
+  opacity: 1;
+}
+#btnSubmit:active {
+  background-color: transparent;
+  border-color: transparent;
+  background: none;
+  border: none;
+  outline: none;
+}
+#btnSubmit:focus {
+  background-color: transparent;
+  border-color: transparent;
+  background: none;
+  border: none;
+  outline: none;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from "@angular/forms";
-import { PgpdServiceService } from "../pgpd-service.service";
-import {HttpClient} from "../../../node_modules/@angular/common/http";
+import { NgForm } from '@angular/forms';
+import { PgpdServiceService } from '../pgpd-service.service';
+import {HttpClient} from '../../../node_modules/@angular/common/http';
 
 @Component({
   selector: 'app-manage',
@@ -12,13 +12,17 @@ export class ManageComponent implements OnInit {
   data;
   theCheckbox = false;
   marked = false;
+  arr = 0;
+  apply = ['Yes', 'No'];
+  selectedDataValue: string;
+  selectedDataName: string;
+  fd = new FormData();
   constructor(private submitService: PgpdServiceService, private http: HttpClient) { }
 
   ngOnInit() {
   }
 
-  onSubmitAnnouncement(form: NgForm)
-  {
+  onSubmitAnnouncement(form: NgForm) {
     console.log(form.value);
     this.submitService.storeAnnouncementData(form.value)
       .subscribe(
@@ -26,8 +30,7 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-  onSubmitLecturer(form: NgForm)
-  {
+  onSubmitLecturer(form: NgForm) {
     console.log(form.value);
     this.submitService.storeLecturerData(form.value)
       .subscribe(
@@ -35,9 +38,7 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-   arr = 0;
-  onGetStudentApplication()
-  {
+  onGetStudentApplication() {
     this.submitService.getStudentInfo()
       .subscribe(
         (response) => {
@@ -48,11 +49,6 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-  apply = ['Yes', 'No'];
-  selectedDataValue: string;
-  selectedDataName: string;
-  fd = new FormData();
-
   onRadioSelected(event) {
     console.log(event);
     this.selectedDataValue = event.target.id;
@@ -60,20 +56,17 @@ export class ManageComponent implements OnInit {
     if (this.fd.has(this.selectedDataName)) {
       this.fd.delete(this.selectedDataName);
       this.fd.append(this.selectedDataName, this.selectedDataValue);
-    }
-    else {
+    } else {
       this.fd.append(this.selectedDataName, this.selectedDataValue);
     }
   }
-
-  nextStudent(){
+  nextStudent() {
     this.selectedDataValue = this.data[this.arr].NwuNumber;
-    this.selectedDataName = "NwuNumber";
+    this.selectedDataName = 'NwuNumber';
     if (this.fd.has(this.selectedDataName)) {
       this.fd.delete(this.selectedDataName);
       this.fd.append(this.selectedDataName, this.selectedDataValue);
-    }
-    else {
+    } else {
       this.fd.append(this.selectedDataName, this.selectedDataValue);
     }
     this.arr++;

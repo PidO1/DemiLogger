@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "../../../../node_modules/@angular/common/http";
-import {until} from "selenium-webdriver";
+import {HttpClient} from '../../../../node_modules/@angular/common/http';
+import {until} from 'selenium-webdriver';
 import elementIsSelected = until.elementIsSelected;
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sa-application-form',
@@ -28,7 +29,7 @@ export class SaApplicationFormComponent implements OnInit {
   selectedDataName: string;
   fd = new FormData();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   ngOnInit() {
@@ -41,12 +42,10 @@ export class SaApplicationFormComponent implements OnInit {
     if (this.fd.has(this.selectedDataName)) {
       this.fd.delete(this.selectedDataName);
       this.fd.append(this.selectedDataName, this.selectedDataValue);
-    }
-    else {
+    } else {
       this.fd.append(this.selectedDataName, this.selectedDataValue);
     }
   }
-
   onRadioSelected(event) {
     console.log(event);
     this.selectedDataValue = event.target.id;
@@ -54,29 +53,30 @@ export class SaApplicationFormComponent implements OnInit {
     if (this.fd.has(this.selectedDataName)) {
       this.fd.delete(this.selectedDataName);
       this.fd.append(this.selectedDataName, this.selectedDataValue);
-    }
-    else {
+    } else {
       this.fd.append(this.selectedDataName, this.selectedDataValue);
     }
   }
-
   onFileSelected(event) {
     console.log(event);
     this.selectedFile = <File>event.target.files[0];
     if (this.fd.has('image')) {
       this.fd.delete('image');
       this.fd.append('image', this.selectedFile, this.selectedFile.name);
-    }
-    else {
+    } else {
       this.fd.append('image', this.selectedFile, this.selectedFile.name);
     }
   }
-
   onUpload() {
     this.http.post('http://192.168.1.8:3000/demi/applicationform/sa', this.fd)
       .subscribe(res => {
         console.log(res);
         console.log(this.fd);
-      })
+        // @ts-ignore
+        if (res.status < 400) {
+          alert('Application recorded, please submit a module(s) application.');
+          this.router.navigate(['/forms/moduleapplication']);
+        }
+      });
   }
 }

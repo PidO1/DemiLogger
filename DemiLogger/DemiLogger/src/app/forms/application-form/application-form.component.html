@@ -1,8 +1,8 @@
-<br><br>
-<body style="background-color: transparent; padding-top: 2.1cm">
+<br><br><br><br><br><br>
+<body>
 <div id="main" class="container-fluid img-rounded">
   <form #f="ngForm">
-    <h2>Appointment Form for Student Assistant, Supplementary Instruction (SI) Leader</h2>
+    <h2 class="text-center">Foreign Appointment Form<br/> for Student Assistant, Supplementary Instruction (SI) Leader</h2>
     <ul>
       <li>Please complete all information in full or the appointment cannot be finalised. INCOMPLETE FORMS MAY DELAY
         PAYMENT.</li>
@@ -10,7 +10,7 @@
     </ul>
     <hr>
 
-    <h2>Section A: Personal particulars of temporary employees</h2>
+    <h3>Section A: Personal particulars of temporary employees</h3>
     <div class="form-group">
       <label class="control-label" for="copyid">Copy of ID:</label>
       <input type="file" class="filestyle" id="copyid" name="copyid" data-icon="false" required
@@ -410,7 +410,7 @@
     </div>
     <hr>
 
-    <h2>Foreign Details</h2>
+    <h3>Foreign Details</h3>
     <div class="form-group">
       <label class="control-label" for="passport">Copy of Passport:</label>
       <input type="file" class="filestyle" id="passport" data-icon="false" ngModel (change)="onFileSelected($event)"
@@ -470,7 +470,7 @@
     </div>
 
     <hr>
-    <h2 style="color: white">Section B: Bank details (No payment will be made if these details are not provided.)</h2>
+    <h3>Section B: Bank details (No payment will be made if these details are not provided.)</h3>
     <label>Account type:</label>
     <div class="radio" *ngFor="let accounttype of accounttype">
       <label><input type="radio" name="accounttype" ngModel [value]="accounttype" (change)="onRadioSelected($event)"
@@ -578,7 +578,9 @@
     </div>
 
     <p>NB! In order to apply for a module you want to assist in, please go to the module form!</p>
-    <button class="btn btn-primary" type="submit" (click)="onUpload()" [disabled]="!f.valid">Submit</button>
+    <div>
+    <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="onUpload()" [disabled]="!f.valid">Submit</button>
+    </div>
   </form>
 </div>
 </body>
