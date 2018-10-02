@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PgpdServiceService } from "../pgpd-service.service";
 
 @Component({
   selector: 'app-info',
@@ -6,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info.component.css']
 })
 export class InfoComponent implements OnInit {
-
-  constructor() { }
-
+  data;
+  constructor(private  submitService: PgpdServiceService) { }
   ngOnInit() {
+  }
+  getAnn(){
+    this.submitService.getAnnouncement()
+      .subscribe(
+        (response) => {
+          // @ts-ignore
+          this.data = response;
+          console.log(this.data);
+        },
+        (error) => console.log(error)
+      );
   }
 }

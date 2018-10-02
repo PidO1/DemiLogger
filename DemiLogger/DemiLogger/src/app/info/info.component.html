@@ -39,7 +39,8 @@
 <div class="col-md-1"></div>
     <div id="bodyRight" class="col-md-1 text-center">
       <div class="row-content">
-        <p>Anouncements</p>
+        <button class="btn btn-primary">Anouncements</button>
+        <p onload="getAnn()">{{data | json}}</p>
       </div>
       <div class="row-content">
         <p>Resources</p>
