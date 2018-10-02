@@ -1,509 +1,473 @@
 <br><br><br><br><br><br>
+
 <body>
-<div id="main" class="container-fluid img-rounded">
-  <form #f="ngForm">
-    <h2 class="text-center">South African Appointment Form<br/> for Student Assistant, Supplementary Instruction (SI) Leader</h2>
-    <ul>
-      <li>Please complete all information in full or the appointment cannot be finalised. INCOMPLETE FORMS MAY DELAY
-        PAYMENT.</li>
-      <li> This appointment is valid only for the period applied for.</li>
-    </ul>
-    <hr>
+  <div id="main" class="container-fluid img-rounded">
+    <form #f="ngForm">
+      <h2 class="text-center">South African Appointment Form<br /> for Student Assistant, Supplementary Instruction
+        (SI) Leader</h2>
+      <ul>
+        <li>Please complete all information in full or the appointment cannot be finalised. INCOMPLETE FORMS MAY DELAY
+          PAYMENT.</li>
+        <li> This appointment is valid only for the period applied for.</li>
+      </ul>
+      <hr>
 
-    <h3>Section A: Personal particulars of temporary employees</h3>
-    <div class="form-group">
-      <label class="control-label" for="copyid">Copy of ID:</label>
-      <input type="file" class="filestyle" id="copyid" name="copyid" data-icon="false" required
-             (change)="onFileSelected($event)">
-    </div>
+      <h3>Section A: Personal particulars of temporary employees</h3>
+      <div class="form-group">
+        <label class="control-label" for="copyid">Copy of ID:</label>
+        <input type="file" class="filestyle" id="copyid" name="copyid" data-icon="false" required (change)="onFileSelected($event)">
+      </div>
 
-    <div class="form-group">
-      <label class="control-label" for="studentregistration">Proof of Student Registration:</label>
-      <input type="file" class="filestyle" data-icon="false" id="studentregistration" name="studentregistration"
-             required (change)="onFileSelected($event)">
-    </div>
+      <div class="form-group">
+        <label class="control-label" for="studentregistration">Proof of Student Registration:</label>
+        <input type="file" class="filestyle" data-icon="false" id="studentregistration" name="studentregistration"
+          required (change)="onFileSelected($event)">
+      </div>
 
-    <div class="form-group">
-      <label for="nwunumber">NWU number:</label>
-      <input type="text" id="nwunumber" class="form-control" value="27678822" ngModel (change)="onDataSelected($event)"
-             name="nwunumber" pattern="\d*" maxlength="8"
-             minlength="8" #nwunumber="ngModel">
-      <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="nwunumber">NWU number:</label>
+        <input type="text" id="nwunumber" class="form-control" value="27678822" ngModel (change)="onDataSelected($event)"
+          name="nwunumber" pattern="\d*" maxlength="8" minlength="8" #nwunumber="ngModel">
+        <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)" class="alert alert-danger" style="width: 35vw">
 
-        <div *ngIf="nwunumber.errors.required">
-          NWU number is required.
-        </div>
-        <div *ngIf="nwunumber.errors.minlength">
-          NWU number must be 8 characters long.
-        </div>
-        <div *ngIf="nwunumber.errors.pattern">
-          Must only be numbers.
+          <div *ngIf="nwunumber.errors.required">
+            NWU number is required.
+          </div>
+          <div *ngIf="nwunumber.errors.minlength">
+            NWU number must be 8 characters long.
+          </div>
+          <div *ngIf="nwunumber.errors.pattern">
+            Must only be numbers.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="title">Title:</label>
-      <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss" (change)="onDataSelected($event)"
-             pattern="[a-zA-Z ]*" maxlength="4"
-             ngModel name="title" required #title="ngModel">
-      <div *ngIf="title.invalid && (title.dirty || title.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss" (change)="onDataSelected($event)"
+          pattern="[a-zA-Z ]*" maxlength="4" ngModel name="title" required #title="ngModel">
+        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger" style="width: 35vw">
 
-        <div *ngIf="title.errors.required">
-          Title is required.
-        </div>
-        <div *ngIf="title.errors.maxlength">
-          Title cannot be longer than 4 characters.
-        </div>
-        <div *ngIf="title.errors.pattern">
-          Can only contain letters.
+          <div *ngIf="title.errors.required">
+            Title is required.
+          </div>
+          <div *ngIf="title.errors.maxlength">
+            Title cannot be longer than 4 characters.
+          </div>
+          <div *ngIf="title.errors.pattern">
+            Can only contain letters.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="initials">Initials:</label>
-      <input type="text" id="initials" class="form-control" placeholder="e.g EA" (change)="onDataSelected($event)"
-             pattern="[a-zA-Z ]*" ngModel
-             name="initials" required #initials="ngModel">
-      <div *ngIf="title.invalid && (title.dirty || title.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="initials">Initials:</label>
+        <input type="text" id="initials" class="form-control" placeholder="e.g EA" (change)="onDataSelected($event)"
+          pattern="[a-zA-Z ]*" ngModel name="initials" required #initials="ngModel">
+        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger" style="width: 35vw">
 
-        <div *ngIf="initials.errors.required">
-          Initials is required.
-        </div>
-        <div *ngIf="initials.errors.pattern">
-          Can only contain letters.
+          <div *ngIf="initials.errors.required">
+            Initials is required.
+          </div>
+          <div *ngIf="initials.errors.pattern">
+            Can only contain letters.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="surname">Surname:</label>
-      <input type="text" class="form-control" id="surname" ngModel name="surname" (change)="onDataSelected($event)"
-             pattern="[a-zA-Z ]*" required
-             #surname="ngModel">
-      <div *ngIf="surname.invalid && (surname.dirty || surname.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="surname">Surname:</label>
+        <input type="text" class="form-control" id="surname" ngModel name="surname" (change)="onDataSelected($event)"
+          pattern="[a-zA-Z ]*" required #surname="ngModel">
+        <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="alert alert-danger" style="width: 35vw">
 
-        <div *ngIf="surname.errors.required">
-          Surname is required.
-        </div>
-        <div *ngIf="surname.errors.pattern">
-          Can only contain letters.
+          <div *ngIf="surname.errors.required">
+            Surname is required.
+          </div>
+          <div *ngIf="surname.errors.pattern">
+            Can only contain letters.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="fullname">Full Names:</label>
-      <input type="text" class="form-control" placeholder="e.g Name, Name" id="fullname"
-             (change)="onDataSelected($event)" ngModel name="fullname"
-             required #fullname="ngModel">
-      <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="fullname">Full Names:</label>
+        <input type="text" class="form-control" placeholder="e.g Name, Name" id="fullname" (change)="onDataSelected($event)"
+          ngModel name="fullname" required #fullname="ngModel">
+        <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)" class="alert alert-danger" style="width: 35vw">
 
-        <div *ngIf="fullname.errors.required">
-          A name is required.
+          <div *ngIf="fullname.errors.required">
+            A name is required.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="preferredname">Preferred Name:</label>
-      <input type="text" class="form-control" id="preferredname" ngModel name="preferredname"
-             (change)="onDataSelected($event)" pattern="[a-zA-Z ]*"
-             required #preferredname="ngModel">
-      <div *ngIf="preferredname.invalid && (preferredname.dirty || preferredname.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="preferredname">Preferred Name:</label>
+        <input type="text" class="form-control" id="preferredname" ngModel name="preferredname" (change)="onDataSelected($event)"
+          pattern="[a-zA-Z ]*" required #preferredname="ngModel">
+        <div *ngIf="preferredname.invalid && (preferredname.dirty || preferredname.touched)" class="alert alert-danger"
+          style="width: 35vw">
 
-        <div *ngIf="preferredname.errors.required">
-          A name is required.
-        </div>
-        <div *ngIf="preferredname.errors.pattern">
-          Can only contain letters.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="extension">Extension:</label>
-      <input type="text" class="form-control" placeholder="e.g 992531" (change)="onDataSelected($event)" pattern="\d*"
-             id="extension" ngModel
-             name="extension" required #extension="ngModel">
-      <div *ngIf="extension.invalid && (extension.dirty || extension.touched)"
-           class="alert alert-danger" style="width: 35vw">
-
-        <div *ngIf="extension.errors.required">
-          Extension is required.
-        </div>
-        <div *ngIf="extension.errors.pattern">
-          Must only be numbers.
+          <div *ngIf="preferredname.errors.required">
+            A name is required.
+          </div>
+          <div *ngIf="preferredname.errors.pattern">
+            Can only contain letters.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="internalbox">Internal Box:</label>
-      <input type="text" class="form-control" placeholder="e.g 107" (change)="onDataSelected($event)" id="internalbox"
-             pattern="\d*" ngModel
-             name="internalbox" #internalbox="ngModel">
-      <div *ngIf="internalbox.invalid && (internalbox.dirty || internalbox.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="extension">Extension:</label>
+        <input type="text" class="form-control" placeholder="e.g 992531" (change)="onDataSelected($event)" pattern="\d*"
+          id="extension" ngModel name="extension" required #extension="ngModel">
+        <div *ngIf="extension.invalid && (extension.dirty || extension.touched)" class="alert alert-danger" style="width: 35vw">
 
-        <div *ngIf="internalbox.errors.required">
-          Internal box is required.
-        </div>
-        <div *ngIf="internalbox.errors.pattern">
-          Must only be numbers.
+          <div *ngIf="extension.errors.required">
+            Extension is required.
+          </div>
+          <div *ngIf="extension.errors.pattern">
+            Must only be numbers.
+          </div>
         </div>
       </div>
-    </div>
 
-    <label>Gender:</label>
-    <div class="radio" *ngFor="let gender of gender">
-      <label><input type="radio" name="gender" ngModel [value]="gender" id="{{gender}}"
-                    (change)="onRadioSelected($event)" required>{{ gender }}</label>
-    </div>
+      <div class="form-group">
+        <label for="internalbox">Internal Box:</label>
+        <input type="text" class="form-control" placeholder="e.g 107" (change)="onDataSelected($event)" id="internalbox"
+          pattern="\d*" ngModel name="internalbox" #internalbox="ngModel">
+        <div *ngIf="internalbox.invalid && (internalbox.dirty || internalbox.touched)" class="alert alert-danger" style="width: 35vw">
 
-    <label>Marital Status:</label>
-    <div class="radio" *ngFor="let maritalStatus of maritalStatus">
-      <label><input type="radio" name="maritalStatus" ngModel [value]="maritalStatus" id="{{maritalStatus}}"
-                    (change)="onRadioSelected($event)" required>{{ maritalStatus
-        }}</label>
-    </div>
-
-    <div class="form-group">
-      <label for="maidenname">Maiden Name:</label>
-      <input type="text" class="form-control" id="maidenname" ngModel name="maidenname"
-             (change)="onDataSelected($event)" pattern="[a-zA-Z ]*" required
-             #maidenname="ngModel">
-      <div *ngIf="maidenname.invalid && (maidenname.dirty || maidenname.touched)"
-           class="alert alert-danger" style="width: 35vw">
-
-        <div *ngIf="maidenname.errors.required">
-          Maiden name is required.
-        </div>
-        <div *ngIf="maidenname.errors.pattern">
-          Must only be letters.
+          <div *ngIf="internalbox.errors.required">
+            Internal box is required.
+          </div>
+          <div *ngIf="internalbox.errors.pattern">
+            Must only be numbers.
+          </div>
         </div>
       </div>
-    </div>
 
-    <label>Correspondence Preference:</label>
-    <div class="radio" *ngFor="let correspondencePreference of correspondencePreference">
-      <label><input type="radio" name="correspondencePreference" ngModel [value]="correspondencePreference"
-                    id="{{correspondencePreference}}" (change)="onRadioSelected($event)" required>{{
-        correspondencePreference }}</label>
-    </div>
+      <label>Gender:</label>
+      <div class="radio" *ngFor="let gender of gender">
+        <label><input type="radio" name="gender" ngModel [value]="gender" id="{{gender}}" (change)="onRadioSelected($event)"
+            required>{{ gender }}</label>
+      </div>
 
-    <label>Race (for statistical use):</label>
-    <div class="radio" *ngFor="let race of race">
-      <label><input type="radio" name="race" ngModel [value]="race" (change)="onRadioSelected($event)" id="{{race}}"
-                    required>{{ race }}</label>
-    </div>
+      <label>Marital Status:</label>
+      <div class="radio" *ngFor="let maritalStatus of maritalStatus">
+        <label><input type="radio" name="maritalStatus" ngModel [value]="maritalStatus" id="{{maritalStatus}}" (change)="onRadioSelected($event)"
+            required>{{ maritalStatus
+          }}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="dateofbirth">Date of Birth:</label>
-      <input type="text" class="form-control" id="dateofbirth" placeholder="yyyy-mm-dd" ngModel
-             (change)="onDataSelected($event)" name="dateofbirth">
-    </div>
+      <div class="form-group">
+        <label for="maidenname">Maiden Name:</label>
+        <input type="text" class="form-control" id="maidenname" ngModel name="maidenname" (change)="onDataSelected($event)"
+          pattern="[a-zA-Z ]*" required #maidenname="ngModel">
+        <div *ngIf="maidenname.invalid && (maidenname.dirty || maidenname.touched)" class="alert alert-danger" style="width: 35vw">
 
-    <div class="form-group">
-      <label for="homelanguage">Home Language:</label>
-      <input type="text" class="form-control" id="homelanguage" ngModel name="homelanguage"
-             (change)="onDataSelected($event)" pattern="[a-zA-Z ]*"
-             required #homelanguage="ngModel">
-      <div *ngIf="homelanguage.invalid && (homelanguage.dirty || homelanguage.touched)"
-           class="alert alert-danger" style="width: 35vw">
-
-        <div *ngIf="homelanguage.errors.required">
-          Home language is required.
-        </div>
-        <div *ngIf="homelanguage.errors.pattern">
-          Must only contain letters.
+          <div *ngIf="maidenname.errors.required">
+            Maiden name is required.
+          </div>
+          <div *ngIf="maidenname.errors.pattern">
+            Must only be letters.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="idnumber">ID Number:</label>
-      <input type="text" class="form-control" id="idnumber" ngModel name="idnumber" (change)="onDataSelected($event)"
-             maxlength="13" minlength="13"
-             pattern="\d*" required #idnumber="ngModel">
-      <div *ngIf="idnumber.invalid && (idnumber.dirty || idnumber.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <label>Correspondence Preference:</label>
+      <div class="radio" *ngFor="let correspondencePreference of correspondencePreference">
+        <label><input type="radio" name="correspondencePreference" ngModel [value]="correspondencePreference" id="{{correspondencePreference}}"
+            (change)="onRadioSelected($event)" required>{{
+          correspondencePreference }}</label>
+      </div>
 
-        <div *ngIf="idnumber.errors.required">
-          ID number is required.
-        </div>
-        <div *ngIf="idnumber.errors.minlength">
-          ID number must be 13 characters long.
-        </div>
-        <div *ngIf="idnumber.errors.pattern">
-          Must only contain numbers.
+      <label>Race (for statistical use):</label>
+      <div class="radio" *ngFor="let race of race">
+        <label><input type="radio" name="race" ngModel [value]="race" (change)="onRadioSelected($event)" id="{{race}}"
+            required>{{ race }}</label>
+      </div>
+
+      <div class="form-group">
+        <label for="dateofbirth">Date of Birth:</label>
+        <input type="text" class="form-control" id="dateofbirth" placeholder="yyyy-mm-dd" ngModel (change)="onDataSelected($event)"
+          name="dateofbirth">
+      </div>
+
+      <div class="form-group">
+        <label for="homelanguage">Home Language:</label>
+        <input type="text" class="form-control" id="homelanguage" ngModel name="homelanguage" (change)="onDataSelected($event)"
+          pattern="[a-zA-Z ]*" required #homelanguage="ngModel">
+        <div *ngIf="homelanguage.invalid && (homelanguage.dirty || homelanguage.touched)" class="alert alert-danger"
+          style="width: 35vw">
+
+          <div *ngIf="homelanguage.errors.required">
+            Home language is required.
+          </div>
+          <div *ngIf="homelanguage.errors.pattern">
+            Must only contain letters.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="taxnumber">Income Tax Nr:</label>
-      <input type="text" class="form-control" id="taxnumber" ngModel name="taxnumber" (change)="onDataSelected($event)"
-             pattern="\d*" required
-             #taxnumber="ngModel">
-      <div *ngIf="taxnumber.invalid && (taxnumber.dirty || taxnumber.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="idnumber">ID Number:</label>
+        <input type="text" class="form-control" id="idnumber" ngModel name="idnumber" (change)="onDataSelected($event)"
+          maxlength="13" minlength="13" pattern="\d*" required #idnumber="ngModel">
+        <div *ngIf="idnumber.invalid && (idnumber.dirty || idnumber.touched)" class="alert alert-danger" style="width: 35vw">
 
-        <div *ngIf="taxnumber.errors.required">
-          Tax number is required.
-        </div>
-        <div *ngIf="taxnumber.errors.pattern">
-          Must only contain numbers.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="residentialaddress">Residential Address:</label>
-      <input type="text" class="form-control" id="residentialaddress" ngModel (change)="onDataSelected($event)"
-             name="residentialaddress" required
-             #residentialaddress="ngModel">
-      <div *ngIf="residentialaddress.invalid && (residentialaddress.dirty || residentialaddress.touched)"
-           class="alert alert-danger" style="width: 35vw">
-
-        <div *ngIf="residentialaddress.errors.required">
-          Residential address is required.
+          <div *ngIf="idnumber.errors.required">
+            ID number is required.
+          </div>
+          <div *ngIf="idnumber.errors.minlength">
+            ID number must be 13 characters long.
+          </div>
+          <div *ngIf="idnumber.errors.pattern">
+            Must only contain numbers.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="postaladdress">Postal Address:</label>
-      <input type="text" class="form-control" id="postaladdress" (change)="onDataSelected($event)" ngModel
-             name="postaladdress" required
-             #postaladdress="ngModel">
-      <div *ngIf="postaladdress.invalid && (postaladdress.dirty || postaladdress.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="taxnumber">Income Tax Nr:</label>
+        <input type="text" class="form-control" id="taxnumber" ngModel name="taxnumber" (change)="onDataSelected($event)"
+          pattern="\d*" required #taxnumber="ngModel">
+        <div *ngIf="taxnumber.invalid && (taxnumber.dirty || taxnumber.touched)" class="alert alert-danger" style="width: 35vw">
 
-        <div *ngIf="postaladdress.errors.required">
-          Postal address is required.
+          <div *ngIf="taxnumber.errors.required">
+            Tax number is required.
+          </div>
+          <div *ngIf="taxnumber.errors.pattern">
+            Must only contain numbers.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="code">Zip Code:</label>
-      <input type="text" class="form-control" id="code" ngModel name="code" (change)="onDataSelected($event)"
-             pattern="\d*" required #code="ngModel">
-      <div *ngIf="code.invalid && (code.dirty || code.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="residentialaddress">Residential Address:</label>
+        <input type="text" class="form-control" id="residentialaddress" ngModel (change)="onDataSelected($event)" name="residentialaddress"
+          required #residentialaddress="ngModel">
+        <div *ngIf="residentialaddress.invalid && (residentialaddress.dirty || residentialaddress.touched)" class="alert alert-danger"
+          style="width: 35vw">
 
-        <div *ngIf="code.errors.required">
-          Zip code is required.
-        </div>
-        <div *ngIf="code.errors.pattern">
-          Must only contain numbers.
+          <div *ngIf="residentialaddress.errors.required">
+            Residential address is required.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="hometelephonenumber">Home Telephone Nr:</label>
-      <input type="text" class="form-control" id="hometelephonenumber" maxlength="10" (change)="onDataSelected($event)"
-             minlength="10" ngModel
-             name="hometelephonenumber" #hometelephonenumber="ngModel">
-      <div *ngIf="hometelephonenumber.invalid && (hometelephonenumber.dirty || hometelephonenumber.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="postaladdress">Postal Address:</label>
+        <input type="text" class="form-control" id="postaladdress" (change)="onDataSelected($event)" ngModel name="postaladdress"
+          required #postaladdress="ngModel">
+        <div *ngIf="postaladdress.invalid && (postaladdress.dirty || postaladdress.touched)" class="alert alert-danger"
+          style="width: 35vw">
 
-        <div *ngIf="hometelephonenumber.errors.minlength">
-          Must be 10 characters long.
+          <div *ngIf="postaladdress.errors.required">
+            Postal address is required.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="mobilenumber">Mobile Nr:</label>
-      <input type="text" class="form-control" id="mobilenumber" (change)="onDataSelected($event)" ngModel
-             name="mobilenumber" maxlength="10"
-             minlength="10" #mobilenumber="ngModel" required>
-      <div *ngIf="mobilenumber.invalid && (mobilenumber.dirty || mobilenumber.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="code">Zip Code:</label>
+        <input type="text" class="form-control" id="code" ngModel name="code" (change)="onDataSelected($event)" pattern="\d*"
+          required #code="ngModel">
+        <div *ngIf="code.invalid && (code.dirty || code.touched)" class="alert alert-danger" style="width: 35vw">
 
-        <div *ngIf="mobilenumber.errors.required">
-          Mobile number is required.
-        </div>
-        <div *ngIf="mobilenumber.errors.minlength">
-          Must be 10 characters long.
+          <div *ngIf="code.errors.required">
+            Zip code is required.
+          </div>
+          <div *ngIf="code.errors.pattern">
+            Must only contain numbers.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="email">E-mail address:</label>
-      <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email"
-             (change)="onDataSelected($event)" ngModel name="email" email
-             #email="ngModel" required>
-      <div *ngIf="email.invalid && (email.dirty || email.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="hometelephonenumber">Home Telephone Nr:</label>
+        <input type="text" class="form-control" id="hometelephonenumber" maxlength="10" (change)="onDataSelected($event)"
+          minlength="10" ngModel name="hometelephonenumber" #hometelephonenumber="ngModel">
+        <div *ngIf="hometelephonenumber.invalid && (hometelephonenumber.dirty || hometelephonenumber.touched)" class="alert alert-danger"
+          style="width: 35vw">
 
-        <div *ngIf="email.errors.required">
-          E-mail address is required.
-        </div>
-        <div *ngIf="email.errors.email">
-          Not a valid E-mail address.
+          <div *ngIf="hometelephonenumber.errors.minlength">
+            Must be 10 characters long.
+          </div>
         </div>
       </div>
-    </div>
 
-    <label>Where you previously employed by NWU?</label>
-    <div class="radio" *ngFor="let previouslyemployed of previouslyemployed">
-      <label><input type="radio" name="previouslyemployed" ngModel id="{{previouslyemployed}}" [value]="previouslyemployed"
-                    (change)="onRadioSelected($event)" required>{{
-        previouslyemployed }}</label>
-    </div>
+      <div class="form-group">
+        <label for="mobilenumber">Mobile Nr:</label>
+        <input type="text" class="form-control" id="mobilenumber" (change)="onDataSelected($event)" ngModel name="mobilenumber"
+          maxlength="10" minlength="10" #mobilenumber="ngModel" required>
+        <div *ngIf="mobilenumber.invalid && (mobilenumber.dirty || mobilenumber.touched)" class="alert alert-danger"
+          style="width: 35vw">
 
-    <label>Are you employed by an employer other than the NWU?</label>
-    <div class="radio" *ngFor="let otheremployer of otheremployer">
-      <label><input type="radio" name="otheremployer" ngModel [value]="otheremployer" id="{{otheremployer}}" (change)="onRadioSelected($event)"
-                    required>{{ otheremployer
-        }}</label>
-    </div>
-
-    <label>Are you self-employed?</label>
-    <div class="radio" *ngFor="let selfemployed of selfemployed">
-      <label><input type="radio" name="selfemployed" ngModel [value]="selfemployed" id="{{selfemployed}}" (change)="onRadioSelected($event)"
-                    required>{{ selfemployed }}</label>
-    </div>
-
-    <div class="form-group">
-      <label for="highestqualification">Highest Qualification:</label>
-      <input type="text" class="form-control" id="highestqualification" ngModel name="highestqualification"
-             (change)="onDataSelected($event)" required
-             #highestqualification="ngModel">
-      <div *ngIf="highestqualification.invalid && (highestqualification.dirty || highestqualification.touched)"
-           class="alert alert-danger" style="width: 35vw">
-
-        <div *ngIf="highestqualification.errors.required">
-          Highest qualification is required.
+          <div *ngIf="mobilenumber.errors.required">
+            Mobile number is required.
+          </div>
+          <div *ngIf="mobilenumber.errors.minlength">
+            Must be 10 characters long.
+          </div>
         </div>
       </div>
-    </div>
-    <hr>
 
-    <h3>Section B: Bank details (No payment will be made if these details are not provided.)</h3>
-    <label>Account type:</label>
-    <div class="radio" *ngFor="let accounttype of accounttype">
-      <label><input type="radio" name="accounttype" ngModel [value]="accounttype" id="{{accounttype}}" (change)="onRadioSelected($event)"
-                    required>{{ accounttype }}</label>
-    </div>
+      <div class="form-group">
+        <label for="email">E-mail address:</label>
+        <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" (change)="onDataSelected($event)"
+          ngModel name="email" email #email="ngModel" required>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger" style="width: 35vw">
 
-    <div class="form-group">
-      <label for="bankbranch">Bank branch code:</label>
-      <input type="text" class="form-control" id="bankbranch" ngModel name="bankbranch"
-             (change)="onDataSelected($event)" required pattern="\d*"
-             #bankbranch="ngModel" maxlength="6" minlength="6">
-      <div *ngIf="bankbranch.invalid && (bankbranch.dirty || bankbranch.touched)"
-           class="alert alert-danger" style="width: 35vw">
-
-        <div *ngIf="bankbranch.errors.minlength">
-          Must be only 6 characters long.
-        </div>
-        <div *ngIf="bankbranch.errors.required">
-          Bank branch code required.
-        </div>
-        <div *ngIf="bankbranch.errors.pattern">
-          Must only contain numbers.
+          <div *ngIf="email.errors.required">
+            E-mail address is required.
+          </div>
+          <div *ngIf="email.errors.email">
+            Not a valid E-mail address.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="accountnumber">Account Nr:</label>
-      <input type="text" class="form-control" id="accountnumber" ngModel name="accountnumber"
-             (change)="onDataSelected($event)" required pattern="\d*"
-             #accountnumber="ngModel">
-      <div *ngIf="accountnumber.invalid && (accountnumber.dirty || accountnumber.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <label>Where you previously employed by NWU?</label>
+      <div class="radio" *ngFor="let previouslyemployed of previouslyemployed">
+        <label><input type="radio" name="previouslyemployed" ngModel id="{{previouslyemployed}}" [value]="previouslyemployed"
+            (change)="onRadioSelected($event)" required>{{
+          previouslyemployed }}</label>
+      </div>
 
-        <div *ngIf="accountnumber.errors.required">
-          Bank branch code required.
-        </div>
-        <div *ngIf="accountnumber.errors.pattern">
-          Must only contain numbers.
+      <label>Are you employed by an employer other than the NWU?</label>
+      <div class="radio" *ngFor="let otheremployer of otheremployer">
+        <label><input type="radio" name="otheremployer" ngModel [value]="otheremployer" id="{{otheremployer}}" (change)="onRadioSelected($event)"
+            required>{{ otheremployer
+          }}</label>
+      </div>
+
+      <label>Are you self-employed?</label>
+      <div class="radio" *ngFor="let selfemployed of selfemployed">
+        <label><input type="radio" name="selfemployed" ngModel [value]="selfemployed" id="{{selfemployed}}" (change)="onRadioSelected($event)"
+            required>{{ selfemployed }}</label>
+      </div>
+
+      <div class="form-group">
+        <label for="highestqualification">Highest Qualification:</label>
+        <input type="text" class="form-control" id="highestqualification" ngModel name="highestqualification" (change)="onDataSelected($event)"
+          required #highestqualification="ngModel">
+        <div *ngIf="highestqualification.invalid && (highestqualification.dirty || highestqualification.touched)" class="alert alert-danger"
+          style="width: 35vw">
+
+          <div *ngIf="highestqualification.errors.required">
+            Highest qualification is required.
+          </div>
         </div>
       </div>
-    </div>
+      <hr>
 
-    <div class="form-group">
-      <label for="bankname">Name of bank:</label>
-      <input type="text" class="form-control" id="bankname" ngModel name="bankname" (change)="onDataSelected($event)"
-             pattern="[a-zA-Z ]*" required
-             #bankname="ngModel">
-      <div *ngIf="bankname.invalid && (bankname.dirty || bankname.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <h3>Section B: Bank details (No payment will be made if these details are not provided.)</h3>
+      <label>Account type:</label>
+      <div class="radio" *ngFor="let accounttype of accounttype">
+        <label><input type="radio" name="accounttype" ngModel [value]="accounttype" id="{{accounttype}}" (change)="onRadioSelected($event)"
+            required>{{ accounttype }}</label>
+      </div>
 
-        <div *ngIf="bankname.errors.required">
-          Bank name required.
-        </div>
-        <div *ngIf="bankname.errors.pattern">
-          Must only contain letters.
+      <div class="form-group">
+        <label for="bankbranch">Bank branch code:</label>
+        <input type="text" class="form-control" id="bankbranch" ngModel name="bankbranch" (change)="onDataSelected($event)"
+          required pattern="\d*" #bankbranch="ngModel" maxlength="6" minlength="6">
+        <div *ngIf="bankbranch.invalid && (bankbranch.dirty || bankbranch.touched)" class="alert alert-danger" style="width: 35vw">
+
+          <div *ngIf="bankbranch.errors.minlength">
+            Must be only 6 characters long.
+          </div>
+          <div *ngIf="bankbranch.errors.required">
+            Bank branch code required.
+          </div>
+          <div *ngIf="bankbranch.errors.pattern">
+            Must only contain numbers.
+          </div>
         </div>
       </div>
-    </div>
 
-    <label>Account holder:</label>
-    <div class="form-group">
-      <label for="holdersurname">Surname:</label>
-      <input type="text" class="form-control" id="holdersurname" ngModel name="holdersurname"
-             (change)="onDataSelected($event)" pattern="[a-zA-Z ]*"
-             required #holdersurname="ngModel">
-      <div *ngIf="holdersurname.invalid && (holdersurname.dirty || holdersurname.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="accountnumber">Account Nr:</label>
+        <input type="text" class="form-control" id="accountnumber" ngModel name="accountnumber" (change)="onDataSelected($event)"
+          required pattern="\d*" #accountnumber="ngModel">
+        <div *ngIf="accountnumber.invalid && (accountnumber.dirty || accountnumber.touched)" class="alert alert-danger"
+          style="width: 35vw">
 
-        <div *ngIf="holdersurname.errors.required">
-          Account holder surname required.
-        </div>
-        <div *ngIf="holdersurname.errors.pattern">
-          Must only contain letters.
+          <div *ngIf="accountnumber.errors.required">
+            Bank branch code required.
+          </div>
+          <div *ngIf="accountnumber.errors.pattern">
+            Must only contain numbers.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="holderinitials">Initials:</label>
-      <input type="text" class="form-control" placeholder="e.g EA" id="holderinitials" (change)="onDataSelected($event)"
-             ngModel name="holderinitials"
-             pattern="[a-zA-Z ]*" required #holderinitials="ngModel">
-      <div *ngIf="holderinitials.invalid && (holderinitials.dirty || holderinitials.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="bankname">Name of bank:</label>
+        <input type="text" class="form-control" id="bankname" ngModel name="bankname" (change)="onDataSelected($event)"
+          pattern="[a-zA-Z ]*" required #bankname="ngModel">
+        <div *ngIf="bankname.invalid && (bankname.dirty || bankname.touched)" class="alert alert-danger" style="width: 35vw">
 
-        <div *ngIf="holderinitials.errors.required">
-          Account holder initials required.
-        </div>
-        <div *ngIf="holderinitials.errors.pattern">
-          Must only contain letters.
+          <div *ngIf="bankname.errors.required">
+            Bank name required.
+          </div>
+          <div *ngIf="bankname.errors.pattern">
+            Must only contain letters.
+          </div>
         </div>
       </div>
-    </div>
 
-    <label>Account Info:</label>
-    <div class="radio" *ngFor="let accountinfo of accountinfo">
-      <label><input type="radio" name="accountinfo" ngModel [value]="accountinfo" id="{{accountinfo}}" (change)="onRadioSelected($event)"
-                    required>{{ accountinfo }}</label>
-    </div>
+      <label>Account holder:</label>
+      <div class="form-group">
+        <label for="holdersurname">Surname:</label>
+        <input type="text" class="form-control" id="holdersurname" ngModel name="holdersurname" (change)="onDataSelected($event)"
+          pattern="[a-zA-Z ]*" required #holdersurname="ngModel">
+        <div *ngIf="holdersurname.invalid && (holdersurname.dirty || holdersurname.touched)" class="alert alert-danger"
+          style="width: 35vw">
 
-    <div class="form-group">
-      <label for="date">Date:</label>
-      <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="date" ngModel
-             (change)="onDataSelected($event)" name="date" required>
-    </div>
+          <div *ngIf="holdersurname.errors.required">
+            Account holder surname required.
+          </div>
+          <div *ngIf="holdersurname.errors.pattern">
+            Must only contain letters.
+          </div>
+        </div>
+      </div>
 
-    <p>NB! In order to apply for a module you want to assist in, please go to the module form!</p>
-    <div>
-    <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="onUpload()" [disabled]="!f.valid">Submit</button>
-    </div>
-  </form>
-</div>
+      <div class="form-group">
+        <label for="holderinitials">Initials:</label>
+        <input type="text" class="form-control" placeholder="e.g EA" id="holderinitials" (change)="onDataSelected($event)"
+          ngModel name="holderinitials" pattern="[a-zA-Z ]*" required #holderinitials="ngModel">
+        <div *ngIf="holderinitials.invalid && (holderinitials.dirty || holderinitials.touched)" class="alert alert-danger"
+          style="width: 35vw">
+
+          <div *ngIf="holderinitials.errors.required">
+            Account holder initials required.
+          </div>
+          <div *ngIf="holderinitials.errors.pattern">
+            Must only contain letters.
+          </div>
+        </div>
+      </div>
+
+      <label>Account Info:</label>
+      <div class="radio" *ngFor="let accountinfo of accountinfo">
+        <label><input type="radio" name="accountinfo" ngModel [value]="accountinfo" id="{{accountinfo}}" (change)="onRadioSelected($event)"
+            required>{{ accountinfo }}</label>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="date" ngModel (change)="onDataSelected($event)"
+          name="date" required>
+      </div>
+
+      <p>NB! In order to apply for a module you want to assist in, please go to the module form!</p>
+      <div>
+        <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="onUpload()" [disabled]="!f.valid">Submit</button>
+      </div>
+    </form>
+  </div>
 </body>
