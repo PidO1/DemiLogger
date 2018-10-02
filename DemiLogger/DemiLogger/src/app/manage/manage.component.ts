@@ -10,21 +10,13 @@ import {HttpClient} from '../../../node_modules/@angular/common/http';
 })
 export class ManageComponent implements OnInit {
   data;
-  theCheckbox = false;
-  marked = false;
   arr = 0;
   apply = ['Yes', 'No'];
-  selectedDataValue: string;
-  selectedDataName: string;
-  fd = new FormData();
+  condition;
   constructor(private submitService: PgpdServiceService, private http: HttpClient) { }
-
-  constructor(private submitService: PgpdServiceService, private http: HttpClient) {
-  }
 
   ngOnInit() {
   }
-
   onSubmitAnnouncement(form: NgForm) {
     console.log(form.value);
     this.submitService.storeAnnouncementData(form.value)
@@ -41,8 +33,6 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-  onGetStudentApplication() {
-
   onSubmitModule(form: NgForm) {
     console.log(form.value);
     this.submitService.storeAddModule(form.value)
@@ -51,9 +41,6 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-
-  arr = 0;
-
   onGetStudentApplication() {
     this.submitService.getStudentInfo()
       .subscribe(
@@ -68,9 +55,7 @@ export class ManageComponent implements OnInit {
   onRadioSelected(event) {
     console.log(event);
     this.condition = event.target.id;
-    this.fd.append('ITRW324','27678822')
   }
-
   nextStudent() {
     if (this.condition === 'Yes') {
     this.http.post('http://192.168.1.8:3000/application/accept', this.data[this.arr])
@@ -86,5 +71,4 @@ export class ManageComponent implements OnInit {
     }
     this.arr++;
   }
-
 }
