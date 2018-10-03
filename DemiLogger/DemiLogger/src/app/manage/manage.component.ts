@@ -13,10 +13,13 @@ export class ManageComponent implements OnInit {
   arr = 0;
   apply = ['Yes', 'No'];
   condition;
-  constructor(private submitService: PgpdServiceService, private http: HttpClient) { }
+
+  constructor(private submitService: PgpdServiceService, private http: HttpClient) {
+  }
 
   ngOnInit() {
   }
+
   onSubmitAnnouncement(form: NgForm) {
     console.log(form.value);
     this.submitService.storeAnnouncementData(form.value)
@@ -25,6 +28,7 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
+
   onSubmitLecturer(form: NgForm) {
     console.log(form.value);
     this.submitService.storeLecturerData(form.value)
@@ -33,6 +37,7 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
+
   onSubmitModule(form: NgForm) {
     console.log(form.value);
     this.submitService.storeAddModule(form.value)
@@ -41,6 +46,7 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
+
   onGetStudentApplication() {
     this.submitService.getStudentInfo()
       .subscribe(
@@ -52,23 +58,45 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
+
   onRadioSelected(event) {
     console.log(event);
     this.condition = event.target.id;
   }
+
   nextStudent() {
     if (this.condition === 'Yes') {
-    this.http.post('http://192.168.1.8:3000/application/accept', this.data[this.arr])
-          .subscribe(res => {
-            console.log(res);
-          })
+      this.http.post('http://192.168.1.8:3000/application/accept', this.data[this.arr])
+        .subscribe(res => {
+          console.log(res);
+        })
     }
-    else if(this.condition === 'No'){
+    else if (this.condition === 'No') {
       this.http.post('http://192.168.1.8:3000/application/delete', this.data[this.arr])
         .subscribe(res => {
           console.log(res);
         })
     }
     this.arr++;
+  }
+
+  onSubmit(form: NgForm) {
+    this.submitService.storeInfo(form.value)
+      .subscribe(
+        (response) => {
+          console.log(response);
+          // if (sessionStorage.length < 0) {
+          //   // @ts-ignore
+          //   sessionStorage.setItem('token', response.body);
+          //   this.router.navigate(['/home']);
+          // } else {
+          //   sessionStorage.clear();
+          //   // @ts-ignore
+          //   sessionStorage.setItem('token', response.body);
+          //   this.router.navigate(['/home']);
+          // }
+        },
+        (error) => console.log(error)
+      );
   }
 }
