@@ -84,7 +84,7 @@ export class ManageComponent implements OnInit {
       this.http.post('http://192.168.1.8:3000/application/delete', this.data[this.arr])
         .subscribe(res => {
           console.log(res);
-        });
+        })
     }
     this.arr++;
   }
@@ -135,4 +135,26 @@ export class ManageComponent implements OnInit {
       }
     }
   }
+  foto;
+  // getID() {
+  //   this.submitService.getID()
+  //     .subscribe(
+  //       (response) => {
+  //         // @ts-ignore
+  //         this.foto = response;
+  //         console.log(this.foto);
+  //       },
+  //       (error) => console.log(error)
+  //     );
+  // }
+
+  download(index){
+    var filename = index;
+    this.submitService.getID(filename)
+      .subscribe(
+        data1 => saveAs(data1),
+        error => console.error(error)
+      );
+  }
+
 }

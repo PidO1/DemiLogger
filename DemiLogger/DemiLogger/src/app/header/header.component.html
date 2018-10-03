@@ -6,13 +6,15 @@
     <div class="collapse navbar-collapse" style="padding-top: 2px; padding-right: 10px;">
       <ul id="nav" class="nav navbar-nav">
         <li>
-          <button class="btn btn-success" routerLink="home">Home
+          <button class="btn btn-success"
+                  routerLink="home">Home
           </button>
         </li>
       </ul>
       <ul id="nav" class="nav navbar-nav">
         <li>
-          <button class="btn btn-success" (click)="routeInfo($event)">Info
+          <button class="btn btn-success"
+                  (click)="routeInfo($event)">Info
           </button>
         </li>
       </ul>
@@ -22,9 +24,9 @@
             <button id="btnForms" class="btn btn-success" ngbDropdownToggle>Forms <span class="glyphicon glyphicon-triangle-bottom"></span></button>
             <div id="drop" ngbDropdownMenu aria-labelledby="drop">
               <button class="dropdown-item" (click)="studentSA($event)">SA Students</button>
-              <br />
+              <br/>
               <button class="dropdown-item" (click)="studentFO($event)">Foreign student</button>
-              <br />
+              <br/>
               <button class="dropdown-item" (click)="moduleApp($event)">Module application</button>
             </div>
           </div>
@@ -32,26 +34,31 @@
       </ul>
       <ul id="nav" class="nav navbar-nav">
         <li>
-          <button class="btn btn-success" (click)="routeAbout($event)">About
+          <button class="btn btn-success"
+                  (click)="routeAbout($event)">About
           </button>
         </li>
       </ul>
       <ul id="nav" class="nav navbar-nav">
         <li>
-          <button class="btn btn-success" (click)="routeQueries($event)">Queries
+          <button class="btn btn-success"
+                  (click)="routeQueries($event)">Queries
           </button>
         </li>
       </ul>
       <ul id="nav" class="nav navbar-nav navbar-right">
         <li>
-          <button class="btn btn-success" (click)="routeLogin($event)">
+          <button class="btn btn-success"
+                  (click)="routeLogin($event)">
             <span class="glyphicon glyphicon-log-in"></span> Login
           </button>
         </li>
       </ul>
       <ul id="nav" class="nav navbar-nav navbar-right">
         <li>
-          <button class="btn btn-success" id="btnManage" (click)="routeManage($event)">
+          <button class="btn btn-success"
+                  id="btnManage"
+                  (click)="routeManage($event)">
             <span class="glyphicon glyphicon-cog"></span> Manage
           </button>
         </li>

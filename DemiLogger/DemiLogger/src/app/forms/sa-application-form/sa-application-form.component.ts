@@ -62,7 +62,7 @@ export class SaApplicationFormComponent implements OnInit {
     this.selectedFile = <File>event.target.files[0];
     this.fd.append('image', this.selectedFile, this.selectedFile.name);
   }
-  public onUpload() {
+  onUpload() {
     this.http.post('http://192.168.1.8:3000/demi/applicationform/sa', this.fd)
       .subscribe(res => {
         console.log(res);
