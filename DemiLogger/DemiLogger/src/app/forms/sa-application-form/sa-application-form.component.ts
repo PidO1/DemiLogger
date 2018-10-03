@@ -59,8 +59,15 @@ export class SaApplicationFormComponent implements OnInit {
   }
   onFileSelected(event) {
     console.log(event);
+    this.selectedDataValue = event.target.id;
     this.selectedFile = <File>event.target.files[0];
-    this.fd.append('image', this.selectedFile, this.selectedFile.name);
+    this.fd.append(this.selectedDataValue, this.selectedFile, this.selectedFile.name);
+    if (this.fd.has(this.selectedDataValue)) {
+      this.fd.delete(this.selectedDataValue);
+      this.fd.append(this.selectedDataValue, this.selectedFile, this.selectedFile.name);
+    } else {
+      this.fd.append(this.selectedDataValue, this.selectedFile, this.selectedFile.name);
+    }
   }
   public onUpload() {
     this.http.post('http://192.168.1.8:3000/demi/applicationform/sa', this.fd)

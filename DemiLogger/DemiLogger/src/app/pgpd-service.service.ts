@@ -45,5 +45,16 @@ export class PgpdServiceService {
   getStudentInfo() {
     return this.http.get('http://192.168.1.8:3000/demi/all');
   }
+  getAnnouncement() {
+    return this.http.get('http://192.168.1.8:3000/anounce/get');
+  }
+  getID(file:String) {
+    const body = {filename: file};
+
+    return this.http.post('http://192.168.1.8:3000/image/getID/27678825', body, {
+      responseType: 'blob',
+      headers: new HttpHeaders().append('Content-Type', 'application.json')
+    });
+  }
 }
 

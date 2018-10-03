@@ -292,6 +292,43 @@
             </form>
         </ng-template>
       </ngb-tab>
+      <ngb-tab title="Student files">
+          <ng-template ngbTabContent>
+            <form #r="ngForm">
+            <div class="form-group">
+              <label for="nwunumber1" style="color: white">NWU number:</label>
+              <input type="text" id="nwunumber1" class="form-control" ngModel name="nwunumber1" pattern="\d*" maxlength="8"
+                     minlength="8" required #nwunumber1="ngModel">
+              <div *ngIf="nwunumber1.invalid && (nwunumber1.dirty || nwunumber1.touched)"
+                   class="alert alert-danger" style="width: 35vw">
+    
+                <div *ngIf="nwunumber1.errors.required">
+                  NWU number is required.
+                </div>
+                <div *ngIf="nwunumber1.errors.minlength">
+                  NWU number must be 8 characters long.
+                </div>
+                <div *ngIf="nwunumber1.errors.pattern">
+                  Must only be numbers.
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary"
+                    type="submit" (click)="download('27678825')"
+                    [disabled]="!r.valid">Get Info</button>
+            </form>
+            <label>Download ID:</label><br>
+            <button class="btn btn-primary">Download</button><br>
+            <label>Download Student Registration:</label><br>
+            <button class="btn btn-primary">Download</button><br>
+            <label>Download Passport:</label><br>
+            <button class="btn btn-primary">Download</button><br>
+            <label>Download Study Permit:</label><br>
+            <button class="btn btn-primary">Download</button><br>
+            <label>Download Permission to Conduct Work Form:</label><br>
+            <button class="btn btn-primary">Download</button><br>
+          </ng-template>
+        </ngb-tab>
 
     </ngb-tabset>
   </div>
