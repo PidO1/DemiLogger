@@ -9,7 +9,7 @@ const fs = require("fs");
  var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var JWT_private = 'secret';
- 
+var mime = require('mime-types');
 
 
 var con = mysql.createPool({
@@ -20,7 +20,7 @@ var con = mysql.createPool({
 });
 
 
-router.get('/getID/:id',(req,res,next)=>{
+router.post('/getID/:id',(req,res,next)=>{
   console.log(req.params.id);
   var sql = 'SELECT * FROM demi WHERE NwuNumber = ?';
   
@@ -31,26 +31,26 @@ router.get('/getID/:id',(req,res,next)=>{
         if(err){res.status(400).json({message:'error'});}
         if(result)
         {
-          var get = './uploads/';
+          var get = './uploads/'+ result[0].IDdocName;
           var name =result[0].IDdocName;
           console.log(get);
           console.log(name);
-          var options = {
-            root: get,
-            dotfiles: 'deny',
-            headers: {
-                'x-timestamp': Date.now(),
-                'x-sent': true
-            }
-          };
-          res.sendFile(name, options, function (err) {
-            if (err) {
-              next(err);
-            } else {
-              console.log('Sent:', name);
-            }
-          });
-          // res.download(get);,result[0].IDdocName, err=>{
+          // var options = {
+          //   root: get,
+          //   dotfiles: 'deny',
+          //   headers: {
+          //       'x-timestamp': Date.now(),
+          //       'x-sent': true
+          //   }
+          // };
+          // res.sendFile(name, options, function (err) {
+          //   if (err) {
+          //     next(err);
+          //   } else {
+          //     console.log('Sent:', name);
+          //   }
+          // });
+          // res.download('./uploads/x.jpg','x.jpg', err=>{
 
           //   if(err)
           //   {res.status(400);}
@@ -59,8 +59,19 @@ router.get('/getID/:id',(req,res,next)=>{
       
           //     console.log(res.headersSent);
           //   }
-          //});
-
+          // });
+          console.log(mime.contentType(get));
+          fs.readFile(get , function (err, content) {
+               
+             if(content) {
+                //specify the content type in the response will be an image
+                res.writeHead(200,{'Content-type':mime.contentType(get) });
+                res.send(content);
+            }
+        });
+        
+        
+        
         }
         
     

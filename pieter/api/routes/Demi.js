@@ -246,7 +246,7 @@ router.post('/demiGet',jsonParser,(req,res,next)=>{
   var sql =  'Select * From demi WHERE NwuNumber = ?';
   con.getConnection()
   .then(function(connection){connection.query(sql,req.body.nwuNumber,function(error,results,fields){ 
-    if(results){return res.status(200).json(results);}
+    if(results){return res.status(200).json(results[0]);}
   
   });})
   .catch(err=>{if(err){res.status(400).json({message:'something went wrong please try'});}});
