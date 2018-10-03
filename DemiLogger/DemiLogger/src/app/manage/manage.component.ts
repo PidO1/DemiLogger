@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PgpdServiceService } from '../pgpd-service.service';
-import {HttpClient} from '../../../node_modules/@angular/common/http';
+import {HttpClient, HttpHeaders} from '../../../node_modules/@angular/common/http';
+import * as jwt_decode from 'jwt-decode';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-manage',
@@ -13,6 +15,10 @@ export class ManageComponent implements OnInit {
   arr = 0;
   apply = ['Yes', 'No'];
   condition;
+  token = {};
+  theForm;
+  nwuNumber = {};
+  heading = 'test';
   constructor(private submitService: PgpdServiceService, private http: HttpClient) { }
 
   ngOnInit() {
@@ -61,14 +67,38 @@ export class ManageComponent implements OnInit {
     this.http.post('http://192.168.1.8:3000/application/accept', this.data[this.arr])
           .subscribe(res => {
             console.log(res);
-          })
-    }
-    else if(this.condition === 'No'){
+          });
+    } else if (this.condition === 'No'){
       this.http.post('http://192.168.1.8:3000/application/delete', this.data[this.arr])
         .subscribe(res => {
           console.log(res);
-        })
+        });
     }
     this.arr++;
+  }
+  getForm(form: NgForm) {
+    if (sessionStorage.length === 0) {
+      alert('Please login.');
+    } else {
+        this.token = jwt_decode(sessionStorage.getItem('token'));
+        // @ts-ignore
+      if (this.token.admin === 1) {
+        const header = new HttpHeaders().set('Content-Type', 'application/json');
+        this.http.post('http://192.168.1.8:3000/demi/demiGet', form.value, {headers: header})
+          .subscribe(
+            (response) => {
+              // @ts-ignore
+              this.theForm = response;
+              console.log(this.theForm.NwuNumber);
+          },
+            (error) => console.log(error)
+        );
+        } else {
+        // @ts-ignore
+        if (this.token.admin === 0) {
+          alert('Administrator permissions required.');
+        }
+      }
+    }
   }
 }

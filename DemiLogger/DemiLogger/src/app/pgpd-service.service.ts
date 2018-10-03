@@ -42,8 +42,7 @@ export class PgpdServiceService {
     return this.http.post('http://192.168.1.8:3000/application/module', moduleData, {headers: header});
   }
 
-  getStudentInfo()
-  {
+  getStudentInfo() {
     return this.http.get('http://192.168.1.8:3000/demi/all');
   }
 }

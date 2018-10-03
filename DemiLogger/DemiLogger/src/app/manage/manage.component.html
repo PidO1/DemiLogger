@@ -163,13 +163,13 @@
         </ng-template>
       </ngb-tab>
 
-      <ngb-tab title="Add Students">
+      <ngb-tab title="Accept Demi's">
         <ng-template ngbTabContent>
           <br>
           <button id="btnSubmit" class="btn btn-primary" (click)="onGetStudentApplication()">Get Applications</button>
           <form #s="ngForm">
             <br>
-            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid img-rounded">
+            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid">
               <thead>
                 <tr>
                   <th>Student Number</th>
@@ -191,11 +191,8 @@
                   <td>{{data[arr].moduleMark | json}}</td>
                   <td style="align-content: left; width: 160px">
                     <div class="radio" *ngFor="let apply of apply">
-                      <label><input type="radio" name="apply" 
-                                    ngModel id="{{apply}}" 
-                                    [value]="apply" 
-                                    (change)="onRadioSelected($event)"
-                                    required style="width: 100%">{{ apply }}
+                      <label><input type="radio" name="apply" ngModel id="{{apply}}" [value]="apply" (change)="onRadioSelected($event)"
+                          required style="width: 100%">{{ apply }}
                       </label>
                     </div>
                   </td>
@@ -213,7 +210,7 @@
           <br>
           <form (ngSubmit)="onSubmitModule(p)" #p="ngForm">
             <div class="form-group">
-              <label for="code">Module code:</label>
+              <label for="code">Module code</label>
               <input type="text" class="form-control" id="code" ngModel name="code" required name="code" maxlength="10"
                 #code="ngModel">
               <div *ngIf="code.invalid && (code.dirty || code.touched)" class="alert alert-danger" style="width: 35vw">
@@ -226,7 +223,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="name">Module name:</label>
+              <label for="name">Module name</label>
               <input type="text" class="form-control" id="name" ngModel name="name" required name="name" maxlength="50"
                 #name="ngModel">
               <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="width: 35vw">
@@ -239,7 +236,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="credits">Module Credit:</label>
+              <label for="credits">Module Credit</label>
               <input type="text" class="form-control" id="credits" ngModel name="credits" required name="credits"
                 maxlength="2" #credits="ngModel">
               <div *ngIf="credits.invalid && (credits.dirty || credits.touched)" class="alert alert-danger" style="width: 35vw">
@@ -256,6 +253,46 @@
           </form>
         </ng-template>
       </ngb-tab>
+
+      <ngb-tab title="PDF Form">
+        <ng-template ngbTabContent>
+          <form (ngSubmit)="getForm(g)" #g="ngForm" name="pdfForm">
+            <div class="form-group">
+              <br>
+              <label for="nwuNumber">NWU Number</label>
+              <input type="text" class="form-control" id="nwuNumber" ngModel name="nwuNumber" required name="nwuNumber"
+                maxlength="8" minlength="8" #code="ngModel">
+              <div *ngIf="nwuNumber.invalid && (nwuNumber.dirty || nwuNumber.touched)" class="alert alert-danger" style="width: 35vw">
+                <div *ngIf="nwuNumber.errors.required">
+                  NWU Number is required.
+                </div>
+                <div *ngIf="nwuNumber.errors.minlength">
+                  NWU Number must be 8 characters.
+                </div>
+              </div>
+            </div>
+            <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!d.valid">Pull
+              Information</button>
+          </form>
+          <form name="pdfForm">
+              <div class="form-group">
+                  <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid">
+                    <thead>
+                      <tr>
+                        <th>NWU Number</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{theForm.NwuNumber}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </form>
+        </ng-template>
+      </ngb-tab>
+
     </ngb-tabset>
   </div>
 </body>

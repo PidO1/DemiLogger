@@ -25,6 +25,7 @@
     "angular5-data-table": "^1.0.3",
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.4",
+    "jspdf": "^1.4.1",
     "jwt-decode": "^2.2.0",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"
@@ -36,6 +37,7 @@
     "@angular/language-service": "^6.1.0",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
+    "@types/jspdf": "^1.1.31",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.2.1",
     "jasmine-core": "~2.99.1",
