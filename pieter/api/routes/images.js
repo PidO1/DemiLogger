@@ -19,12 +19,58 @@ var con = mysql.createPool({
   database: 'demilogger'
 });
 
-async function download(){}
 
-await download()
-router.get('/',(req,res,next)=>{
-    request('http://localhost:3000/'+req.body.fname ).pipe(fs.createWriteStream('x.jpg'))
-    download('http://localhost:3000/'+req.body.fname ,'C:/Users/piete/Desktop',);
+router.get('/getID/:id',(req,res,next)=>{
+  console.log(req.params.id);
+  var sql = 'SELECT * FROM demi WHERE NwuNumber = ?';
+  
+  con.getConnection()
+  .then(function(connection){
+      connection.query(sql,req.params.id,(err,result,fields)=>{ 
+        
+        if(err){res.status(400).json({message:'error'});}
+        if(result)
+        {
+          var get = './uploads/';
+          var name =result[0].IDdocName;
+          console.log(get);
+          console.log(name);
+          var options = {
+            root: get,
+            dotfiles: 'deny',
+            headers: {
+                'x-timestamp': Date.now(),
+                'x-sent': true
+            }
+          };
+          res.sendFile(name, options, function (err) {
+            if (err) {
+              next(err);
+            } else {
+              console.log('Sent:', name);
+            }
+          });
+          // res.download(get);,result[0].IDdocName, err=>{
+
+          //   if(err)
+          //   {res.status(400);}
+          //   else
+          //   {
+      
+          //     console.log(res.headersSent);
+          //   }
+          //});
+
+        }
+        
+    
+    
+    
+    });
+  })
+  .catch(err=>{if(err){res.status(400).json({message:'error with fecthing'});}});
+   
+    
   });
 
 

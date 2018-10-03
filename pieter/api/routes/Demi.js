@@ -135,7 +135,7 @@ var post  = {NwuNumber : req.body.nwunumber,
 
 });
 router.post('/applicationform/foreign',upload.any(),(req,res,next)=>{ console.log('yebo');//REGISTER
-console.log(req.body);
+
 console.log(req.files);
 
 var mailOptions = {
@@ -147,7 +147,9 @@ var mailOptions = {
 
 var post  = {NwuNumber : req.body.nwunumber,
   IDdoc:req.files[0].path,
+  IDdocName: req.files[0].originalname,
  RegistrationForm:req.files[1].path,
+ RegistrationFormName: req.files[1].originalname,
   Title: req.body.title,
   Initials: req.body.initials,
   Surname: req.body.surname,
@@ -158,7 +160,7 @@ var post  = {NwuNumber : req.body.nwunumber,
   Gender: req.body.gender,
   MaritalStatus:req.body.maritalStatus,
   MaidenName:req.body.maidenname,
-  CorrespondencePref:req.body.correspondencePref,
+  CorrespondencePref:req.body.correspondencePreference,
   Race:req.body.race,
   DoB:req.body.dateofbirth,
   HOmeLanguage:req.body.homelanguage,
@@ -176,9 +178,12 @@ var post  = {NwuNumber : req.body.nwunumber,
   selfEmploy:req.body.selfemployed,
   highestQualification:req.body.highestqualification,
   passport:req.files[2].path,
+  passportName: req.files[2].originalname,
   studyPermit: req.files[3].path,
+  studyPermitName : req.files[3].originalname,
   permissionToConductWork:req.files[4].path,
-  PaspportNR: req.body.paspportnumber,
+  permissionToConductWorkName : req.files[4].originalname,
+  PaspportNR: req.body.passportnumber,
   passportExpiryDate: req.body.expirydate,
   workPermitNR: req.body.permitnumber,
   permitExpiryDate:req.body.permitexpiry,
@@ -234,11 +239,21 @@ router.get('/all',checkAuthAdmin,(req,res,next)=>{
 
 
 
-router.get('/dosent/demi',(req,res,next)=>{
+router.post('/demiGet',jsonParser,(req,res,next)=>{
+  
+  console.log(req.body);
+  
+  var sql =  'Select * From demi WHERE NwuNumber = ?';
+  con.getConnection()
+  .then(function(connection){connection.query(sql,req.body.nwuNumber,function(error,results,fields){ 
+    if(results){return res.status(200).json(results);}
+  
+  });})
+  .catch(err=>{if(err){res.status(400).json({message:'something went wrong please try'});}});
+ 
     
     
-    
-      res.status(200).json({messgae:''});
+      
 });
 
 
