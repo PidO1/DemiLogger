@@ -1,6 +1,6 @@
 input
 {
-  width: 100%;
+  width: 20vw;
 }
 input.ng-invalid.ng-touched
 {
@@ -11,53 +11,8 @@ input.ng-valid.ng-touched
   border: 1px green;
   border-style: solid;
 }
-h1, h2,  label
+h1, label, p, button
 {
   color: white;
 }
-p {
-  color: white;
-}
-a {
-  color: dodgerblue;
-  font-weight: bold;
-  padding: 3px;
-}
-#main {
-  background-color: black;
-  opacity: 0.7;
-  width: 25%;
-  height: auto;
-  border-radius: 15px;
-  padding-bottom: 10px;
-  margin-bottom: 92px;
-}
-#btnSubmit {
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: white;
-  color: black;
-  font-size: 15px;
-  font-weight: bold;
-}
-#btnSubmit:hover {
-  transition-duration: 0.2s;
-  background-color: black;
-  color: white;
-  border-color: white;
-  opacity: 1;
-}
-#btnSubmit:active {
-  transition-duration: 0.2s;
-  background-color: black;
-  color: white;
-  border-color: white;
-  opacity: 1;
-}
-#btnSubmit:focus {
-  transition-duration: 0.2s;
-  background-color: black;
-  color: white;
-  border-color: white;
-  opacity: 1;
-}
+

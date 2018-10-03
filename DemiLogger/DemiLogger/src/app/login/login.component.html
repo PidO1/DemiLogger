@@ -1,42 +1,56 @@
-<br><br><br><br><br><br>
-
-<body>
-  <div id="main" class="container-fluid">
-    <h2>Login</h2>
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-      <div class="form-group">
-        <label for="nwunumber">NWU number</label>
-        <input type="text" id="nwunumber" class="form-control" ngModel name="nwunumber" pattern="\d*" maxlength="8"
-          minlength="8" required #nwunumber="ngModel">
-        <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)" class="alert alert-danger" style="width: 20vw">
-          <div *ngIf="nwunumber.errors.required">
-            NWU number is required.
-          </div>
-          <div *ngIf="nwunumber.errors.minlength">
-            NWU number must be 8 characters long.
-          </div>
-          <div *ngIf="nwunumber.errors.pattern">
-            Must only be numbers.
-          </div>
+<body style="background-color: transparent; padding-top: 2.1cm">
+<div class="container-fluid img-rounded"
+     style="background-color: black; opacity: 0.7; width: fit-content; padding: 10px">
+  <h1>Login</h1>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="form-group">
+      <label for="nwunumber">NWU number:</label>
+      <input type="text" id="nwunumber" 
+            class="form-control" 
+            ngModel 
+            name="nwunumber" 
+            pattern="\d*"
+            maxlength="8"
+            minlength="8" 
+            required 
+            #nwunumber="ngModel">
+      <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)"
+            class="alert alert-danger" 
+            style="width: 20vw">
+        <div *ngIf="nwunumber.errors.required">
+          NWU number is required.
+        </div>
+        <div *ngIf="nwunumber.errors.minlength">
+          NWU number must be 8 characters long.
+        </div>
+        <div *ngIf="nwunumber.errors.pattern">
+          Must only be numbers.
         </div>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" class="form-control" ngModel name="password" required #password="ngModel">
-        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger" style="width: 20vw">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password"
+             id="password"
+             class="form-control"
+             ngModel name="password"
+             required
+             #password="ngModel">
+      <div *ngIf="password.invalid && (password.dirty || password.touched)"
+            class="alert alert-danger"
+            style="width: 20vw">
 
-          <div *ngIf="password.errors.required">
-            Password address is required.
-          </div>
-          <div *ngIf="password.errors.minlength">
-            Password mus be at least 6 characters long.
-          </div>
+        <div *ngIf="password.errors.required">
+          Password address is required.
         </div>
       </div>
-      <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!f.valid">Login
-      </button>
-    </form>
-    <br />
-    <p><a href="#" routerLink="register">Register</a> - to create an account.</p>
-  </div>
+    </div>
+    <button class="btn btn-primary"
+            type="submit"
+            [disabled]="!f.valid">Login
+    </button>
+  </form>
+  <p><a href="#" 
+        routerLink="register">Register</a> - to create an account!</p>
+</div>
 </body>

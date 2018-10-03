@@ -37,16 +37,16 @@ input.ng-valid.ng-touched {
   opacity: 1;
 }
 #btnSubmit:active {
-  transition-duration: 0.2s;
-  background-color: black;
-  color: white;
-  border-color: white;
-  opacity: 1;
+  background-color: transparent;
+  border-color: transparent;
+  background: none;
+  border: none;
+  outline: none;
 }
 #btnSubmit:focus {
-  transition-duration: 0.2s;
-  background-color: black;
-  color: white;
-  border-color: white;
-  opacity: 1;
+  background-color: transparent;
+  border-color: transparent;
+  background: none;
+  border: none;
+  outline: none;
 }
