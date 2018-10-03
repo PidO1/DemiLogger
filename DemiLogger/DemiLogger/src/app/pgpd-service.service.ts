@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -12,49 +13,39 @@ export class PgpdServiceService {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post('http://192.168.1.8:3000/user/login', loginData, {headers: header});
   }
-
   storeRegisterData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post('http://192.168.1.8:3000/user/register', formData, {headers: header});
   }
-
   storeAnnouncementData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post('http://192.168.1.8:3000/demi/announcment', formData, {headers: header});
   }
-
   storeLecturerData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post('http://192.168.1.8:3000/dosente/register', formData, {headers: header});
   }
-
   storeAddModule(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post('http://192.168.1.8:3000/subjects/', formData, {headers: header});
   }
-
   getToken() {
     return sessionStorage.getItem('token');
   }
-
   storeModuleData(moduleData: any[]) {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post('http://192.168.1.8:3000/application/module', moduleData, {headers: header});
   }
-
   getStudentInfo() {
     return this.http.get('http://192.168.1.8:3000/demi/all');
   }
   getAnnouncement() {
     return this.http.get('http://192.168.1.8:3000/anounce/get');
   }
-  getID(file:String) {
-    const body = {filename: file};
-
-    return this.http.post('http://192.168.1.8:3000/image/getID/27678825', body, {
-      responseType: 'blob',
-      headers: new HttpHeaders().append('Content-Type', 'application.json')
-    });
+  getImg(imgUrl: string): Observable<Blob> {
+    // const body = {filename: file};
+    // const header = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.get(imgUrl, {responseType: 'blob'});
   }
 }
 

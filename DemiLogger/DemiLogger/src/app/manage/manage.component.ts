@@ -21,6 +21,10 @@ export class ManageComponent implements OnInit {
   nwuNumber = {};
   heading = 'test';
   foto;
+  imgUrl = 'https://picsum.photos/200/300/?random';
+  imageToShow: any;
+  isImageLoading: boolean;
+
   constructor(private submitService: PgpdServiceService, private http: HttpClient) { }
 
   ngOnInit() {
@@ -103,6 +107,27 @@ export class ManageComponent implements OnInit {
       }
     }
   }
+  createImageFromBlob(image: Blob) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+       this.imageToShow = reader.result;
+    }, false);
+    if (image) {
+       reader.readAsDataURL(image);
+    }
+   }
+   getImageFromService() {
+    this.isImageLoading = true;
+    this.submitService.getImg(this.imgUrl)
+      .subscribe(data => {
+        this.createImageFromBlob(data);
+        this.isImageLoading = false;
+    },
+      error => {
+      this.isImageLoading = false;
+      console.log(error);
+    });
+}
   // getID() {
   //   this.submitService.getID()
   //     .subscribe(
@@ -114,12 +139,13 @@ export class ManageComponent implements OnInit {
   //       (error) => console.log(error)
   //     );
   // }
-  download(index){
-    const filename = index;
-    this.submitService.getID(filename)
-      .subscribe(
-        data1 => saveAs(data1, filename),
-        error => console.error(error)
-      );
-  }
+  // download(index) {
+  //   const filename = index;
+  //   this.submitService.getID(filename)
+  //     .subscribe(
+  //       data1 => saveAs(data1, filename),
+  //       error => console.error(error)
+  //     );
+  // }
+
 }
