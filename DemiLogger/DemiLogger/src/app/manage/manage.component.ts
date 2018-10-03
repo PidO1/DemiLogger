@@ -68,7 +68,7 @@ export class ManageComponent implements OnInit {
           .subscribe(res => {
             console.log(res);
           });
-    } else if (this.condition === 'No'){
+    } else if (this.condition === 'No') {
       this.http.post('http://192.168.1.8:3000/application/delete', this.data[this.arr])
         .subscribe(res => {
           console.log(res);
