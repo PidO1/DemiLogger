@@ -4,7 +4,6 @@ import { PgpdServiceService } from '../pgpd-service.service';
 import {HttpClient, HttpHeaders} from '../../../node_modules/@angular/common/http';
 import * as jwt_decode from 'jwt-decode';
 import * as jsPDF from 'jspdf';
-import {HttpClient} from '../../../node_modules/@angular/common/http';
 import { saveAs } from 'file-saver';
 
 @Component({
@@ -22,10 +21,8 @@ export class ManageComponent implements OnInit {
   theForm;
   nwuNumber = {};
   heading = 'test';
+  foto;
   constructor(private submitService: PgpdServiceService, private http: HttpClient) { }
-
-  constructor(private submitService: PgpdServiceService, private http: HttpClient) {
-  }
 
   ngOnInit() {
   }
@@ -88,7 +85,7 @@ export class ManageComponent implements OnInit {
     }
     this.arr++;
   }
-  foto;
+
   // getID() {
   //   this.submitService.getID()
   //     .subscribe(
@@ -102,7 +99,7 @@ export class ManageComponent implements OnInit {
   // }
 
   download(index){
-    var filename = index;
+    const filename = index;
     this.submitService.getID(filename)
       .subscribe(
         data1 => saveAs(data1),
@@ -135,26 +132,4 @@ export class ManageComponent implements OnInit {
       }
     }
   }
-  foto;
-  // getID() {
-  //   this.submitService.getID()
-  //     .subscribe(
-  //       (response) => {
-  //         // @ts-ignore
-  //         this.foto = response;
-  //         console.log(this.foto);
-  //       },
-  //       (error) => console.log(error)
-  //     );
-  // }
-
-  download(index){
-    var filename = index;
-    this.submitService.getID(filename)
-      .subscribe(
-        data1 => saveAs(data1),
-        error => console.error(error)
-      );
-  }
-
 }
