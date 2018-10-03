@@ -290,7 +290,7 @@
 
     <ngb-tab title="Student files">
       <ng-template ngbTabContent>
-        <form (ngSubmit)="onSubmit(r)" #r="ngForm">
+        <form #r="ngForm">
         <div class="form-group">
           <label for="nwunumber1" style="color: white">NWU number:</label>
           <input type="text" id="nwunumber1" class="form-control" ngModel name="nwunumber1" pattern="\d*" maxlength="8"
@@ -310,7 +310,7 @@
           </div>
         </div>
         <button class="btn btn-primary"
-                type="submit"
+                type="submit" (click)="download('27678825')"
                 [disabled]="!r.valid">Get Info</button>
         </form>
         <label>Download ID:</label><br>

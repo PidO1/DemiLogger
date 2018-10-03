@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PgpdServiceService } from '../pgpd-service.service';
 import {HttpClient} from '../../../node_modules/@angular/common/http';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-manage',
   templateUrl: './manage.component.html',
-  styleUrls: ['./manage.component.css']
+  styleUrls: ['./manage.component.css'],
+  providers:[PgpdServiceService]
 })
 export class ManageComponent implements OnInit {
   data;
@@ -79,24 +81,26 @@ export class ManageComponent implements OnInit {
     }
     this.arr++;
   }
+  foto;
+  // getID() {
+  //   this.submitService.getID()
+  //     .subscribe(
+  //       (response) => {
+  //         // @ts-ignore
+  //         this.foto = response;
+  //         console.log(this.foto);
+  //       },
+  //       (error) => console.log(error)
+  //     );
+  // }
 
-  onSubmit(form: NgForm) {
-    this.submitService.storeInfo(form.value)
+  download(index){
+    var filename = index;
+    this.submitService.getID(filename)
       .subscribe(
-        (response) => {
-          console.log(response);
-          // if (sessionStorage.length < 0) {
-          //   // @ts-ignore
-          //   sessionStorage.setItem('token', response.body);
-          //   this.router.navigate(['/home']);
-          // } else {
-          //   sessionStorage.clear();
-          //   // @ts-ignore
-          //   sessionStorage.setItem('token', response.body);
-          //   this.router.navigate(['/home']);
-          // }
-        },
-        (error) => console.log(error)
+        data1 => saveAs(data1),
+        error => console.error(error)
       );
   }
+
 }
