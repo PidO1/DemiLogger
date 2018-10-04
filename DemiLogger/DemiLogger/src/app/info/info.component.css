@@ -6,34 +6,44 @@ html {
   height: 100%;
   width: 100%;
 }
-#row {
-  display: flex;
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+  padding: 5px;
+  color: black;
+  width: 100%;
 }
-#bodyCenter {
+table thead {
+  background-color: white;
+}
+table tbody {
+  background-color: black;
+}
+label,td,tr {
+  color: white;
+}
+#main {
   background-color: black;
   opacity: 0.7;
-  flex: 4;
+  height: auto;
+  margin-left: 15%;
+  width: 70%;
+  border-radius: 15px;
+  padding: 20px;
+}
+#mainBelow {
+  background-color: black;
+  opacity: 0.7;
+  height: auto;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   padding-bottom: 20px;
   border-radius: 15px;
   position: relative;
-}
-#bodyLeft {
-  background-color: black;
-  opacity: 0.9;
-  padding: 20px;
-  flex: 1;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  position: relative;
-}
-#bodyRight {
-  background-color: black;
-  opacity: 0.9;
-  padding: 20px;
-  flex: 1;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  position: relative;
+  width: 70%;
+  margin-left: 15%;
+  height: auto;
 }
 #footer {
   right: 0;

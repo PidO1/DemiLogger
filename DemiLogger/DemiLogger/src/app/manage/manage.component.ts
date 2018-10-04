@@ -21,7 +21,8 @@ export class ManageComponent implements OnInit {
   nwuNumber = {};
   heading = 'test';
   foto;
-  imgUrl = 'https://picsum.photos/200/300/?random';
+  imgUrl;
+  imgNumber;
   imageToShow: any;
 
   constructor(private submitService: PgpdServiceService, private http: HttpClient) { }
@@ -115,34 +116,84 @@ export class ManageComponent implements OnInit {
        reader.readAsDataURL(image);
     }
    }
-   getImageFromService() {
+   getImageFromServiceID(r) {
+    console.log(r.nwunumber1);
+    this.imgNumber = r.nwunumber1;
+    this.imgUrl = 'http://192.168.1.8:3000/image/getID/' + this.imgNumber;
     this.submitService.getImg(this.imgUrl)
       .subscribe(data => {
         this.createImageFromBlob(data);
-        saveAs(data);
+        saveAs(data, this.imgNumber + ', ID');
     },
       error => {
-      console.log(error);
+      console.log(error.status);
+      if (error.status === 404) {
+        alert('No image for NWU number, Ensure the number is correct');
+      }
     });
-}
-  // getID() {
-  //   this.submitService.getID()
-  //     .subscribe(
-  //       (response) => {
-  //         // @ts-ignore
-  //         this.foto = response;
-  //         console.log(this.foto);
-  //       },
-  //       (error) => console.log(error)
-  //     );
-  // }
-  // download(index) {
-  //   const filename = index;
-  //   this.submitService.getID(filename)
-  //     .subscribe(
-  //       data1 => saveAs(data1, filename),
-  //       error => console.error(error)
-  //     );
-  // }
-
+  }
+  getImageFromServicePassPort(w) {
+    console.log(w.nwunumber1);
+    this.imgNumber = w.nwunumber1;
+    this.imgUrl = 'http://192.168.1.8:3000/image/getPassport/' + this.imgNumber;
+    this.submitService.getImg(this.imgUrl)
+      .subscribe(data => {
+        this.createImageFromBlob(data);
+        saveAs(data, this.imgNumber + ', Passport');
+    },
+      error => {
+      console.log(error.status);
+      if (error.status === 404) {
+        alert('No image for NWU number, Ensure the number is correct');
+      }
+    });
+  }
+  getImageFromServiceProof(e) {
+    console.log(e.nwunumber1);
+    this.imgNumber = e.nwunumber1;
+    this.imgUrl = 'http://192.168.1.8:3000/image/getReg/' + this.imgNumber;
+    this.submitService.getImg(this.imgUrl)
+      .subscribe(data => {
+        this.createImageFromBlob(data);
+        saveAs(data, this.imgNumber + ', ProofOfRegistration');
+    },
+      error => {
+      console.log(error.status);
+      if (error.status === 404) {
+        alert('No image for NWU number, Ensure the number is correct');
+      }
+    });
+  }
+  getImageFromServicePermit(t) {
+    console.log(t.nwunumber1);
+    this.imgNumber = t.nwunumber1;
+    this.imgUrl = 'http://192.168.1.8:3000/image/getPermit/' + this.imgNumber;
+    this.submitService.getImg(this.imgUrl)
+      .subscribe(data => {
+        this.createImageFromBlob(data);
+        saveAs(data, this.imgNumber + ', StudyPermit');
+    },
+      error => {
+      console.log(error.status);
+      if (error.status === 404) {
+        alert('No image for NWU number, Ensure the number is correct');
+      }
+    });
+  }
+  getImageFromServiceConduct(y) {
+    console.log(y.nwunumber1);
+    this.imgNumber = y.nwunumber1;
+    this.imgUrl = 'http://192.168.1.8:3000/image/getCWork/' + this.imgNumber;
+    this.submitService.getImg(this.imgUrl)
+      .subscribe(data => {
+        this.createImageFromBlob(data);
+        saveAs(data, this.imgNumber + ', ConductWork');
+    },
+      error => {
+      console.log(error.status);
+      if (error.status === 404) {
+        alert('No image for NWU number, Ensure the number is correct');
+      }
+    });
+  }
 }
