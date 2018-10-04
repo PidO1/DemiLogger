@@ -23,7 +23,6 @@ export class ManageComponent implements OnInit {
   foto;
   imgUrl = 'https://picsum.photos/200/300/?random';
   imageToShow: any;
-  isImageLoading: boolean;
 
   constructor(private submitService: PgpdServiceService, private http: HttpClient) { }
 
@@ -117,14 +116,12 @@ export class ManageComponent implements OnInit {
     }
    }
    getImageFromService() {
-    this.isImageLoading = true;
     this.submitService.getImg(this.imgUrl)
       .subscribe(data => {
         this.createImageFromBlob(data);
-        this.isImageLoading = false;
+        saveAs(data);
     },
       error => {
-      this.isImageLoading = false;
       console.log(error);
     });
 }

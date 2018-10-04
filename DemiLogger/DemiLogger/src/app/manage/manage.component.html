@@ -329,8 +329,8 @@
           
           <button type="button" (click)="getImageFromService()">Get Image</button>
 
-          <img [src]="imageToShow" alt="Place image title" *ngIf="!isImageLoading; else noImageFound">
-          <ng-template #noImageFound>
+          <img [src]="imageToShow" alt="Place image title">
+          <ng-template>
             <img src="fallbackImage.png" alt="Fallbackimage">
           </ng-template>
         </ng-template>
