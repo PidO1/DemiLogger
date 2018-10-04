@@ -1,71 +1,59 @@
 <br><br><br><br><br><br>
+
 <body>
-<div id="main" class="container-fluid img-rounded">
-  <h2 class="text-center">Module Application</h2>
-  <ul>
-    <li>A student can only apply for 3 modules.</li>
-    <li>Please fill this form in for every module you want to apply for!</li>
-    <li>Please make sure that you filled in a student application form before you apply for a spesific module (Only one application per student!)</li>
-  </ul>
-  <hr>
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <div class="form-group">
-      <label for="nwunumber">NWU number:</label>
-      <input type="text" id="nwunumber"
-             class="form-control"
-             ngModel
-             name="nwunumber"
-             pattern="\d*"
-             maxlength="8"
-             minlength="8"
-             required
-             #nwunumber="ngModel">
-      <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)"
-           class="alert alert-danger"
-           style="width: 20vw">
-        <div *ngIf="nwunumber.errors.required">
-          NWU number is required.
-        </div>
-        <div *ngIf="nwunumber.errors.minlength">
-          NWU number must be 8 characters long.
-        </div>
-        <div *ngIf="nwunumber.errors.pattern">
-          Must only be numbers.
+  <div id="main" class="container-fluid img-rounded">
+    <h2 class="text-center">Module Application</h2>
+    <ul>
+      <li>A student can only apply for 3 modules.</li>
+      <li>Please fill this form in for every module you want to apply for!</li>
+      <li>Please make sure that you filled in a student application form before you apply for a spesific module (Only
+        one application per student!)</li>
+    </ul>
+    <hr>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="nwunumber">NWU number:</label>
+        <input type="text" id="nwunumber" class="form-control" ngModel name="nwunumber" pattern="\d*" maxlength="8"
+          minlength="8" required #nwunumber="ngModel">
+        <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)" class="alert alert-danger" style="width: 20vw">
+          <div *ngIf="nwunumber.errors.required">
+            NWU number is required.
+          </div>
+          <div *ngIf="nwunumber.errors.minlength">
+            NWU number must be 8 characters long.
+          </div>
+          <div *ngIf="nwunumber.errors.pattern">
+            Must only be numbers.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="module1">Module you want to assist in:</label>
-      <input type="text" class="form-control" id="module1" value placeholder="e.g ITRW324" ngModel name="module1"
-             required
-             #module1="ngModel">
-      <div *ngIf="module1.invalid && (module1.dirty || module1.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="module1">Module you want to assist in:</label>
+        <input type="text" class="form-control" id="module1" value placeholder="e.g ITRW324" ngModel name="module1"
+          required #module1="ngModel">
+        <div *ngIf="module1.invalid && (module1.dirty || module1.touched)" class="alert alert-danger" style="width: 35vw">
 
-        <div *ngIf="module1.errors.required">
-          A module code is required.
+          <div *ngIf="module1.errors.required">
+            A module code is required.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="moduleMark">Your mark of specific module:</label>
-      <input type="text" class="form-control" id="moduleMark" placeholder="e.g 95%" ngModel name="moduleMark" required
-             #moduleMark="ngModel">
-      <div *ngIf="moduleMark.invalid && (moduleMark.dirty || moduleMark.touched)"
-           class="alert alert-danger" style="width: 35vw">
+      <div class="form-group">
+        <label for="moduleMark">Your mark of specific module:</label>
+        <input type="text" class="form-control" id="moduleMark" placeholder="e.g 95%" ngModel name="moduleMark"
+          required #moduleMark="ngModel">
+        <div *ngIf="moduleMark.invalid && (moduleMark.dirty || moduleMark.touched)" class="alert alert-danger" style="width: 35vw">
 
-        <div *ngIf="moduleMark.errors.required">
-          A module mark is required.
+          <div *ngIf="moduleMark.errors.required">
+            A module mark is required.
+          </div>
         </div>
       </div>
-    </div>
 
-    <button id="btnSubmit" class="btn btn-primary"
-            type="submit"
-            [disabled]="!f.valid">Submit
-    </button>
-  </form>
-</div>
+      <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit
+      </button>
+    </form>
+  </div>
 </body>

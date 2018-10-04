@@ -1,10 +1,13 @@
-<body style="background-color: transparent; padding-top: 2.1cm">
-  <div class="container-fluid img-rounded" style="background-color: black; opacity: 0.7; width: 100vw; padding: 15px">
+<br><br><br><br><br><br>
+
+<body>
+  <div id="main" class="container">
     <ngb-tabset>
-      <ngb-tab title="Announcement">
+      <ngb-tab title="Announcements">
         <ng-template ngbTabContent>
           <form (ngSubmit)="onSubmitAnnouncement(f)" #f="ngForm" ngForm="disabled">
-            <label style="color: white">Send announcement to:</label>
+            <br>
+            <label>Send announcement to</label>
             <br>
             <select type="text" class="form-control" id="to" name="to" ngModel required>
               <option value="All">All</option>
@@ -12,28 +15,25 @@
               <option value="Lecturers">Lecturers</option>
             </select>
             <br>
-            <label for="anouncement" style="color: white">Announcement:</label>
+            <label for="anouncement">Announcement</label>
             <br>
-            <textarea type="text" id="anouncement" ngModel name="anouncement" placeholder="Write something.." style="height:200px; width: 97vw"
-              required></textarea>
+            <textarea type="text" id="anouncement" ngModel name="anouncement" placeholder="Write something.." required></textarea>
             <br>
-            <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+            <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
           </form>
         </ng-template>
       </ngb-tab>
 
-
       <ngb-tab title="Add Lecturers">
         <ng-template ngbTabContent>
           <form (ngSubmit)="onSubmitLecturer(d)" #d="ngForm">
-
+            <br>
             <div class="form-group">
-              <label for="preferredname" style="color: white">Preferred Name:</label>
+              <label for="preferredname">Preferred Name:</label>
               <input type="text" class="form-control" id="preferredname" ngModel name="preferredname" pattern="[a-zA-Z ]*"
                 required name="preferredname" maxlength="20" #preferredname="ngModel">
               <div *ngIf="preferredname.invalid && (preferredname.dirty || preferredname.touched)" class="alert alert-danger"
                 style="width: 35vw">
-
                 <div *ngIf="preferredname.errors.required">
                   A name is required.
                 </div>
@@ -47,11 +47,10 @@
             </div>
 
             <div class="form-group">
-              <label for="surname" style="color: white">Surname:</label>
+              <label for="surname">Surname:</label>
               <input type="text" class="form-control" id="surname" ngModel name="surname" pattern="[a-zA-Z ]*" required
                 #surname="ngModel" maxlength="20">
               <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="alert alert-danger" style="width: 35vw">
-
                 <div *ngIf="surname.errors.required">
                   Surname is required.
                 </div>
@@ -65,11 +64,10 @@
             </div>
 
             <div class="form-group">
-              <label for="title" style="color: white">Title:</label>
+              <label for="title">Title:</label>
               <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss" pattern="[a-zA-Z ]*"
                 maxlength="4" ngModel name="title" required #title="ngModel">
               <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger" style="width: 35vw">
-
                 <div *ngIf="title.errors.required">
                   Title is required.
                 </div>
@@ -83,11 +81,10 @@
             </div>
 
             <div class="form-group">
-              <label for="nwunumber" style="color: white">NWU number:</label>
+              <label for="nwunumber">NWU number:</label>
               <input type="text" id="nwunumber" class="form-control" ngModel name="nwunumber" pattern="\d*" maxlength="8"
                 minlength="8" required #nwunumber="ngModel">
               <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)" class="alert alert-danger" style="width: 35vw">
-
                 <div *ngIf="nwunumber.errors.required">
                   NWU number is required.
                 </div>
@@ -101,11 +98,10 @@
             </div>
 
             <div class="form-group">
-              <label for="role" style="color: white">Role:</label>
+              <label for="role">Role:</label>
               <input type="text" id="role" class="form-control" placeholder="Lecturer" pattern="[a-zA-Z ]*" maxlength="20"
                 ngModel name="role" required #role="ngModel">
               <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert alert-danger" style="width: 35vw">
-
                 <div *ngIf="role.errors.required">
                   Role is required.
                 </div>
@@ -119,12 +115,11 @@
             </div>
 
             <div class="form-group">
-              <label for="telephonenumber" style="color: white">Telephone number:</label>
+              <label for="telephonenumber">Telephone number:</label>
               <input type="text" id="telephonenumber" class="form-control" pattern="\d*" maxlength="10" ngModel name="telephonenumber"
                 required #telephonenumber="ngModel">
               <div *ngIf="telephonenumber.invalid && (telephonenumber.dirty || telephonenumber.touched)" class="alert alert-danger"
                 style="width: 35vw">
-
                 <div *ngIf="telephonenumber.errors.required">
                   Telephone number is required.
                 </div>
@@ -138,11 +133,10 @@
             </div>
 
             <div class="form-group">
-              <label for="email" style="color: white">E-mail address:</label>
+              <label for="email">E-mail address:</label>
               <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" ngModel name="email"
                 email #email="ngModel" required maxlength="50">
               <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger" style="width: 35vw">
-
                 <div *ngIf="email.errors.required">
                   E-mail address is required.
                 </div>
@@ -156,27 +150,27 @@
             </div>
 
             <div class="form-group">
-              <label for="password" style="color: white">Password:</label>
+              <label for="password">Password:</label>
               <input type="password" id="password" class="form-control" ngModel name="password" required #password="ngModel">
               <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger" style="width: 35vw">
-
                 <div *ngIf="password.errors.required">
                   Password address is required.
                 </div>
               </div>
             </div>
-            <button class="btn btn-primary" type="submit" required [disabled]="!d.valid">Submit</button>
+            <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!d.valid">Submit</button>
           </form>
         </ng-template>
       </ngb-tab>
 
-      <ngb-tab title="Add Students">
+      <ngb-tab title="Accept Demi's">
         <ng-template ngbTabContent>
           <br>
-          <button class="btn btn-primary" (click)="onGetStudentApplication()">Get student applications</button>
-          <form #f="ngForm">
-            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid img-rounded" style="padding: 25px; padding-top: 2.1cm">
-              <thead style="color: purple">
+          <button id="btnSubmit" class="btn btn-primary" (click)="onGetStudentApplication()">Get Applications</button>
+          <form #s="ngForm">
+            <br>
+            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid">
+              <thead>
                 <tr>
                   <th>Student Number</th>
                   <th>Student ID</th>
@@ -187,7 +181,7 @@
                   <th>Apply</th>
                 </tr>
               </thead>
-              <tbody style="background-color: black">
+              <tbody>
                 <tr>
                   <td>{{data[arr].NwuNumber | json}}</td>
                   <td>{{data[arr].DemiId | json}}</td>
@@ -195,28 +189,28 @@
                   <td>{{data[arr].modulename | json}}</td>
                   <td>{{data[arr].ModuleId | json}}</td>
                   <td>{{data[arr].moduleMark | json}}</td>
-                  <td style="align: left; width: 160px">
+                  <td style="align-content: left; width: 160px">
                     <div class="radio" *ngFor="let apply of apply">
                       <label><input type="radio" name="apply" ngModel id="{{apply}}" [value]="apply" (change)="onRadioSelected($event)"
-                          required style="width: 100%">{{
-                        apply }}</label>
+                          required style="width: 100%">{{ apply }}
+                      </label>
                     </div>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <button class="btn btn-primary" type="submit" (click)="nextStudent()" [disabled]="!f.valid">Submit</button>
+            <br>
+            <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="nextStudent()" [disabled]="!f.valid">Submit</button>
           </form>
         </ng-template>
       </ngb-tab>
 
-
       <ngb-tab title="Add module">
         <ng-template ngbTabContent>
           <br>
-          <form (ngSubmit)="onSubmitModule(d)" #d="ngForm">
+          <form (ngSubmit)="onSubmitModule(p)" #p="ngForm">
             <div class="form-group">
-              <label for="code" style="color: white">Module code:</label>
+              <label for="code">Module code</label>
               <input type="text" class="form-control" id="code" ngModel name="code" required name="code" maxlength="10"
                 #code="ngModel">
               <div *ngIf="code.invalid && (code.dirty || code.touched)" class="alert alert-danger" style="width: 35vw">
@@ -228,9 +222,8 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group">
-              <label for="name" style="color: white">Module name:</label>
+              <label for="name">Module name</label>
               <input type="text" class="form-control" id="name" ngModel name="name" required name="name" maxlength="50"
                 #name="ngModel">
               <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="width: 35vw">
@@ -241,31 +234,64 @@
                   Module name cannot be longer than 50 characters.
                 </div>
               </div>
-              <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!d.valid">Pull
-                Information</button>
-
-              <div class="form-group">
-                <label for="credits" style="color: white">Module Credit:</label>
-                <input type="text" class="form-control" id="credits" ngModel name="credits" required name="credits"
-                  maxlength="2" #credits="ngModel">
-                <div *ngIf="credits.invalid && (credits.dirty || credits.touched)" class="alert alert-danger" style="width: 35vw">
-
-                  <div *ngIf="credits.errors.required">
-                    Module credit is required.
-                  </div>
-                  <div *ngIf="credits.errors.maxlength">
-                    Title cannot be longer than 2 characters.
-                  </div>
+            </div>
+            <div class="form-group">
+              <label for="credits">Module Credit</label>
+              <input type="text" class="form-control" id="credits" ngModel name="credits" required name="credits"
+                maxlength="2" #credits="ngModel">
+              <div *ngIf="credits.invalid && (credits.dirty || credits.touched)" class="alert alert-danger" style="width: 35vw">
+                <div *ngIf="credits.errors.required">
+                  Module credit is required.
+                </div>
+                <div *ngIf="credits.errors.maxlength">
+                  Title cannot be longer than 2 characters.
                 </div>
               </div>
-              <br>
-              <button class="btn btn-primary" type="submit" required [disabled]="!d.valid">Submit</button>
-              </div>
-              </form>
+            </div>
+            <br>
+            <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!d.valid">Submit</button>
+          </form>
         </ng-template>
       </ngb-tab>
 
-
+      <ngb-tab title="PDF Form">
+        <ng-template ngbTabContent>
+          <form (ngSubmit)="getForm(g)" #g="ngForm" name="pdfForm">
+            <div class="form-group">
+              <br>
+              <label for="nwuNumber">NWU Number</label>
+              <input type="text" class="form-control" id="nwuNumber" ngModel name="nwuNumber" required name="nwuNumber"
+                maxlength="8" minlength="8" #code="ngModel">
+              <div *ngIf="nwuNumber.invalid && (nwuNumber.dirty || nwuNumber.touched)" class="alert alert-danger" style="width: 35vw">
+                <div *ngIf="nwuNumber.errors.required">
+                  NWU Number is required.
+                </div>
+                <div *ngIf="nwuNumber.errors.minlength">
+                  NWU Number must be 8 characters.
+                </div>
+              </div>
+            </div>
+            <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!d.valid">Pull
+              Information</button>
+          </form>
+          <form name="pdfForm">
+            <div class="form-group">
+              <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid">
+                <thead>
+                  <tr>
+                    <th>NWU Number</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{theForm.NwuNumber}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </ng-template>
+      </ngb-tab>
       <ngb-tab title="Student files">
         <ng-template ngbTabContent>
           <form #r="ngForm">
@@ -299,8 +325,17 @@
           <button class="btn btn-primary">Download</button><br>
           <label>Download Permission to Conduct Work Form:</label><br>
           <button class="btn btn-primary">Download</button><br>
+          <br><br>
+          
+          <button type="button" (click)="getImageFromService()">Get Image</button>
+
+          <img [src]="imageToShow" alt="Place image title" *ngIf="!isImageLoading; else noImageFound">
+          <ng-template #noImageFound>
+            <img src="fallbackImage.png" alt="Fallbackimage">
+          </ng-template>
         </ng-template>
       </ngb-tab>
-      </ngb-tabset>
+
+    </ngb-tabset>
   </div>
 </body>

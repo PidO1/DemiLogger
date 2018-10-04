@@ -24,18 +24,18 @@ h1, h2, h3, h4, label, p, li {
   opacity: 1;
 }
 #btnSubmit:active {
-  background-color: transparent;
-  border-color: transparent;
-  background: none;
-  border: none;
-  outline: none;
+  transition-duration: 0.2s;
+  background-color: black;
+  color: white;
+  border-color: white;
+  opacity: 1;
 }
 #btnSubmit:focus {
-  background-color: transparent;
-    border-color: transparent;
-    background: none;
-    border: none;
-    outline: none;
+  transition-duration: 0.2s;
+  background-color: black;
+  color: white;
+  border-color: white;
+  opacity: 1;
 }
 input {
   width: 20vw;

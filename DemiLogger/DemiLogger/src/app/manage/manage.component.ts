@@ -9,8 +9,7 @@ import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-manage',
   templateUrl: './manage.component.html',
-  styleUrls: ['./manage.component.css'],
-  providers:[PgpdServiceService]
+  styleUrls: ['./manage.component.css']
 })
 export class ManageComponent implements OnInit {
   data;
@@ -22,11 +21,14 @@ export class ManageComponent implements OnInit {
   nwuNumber = {};
   heading = 'test';
   foto;
+  imgUrl = 'https://picsum.photos/200/300/?random';
+  imageToShow: any;
+  isImageLoading: boolean;
+
   constructor(private submitService: PgpdServiceService, private http: HttpClient) { }
 
   ngOnInit() {
   }
-
   onSubmitAnnouncement(form: NgForm) {
     console.log(form.value);
     this.submitService.storeAnnouncementData(form.value)
@@ -35,7 +37,6 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-
   onSubmitLecturer(form: NgForm) {
     console.log(form.value);
     this.submitService.storeLecturerData(form.value)
@@ -44,7 +45,6 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-
   onSubmitModule(form: NgForm) {
     console.log(form.value);
     this.submitService.storeAddModule(form.value)
@@ -53,7 +53,6 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-
   onGetStudentApplication() {
     this.submitService.getStudentInfo()
       .subscribe(
@@ -65,12 +64,10 @@ export class ManageComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-
   onRadioSelected(event) {
     console.log(event);
     this.condition = event.target.id;
   }
-
   nextStudent() {
     if (this.condition === 'Yes') {
     this.http.post('http://192.168.1.8:3000/application/accept', this.data[this.arr])
@@ -81,32 +78,10 @@ export class ManageComponent implements OnInit {
       this.http.post('http://192.168.1.8:3000/application/delete', this.data[this.arr])
         .subscribe(res => {
           console.log(res);
-        })
+        });
     }
     this.arr++;
   }
-
-  // getID() {
-  //   this.submitService.getID()
-  //     .subscribe(
-  //       (response) => {
-  //         // @ts-ignore
-  //         this.foto = response;
-  //         console.log(this.foto);
-  //       },
-  //       (error) => console.log(error)
-  //     );
-  // }
-
-  download(index){
-    const filename = index;
-    this.submitService.getID(filename)
-      .subscribe(
-        data1 => saveAs(data1),
-        error => console.error(error)
-      );
-  }
-
   getForm(form: NgForm) {
     if (sessionStorage.length === 0) {
       alert('Please login.');
@@ -132,4 +107,45 @@ export class ManageComponent implements OnInit {
       }
     }
   }
+  createImageFromBlob(image: Blob) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+       this.imageToShow = reader.result;
+    }, false);
+    if (image) {
+       reader.readAsDataURL(image);
+    }
+   }
+   getImageFromService() {
+    this.isImageLoading = true;
+    this.submitService.getImg(this.imgUrl)
+      .subscribe(data => {
+        this.createImageFromBlob(data);
+        this.isImageLoading = false;
+    },
+      error => {
+      this.isImageLoading = false;
+      console.log(error);
+    });
+}
+  // getID() {
+  //   this.submitService.getID()
+  //     .subscribe(
+  //       (response) => {
+  //         // @ts-ignore
+  //         this.foto = response;
+  //         console.log(this.foto);
+  //       },
+  //       (error) => console.log(error)
+  //     );
+  // }
+  // download(index) {
+  //   const filename = index;
+  //   this.submitService.getID(filename)
+  //     .subscribe(
+  //       data1 => saveAs(data1, filename),
+  //       error => console.error(error)
+  //     );
+  // }
+
 }
