@@ -5,7 +5,10 @@ const mysql = require('promise-mysql');
 const fs = require("fs");
  const bcrypt = require('bcrypt');
  const saltRounds = 10;
+ const checkAuth = require('../Auth/checkAuth');
+ const checkAuthAdmin = require('../Auth/checkAuthAdmin');
  
+ const checkAuthDosent = require('../Auth/checkAuthDosent');
  var jwt = require('jsonwebtoken');
  var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
@@ -97,7 +100,7 @@ router.post('/make',jsonParser,(req,res,next)=>{
         }//end all
         if(req.body.to ==='Students')
         {
-            post = {message : req.body.anouncement,  demi:1  ,  dosent : 1}; 
+            post = {message : req.body.anouncement,  demi:1  ,  dosent : 0}; 
             connection.query(sql,post);
             connection.query(getS, function (err, result, fields) {
                 if (err) {console.log(err); throw err;}
@@ -128,12 +131,14 @@ router.post('/make',jsonParser,(req,res,next)=>{
         }//end Students
         if(req.body.to ==='Lecturers')
         {
-            post = {message : req.body.anouncement,  demi:1  ,  dosent : 1};
+            post = {message : req.body.anouncement,  demi:0  ,  dosent : 1};
             connection.query(sql,post);
              connection.query(getL, function (err, result, fields) {
                 if (err){console.log(err); throw err;}
                 if(result)
                 {
+                  for(var i = 0; i < result.length; i++)
+                  {
                   var mailOptions = {
                     from: 'demilogger@gmail.com',
                     to: result[i].Email,
@@ -151,6 +156,7 @@ router.post('/make',jsonParser,(req,res,next)=>{
                   console.log(result[i].NwuNumber +'dosente');
                     
                 }
+              }
               });
 
         }//end Lectureers
@@ -163,7 +169,31 @@ router.post('/make',jsonParser,(req,res,next)=>{
   });
    
 });
+router.get('/get',(req,res,next)=>{
+    var sql = 'SELECT * From anounce ';
+    
+    con.getConnection()
+      .then(function(connection){
+        connection.query(sql,function(err,result,field){
+            if(result){
+              console.log(result);
+              var announcements ={announce1:result[(result.length)-1], announce2: result[(result.length)-2], announce3: result[(result.length)-3]};
+                res.status(200).json(announcements);
+            }else{
+                res.status(400);
+            }
 
+        });
+
+
+      })
+      .catch(err=>{
+        if(err){res.status(400);}
+      });
+    
+    
+  
+});
 
 
 module.exports = router;

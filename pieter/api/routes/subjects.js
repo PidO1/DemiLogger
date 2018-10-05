@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('promise-mysql');
-
+const checkAuth = require('../Auth/checkAuth');
+ const checkAuthAdmin = require('../Auth/checkAuthAdmin');
+ const checkAuthDosent = require('../Auth/checkAuthDosent');
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 

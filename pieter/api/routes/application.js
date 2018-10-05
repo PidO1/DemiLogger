@@ -4,6 +4,9 @@ const nodemailer = require('nodemailer');
 const mysql = require('promise-mysql');
 const fs = require("fs");
  const bcrypt = require('bcrypt');
+ const checkAuth = require('../Auth/checkAuth');
+ const checkAuthAdmin = require('../Auth/checkAuthAdmin');
+ const checkAuthDosent = require('../Auth/checkAuthDosent');
  const saltRounds = 10;
  var connection;
  
@@ -89,13 +92,15 @@ var transporter = nodemailer.createTransport({
     
   });
   router.post('/delete',jsonParser,(req,res,next)=>{
-
-    sql = 'delete FROM application WHERE ModuleId = ?';
+    console.log(req.body);
+    var module1 = req.body.ModuleId;
+    var demi1 = req.body.DemiId;
+    sql = 'delete FROM application WHERE ModuleId = ? AND DemiId = ?';
     con.getConnection()
         .then(function(conn){
 
-            connection.query(sql,req.body.id,function (err, result, fields) {
-              
+            conn.query(sql ,[module1 , demi1 ] ,function (err, result, fields) {
+               
                 if(result)
                 {
                     res.status(200).json({message:'Delete Successfull'});
@@ -113,23 +118,23 @@ var transporter = nodemailer.createTransport({
   });
 
   router.post('/accept',jsonParser,(req,res,next)=>{
-
+    console.log(req.body.DemiId+'helllooooooooooooo');
     var sql = 'INSERT INTO demimodule set ?';
     var post = {
 
-        DemiId: req.body.demiId,
-        ModuleId : req.body.moduleId
+        DemiId: req.body.DemiId,
+        ModuleId : req.body.ModuleId
     };
     con.getConnection()
         .then(function(conn){
 
             conn.query(sql,post,function (err, result, fields) {
               
-                // if(result)
-                // {
-                //     res.status(200).json({message:'acceptance Successfull'});
-                // }
-                console.log(result);
+                if(result)
+                {
+                    res.status(200).json({message:'acceptance Successfull'});
+                }
+              
                  
             
          });

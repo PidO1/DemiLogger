@@ -6,7 +6,9 @@ const mysql = require('promise-mysql');
 const fs = require("fs");
  const bcrypt = require('bcrypt');
  const saltRounds = 10;
-const auth = require('../Auth/checkAuth');
+ const checkAuth = require('../Auth/checkAuth');
+ const checkAuthAdmin = require('../Auth/checkAuthAdmin');
+ const checkAuthDosent = require('../Auth/checkAuthDosent');
 
 
 var con = mysql.createPool({
@@ -28,6 +30,7 @@ router.get('/',(req,res,next)=>{
 
 
 router.post('/register',jsonParser,(req,res,next)=>{ console.log('yebo');//REGISTER
+console.log(req.headers);
 var post;
 var hashing = bcrypt.hash(req.body.password,saltRounds,(err,hash)=>{
   if(err)

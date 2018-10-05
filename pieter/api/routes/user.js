@@ -10,6 +10,10 @@ const fs = require("fs");
  var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var JWT_private = 'secret';
+const checkAuth = require('../Auth/checkAuth');
+ const checkAuthAdmin = require('../Auth/checkAuthAdmin');
+ 
+ const checkAuthDosent = require('../Auth/checkAuthDosent');
  const storage = multer.diskStorage({
   destination: function(req,file,cb){cb(null,'./uploads');} , 
   filename : function(req,file,cb){ cb(null, file.originalname);}});
@@ -81,7 +85,7 @@ var hashing = bcrypt.hash(req.body.password,saltRounds,(err,hash)=>{
 });
 
 router.post('/login',jsonParser,(req,res,next)=>{
- 
+
     var sql = 'SELECT * FROM users WHERE NwuNumber = ?';
     var Snr = req.body.nwunumber;
     var pasword = req.body.password;
