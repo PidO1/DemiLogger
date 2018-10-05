@@ -45,7 +45,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group">
               <label for="surname">Surname:</label>
               <input type="text" class="form-control" id="surname" ngModel name="surname" pattern="[a-zA-Z ]*" required
@@ -62,7 +61,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group">
               <label for="title">Title:</label>
               <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss" pattern="[a-zA-Z ]*"
@@ -79,7 +77,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group">
               <label for="nwunumber">NWU number:</label>
               <input type="text" id="nwunumber" class="form-control" ngModel name="nwunumber" pattern="\d*" maxlength="8"
@@ -96,7 +93,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group">
               <label for="role">Role:</label>
               <input type="text" id="role" class="form-control" placeholder="Lecturer" pattern="[a-zA-Z ]*" maxlength="20"
@@ -113,7 +109,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group">
               <label for="telephonenumber">Telephone number:</label>
               <input type="text" id="telephonenumber" class="form-control" pattern="\d*" maxlength="10" ngModel name="telephonenumber"
@@ -131,7 +126,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group">
               <label for="email">E-mail address:</label>
               <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" ngModel name="email"
@@ -148,7 +142,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group">
               <label for="password">Password:</label>
               <input type="password" id="password" class="form-control" ngModel name="password" required #password="ngModel">
@@ -205,7 +198,7 @@
         </ng-template>
       </ngb-tab>
 
-      <ngb-tab title="Add module">
+      <ngb-tab title="Add Module">
         <ng-template ngbTabContent>
           <br>
           <form (ngSubmit)="onSubmitModule(p)" #p="ngForm">
@@ -293,7 +286,7 @@
         </ng-template>
       </ngb-tab>
 
-      <ngb-tab title="Student files">
+      <ngb-tab title="Student Files">
         <ng-template ngbTabContent>
           <!-- **************************************************************************************************************************************** -->
           <form (ngSubmit)="getImageFromServiceID(r.value)" #r="ngForm">
@@ -394,29 +387,30 @@
           <hr>
           <!-- ********************************************************************************************************************************************* -->
           <form (ngSubmit)="getImageFromServiceConduct(y.value)" #y="ngForm">
-              <div class="form-group">
-                <br>
-                <label for="nwunumber1" style="color: white">NWU number:</label>
-                <input type="text" id="nwunumber1" class="form-control" ngModel name="nwunumber1" pattern="\d*" maxlength="8"
-                  minlength="8" required #nwunumber1="ngModel">
-                <div *ngIf="nwunumber1.invalid && (nwunumber1.dirty || nwunumber1.touched)" class="alert alert-danger">
-                  <div *ngIf="nwunumber1.errors.required">
-                    NWU number is required.
-                  </div>
-                  <div *ngIf="nwunumber1.errors.minlength">
-                    NWU number must be 8 characters long.
-                  </div>
-                  <div *ngIf="nwunumber1.errors.pattern">
-                    Must only be numbers.
-                  </div>
+            <div class="form-group">
+              <br>
+              <label for="nwunumber1" style="color: white">NWU number:</label>
+              <input type="text" id="nwunumber1" class="form-control" ngModel name="nwunumber1" pattern="\d*" maxlength="8"
+                minlength="8" required #nwunumber1="ngModel">
+              <div *ngIf="nwunumber1.invalid && (nwunumber1.dirty || nwunumber1.touched)" class="alert alert-danger">
+                <div *ngIf="nwunumber1.errors.required">
+                  NWU number is required.
+                </div>
+                <div *ngIf="nwunumber1.errors.minlength">
+                  NWU number must be 8 characters long.
+                </div>
+                <div *ngIf="nwunumber1.errors.pattern">
+                  Must only be numbers.
                 </div>
               </div>
-              <div>
-                <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!r.valid">Get permission to conduct work</button>
-              </div>
-            </form>
-            <hr>
-            <!-- ******************************************************************************************************************************************* -->
+            </div>
+            <div>
+              <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!r.valid">Get permission to
+                conduct work</button>
+            </div>
+          </form>
+          <hr>
+          <!-- ******************************************************************************************************************************************* -->
         </ng-template>
       </ngb-tab>
     </ngb-tabset>
