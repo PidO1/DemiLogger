@@ -30,7 +30,7 @@ export class ManageComponent implements OnInit {
   imageToShow: any;
 
 
-  //AccountDate = ;
+  AccountDate;
   AccountHolderSurname;
   AccountNR;
   AccountTypeInfo;
@@ -66,17 +66,10 @@ export class ManageComponent implements OnInit {
   accountType;
   branchCode;
   highestQualification;
-// passport: "N/A"
   passportExpiryDate;
-// passportName: null
-// pasword: null
-// permissionToConductWork: "N/A"
-// permissionToConductWorkName: null
-// permitExpiryDate: "N/A"
+  permitExpiryDate;
   selfEmploy;
-// studyPermit: "N/A"
-// studyPermitName: null
-// workPe
+
 
 
 
@@ -183,6 +176,8 @@ export class ManageComponent implements OnInit {
           this.BankNAme = this.studentPDFData.BankNAme;
           this.AccountHolderSurname = this.studentPDFData.AccountHolderSurname;
           this.AccountholderInitials = this.studentPDFData.AccountholderInitials;
+          this.AccountDate = this.studentPDFData.AccountDate;
+          this.permitExpiryDate = this.studentPDFData.permitExpiryDate;
           console.log(this.Title)
         },
         (error) => console.log(error)
