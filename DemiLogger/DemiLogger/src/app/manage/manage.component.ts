@@ -37,7 +37,6 @@ export class ManageComponent implements OnInit {
   AccountholderInitials;
   BankNAme;
   CorrespondencePref;
-// DemiId: 10
   DoB;
   Email;
   EmployPrevious;
@@ -46,8 +45,6 @@ export class ManageComponent implements OnInit {
   Gender;
   HOmeLanguage;
   IDNumber;
-// IDdoc: "uploads\ID.png"
-// IDdocName: null
   Initials;
   InternalBox;
   MaidenName;
@@ -60,8 +57,6 @@ export class ManageComponent implements OnInit {
   PostAddress;
   PrefferedName;
   Race;
-// RegistrationForm: "uploads\RegistrationForm.png"
-// RegistrationFormName: null
   ResidentialAddress;
   Surname;
   TaxNumber;
@@ -70,14 +65,7 @@ export class ManageComponent implements OnInit {
   ZipCode;
   accountType;
   branchCode;
-// demi: 0
   highestQualification;
-// module1: null
-// module2: null
-// module3: null
-// modulemark1: null
-// modulemark2: null
-// modulemark3: null
 // passport: "N/A"
   passportExpiryDate;
 // passportName: null
@@ -309,22 +297,3 @@ export class ManageComponent implements OnInit {
     });
   }
 }
-  // getID() {
-  //   this.submitService.getID()
-  //     .subscribe(
-  //       (response) => {
-  //         // @ts-ignore
-  //         this.foto = response;
-  //         console.log(this.foto);
-  //       },
-  //       (error) => console.log(error)
-  //     );
-  // }
-  // download(index) {
-  //   const filename = index;
-  //   this.submitService.getID(filename)
-  //     .subscribe(
-  //       data1 => saveAs(data1, filename),
-  //       error => console.error(error)
-  //     );
-  // }
