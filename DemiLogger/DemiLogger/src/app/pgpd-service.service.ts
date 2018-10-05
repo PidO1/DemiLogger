@@ -19,7 +19,7 @@ export class PgpdServiceService {
   }
   storeAnnouncementData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post('http://192.168.1.8:3000/demi/announcment', formData, {headers: header});
+    return this.http.post('http://192.168.1.8:3000/anounce/make', formData, {headers: header});
   }
   storeLecturerData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
@@ -43,8 +43,6 @@ export class PgpdServiceService {
     return this.http.get('http://192.168.1.8:3000/anounce/get');
   }
   getImg(imgUrl: string): Observable<Blob> {
-    // const body = {filename: file};
-    // const header = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.get(imgUrl, {responseType: 'blob'});
   }
 }
