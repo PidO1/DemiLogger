@@ -26,6 +26,7 @@
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.4",
     "file-saver": "^2.0.0-rc.3",
+    "html2canvas": "^1.0.0-alpha.12",
     "jspdf": "^1.4.1",
     "jwt-decode": "^2.2.0",
     "multer": "^1.4.0",
