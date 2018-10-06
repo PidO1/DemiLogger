@@ -181,22 +181,18 @@
             <thead>
             <tr>
               <th>Student Number</th>
-              <th>Student ID</th>
               <th>Student Name</th>
               <th>Module Name</th>
-              <th>Module ID</th>
               <th>Module Mark</th>
               <th>Apply</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td>{{data[arr].NwuNumber | json}}</td>
-              <td>{{data[arr].DemiId | json}}</td>
-              <td>{{data[arr].demiName | json}}</td>
-              <td>{{data[arr].modulename | json}}</td>
-              <td>{{data[arr].ModuleId | json}}</td>
-              <td>{{data[arr].moduleMark | json}}</td>
+              <td>{{studentnumber}}</td>
+              <td>{{demiName}}</td>
+              <td>{{modulename}}</td>
+              <td>{{modulemark}}</td>
               <td style="align-content: left; width: 160px">
                 <div class="radio" *ngFor="let apply of apply">
                   <label><input type="radio" name="apply" ngModel id="{{apply}}" [value]="apply"
@@ -292,10 +288,444 @@
           <button class="btn btn-primary" type="submit" [disabled]="!j.valid">Get Info
           </button>
         </form>
-
+        <br>
         <form name="pdfForm">
-          <div class="form-group" id="contentToConvert">
-            <label style="color: black">SECTION C:  PERSONAL PARTICULARS OF TEMPORARY EMPLOYEES </label>
+          <div class="form-group" id="contentToConvert" style="background-color: white; padding: 5%">
+            <img src="\src\app\fotos\NWUlogo.PNG" alt="">
+            <br>
+
+            <table style="width: 100%; height: 2cm; border-color: black">
+              <tbody>
+              <tr>
+                <td style="width: 10%; color: black; background-color: white"><b>HC131F</b></td>
+                <td style="width: 90%; color: black; background-color: white; align-content: center"><b>Appointment Form for Temporary Employees</b></td>
+              </tr>
+              </tbody>
+            </table>
+            <br>
+
+            <ul>
+              <li style="color: black">Please complete all information in full or the appointment cannot be finalised. INCOMPLETE FORMS MAY DELAY PAYMENT.</li>
+              <li style="color: black">This appointment is valid only for the period applied for and must be signed by all responsible signatories.</li>
+              <li style="color: black">All pages need to be initialled. If corrections are made, no Tipex is permissible. The error must be struck out and be signed at.</li>
+              <li style="color: black">Reasons for temporary appointment (indicate with an x below and attach a motivation).</li>
+            </ul>
+            <br>
+
+            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%; border-color: black">
+              <tbody>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black"><b>Appointment Type</b></td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black"><b>Following documentation needs to accompany this form:</b></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Intern (Supervised – non-SETA)</td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Facilitator</td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID, Qualification</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Temporary Appointment less than 3 months</td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID, Qualification</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Academic Appointment less than 5 hours per day and longer than 3 months</td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID, Qualification</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Temporary Appointments paid by Claim up to 12 months</td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID, Qualification</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Retiree</td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID, Qualification in case it is an academic appointment</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">X</td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Student Assistant, Supplementary Instruction (SI) Leader</td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID, Proof of Student Registration & Time Sheet</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">*Foreign Student Assistant</td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">*Copy of Passport, Study Permit, Permission to Conduct Work Form , Proof of Student Registration & Time Sheet</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Foreigner</td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of Passport, Work Permit, Qualification</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              </tbody>
+            </table>
+            <br>
+
+            <label style="color: black">SECTION A:  TEMPORARY APPOINTMENT: (To be completed by the Line Manager)</label>
+
+            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%; border-color: black">
+              <tbody>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Position Name</td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black">Student Assistant</td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Position Nr. (existing position)</td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black">1201</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 17.7%; border-color: black; color: black">Campus (tick)</td>
+                    <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">Institutional</td>
+                    <td style="background-color: white; width: 6.25%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">Mafikeng</td>
+                    <td style="background-color: white; width: 6.25%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">Potchefstroom</td>
+                    <td style="background-color: white; width: 6.25%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">Vaal Triangle</td>
+                    <td style="background-color: white; width: 6.25%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Faculty/Division</td>
+                    <td style="background-color: white; width: 40%; border-color: black; color: black">Natural and Agricultural Sciences</td>
+                    <td style="background-color: white; width: 35%; border-color: black; color: black; border-bottom: white">OE Code where appointment is</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">School/Department</td>
+                    <td style="background-color: white; width: 40%; border-color: black; color: black">Computer Science and Information Systems</td>
+                    <td style="background-color: white; width: 35%; border-color: black; color: black; border-bottom: white; border-top: white">made:</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Subject Group</td>
+                    <td style="background-color: white; width: 40%; border-color: black; color: black">SCSIS</td>
+                    <td style="background-color: white; width: 35%; border-color: black; color: black; border-top: white; border-top: lightgray">8885</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Employment Group</td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Academic</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Support</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">X</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Duration of Appointment</td>
+                    <td style="background-color: lightgray; width: 10%; border-color: black; color: black">Start Date</td>
+                    <td style="background-color: white; width: 20%; border-color: black; color: black">01/07/2018</td>
+                    <td style="background-color: lightgray; width: 10%; border-color: black; color: black">End Date</td>
+                    <td style="background-color: white; width: 20%; border-color: black; color: black">30/11/2018</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Remuneration shall be paid as follows (please tick)</td>
+                    <td style="padding: 0%">
+                      <table style="width: 100%">
+                        <tbody>
+                        <tr>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Per Month</td>
+                          <td style="background-color: white; width: 10%; border-color: black; color: black"></td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Amount</td>
+                          <td style="background-color: lightgray; width: 5%; border-color: black; color: black">R</td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: lightgray; width: 5%; border-color: black; color: black">-</td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                        </tr>
+                        <tr>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">End of Term</td>
+                          <td style="background-color: white; width: 10%; border-color: black; color: black"></td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Amount</td>
+                          <td style="background-color: lightgray; width: 5%; border-color: black; color: black">R</td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: lightgray; width: 5%; border-color: black; color: black">-</td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                        </tr>
+                        <tr style="width: 100%">
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Per Session</td>
+                          <td style="background-color: white; width: 10%; border-color: black; color: black"></td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Amount</td>
+                          <td style="background-color: lightgray; width: 5%; border-color: black; color: black">R</td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: lightgray; width: 5%; border-color: black; color: black">-</td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                        </tr>
+                        <tr style="width: 100%">
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Per Hour</td>
+                          <td style="background-color: white; width: 10%; border-color: black; color: black">X</td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Amount</td>
+                          <td style="background-color: lightgray; width: 5%; border-color: black; color: black">R</td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black">-</td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black">-</td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black">-</td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: lightgray; width: 5%; border-color: black; color: black">-</td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                        </tr>
+                        <tr style="width: 100%">
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Per Module</td>
+                          <td style="background-color: white; width: 10%; border-color: black; color: black"></td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Amount</td>
+                          <td style="background-color: lightgray; width: 5%; border-color: black; color: black">R</td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: lightgray; width: 5%; border-color: black; color: black">-</td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                          <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Please specify if remuneration is made using any other unit (e.g. per page/word etc.)</td>
+                    <td style="background-color: white; width: 50%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Total Hours work per week</td>
+                    <td style="background-color: white; width: 50%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+
+            <label style="color: black">SECTION B:  BUDGET</label>
+
+            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%; border-color: black">
+              <tbody>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 10%; border-color: black; color: black">Costing</td>
+                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Temp Budget</td>
+                    <td style="background-color: white; width: 15%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Vacant Position</td>
+                    <td style="background-color: white; width: 15%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Vacant Position Nr.</td>
+                    <td style="background-color: white; width: 15%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Accounting Combination</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">%</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">P</td>
+                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black"><ul><li style="color: black"></li></ul></td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">1</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">A</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">0</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">0</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">8</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">3</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">5</td>
+                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black"><ul><li style="color: black"></li></ul></td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">1</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">2</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">0</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">1</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Accounting Combination</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black">%</td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black"><ul><li style="color: black"></li></ul></td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black"><ul><li style="color: black"></li></ul></td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Initials & Surname</td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Signature</td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Date</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Financially accountable Manager’s signature (Director’s level P5 or higher)</td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+
+            <label style="color: black">SECTION C:  PERSONAL PARTICULARS OF TEMPORARY EMPLOYEES</label>
             <table style="width: 100%">
               <tbody>
               <tr>
@@ -352,7 +782,7 @@
                   <tr>
                     <td style="background-color: lightgray; width: 10.5%; color: black">Gender (for statistical use)</td>
                     <td style="width: 33%; background-color: white; color: black">{{Gender}}</td>
-                    <td style="background-color: lightgray; width: 8%; color: black"><b>Marital Status</b></td>
+                    <td style="background-color: lightgray; width: 8%; color: black">Marital Status</td>
                     <td style="width: 10%; background-color: white; color: black">{{MaritalStatus}}</td>
                   </tr>
                   </tbody>
@@ -429,7 +859,7 @@
                   <tbody>
                   <tr>
                     <td style="background-color: lightgray; width: 11.5%; color: black">Work Permit Nr. </td>
-                    <td style="width: 30%; background-color: white; color: black"></td>
+                    <td style="width: 30%; background-color: white; color: black">{{workPermitNR}}</td>
                     <td style="background-color: lightgray; width: 13%; color: black">Expiry Date</td>
                     <td style="width: 13%; background-color: white; color: black">{{permitExpiryDate}}</td>
                   </tr>
@@ -536,6 +966,8 @@
               </tr>
               </tbody>
             </table>
+            <br>
+            <br>
 
             <label style="color: black">SECTION D:  BANK DETAILS: (No payment will be made if these details are not provided.)</label>
             <table style="width: 100%">
@@ -617,6 +1049,8 @@
               </tr>
               </tbody>
             </table>
+            <hr>
+            <p style="color: black">Document Number:  HC131F_4 27.8.2015 (3.8.3.1.1)</p>
           </div>
 
           <button (click)="generatePDF()">Download PDF</button>

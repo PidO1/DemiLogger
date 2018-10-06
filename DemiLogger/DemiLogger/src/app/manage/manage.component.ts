@@ -69,11 +69,12 @@ export class ManageComponent implements OnInit {
   passportExpiryDate;
   permitExpiryDate;
   selfEmploy;
+  workPermitNR;
 
-
-
-
-
+  studentnumber;
+  demiName;
+  modulename;
+  modulemark;
 
   constructor(private submitService: PgpdServiceService, private http: HttpClient) { }
 
@@ -109,6 +110,10 @@ export class ManageComponent implements OnInit {
         (response) => {
           // @ts-ignore
           this.data = response;
+          this.studentnumber = this.data[this.arr].NwuNumber;
+          this.demiName = this.data[this.arr].demiName;
+          this.modulename = this.data[this.arr].modulename;
+          this.modulemark = this.data[this.arr].moduleMark;
           console.log(this.data);
         },
         (error) => console.log(error)
@@ -131,6 +136,17 @@ export class ManageComponent implements OnInit {
         });
     }
     this.arr++;
+    if(this.arr > this.data.length)
+    {
+      this.studentnumber = 'done';
+      this.demiName = '';
+      this.modulename = '';
+      this.modulemark = '';
+    }
+    this.studentnumber = this.data[this.arr].NwuNumber;
+    this.demiName = this.data[this.arr].demiName;
+    this.modulename = this.data[this.arr].modulename;
+    this.modulemark = this.data[this.arr].moduleMark;
   }
 
   getStudentPDFInfo(form: NgForm){
@@ -178,6 +194,9 @@ export class ManageComponent implements OnInit {
           this.AccountholderInitials = this.studentPDFData.AccountholderInitials;
           this.AccountDate = this.studentPDFData.AccountDate;
           this.permitExpiryDate = this.studentPDFData.permitExpiryDate;
+          this.workPermitNR = this.studentPDFData.workPermitNR;
+          this.Email = this.studentPDFData.Email;
+          this.AccountTypeInfo = this.studentPDFData.AccountTypeInfo;
           console.log(this.Title)
         },
         (error) => console.log(error)
@@ -189,7 +208,7 @@ export class ManageComponent implements OnInit {
     var data = document.getElementById('contentToConvert');
     html2canvas(data).then(canvas => {
       // Few necessary setting options
-      var imgWidth = 208;
+      var imgWidth = 210;
       var pageHeight = 295;
       var imgHeight = canvas.height * imgWidth / canvas.width;
       var heightLeft = imgHeight;
@@ -198,6 +217,14 @@ export class ManageComponent implements OnInit {
       let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
       var position = 0;
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
       pdf.save('MYPdf.pdf'); // Generated PDF
     });
   }
