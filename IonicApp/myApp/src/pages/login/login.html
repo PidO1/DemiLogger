@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu" id="icon-menu"></ion-icon>
+    </button>
+    <ion-title id="title">
+      <ion-icon name="log-in"></ion-icon> Login
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content id="home">
+    <form (ngSubmit)="logForm()">
+        <ion-item id="form">
+          <ion-label stacked>NWU Number</ion-label>
+          <ion-input type="text" [(ngModel)]="userData.nwunumber" name="nwunumber"></ion-input>
+        </ion-item>
+        <ion-item id="form">
+          <ion-label stacked>Password</ion-label>
+          <ion-input type="password" [(ngModel)]="userData.password" name="password"></ion-input>
+        </ion-item>
+        <button ion-button type="submit" block>Login</button>
+      </form>
+</ion-content>
