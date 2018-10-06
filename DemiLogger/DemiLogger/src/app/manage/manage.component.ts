@@ -1,14 +1,11 @@
+import { saveAs } from 'file-saver';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PgpdServiceService } from '../pgpd-service.service';
-import {HttpClient, HttpHeaders} from '../../../node_modules/@angular/common/http';
+import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/http';
 import * as jwt_decode from 'jwt-decode';
-import * as jsPDF from 'jspdf';
 import * as jspdf from 'jspdf';
-
 import html2canvas from 'html2canvas';
-import { saveAs } from 'file-saver';
-
 @Component({
   selector: 'app-manage',
   templateUrl: './manage.component.html',
@@ -28,7 +25,7 @@ export class ManageComponent implements OnInit {
   imgUrl;
   imgNumber;
   imageToShow: any;
-
+  pulled = '';
 
   AccountDate;
   AccountHolderSurname;
@@ -125,10 +122,10 @@ export class ManageComponent implements OnInit {
   }
   nextStudent() {
     if (this.condition === 'Yes') {
-    this.http.post('http://192.168.1.8:3000/application/accept', this.data[this.arr])
-          .subscribe(res => {
-            console.log(res);
-          });
+      this.http.post('http://192.168.1.8:3000/application/accept', this.data[this.arr])
+        .subscribe(res => {
+          console.log(res);
+        });
     } else if (this.condition === 'No') {
       this.http.post('http://192.168.1.8:3000/application/delete', this.data[this.arr])
         .subscribe(res => {
@@ -149,9 +146,9 @@ export class ManageComponent implements OnInit {
     this.modulemark = this.data[this.arr].moduleMark;
   }
 
-  getStudentPDFInfo(form: NgForm){
-    const header = new HttpHeaders().set('Content-Type','application-json');
-    console.log(form.value)
+  getStudentPDFInfo(form: NgForm) {
+    const header = new HttpHeaders().set('Content-Type', 'application-json');
+    console.log(form.value);
     this.http.post('http://192.168.1.8:3000/demi/demiGet', form.value)
       .subscribe(
         (response) => {
@@ -203,9 +200,8 @@ export class ManageComponent implements OnInit {
       );
   }
 
-  public generatePDF()
-  {
-    var data = document.getElementById('contentToConvert');
+  public generatePDF() {
+    const data = document.getElementById('contentToConvert');
     html2canvas(data).then(canvas => {
       // Few necessary setting options
       var imgWidth = 210;
@@ -228,35 +224,47 @@ export class ManageComponent implements OnInit {
       pdf.save('MYPdf.pdf'); // Generated PDF
     });
   }
-
+  activateButtons(event) {
+    const el1 = <HTMLInputElement>document.getElementById('getImg1');
+    el1.disabled = false;
+    const el2 = <HTMLInputElement>document.getElementById('getImg2');
+    el2.disabled = false;
+    const el3 = <HTMLInputElement>document.getElementById('getImg3');
+    el3.disabled = false;
+    const el4 = <HTMLInputElement>document.getElementById('getImg4');
+    el4.disabled = false;
+    const el5 = <HTMLInputElement>document.getElementById('getImg5');
+    el5.disabled = false;
+    this.pulled = 'Images pulled, they may now be downlaoded.';
+  }
+  setNwuNumber(form: NgForm) {
+    this.imgNumber = form.value.nwunumber4;
+    console.log(this.imgNumber);
+  }
   createImageFromBlob(image: Blob) {
     const reader = new FileReader();
     reader.addEventListener('load', () => {
-       this.imageToShow = reader.result;
+      this.imageToShow = reader.result;
     }, false);
     if (image) {
-       reader.readAsDataURL(image);
+      reader.readAsDataURL(image);
     }
-   }
-   getImageFromServiceID(r) {
-    console.log(r.nwunumber1);
-    this.imgNumber = r.nwunumber1;
+  }
+  getImageFromServiceID(event) {
     this.imgUrl = 'http://192.168.1.8:3000/image/getID/' + this.imgNumber;
     this.submitService.getImg(this.imgUrl)
       .subscribe(data => {
         this.createImageFromBlob(data);
         saveAs(data, this.imgNumber + ', ID');
-    },
-      error => {
-      console.log(error.status);
-      if (error.status === 404) {
-        alert('No image for NWU number, Ensure the number is correct');
-      }
-    });
+      },
+        error => {
+          console.log(error.status);
+          if (error.status === 404) {
+            alert('No image for NWU number, Ensure the number is correct');
+          }
+        });
   }
-  getImageFromServicePassPort(w) {
-    console.log(w.nwunumber1);
-    this.imgNumber = w.nwunumber1;
+  getImageFromServicePassPort(event) {
     this.imgUrl = 'http://192.168.1.8:3000/image/getPassport/' + this.imgNumber;
     this.submitService.getImg(this.imgUrl)
       .subscribe(data => {
@@ -270,9 +278,7 @@ export class ManageComponent implements OnInit {
       }
     });
   }
-  getImageFromServiceProof(e) {
-    console.log(e.nwunumber1);
-    this.imgNumber = e.nwunumber1;
+  getImageFromServiceProof(event) {
     this.imgUrl = 'http://192.168.1.8:3000/image/getReg/' + this.imgNumber;
     this.submitService.getImg(this.imgUrl)
       .subscribe(data => {
@@ -286,9 +292,7 @@ export class ManageComponent implements OnInit {
       }
     });
   }
-  getImageFromServicePermit(t) {
-    console.log(t.nwunumber1);
-    this.imgNumber = t.nwunumber1;
+  getImageFromServicePermit(event) {
     this.imgUrl = 'http://192.168.1.8:3000/image/getPermit/' + this.imgNumber;
     this.submitService.getImg(this.imgUrl)
       .subscribe(data => {
@@ -302,9 +306,7 @@ export class ManageComponent implements OnInit {
       }
     });
   }
-  getImageFromServiceConduct(y) {
-    console.log(y.nwunumber1);
-    this.imgNumber = y.nwunumber1;
+  getImageFromServiceConduct(event) {
     this.imgUrl = 'http://192.168.1.8:3000/image/getCWork/' + this.imgNumber;
     this.submitService.getImg(this.imgUrl)
       .subscribe(data => {

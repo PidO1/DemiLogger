@@ -47,7 +47,7 @@ textarea {
   width: 85%;
   border-radius: 15px;
 }
-#btnSubmit {
+#btnSubmit, #btnGet, #getImg1, #getImg2, #getImg3, #getImg4, #getImg5 {
   padding-left: 20px;
   padding-right: 20px;
   background-color: white;
@@ -55,24 +55,36 @@ textarea {
   font-size: 15px;
   font-weight: bold;
 }
-#btnSubmit:hover {
+#btnSubmit:hover, #getImg1:hover, #getImg2:hover, #getImg3:hover, #getImg4:hover, #getImg5:hover, #btnGet:hover {
   transition-duration: 0.2s;
   background-color: black;
   color: white;
   border-color: white;
   opacity: 1;
 }
-#btnSubmit:active {
+#btnSubmit:active, #getImg1:active, #getImg2:active, #getImg3:active, #getImg4:active, #getImg5:active, #btnGet:active {
   transition-duration: 0.2s;
   background-color: black;
   color: white;
   border-color: white;
   opacity: 1;
 }
-#btnSubmit:focus {
+#btnSubmit:focus, #getImg1:focus, #getImg2:focus, #getImg3:focus, #getImg4:focus, #getImg5:focus, #btnGet:focus {
   transition-duration: 0.2s;
   background-color: black;
   color: white;
   border-color: white;
   opacity: 1;
+}
+#getImg1, #getImg2, #getImg3, #getImg4, #getImg5, #btnGet {
+  width: 270px;
+}
+#tableLabel {
+  margin-left: 5px;
+  padding-top: 5px;
+  color: black;
+}
+#contentToConvert {
+  padding: 5px;
+  background-color: white;
 }
