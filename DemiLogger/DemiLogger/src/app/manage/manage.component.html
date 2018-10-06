@@ -165,6 +165,7 @@
 
       <ngb-tab title="Accept Demi's">
         <ng-template ngbTabContent>
+            <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="onGetStudentApplication()">Get Info</button>
           <br>
           <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid">
             <thead>
@@ -194,10 +195,9 @@
             </tbody>
           </table>
           <br>
-          <button id="btnSubmit2" class="btn btn-primary" type="submit" (click)="nextStudent()" [disabled]="!f.valid">
+          <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="nextStudent()" [disabled]="!f.valid">
             Submit
           </button>
-        </form>
       </ng-template>
     </ngb-tab>
 
@@ -257,7 +257,7 @@
             <div class="form-group">
               <label for="nwunumber3" style="color: white">NWU number:</label>
               <input type="text" id="nwunumber3" class="form-control" ngModel name="nwunumber3" pattern="\d*" maxlength="8"
-                minlength="8" required #nwunumber3="ngModel">
+                minlength="8" required #nwunumber3="ngModel" style="width: 20%">
               <div *ngIf="nwunumber3.invalid && (nwunumber3.dirty || nwunumber3.touched)" class="alert alert-danger"
                 style="width: 35vw">
 
@@ -272,8 +272,7 @@
                 </div>
               </div>
             </div>
-          </div>
-          <button class="btn btn-primary" type="submit" [disabled]="!j.valid">Get Info
+          <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!j.valid">Get Info
           </button>
         </form>
         <br>
@@ -435,7 +434,7 @@
                 <table style="width: 100%; border-color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 17.7%; border-color: black; color: black">Campus (tick)</td>
+                    <td style="background-color: lightgray; width: 18.5%; border-color: black; color: black">Campus (tick)</td>
                     <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">Institutional</td>
                     <td style="background-color: white; width: 6.25%; border-color: black; color: black"></td>
                     <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">Mafikeng</td>
@@ -768,10 +767,16 @@
                     </table>
                   </tr>
                   <tr>
-                    <td style="background-color: lightgray; width: 10.5%; color: black">Gender (for statistical use)</td>
-                    <td style="width: 33%; background-color: white; color: black">{{Gender}}</td>
-                    <td style="background-color: lightgray; width: 8%; color: black">Marital Status</td>
-                    <td style="width: 10%; background-color: white; color: black">{{MaritalStatus}}</td>
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                      <tbody>
+                      <tr>
+                        <td style="background-color: lightgray; width: 10.5%; color: black">Gender (for statistical use)</td>
+                        <td style="width: 33%; background-color: white; color: black">{{Gender}}</td>
+                        <td style="background-color: lightgray; width: 8%; color: black">Marital Status</td>
+                        <td style="width: 10%; background-color: white; color: black">{{MaritalStatus}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
                   </tr>
                   <tr>
                     <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
@@ -841,10 +846,16 @@
                     </table>
                   </tr>
                   <tr>
-                    <td style="background-color: lightgray; width: 11.5%; color: black">Work Permit Nr. </td>
-                    <td style="width: 30%; background-color: white; color: black">{{workPermitNR}}</td>
-                    <td style="background-color: lightgray; width: 13%; color: black">Expiry Date</td>
-                    <td style="width: 13%; background-color: white; color: black">{{permitExpiryDate}}</td>
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                      <tbody>
+                      <tr>
+                        <td style="background-color: lightgray; width: 11.5%; color: black">Work Permit Nr. </td>
+                        <td style="width: 30%; background-color: white; color: black">{{workPermitNR}}</td>
+                        <td style="background-color: lightgray; width: 13%; color: black">Expiry Date</td>
+                        <td style="width: 13%; background-color: white; color: black">{{permitExpiryDate}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
                   </tr>
                   <tr>
                     <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
@@ -1036,55 +1047,20 @@
                   </tr>
                   </tbody>
                 </table>
-              </tr>
-              </tbody>
-            </table>
             <hr>
             <p style="color: black">Document Number:  HC131F_4 27.8.2015 (3.8.3.1.1)</p>
           </div>
 
-          <button (click)="generatePDF()">Download PDF</button>
+          <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="generatePDF()">Download PDF</button>
 
         </form>
-      </ng-template>
-    </ngb-tab>
-      <ngb-tab title="Student Files">
-        <ng-template ngbTabContent>
-          <!-- **************************************************************************************************************************************** -->
-          <form (ngSubmit)="getImageFromServiceID(r.value)" #r="ngForm">
-            <div class="form-group">
-              <br>
-              <label for="nwunumber1" style="color: white">NWU number:</label>
-              <input type="text" id="nwunumber1" class="form-control" ngModel name="nwunumber1" pattern="\d*" maxlength="8"
-                minlength="8" required #nwunumber1="ngModel">
-              <div *ngIf="nwunumber1.invalid && (nwunumber1.dirty || nwunumber1.touched)" class="alert alert-danger">
-                <div *ngIf="nwunumber1.errors.required">
-                  NWU number is required.
-                </div>
-                <div *ngIf="nwunumber1.errors.minlength">
-                  NWU number must be 8 characters long.
-                </div>
-                <div *ngIf="nwunumber1.errors.pattern">
-                  Must only be numbers.
-                </div>
-              </div>
-              <div *ngIf="nwunumber1.errors.minlength">
-                NWU number must be 8 characters long.
-              </div>
-              <div *ngIf="nwunumber1.errors.pattern">
-                Must only be numbers.
-              </div>
-            </div>
-            <button id="btnSubmit" class="btn btn-primary" (click)="generatePDF()">Download PDF</button>
-          </form>
-
           <hr>
           <h4>This section can be used to download the images uplaoded by the applicants.</h4>
-          <form (ngSubmit)="setNwuNumber(r)" #r="ngForm">
+          <form (ngSubmit)="setNwuNumber(o)" #o="ngForm">
             <div class="form-group">
-              <label for="r" style="color: white">NWU number:</label>
+              <label for="nwunumber4" style="color: white">NWU number:</label>
               <input type="text" id="nwunumber4" class="form-control" ngModel name="nwunumber4" pattern="\d*" maxlength="8"
-                minlength="8" required #nwunumber4="ngModel">
+                     minlength="8" required #nwunumber4="ngModel" style="width: 20%">
               <div *ngIf="nwunumber4.invalid && (nwunumber4.dirty || nwunumber4.touched)" class="alert alert-danger">
                 <div *ngIf="nwunumber4.errors.required">
                   NWU number is required.
@@ -1098,7 +1074,7 @@
               </div>
             </div>
             <div>
-              <button id="btnGet" class="btn btn-primary" type="submit" [disabled]="!r.valid" (click)="activateButtons($event)">Get
+              <button id="btnGet" class="btn btn-primary" type="submit" [disabled]="!o.valid" (click)="activateButtons($event)">Get
                 Images for NwuNumber</button>
               <br>
               <p>{{ pulled }}</p>
@@ -1121,9 +1097,8 @@
                 permission toconduct work</button>
             </div>
           </form>
-
-        </ng-template>
-      </ngb-tab>
+      </ng-template>
+    </ngb-tab>
     </ngb-tabset>
   </div>
 </body>
