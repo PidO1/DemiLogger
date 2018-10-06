@@ -79,6 +79,7 @@ export class ApplicationFormComponent implements OnInit {
         }
       });
   }
+
   ngOnInit() {
   }
 }
