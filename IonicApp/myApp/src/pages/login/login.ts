@@ -12,10 +12,11 @@ export class LoginPage {
   userData = {}
   logForm() {
     console.log(this.userData)
-    const header = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post('192.168.1.8:3000/user/login', this.userData, {headers: header})
+    // const header = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post('https://ionic-post-test.firebaseio.com/data.json', this.userData)
     .subscribe(data => {
       console.log('my data: ', data);
-    });
+    },
+    (error) => console.log(error));
   }
 }

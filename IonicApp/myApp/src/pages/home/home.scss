@@ -30,11 +30,11 @@ page-home {
         font-size: 1px !important;
         opacity: 1 !important;
         visibility: visible !important;
-      }
-    #icon-menu {
-        font-size: 30px;
     }
     #home-icon {
         font-size: 40px;
     }
+    .no-scroll .scroll-content{
+        overflow: hidden;
+   }
 }
