@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +14,7 @@ import { AboutComponent } from './about/about.component';
 import { InfoComponent } from './info/info.component';
 import { ManageComponent } from './manage/manage.component';
 import {PgpdServiceService} from './pgpd-service.service';
-import {Http, HttpModule} from '@angular/http';
+import { HttpModule} from '@angular/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SaApplicationFormComponent } from './forms/sa-application-form/sa-application-form.component';
 import { TokenInterceptor } from './token.interceptor';
@@ -59,7 +59,6 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     HttpModule,
-    // DataTableModule
   ],
   providers: [
     PgpdServiceService,

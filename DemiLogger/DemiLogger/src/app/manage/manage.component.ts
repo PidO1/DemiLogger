@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PgpdServiceService } from '../pgpd-service.service';
 import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/http';
-import * as jwt_decode from 'jwt-decode';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 @Component({
@@ -122,19 +121,18 @@ export class ManageComponent implements OnInit {
   }
   nextStudent() {
     if (this.condition === 'Yes') {
-      this.http.post('http://192.168.1.8:3000/application/accept', this.data[this.arr])
+      this.submitService.getNextStudentAccept(this.data[this.arr])
         .subscribe(res => {
           console.log(res);
         });
     } else if (this.condition === 'No') {
-      this.http.post('http://192.168.1.8:3000/application/delete', this.data[this.arr])
+      this.submitService.getNextStudentDelete(this.data[this.arr])
         .subscribe(res => {
           console.log(res);
         });
     }
     this.arr++;
-    if(this.arr > this.data.length)
-    {
+    if (this.arr > this.data.length) {
       this.studentnumber = 'done';
       this.demiName = '';
       this.modulename = '';
@@ -149,11 +147,11 @@ export class ManageComponent implements OnInit {
   getStudentPDFInfo(form: NgForm) {
     const header = new HttpHeaders().set('Content-Type', 'application-json');
     console.log(form.value);
-    this.http.post('http://192.168.1.8:3000/demi/demiGet', form.value)
+    this.studentnumber.getinfoForPDF(form.value)
       .subscribe(
         (response) => {
+          console.log(response);
           this.studentPDFData = response;
-          console.log(response)
           this.NwuNumber = this.studentPDFData.NwuNumber;
           this.Title = this.studentPDFData.Title;
           this.Surname = this.studentPDFData.Surname;
@@ -204,14 +202,14 @@ export class ManageComponent implements OnInit {
     const data = document.getElementById('contentToConvert');
     html2canvas(data).then(canvas => {
       // Few necessary setting options
-      var imgWidth = 210;
-      var pageHeight = 295;
-      var imgHeight = canvas.height * imgWidth / canvas.width;
-      var heightLeft = imgHeight;
+      const imgWidth = 210;
+      const pageHeight = 295; 
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+      let heightLeft = imgHeight;
 
       const contentDataURL = canvas.toDataURL('image/png')
-      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
-      var position = 0;
+      const pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+      let position = 0;
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
       heightLeft -= pageHeight;
 

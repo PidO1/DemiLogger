@@ -45,5 +45,20 @@ export class PgpdServiceService {
   getImg(imgUrl: string): Observable<Blob> {
     return this.http.get(imgUrl, {responseType: 'blob'});
   }
+  getNextStudentAccept(value) {
+    return this.http.post('http://192.168.1.8:3000/application/accept', value);
+  }
+  getNextStudentDelete(value) {
+    return this.http.post('http://192.168.1.8:3000/application/delete', value);
+  }
+  getinfoForPDF(value) {
+    return this.http.post('http://192.168.1.8:3000/demi/demiGet', value);
+  }
+  uploadSAForm(value) {
+    return this.http.post('http://192.168.1.8:3000/demi/applicationform/sa', value);
+  }
+  uploadForeignForm(value) {
+    return this.http.post('http://192.168.1.8:3000/demi/applicationform/foreign', value);
+  }
 }
 

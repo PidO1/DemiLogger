@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {PgpdServiceService} from "../../pgpd-service.service";
+import { NgForm } from '@angular/forms';
+import { PgpdServiceService } from '../../pgpd-service.service';
 
 @Component({
   selector: 'app-register',

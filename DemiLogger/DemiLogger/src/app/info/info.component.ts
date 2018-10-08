@@ -19,7 +19,6 @@ export class InfoComponent implements OnInit {
     this.submitService.getAnnouncement()
       .subscribe(
         (response) => {
-          // @ts-ignore
             // @ts-ignore
             if (response.announce1.demi === 1 && response.announce1.dosent === 1) {
               this.announceFor[0] = 'All';

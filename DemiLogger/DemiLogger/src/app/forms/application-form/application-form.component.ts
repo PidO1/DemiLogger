@@ -1,8 +1,6 @@
+import { PgpdServiceService } from './../../pgpd-service.service';
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {PgpdServiceService} from '../../pgpd-service.service';
 import { HttpClient } from '@angular/common/http';
-import {Data} from '@angular/router';
 import { Router } from '@angular/router';
 
 @Component({
@@ -31,7 +29,7 @@ export class ApplicationFormComponent implements OnInit {
   selectedDataName: string;
   fd = new FormData();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private submitService: PgpdServiceService) {}
 
   onDataSelected(event) {
     console.log(event);
@@ -68,7 +66,7 @@ export class ApplicationFormComponent implements OnInit {
     }
   }
   onUpload() {
-    this.http.post('http://192.168.1.8:3000/demi/applicationform/foreign', this.fd)
+    this.submitService.uploadForeignForm(this.fd)
       .subscribe(res => {
         console.log(res);
         console.log(this.fd);

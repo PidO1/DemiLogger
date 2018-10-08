@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
-import { PgpdServiceService } from "../../pgpd-service.service";
-import { Router, RouterModule } from '@angular/router';
+import { PgpdServiceService } from '../../pgpd-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-moduleapplication',

@@ -1,7 +1,7 @@
+import { PgpdServiceService } from './../../pgpd-service.service';
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '../../../../node_modules/@angular/common/http';
 import {until} from 'selenium-webdriver';
-import elementIsSelected = until.elementIsSelected;
 import { Router } from '@angular/router';
 
 @Component({
@@ -29,7 +29,7 @@ export class SaApplicationFormComponent implements OnInit {
   selectedDataName: string;
   fd = new FormData();
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private submitService: PgpdServiceService) {
   }
 
   ngOnInit() {
@@ -70,7 +70,7 @@ export class SaApplicationFormComponent implements OnInit {
     }
   }
   public onUpload() {
-    this.http.post('http://192.168.1.8:3000/demi/applicationform/sa', this.fd)
+    this.submitService.uploadSAForm(this.fd)
       .subscribe(res => {
         console.log(res);
         console.log(this.fd);
