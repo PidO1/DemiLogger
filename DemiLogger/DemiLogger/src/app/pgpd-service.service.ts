@@ -15,7 +15,7 @@ export class PgpdServiceService {
   }
   storeRegisterData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post('http://192.168.1.8:3000/user/register', formData, {headers: header});
+    return this.http.post('http://18.218.226.72:3000/user/register', formData, {headers: header});
   }
   storeAnnouncementData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
