@@ -1,277 +1,288 @@
 <br><br><br><br><br><br>
 
 <body>
-  <div id="main" class="container">
-    <ngb-tabset>
-      <ngb-tab title="Announcements">
-        <ng-template ngbTabContent>
-          <form (ngSubmit)="onSubmitAnnouncement(f)" #f="ngForm" ngForm="disabled">
-            <br>
-            <label>Send announcement to</label>
-            <br>
-            <select type="text" class="form-control" id="to" name="to" ngModel required>
-              <option value="All">All</option>
-              <option value="Students">Students</option>
-              <option value="Lecturers">Lecturers</option>
-            </select>
-            <br>
-            <label for="anouncement">Announcement</label>
-            <br>
-            <textarea type="text" id="anouncement" ngModel name="anouncement" placeholder="Write something.." required></textarea>
-            <br>
-            <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
-          </form>
-        </ng-template>
-      </ngb-tab>
-
-      <ngb-tab title="Add Lecturers">
-        <ng-template ngbTabContent>
-          <form (ngSubmit)="onSubmitLecturer(d)" #d="ngForm">
-            <br>
-            <div class="form-group">
-              <label for="preferredname">Preferred Name:</label>
-              <input type="text" class="form-control" id="preferredname" ngModel name="preferredname" pattern="[a-zA-Z ]*"
-                required name="preferredname" maxlength="20" #preferredname="ngModel">
-              <div *ngIf="preferredname.invalid && (preferredname.dirty || preferredname.touched)" class="alert alert-danger"
-                style="width: 35vw">
-                <div *ngIf="preferredname.errors.required">
-                  A name is required.
-                </div>
-                <div *ngIf="preferredname.errors.maxlength">
-                  Title cannot be longer than 20 characters.
-                </div>
-                <div *ngIf="preferredname.errors.pattern">
-                  Can only contain letters.
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="surname">Surname:</label>
-              <input type="text" class="form-control" id="surname" ngModel name="surname" pattern="[a-zA-Z ]*" required
-                #surname="ngModel" maxlength="20">
-              <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="alert alert-danger" style="width: 35vw">
-                <div *ngIf="surname.errors.required">
-                  Surname is required.
-                </div>
-                <div *ngIf="surname.errors.maxlength">
-                  Title cannot be longer than 20 characters.
-                </div>
-                <div *ngIf="surname.errors.pattern">
-                  Can only contain letters.
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="title">Title:</label>
-              <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss" pattern="[a-zA-Z ]*"
-                maxlength="4" ngModel name="title" required #title="ngModel">
-              <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger" style="width: 35vw">
-                <div *ngIf="title.errors.required">
-                  Title is required.
-                </div>
-                <div *ngIf="title.errors.maxlength">
-                  Title cannot be longer than 4 characters.
-                </div>
-                <div *ngIf="title.errors.pattern">
-                  Can only contain letters.
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="nwunumber">NWU number:</label>
-              <input type="text" id="nwunumber" class="form-control" ngModel name="nwunumber" pattern="\d*" maxlength="8"
-                minlength="8" required #nwunumber="ngModel">
-              <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)" class="alert alert-danger" style="width: 35vw">
-                <div *ngIf="nwunumber.errors.required">
-                  NWU number is required.
-                </div>
-                <div *ngIf="nwunumber.errors.minlength">
-                  NWU number must be 8 characters long.
-                </div>
-                <div *ngIf="nwunumber.errors.pattern">
-                  Must only be numbers.
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="role">Role:</label>
-              <input type="text" id="role" class="form-control" placeholder="Lecturer" pattern="[a-zA-Z ]*" maxlength="20"
-                ngModel name="role" required #role="ngModel">
-              <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert alert-danger" style="width: 35vw">
-                <div *ngIf="role.errors.required">
-                  Role is required.
-                </div>
-                <div *ngIf="role.errors.maxlength">
-                  Role cannot be longer than 15 characters.
-                </div>
-                <div *ngIf="title.errors.pattern">
-                  Can only contain letters.
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="telephonenumber">Telephone number:</label>
-              <input type="text" id="telephonenumber" class="form-control" pattern="\d*" maxlength="10" ngModel name="telephonenumber"
-                required #telephonenumber="ngModel">
-              <div *ngIf="telephonenumber.invalid && (telephonenumber.dirty || telephonenumber.touched)" class="alert alert-danger"
-                style="width: 35vw">
-                <div *ngIf="telephonenumber.errors.required">
-                  Telephone number is required.
-                </div>
-                <div *ngIf="nwunumber.errors.pattern">
-                  Must only be numbers.
-                </div>
-                <div *ngIf="telephonenumber.errors.maxlength">
-                  Telephone number cannot be longer than 10 characters.
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="email">E-mail address:</label>
-              <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" ngModel name="email"
-                email #email="ngModel" required maxlength="50">
-              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger" style="width: 35vw">
-                <div *ngIf="email.errors.required">
-                  E-mail address is required.
-                </div>
-                <div *ngIf="telephonenumber.errors.maxlength">
-                  E-mail cannot be longer than 50 characters.
-                </div>
-                <div *ngIf="email.errors.email">
-                  Not a valid E-mail address.
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="password">Password:</label>
-              <input type="password" id="password" class="form-control" ngModel name="password" required #password="ngModel">
-              <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger" style="width: 35vw">
-                <div *ngIf="password.errors.required">
-                  Password address is required.
-                </div>
-              </div>
-            </div>
-            <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!d.valid">Submit</button>
-          </form>
-        </ng-template>
-      </ngb-tab>
-
-      <ngb-tab title="Accept Demi's">
-        <ng-template ngbTabContent>
-            <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="onGetStudentApplication()">Get Info</button>
+<div id="main" class="container">
+  <ngb-tabset>
+    <ngb-tab title="Announcements">
+      <ng-template ngbTabContent>
+        <form (ngSubmit)="onSubmitAnnouncement(f)" #f="ngForm" ngForm="disabled">
           <br>
-          <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid">
-            <thead>
-            <tr>
-              <th>Student Number</th>
-              <th>Student Name</th>
-              <th>Module Name</th>
-              <th>Module Mark</th>
-              <th>Apply</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>{{studentnumber}}</td>
-              <td>{{demiName}}</td>
-              <td>{{modulename}}</td>
-              <td>{{modulemark}}</td>
-              <td style="align-content: left; width: 160px">
-                <div class="radio" *ngFor="let apply of apply">
-                  <label><input type="radio" name="apply" ngModel id="{{apply}}" [value]="apply"
-                                (change)="onRadioSelected($event)"
-                                required style="width: 100%">{{ apply }}
-                  </label>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+          <label>Send announcement to</label>
           <br>
-          <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="nextStudent()" [disabled]="!f.valid">
-            Submit
-          </button>
+          <select type="text" class="form-control" id="to" name="to" ngModel required>
+            <option value="All">All</option>
+            <option value="Students">Students</option>
+            <option value="Lecturers">Lecturers</option>
+          </select>
+          <br>
+          <label for="anouncement">Announcement</label>
+          <br>
+          <textarea type="text" id="anouncement" ngModel name="anouncement" placeholder="Write something.."
+                    required></textarea>
+          <br>
+          <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+        </form>
       </ng-template>
     </ngb-tab>
 
-      <ngb-tab title="Add module">
-        <ng-template ngbTabContent>
+    <ngb-tab title="Add Lecturers">
+      <ng-template ngbTabContent>
+        <form (ngSubmit)="onSubmitLecturer(d)" #d="ngForm">
           <br>
-          <form (ngSubmit)="onSubmitModule(p)" #p="ngForm">
-            <div class="form-group">
-              <label for="code">Module code</label>
-              <input type="text" class="form-control" id="code" ngModel name="code" required name="code" maxlength="10"
-                #code="ngModel">
-              <div *ngIf="code.invalid && (code.dirty || code.touched)" class="alert alert-danger" style="width: 35vw">
-                <div *ngIf="code.errors.required">
-                  A Module code is required.
-                </div>
-                <div *ngIf="code.errors.maxlength">
-                  Module code cannot be longer than 10 characters.
-                </div>
+          <div class="form-group">
+            <label for="preferredname">Preferred Name:</label>
+            <input type="text" class="form-control" id="preferredname" ngModel name="preferredname" pattern="[a-zA-Z ]*"
+                   required name="preferredname" maxlength="20" #preferredname="ngModel">
+            <div *ngIf="preferredname.invalid && (preferredname.dirty || preferredname.touched)"
+                 class="alert alert-danger"
+                 style="width: 35vw">
+              <div *ngIf="preferredname.errors.required">
+                A name is required.
+              </div>
+              <div *ngIf="preferredname.errors.maxlength">
+                Title cannot be longer than 20 characters.
+              </div>
+              <div *ngIf="preferredname.errors.pattern">
+                Can only contain letters.
               </div>
             </div>
-            <div class="form-group">
-              <label for="name">Module name</label>
-              <input type="text" class="form-control" id="name" ngModel name="name" required name="name" maxlength="50"
-                #name="ngModel">
-              <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="width: 35vw">
-                <div *ngIf="name.errors.required">
-                  A Module name is required.
-                </div>
-                <div *ngIf="name.errors.maxlength">
-                  Module name cannot be longer than 50 characters.
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="credits">Module Credit</label>
-              <input type="text" class="form-control" id="credits" ngModel name="credits" required name="credits"
-                maxlength="2" #credits="ngModel">
-              <div *ngIf="credits.invalid && (credits.dirty || credits.touched)" class="alert alert-danger" style="width: 35vw">
-                <div *ngIf="credits.errors.required">
-                  Module credit is required.
-                </div>
-                <div *ngIf="credits.errors.maxlength">
-                  Title cannot be longer than 2 characters.
-                </div>
-              </div>
-            </div>
-            <br>
-            <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!d.valid">Submit</button>
-          </form>
-        </ng-template>
-      </ngb-tab>
+          </div>
 
-      <ngb-tab title="PDF Form">
-        <ng-template ngbTabContent>
-
-          <form (ngSubmit)="getStudentPDFInfo(j)" #j="ngForm">
-            <div class="form-group">
-              <label for="nwunumber3" style="color: white">NWU number:</label>
-              <input type="text" id="nwunumber3" class="form-control" ngModel name="nwunumber3" pattern="\d*" maxlength="8"
-                minlength="8" required #nwunumber3="ngModel" style="width: 20%">
-              <div *ngIf="nwunumber3.invalid && (nwunumber3.dirty || nwunumber3.touched)" class="alert alert-danger"
-                style="width: 35vw">
-
-                <div *ngIf="nwunumber3.errors.required">
-                  NWU number is required.
-                </div>
-                <div *ngIf="nwunumber3.errors.minlength">
-                  NWU number must be 8 characters long.
-                </div>
-                <div *ngIf="nwunumber3.errors.pattern">
-                  Must only be numbers.
-                </div>
+          <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" class="form-control" id="surname" ngModel name="surname" pattern="[a-zA-Z ]*" required
+                   #surname="ngModel" maxlength="20">
+            <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="alert alert-danger"
+                 style="width: 35vw">
+              <div *ngIf="surname.errors.required">
+                Surname is required.
+              </div>
+              <div *ngIf="surname.errors.maxlength">
+                Title cannot be longer than 20 characters.
+              </div>
+              <div *ngIf="surname.errors.pattern">
+                Can only contain letters.
               </div>
             </div>
+          </div>
+
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss" pattern="[a-zA-Z ]*"
+                   maxlength="4" ngModel name="title" required #title="ngModel">
+            <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger" style="width: 35vw">
+              <div *ngIf="title.errors.required">
+                Title is required.
+              </div>
+              <div *ngIf="title.errors.maxlength">
+                Title cannot be longer than 4 characters.
+              </div>
+              <div *ngIf="title.errors.pattern">
+                Can only contain letters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="nwunumber">NWU number:</label>
+            <input type="text" id="nwunumber" class="form-control" ngModel name="nwunumber" pattern="\d*" maxlength="8"
+                   minlength="8" required #nwunumber="ngModel">
+            <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)" class="alert alert-danger"
+                 style="width: 35vw">
+              <div *ngIf="nwunumber.errors.required">
+                NWU number is required.
+              </div>
+              <div *ngIf="nwunumber.errors.minlength">
+                NWU number must be 8 characters long.
+              </div>
+              <div *ngIf="nwunumber.errors.pattern">
+                Must only be numbers.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="role">Role:</label>
+            <input type="text" id="role" class="form-control" placeholder="Lecturer" pattern="[a-zA-Z ]*" maxlength="20"
+                   ngModel name="role" required #role="ngModel">
+            <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert alert-danger" style="width: 35vw">
+              <div *ngIf="role.errors.required">
+                Role is required.
+              </div>
+              <div *ngIf="role.errors.maxlength">
+                Role cannot be longer than 15 characters.
+              </div>
+              <div *ngIf="title.errors.pattern">
+                Can only contain letters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="telephonenumber">Telephone number:</label>
+            <input type="text" id="telephonenumber" class="form-control" pattern="\d*" maxlength="10" ngModel
+                   name="telephonenumber"
+                   required #telephonenumber="ngModel">
+            <div *ngIf="telephonenumber.invalid && (telephonenumber.dirty || telephonenumber.touched)"
+                 class="alert alert-danger"
+                 style="width: 35vw">
+              <div *ngIf="telephonenumber.errors.required">
+                Telephone number is required.
+              </div>
+              <div *ngIf="nwunumber.errors.pattern">
+                Must only be numbers.
+              </div>
+              <div *ngIf="telephonenumber.errors.maxlength">
+                Telephone number cannot be longer than 10 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail address:</label>
+            <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" ngModel name="email"
+                   email #email="ngModel" required maxlength="50">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger" style="width: 35vw">
+              <div *ngIf="email.errors.required">
+                E-mail address is required.
+              </div>
+              <div *ngIf="telephonenumber.errors.maxlength">
+                E-mail cannot be longer than 50 characters.
+              </div>
+              <div *ngIf="email.errors.email">
+                Not a valid E-mail address.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" class="form-control" ngModel name="password" required
+                   #password="ngModel">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger"
+                 style="width: 35vw">
+              <div *ngIf="password.errors.required">
+                Password address is required.
+              </div>
+            </div>
+          </div>
+          <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!d.valid">Submit</button>
+        </form>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="Accept Demi's">
+      <ng-template ngbTabContent>
+        <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="onGetStudentApplication()">Get Info
+        </button>
+        <br>
+        <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid">
+          <thead>
+          <tr>
+            <th>Student Number</th>
+            <th>Student Name</th>
+            <th>Module Name</th>
+            <th>Module Mark</th>
+            <th>Apply</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{studentnumber}}</td>
+            <td>{{demiName}}</td>
+            <td>{{modulename}}</td>
+            <td>{{modulemark}}</td>
+            <td style="align-content: left; width: 160px">
+              <div class="radio" *ngFor="let apply of apply">
+                <label><input type="radio" name="apply" ngModel id="{{apply}}" [value]="apply"
+                              (change)="onRadioSelected($event)"
+                              required style="width: 100%">{{ apply }}
+                </label>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <br>
+        <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="nextStudent()" [disabled]="!f.valid">
+          Submit
+        </button>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="Add module">
+      <ng-template ngbTabContent>
+        <br>
+        <form (ngSubmit)="onSubmitModule(p)" #p="ngForm">
+          <div class="form-group">
+            <label for="code">Module code</label>
+            <input type="text" class="form-control" id="code" ngModel name="code" required name="code" maxlength="10"
+                   #code="ngModel">
+            <div *ngIf="code.invalid && (code.dirty || code.touched)" class="alert alert-danger" style="width: 35vw">
+              <div *ngIf="code.errors.required">
+                A Module code is required.
+              </div>
+              <div *ngIf="code.errors.maxlength">
+                Module code cannot be longer than 10 characters.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name">Module name</label>
+            <input type="text" class="form-control" id="name" ngModel name="name" required name="name" maxlength="50"
+                   #name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="width: 35vw">
+              <div *ngIf="name.errors.required">
+                A Module name is required.
+              </div>
+              <div *ngIf="name.errors.maxlength">
+                Module name cannot be longer than 50 characters.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="credits">Module Credit</label>
+            <input type="text" class="form-control" id="credits" ngModel name="credits" required name="credits"
+                   maxlength="2" #credits="ngModel">
+            <div *ngIf="credits.invalid && (credits.dirty || credits.touched)" class="alert alert-danger"
+                 style="width: 35vw">
+              <div *ngIf="credits.errors.required">
+                Module credit is required.
+              </div>
+              <div *ngIf="credits.errors.maxlength">
+                Title cannot be longer than 2 characters.
+              </div>
+            </div>
+          </div>
+          <br>
+          <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!d.valid">Submit</button>
+        </form>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="PDF Form">
+      <ng-template ngbTabContent>
+
+        <form (ngSubmit)="getStudentPDFInfo(j)" #j="ngForm">
+          <div class="form-group">
+            <label for="nwunumber3" style="color: white">NWU number:</label>
+            <input type="text" id="nwunumber3" class="form-control" ngModel name="nwunumber3" pattern="\d*"
+                   maxlength="8"
+                   minlength="8" required #nwunumber3="ngModel" style="width: 20%">
+            <div *ngIf="nwunumber3.invalid && (nwunumber3.dirty || nwunumber3.touched)" class="alert alert-danger"
+                 style="width: 35vw">
+
+              <div *ngIf="nwunumber3.errors.required">
+                NWU number is required.
+              </div>
+              <div *ngIf="nwunumber3.errors.minlength">
+                NWU number must be 8 characters long.
+              </div>
+              <div *ngIf="nwunumber3.errors.pattern">
+                Must only be numbers.
+              </div>
+            </div>
+          </div>
           <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!j.valid">Get Info
           </button>
         </form>
@@ -285,28 +296,40 @@
               <tbody>
               <tr>
                 <td style="width: 10%; color: black; background-color: white"><b>HC131F</b></td>
-                <td style="width: 90%; color: black; background-color: white; align-content: center"><b>Appointment Form for Temporary Employees</b></td>
+                <td style="width: 90%; color: black; background-color: white; align-content: center"><b>Appointment Form
+                  for Temporary Employees</b></td>
               </tr>
               </tbody>
             </table>
             <br>
 
             <ul>
-              <li style="color: black">Please complete all information in full or the appointment cannot be finalised. INCOMPLETE FORMS MAY DELAY PAYMENT.</li>
-              <li style="color: black">This appointment is valid only for the period applied for and must be signed by all responsible signatories.</li>
-              <li style="color: black">All pages need to be initialled. If corrections are made, no Tipex is permissible. The error must be struck out and be signed at.</li>
-              <li style="color: black">Reasons for temporary appointment (indicate with an x below and attach a motivation).</li>
+              <li style="color: black">Please complete all information in full or the appointment cannot be finalised.
+                INCOMPLETE FORMS MAY DELAY PAYMENT.
+              </li>
+              <li style="color: black">This appointment is valid only for the period applied for and must be signed by
+                all responsible signatories.
+              </li>
+              <li style="color: black">All pages need to be initialled. If corrections are made, no Tipex is
+                permissible. The error must be struck out and be signed at.
+              </li>
+              <li style="color: black">Reasons for temporary appointment (indicate with an x below and attach a
+                motivation).
+              </li>
             </ul>
             <br>
 
-            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%; border-color: black">
+            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                   style="width: 100%; border-color: black">
               <tbody>
               <tr>
                 <table style="width: 100%; border-color: black; color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black"><b>Appointment Type</b></td>
-                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black"><b>Following documentation needs to accompany this form:</b></td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black"><b>Appointment
+                      Type</b></td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black"><b>Following
+                      documentation needs to accompany this form:</b></td>
                   </tr>
                   </tbody>
                 </table>
@@ -316,8 +339,11 @@
                   <tbody>
                   <tr>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Intern (Supervised – non-SETA)</td>
-                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID</td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Intern
+                      (Supervised – non-SETA)
+                    </td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -327,8 +353,11 @@
                   <tbody>
                   <tr>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Facilitator</td>
-                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID, Qualification</td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Facilitator
+                    </td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID,
+                      Qualification
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -338,8 +367,12 @@
                   <tbody>
                   <tr>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Temporary Appointment less than 3 months</td>
-                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID, Qualification</td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Temporary
+                      Appointment less than 3 months
+                    </td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID,
+                      Qualification
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -349,8 +382,12 @@
                   <tbody>
                   <tr>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Academic Appointment less than 5 hours per day and longer than 3 months</td>
-                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID, Qualification</td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Academic
+                      Appointment less than 5 hours per day and longer than 3 months
+                    </td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID,
+                      Qualification
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -360,8 +397,12 @@
                   <tbody>
                   <tr>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Temporary Appointments paid by Claim up to 12 months</td>
-                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID, Qualification</td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Temporary
+                      Appointments paid by Claim up to 12 months
+                    </td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID,
+                      Qualification
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -372,7 +413,9 @@
                   <tr>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                     <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Retiree</td>
-                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID, Qualification in case it is an academic appointment</td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID,
+                      Qualification in case it is an academic appointment
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -382,8 +425,12 @@
                   <tbody>
                   <tr>
                     <td style="background-color: white; width: 5%; border-color: black; color: black">X</td>
-                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Student Assistant, Supplementary Instruction (SI) Leader</td>
-                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID, Proof of Student Registration & Time Sheet</td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Student
+                      Assistant, Supplementary Instruction (SI) Leader
+                    </td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of ID,
+                      Proof of Student Registration & Time Sheet
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -393,8 +440,13 @@
                   <tbody>
                   <tr>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">*Foreign Student Assistant</td>
-                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">*Copy of Passport, Study Permit, Permission to Conduct Work Form , Proof of Student Registration & Time Sheet</td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">*Foreign
+                      Student Assistant
+                    </td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">*Copy of
+                      Passport, Study Permit, Permission to Conduct Work Form , Proof of Student Registration & Time
+                      Sheet
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -404,8 +456,11 @@
                   <tbody>
                   <tr>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Foreigner</td>
-                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of Passport, Work Permit, Qualification</td>
+                    <td style="background-color: lightgray; width: 45%; border-color: black; color: black">Foreigner
+                    </td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Copy of
+                      Passport, Work Permit, Qualification
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -414,17 +469,24 @@
             </table>
             <br>
 
-            <label style="color: black">SECTION A:  TEMPORARY APPOINTMENT: (To be completed by the Line Manager)</label>
+            <label style="color: black">SECTION A: TEMPORARY APPOINTMENT: (To be completed by the Line Manager)</label>
 
-            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%; border-color: black">
+            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                   style="width: 100%; border-color: black">
               <tbody>
               <tr>
                 <table style="width: 100%; border-color: black; color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Position Name</td>
-                    <td style="background-color: white; width: 25%; border-color: black; color: black">Student Assistant</td>
-                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Position Nr. (existing position)</td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Position
+                      Name
+                    </td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black">Student
+                      Assistant
+                    </td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Position Nr.
+                      (existing position)
+                    </td>
                     <td style="background-color: white; width: 25%; border-color: black; color: black">1201</td>
                   </tr>
                   </tbody>
@@ -434,14 +496,23 @@
                 <table style="width: 100%; border-color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 18.5%; border-color: black; color: black">Campus (tick)</td>
-                    <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">Institutional</td>
+                    <td style="background-color: lightgray; width: 18.5%; border-color: black; color: black">Campus
+                      (tick)
+                    </td>
+                    <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">
+                      Institutional
+                    </td>
                     <td style="background-color: white; width: 6.25%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">Mafikeng</td>
+                    <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">Mafikeng
+                    </td>
                     <td style="background-color: white; width: 6.25%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">Potchefstroom</td>
+                    <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">
+                      Potchefstroom
+                    </td>
                     <td style="background-color: white; width: 6.25%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">Vaal Triangle</td>
+                    <td style="background-color: lightgray; width: 6.25%; border-color: black; color: black">Vaal
+                      Triangle
+                    </td>
                     <td style="background-color: white; width: 6.25%; border-color: black; color: black"></td>
                   </tr>
                   </tbody>
@@ -451,9 +522,16 @@
                 <table style="width: 100%; border-color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Faculty/Division</td>
-                    <td style="background-color: white; width: 40%; border-color: black; color: black">Natural and Agricultural Sciences</td>
-                    <td style="background-color: white; width: 35%; border-color: black; color: black; border-bottom: white">OE Code where appointment is</td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">
+                      Faculty/Division
+                    </td>
+                    <td style="background-color: white; width: 40%; border-color: black; color: black">Natural and
+                      Agricultural Sciences
+                    </td>
+                    <td
+                      style="background-color: white; width: 35%; border-color: black; color: black; border-bottom: white">
+                      OE Code where appointment is
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -462,9 +540,16 @@
                 <table style="width: 100%; border-color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">School/Department</td>
-                    <td style="background-color: white; width: 40%; border-color: black; color: black">Computer Science and Information Systems</td>
-                    <td style="background-color: white; width: 35%; border-color: black; color: black; border-bottom: white; border-top: white">made:</td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">
+                      School/Department
+                    </td>
+                    <td style="background-color: white; width: 40%; border-color: black; color: black">Computer Science
+                      and Information Systems
+                    </td>
+                    <td
+                      style="background-color: white; width: 35%; border-color: black; color: black; border-bottom: white; border-top: white">
+                      made:
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -473,9 +558,14 @@
                 <table style="width: 100%; border-color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Subject Group</td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Subject
+                      Group
+                    </td>
                     <td style="background-color: white; width: 40%; border-color: black; color: black">SCSIS</td>
-                    <td style="background-color: white; width: 35%; border-color: black; color: black; border-top: white; border-top: lightgray">8885</td>
+                    <td
+                      style="background-color: white; width: 35%; border-color: black; color: black; border-top: white; border-top: lightgray">
+                      8885
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -484,7 +574,9 @@
                 <table style="width: 100%; border-color: black; color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Employment Group</td>
+                    <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Employment
+                      Group
+                    </td>
                     <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Academic</td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                     <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Support</td>
@@ -497,8 +589,11 @@
                 <table style="width: 100%; border-color: black; color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Duration of Appointment</td>
-                    <td style="background-color: lightgray; width: 10%; border-color: black; color: black">Start Date</td>
+                    <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Duration of
+                      Appointment
+                    </td>
+                    <td style="background-color: lightgray; width: 10%; border-color: black; color: black">Start Date
+                    </td>
                     <td style="background-color: white; width: 20%; border-color: black; color: black">01/07/2018</td>
                     <td style="background-color: lightgray; width: 10%; border-color: black; color: black">End Date</td>
                     <td style="background-color: white; width: 20%; border-color: black; color: black">30/11/2018</td>
@@ -510,14 +605,20 @@
                 <table style="width: 100%; border-color: black; color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Remuneration shall be paid as follows (please tick)</td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Remuneration
+                      shall be paid as follows (please tick)
+                    </td>
                     <td style="padding: 0%">
                       <table style="width: 100%">
                         <tbody>
                         <tr>
-                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Per Month</td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Per
+                            Month
+                          </td>
                           <td style="background-color: white; width: 10%; border-color: black; color: black"></td>
-                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Amount</td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">
+                            Amount
+                          </td>
                           <td style="background-color: lightgray; width: 5%; border-color: black; color: black">R</td>
                           <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                           <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
@@ -529,9 +630,13 @@
                           <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                         </tr>
                         <tr>
-                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">End of Term</td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">End of
+                            Term
+                          </td>
                           <td style="background-color: white; width: 10%; border-color: black; color: black"></td>
-                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Amount</td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">
+                            Amount
+                          </td>
                           <td style="background-color: lightgray; width: 5%; border-color: black; color: black">R</td>
                           <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                           <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
@@ -543,9 +648,13 @@
                           <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                         </tr>
                         <tr style="width: 100%">
-                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Per Session</td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Per
+                            Session
+                          </td>
                           <td style="background-color: white; width: 10%; border-color: black; color: black"></td>
-                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Amount</td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">
+                            Amount
+                          </td>
                           <td style="background-color: lightgray; width: 5%; border-color: black; color: black">R</td>
                           <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                           <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
@@ -557,9 +666,13 @@
                           <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                         </tr>
                         <tr style="width: 100%">
-                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Per Hour</td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Per
+                            Hour
+                          </td>
                           <td style="background-color: white; width: 10%; border-color: black; color: black">X</td>
-                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Amount</td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">
+                            Amount
+                          </td>
                           <td style="background-color: lightgray; width: 5%; border-color: black; color: black">R</td>
                           <td style="background-color: white; width: 5%; border-color: black; color: black">-</td>
                           <td style="background-color: white; width: 5%; border-color: black; color: black">-</td>
@@ -571,9 +684,13 @@
                           <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                         </tr>
                         <tr style="width: 100%">
-                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Per Module</td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Per
+                            Module
+                          </td>
                           <td style="background-color: white; width: 10%; border-color: black; color: black"></td>
-                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Amount</td>
+                          <td style="background-color: lightgray; width: 20%; border-color: black; color: black">
+                            Amount
+                          </td>
                           <td style="background-color: lightgray; width: 5%; border-color: black; color: black">R</td>
                           <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                           <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
@@ -595,7 +712,9 @@
                 <table style="width: 100%; border-color: black; color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Please specify if remuneration is made using any other unit (e.g. per page/word etc.)</td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Please
+                      specify if remuneration is made using any other unit (e.g. per page/word etc.)
+                    </td>
                     <td style="background-color: white; width: 50%; border-color: black; color: black"></td>
                   </tr>
                   </tbody>
@@ -605,7 +724,9 @@
                 <table style="width: 100%; border-color: black; color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Total Hours work per week</td>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Total Hours
+                      work per week
+                    </td>
                     <td style="background-color: white; width: 50%; border-color: black; color: black"></td>
                   </tr>
                   </tbody>
@@ -616,20 +737,26 @@
             <br>
             <br>
 
-            <label style="color: black">SECTION B:  BUDGET</label>
+            <label style="color: black">SECTION B: BUDGET</label>
 
-            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%; border-color: black">
+            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                   style="width: 100%; border-color: black">
               <tbody>
               <tr>
                 <table style="width: 100%; border-color: black; color: black">
                   <tbody>
                   <tr>
                     <td style="background-color: lightgray; width: 10%; border-color: black; color: black">Costing</td>
-                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Temp Budget</td>
+                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Temp Budget
+                    </td>
                     <td style="background-color: white; width: 15%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Vacant Position</td>
+                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Vacant
+                      Position
+                    </td>
                     <td style="background-color: white; width: 15%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Vacant Position Nr.</td>
+                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Vacant
+                      Position Nr.
+                    </td>
                     <td style="background-color: white; width: 15%; border-color: black; color: black"></td>
                   </tr>
                   </tbody>
@@ -639,10 +766,16 @@
                 <table style="width: 100%; border-color: black; color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Accounting Combination</td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Accounting
+                      Combination
+                    </td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black">%</td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black">P</td>
-                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black"><ul><li style="color: black"></li></ul></td>
+                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black">
+                      <ul>
+                        <li style="color: black"></li>
+                      </ul>
+                    </td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black">1</td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black">A</td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black">0</td>
@@ -650,7 +783,11 @@
                     <td style="background-color: white; width: 5%; border-color: black; color: black">8</td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black">3</td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black">5</td>
-                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black"><ul><li style="color: black"></li></ul></td>
+                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black">
+                      <ul>
+                        <li style="color: black"></li>
+                      </ul>
+                    </td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black">1</td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black">2</td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black">0</td>
@@ -663,10 +800,16 @@
                 <table style="width: 100%; border-color: black; color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Accounting Combination</td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Accounting
+                      Combination
+                    </td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black">%</td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black"><ul><li style="color: black"></li></ul></td>
+                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black">
+                      <ul>
+                        <li style="color: black"></li>
+                      </ul>
+                    </td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
@@ -674,7 +817,11 @@
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black"><ul><li style="color: black"></li></ul></td>
+                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black">
+                      <ul>
+                        <li style="color: black"></li>
+                      </ul>
+                    </td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
                     <td style="background-color: white; width: 5%; border-color: black; color: black"></td>
@@ -688,8 +835,11 @@
                   <tbody>
                   <tr>
                     <td style="background-color: lightgray; width: 25%; border-color: black; color: black"></td>
-                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Initials & Surname</td>
-                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Signature</td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Initials &
+                      Surname
+                    </td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Signature
+                    </td>
                     <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Date</td>
                   </tr>
                   </tbody>
@@ -699,7 +849,9 @@
                 <table style="width: 100%; border-color: black; color: black">
                   <tbody>
                   <tr>
-                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Financially accountable Manager’s signature (Director’s level P5 or higher)</td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Financially
+                      accountable Manager’s signature (Director’s level P5 or higher)
+                    </td>
                     <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
                     <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
                     <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
@@ -712,65 +864,72 @@
             <br>
             <br>
 
-            <label style="color: black">SECTION C:  PERSONAL PARTICULARS OF TEMPORARY EMPLOYEES</label>
+            <label style="color: black">SECTION C: PERSONAL PARTICULARS OF TEMPORARY EMPLOYEES</label>
             <table style="width: 100%">
               <tbody>
               <tr>
                 <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
                   <tbody>
                   <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 16%; color: black">NWU Nr. (if applicable)</td>
-                          <td style="width: 45%; background-color: white; color: black">{{NwuNumber}}</td>
-                          <td style="background-color: lightgray; width: 16%; color: black">Title</td>
-                          <td style="background-color: white; width: 16%; color: black">{{Title}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 16%; color: black">Surname</td>
-                          <td style="width: 45%; background-color: white; color: black">{{Surname}}</td>
-                          <td style="background-color: lightgray; width: 16%; color: black">Initials</td>
-                          <td style="background-color: white; width: 16%; color: black">{{Initials}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 17%; color: black">Full Names</td>
-                          <td style="width: 84%; background-color: white; color: black">{{FullNames}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 17%; color: black">Preferred Name</td>
-                          <td style="width: 30%; background-color: white; color: black">{{PrefferedName}}</td>
-                          <td style="background-color: lightgray; width: 13%; color: black">Extension</td>
-                          <td style="width: 13%; background-color: white; color: black">{{Extension}}</td>
-                          <td style="background-color: lightgray; width: 13%; color: black">Internal Box</td>
-                          <td style="width: 13%; background-color: white; color: black">{{InternalBox}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
                       <tbody>
                       <tr>
-                        <td style="background-color: lightgray; width: 10.5%; color: black">Gender (for statistical use)</td>
+                        <td style="background-color: lightgray; width: 16%; color: black">NWU Nr. (if applicable)</td>
+                        <td style="width: 45%; background-color: white; color: black">{{NwuNumber}}</td>
+                        <td style="background-color: lightgray; width: 16%; color: black">Title</td>
+                        <td style="background-color: white; width: 16%; color: black">{{Title}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </tr>
+                  <tr>
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
+                      <tbody>
+                      <tr>
+                        <td style="background-color: lightgray; width: 16%; color: black">Surname</td>
+                        <td style="width: 45%; background-color: white; color: black">{{Surname}}</td>
+                        <td style="background-color: lightgray; width: 16%; color: black">Initials</td>
+                        <td style="background-color: white; width: 16%; color: black">{{Initials}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </tr>
+                  <tr>
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
+                      <tbody>
+                      <tr>
+                        <td style="background-color: lightgray; width: 17%; color: black">Full Names</td>
+                        <td style="width: 84%; background-color: white; color: black">{{FullNames}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </tr>
+                  <tr>
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
+                      <tbody>
+                      <tr>
+                        <td style="background-color: lightgray; width: 17%; color: black">Preferred Name</td>
+                        <td style="width: 30%; background-color: white; color: black">{{PrefferedName}}</td>
+                        <td style="background-color: lightgray; width: 13%; color: black">Extension</td>
+                        <td style="width: 13%; background-color: white; color: black">{{Extension}}</td>
+                        <td style="background-color: lightgray; width: 13%; color: black">Internal Box</td>
+                        <td style="width: 13%; background-color: white; color: black">{{InternalBox}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </tr>
+                  <tr>
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
+                      <tbody>
+                      <tr>
+                        <td style="background-color: lightgray; width: 10.5%; color: black">Gender (for statistical
+                          use)
+                        </td>
                         <td style="width: 33%; background-color: white; color: black">{{Gender}}</td>
                         <td style="background-color: lightgray; width: 8%; color: black">Marital Status</td>
                         <td style="width: 10%; background-color: white; color: black">{{MaritalStatus}}</td>
@@ -779,77 +938,85 @@
                     </table>
                   </tr>
                   <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 15%; color: black">Maiden Name</td>
-                          <td style="width: 40%; background-color: white; color: black">{{MaidenName}}</td>
-                          <td style="background-color: lightgray; width: 16%; color: black">Correspondence Preference</td>
-                          <td style="width: 17%; background-color: white; color: black">{{CorrespondencePref}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 10.2%; color: black">Race (for statistical
-                            use)</td>
-                          <td style="width: 50%; background-color: white; color: black">{{Race}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 11.4%; color: black">Date of Birth</td>
-                          <td style="width: 30%; background-color: white; color: black">{{DoB}}</td>
-                          <td style="background-color: lightgray; width: 13%; color: black">Home Language</td>
-                          <td style="width: 13%; background-color: white; color: black">{{HOmeLanguage}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 17%; color: black">Nationality</td>
-                          <td style="width: 84%; background-color: white; color: black">{{Nationaity}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 10.2%; color: black">Identity Nr.</td>
-                          <td style="width: 50%; background-color: white; color: black">{{IDNumber}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 11.5%; color: black">Passport Nr. </td>
-                          <td style="width: 30%; background-color: white; color: black">{{PaspportNR}}</td>
-                          <td style="background-color: lightgray; width: 13%; color: black">Expiry Date</td>
-                          <td style="width: 13%; background-color: white; color: black">{{passportExpiryDate}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
                       <tbody>
                       <tr>
-                        <td style="background-color: lightgray; width: 11.5%; color: black">Work Permit Nr. </td>
+                        <td style="background-color: lightgray; width: 15%; color: black">Maiden Name</td>
+                        <td style="width: 40%; background-color: white; color: black">{{MaidenName}}</td>
+                        <td style="background-color: lightgray; width: 16%; color: black">Correspondence Preference</td>
+                        <td style="width: 17%; background-color: white; color: black">{{CorrespondencePref}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </tr>
+                  <tr>
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
+                      <tbody>
+                      <tr>
+                        <td style="background-color: lightgray; width: 10.2%; color: black">Race (for statistical
+                          use)
+                        </td>
+                        <td style="width: 50%; background-color: white; color: black">{{Race}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </tr>
+                  <tr>
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
+                      <tbody>
+                      <tr>
+                        <td style="background-color: lightgray; width: 11.4%; color: black">Date of Birth</td>
+                        <td style="width: 30%; background-color: white; color: black">{{DoB}}</td>
+                        <td style="background-color: lightgray; width: 13%; color: black">Home Language</td>
+                        <td style="width: 13%; background-color: white; color: black">{{HOmeLanguage}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </tr>
+                  <tr>
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
+                      <tbody>
+                      <tr>
+                        <td style="background-color: lightgray; width: 17%; color: black">Nationality</td>
+                        <td style="width: 84%; background-color: white; color: black">{{Nationaity}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </tr>
+                  <tr>
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
+                      <tbody>
+                      <tr>
+                        <td style="background-color: lightgray; width: 10.2%; color: black">Identity Nr.</td>
+                        <td style="width: 50%; background-color: white; color: black">{{IDNumber}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </tr>
+                  <tr>
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
+                      <tbody>
+                      <tr>
+                        <td style="background-color: lightgray; width: 11.5%; color: black">Passport Nr.</td>
+                        <td style="width: 30%; background-color: white; color: black">{{PaspportNR}}</td>
+                        <td style="background-color: lightgray; width: 13%; color: black">Expiry Date</td>
+                        <td style="width: 13%; background-color: white; color: black">{{passportExpiryDate}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </tr>
+                  <tr>
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
+                      <tbody>
+                      <tr>
+                        <td style="background-color: lightgray; width: 11.5%; color: black">Work Permit Nr.</td>
                         <td style="width: 30%; background-color: white; color: black">{{workPermitNR}}</td>
                         <td style="background-color: lightgray; width: 13%; color: black">Expiry Date</td>
                         <td style="width: 13%; background-color: white; color: black">{{permitExpiryDate}}</td>
@@ -858,102 +1025,113 @@
                     </table>
                   </tr>
                   <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
                       <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 10.2%; color: black">Income Tax Nr.</td>
-                          <td style="width: 50%; background-color: white; color: black">{{TaxNumber}}</td>
-                        </tr>
+                      <tr>
+                        <td style="background-color: lightgray; width: 10.2%; color: black">Income Tax Nr.</td>
+                        <td style="width: 50%; background-color: white; color: black">{{TaxNumber}}</td>
+                      </tr>
                       </tbody>
                     </table>
                   </tr>
                   <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
                       <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 8.2%; color: black">Residential Address</td>
-                          <td style="width: 16%; background-color: white; color: black">{{ResidentialAddress}}</td>
-                          <td style="background-color: lightgray; width: 8%; color: black">Postal Address</td>
-                          <td style="width: 16%; background-color: white; color: black">{{PostAddress}}</td>
-                        </tr>
+                      <tr>
+                        <td style="background-color: lightgray; width: 8.2%; color: black">Residential Address</td>
+                        <td style="width: 16%; background-color: white; color: black">{{ResidentialAddress}}</td>
+                        <td style="background-color: lightgray; width: 8%; color: black">Postal Address</td>
+                        <td style="width: 16%; background-color: white; color: black">{{PostAddress}}</td>
+                      </tr>
                       </tbody>
                     </table>
                   </tr>
                   <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
                       <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 8.2%; color: black">Code</td>
-                          <td style="width: 16%; background-color: white; color: black">{{ZipCode}}</td>
-                          <td style="background-color: lightgray; width: 8%; color: black">Code</td>
-                          <td style="width: 16%; background-color: white; color: black"></td>
-                        </tr>
+                      <tr>
+                        <td style="background-color: lightgray; width: 8.2%; color: black">Code</td>
+                        <td style="width: 16%; background-color: white; color: black">{{ZipCode}}</td>
+                        <td style="background-color: lightgray; width: 8%; color: black">Code</td>
+                        <td style="width: 16%; background-color: white; color: black"></td>
+                      </tr>
                       </tbody>
                     </table>
                   </tr>
                   <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
                       <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 8.2%; color: black">Home Telephone Nr.</td>
-                          <td style="width: 16%; background-color: white; color: black">{{TelNumber}}</td>
-                          <td style="background-color: lightgray; width: 8%; color: black">Mobile Nr.</td>
-                          <td style="width: 16%; background-color: white; color: black">{{MobileNumber}}</td>
-                        </tr>
+                      <tr>
+                        <td style="background-color: lightgray; width: 8.2%; color: black">Home Telephone Nr.</td>
+                        <td style="width: 16%; background-color: white; color: black">{{TelNumber}}</td>
+                        <td style="background-color: lightgray; width: 8%; color: black">Mobile Nr.</td>
+                        <td style="width: 16%; background-color: white; color: black">{{MobileNumber}}</td>
+                      </tr>
                       </tbody>
                     </table>
                   </tr>
                   <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
                       <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 8.2%; color: black">Work Telephone Nr.</td>
-                          <td style="width: 16%; background-color: white; color: black"></td>
-                          <td style="background-color: lightgray; width: 8%; color: black">E-mail address</td>
-                          <td style="width: 16%; background-color: white; color: black">{{Email}}</td>
-                        </tr>
+                      <tr>
+                        <td style="background-color: lightgray; width: 8.2%; color: black">Work Telephone Nr.</td>
+                        <td style="width: 16%; background-color: white; color: black"></td>
+                        <td style="background-color: lightgray; width: 8%; color: black">E-mail address</td>
+                        <td style="width: 16%; background-color: white; color: black">{{Email}}</td>
+                      </tr>
                       </tbody>
                     </table>
                   </tr>
                   <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
                       <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 40%; color: black">Where you previously
-                            employed by NWU?</td>
-                          <td style="width: 60%; background-color: white; color: black">{{NWUprevious}}</td>
-                        </tr>
+                      <tr>
+                        <td style="background-color: lightgray; width: 40%; color: black">Where you previously
+                          employed by NWU?
+                        </td>
+                        <td style="width: 60%; background-color: white; color: black">{{NWUprevious}}</td>
+                      </tr>
                       </tbody>
                     </table>
                   </tr>
                   <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
                       <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 40%; color: black">Are you employed by an
-                            employer other than the NWU?</td>
-                          <td style="width: 60%; background-color: white; color: black">{{EmployPrevious}}</td>
-                        </tr>
+                      <tr>
+                        <td style="background-color: lightgray; width: 40%; color: black">Are you employed by an
+                          employer other than the NWU?
+                        </td>
+                        <td style="width: 60%; background-color: white; color: black">{{EmployPrevious}}</td>
+                      </tr>
                       </tbody>
                     </table>
                   </tr>
                   <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
                       <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 40%; color: black">Are you self-employed?</td>
-                          <td style="width: 60%; background-color: white; color: black">{{selfEmploy}}</td>
-                        </tr>
+                      <tr>
+                        <td style="background-color: lightgray; width: 40%; color: black">Are you self-employed?</td>
+                        <td style="width: 60%; background-color: white; color: black">{{selfEmploy}}</td>
+                      </tr>
                       </tbody>
                     </table>
                   </tr>
                   <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                           style="width: 100%">
                       <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 40%; color: black">Highest Qualification</td>
-                          <td style="width: 60%; background-color: white; color: black">{{highestQualification}}</td>
-                        </tr>
+                      <tr>
+                        <td style="background-color: lightgray; width: 40%; color: black">Highest Qualification</td>
+                        <td style="width: 60%; background-color: white; color: black">{{highestQualification}}</td>
+                      </tr>
                       </tbody>
                     </table>
                   </tr>
@@ -965,140 +1143,1027 @@
             <br>
             <br>
 
-              <label id="tableLabel">SECTION D: BANK DETAILS: (No payment will be made if these details are not
-                provided.)</label>
-              <table style="width: 100%">
-                <tbody>
+            <label id="tableLabel">SECTION D: BANK DETAILS: (No payment will be made if these details are not
+              provided.)</label>
+            <table style="width: 100%">
+              <tbody>
+              <tr>
+                <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                  <tbody>
                   <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 10.2%; color: black">Account type</td>
-                          <td style="width: 50%; background-color: white; color: black">{{accountType}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 17%; color: black">Bank branch code</td>
-                          <td style="width: 84%; background-color: white; color: black">{{branchCode}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 17%; color: black">Account Nr.</td>
-                          <td style="width: 84%; background-color: white; color: black">{{AccountNR}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 17%; color: black">Name of bank</td>
-                          <td style="width: 84%; background-color: white; color: black">{{BankNAme}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 13%; color: black">Account holder</td>
-                          <td style="background-color: lightgray; width: 12%; color: black">Surname</td>
-                          <td style="width: 20%; background-color: white; color: black">{{AccountHolderSurname}}</td>
-                          <td style="background-color: lightgray; width: 12%; color: black">Initials</td>
-                          <td style="width: 20%; background-color: white; color: black">{{AccountholderInitials}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 10.2%; color: black">Account type</td>
-                          <td style="width: 50%; background-color: white; color: black">{{AccountTypeInfo}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </tr>
-                  <tr>
-                    <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
-                      <tbody>
-                        <tr>
-                          <td style="background-color: lightgray; width: 10.6%; color: black; height: 1cm">Signature:
-                            Temporary Employee</td>
-                          <td style="width: 20%; background-color: white; color: black"></td>
-                          <td style="background-color: lightgray; width: 12%; color: black">Date:</td>
-                          <td style="width: 20%; background-color: white; color: black">{{AccountDate}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <td style="background-color: lightgray; width: 10.2%; color: black">Account type</td>
+                    <td style="width: 50%; background-color: white; color: black">{{accountType}}</td>
                   </tr>
                   </tbody>
                 </table>
+              </tr>
+              <tr>
+                <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 17%; color: black">Bank branch code</td>
+                    <td style="width: 84%; background-color: white; color: black">{{branchCode}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 17%; color: black">Account Nr.</td>
+                    <td style="width: 84%; background-color: white; color: black">{{AccountNR}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 17%; color: black">Name of bank</td>
+                    <td style="width: 84%; background-color: white; color: black">{{BankNAme}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 13%; color: black">Account holder</td>
+                    <td style="background-color: lightgray; width: 12%; color: black">Surname</td>
+                    <td style="width: 20%; background-color: white; color: black">{{AccountHolderSurname}}</td>
+                    <td style="background-color: lightgray; width: 12%; color: black">Initials</td>
+                    <td style="width: 20%; background-color: white; color: black">{{AccountholderInitials}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 10.2%; color: black">Account type</td>
+                    <td style="width: 50%; background-color: white; color: black">{{AccountTypeInfo}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid" style="width: 100%">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 10.6%; color: black; height: 1cm">Signature:
+                      Temporary Employee
+                    </td>
+                    <td style="width: 20%; background-color: white; color: black"></td>
+                    <td style="background-color: lightgray; width: 12%; color: black">Date:</td>
+                    <td style="width: 20%; background-color: white; color: black">{{AccountDate}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              </tbody>
+            </table>
             <hr>
-            <p style="color: black">Document Number:  HC131F_4 27.8.2015 (3.8.3.1.1)</p>
+            <p style="color: black">Document Number: HC131F_4 27.8.2015 (3.8.3.1.1)</p>
           </div>
 
           <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="generatePDF()">Download PDF</button>
 
         </form>
-          <hr>
-          <h4>This section can be used to download the images uplaoded by the applicants.</h4>
-          <form (ngSubmit)="setNwuNumber(o)" #o="ngForm">
-            <div class="form-group">
-              <label for="nwunumber4" style="color: white">NWU number:</label>
-              <input type="text" id="nwunumber4" class="form-control" ngModel name="nwunumber4" pattern="\d*" maxlength="8"
-                     minlength="8" required #nwunumber4="ngModel" style="width: 20%">
-              <div *ngIf="nwunumber4.invalid && (nwunumber4.dirty || nwunumber4.touched)" class="alert alert-danger">
-                <div *ngIf="nwunumber4.errors.required">
-                  NWU number is required.
-                </div>
-                <div *ngIf="nwunumber4.errors.minlength">
-                  NWU number must be 8 characters long.
-                </div>
-                <div *ngIf="nwunumber4.errors.pattern">
-                  Must only be numbers.
-                </div>
+        <hr>
+        <h4>This section can be used to download the images uplaoded by the applicants.</h4>
+        <form (ngSubmit)="setNwuNumber(o)" #o="ngForm">
+          <div class="form-group">
+            <label for="nwunumber4" style="color: white">NWU number:</label>
+            <input type="text" id="nwunumber4" class="form-control" ngModel name="nwunumber4" pattern="\d*"
+                   maxlength="8"
+                   minlength="8" required #nwunumber4="ngModel" style="width: 20%">
+            <div *ngIf="nwunumber4.invalid && (nwunumber4.dirty || nwunumber4.touched)" class="alert alert-danger">
+              <div *ngIf="nwunumber4.errors.required">
+                NWU number is required.
+              </div>
+              <div *ngIf="nwunumber4.errors.minlength">
+                NWU number must be 8 characters long.
+              </div>
+              <div *ngIf="nwunumber4.errors.pattern">
+                Must only be numbers.
               </div>
             </div>
-            <div>
-              <button id="btnGet" class="btn btn-primary" type="submit" [disabled]="!o.valid" (click)="activateButtons($event)">Get
-                Images for NwuNumber</button>
-              <br>
-              <p>{{ pulled }}</p>
-              <hr>
-              <p>These buttons can be used to download the various files uplaoded by applicants. Depending on the type
-                of applicant (sa/foreign) some images may not exist.</p>
-              <button id="getImg1" class="btn btn-primary" type="submit" disabled (click)="getImageFromServiceID($event)">Get
-                ID</button>
-              <br><br />
-              <button id="getImg2" class="btn btn-primary" type="submit" disabled (click)="getImageFromServicePassPort($event)">Get
-                passport</button>
-              <br><br />
-              <button id="getImg3" class="btn btn-primary" type="submit" disabled (click)="getImageFromServiceProof($event)">Get
-                proof of registration</button>
-              <br><br />
-              <button id="getImg4" class="btn btn-primary" type="submit" disabled (click)="getImageFromServicePermit($event)">Get
-                study permit</button>
-              <br><br />
-              <button id="getImg5" class="btn btn-primary" type="submit" disabled (click)="getImageFromServiceConduct($event)">Get
-                permission toconduct work</button>
-            </div>
-          </form>
+          </div>
+          <div>
+            <button id="btnGet" class="btn btn-primary" type="submit" [disabled]="!o.valid"
+                    (click)="activateButtons($event)">Get
+              Images for NwuNumber
+            </button>
+            <br>
+            <p>{{ pulled }}</p>
+            <hr>
+            <p>These buttons can be used to download the various files uplaoded by applicants. Depending on the type
+              of applicant (sa/foreign) some images may not exist.</p>
+            <button id="getImg1" class="btn btn-primary" type="submit" disabled (click)="getImageFromServiceID($event)">
+              Get
+              ID
+            </button>
+            <br><br/>
+            <button id="getImg2" class="btn btn-primary" type="submit" disabled
+                    (click)="getImageFromServicePassPort($event)">Get
+              passport
+            </button>
+            <br><br/>
+            <button id="getImg3" class="btn btn-primary" type="submit" disabled
+                    (click)="getImageFromServiceProof($event)">Get
+              proof of registration
+            </button>
+            <br><br/>
+            <button id="getImg4" class="btn btn-primary" type="submit" disabled
+                    (click)="getImageFromServicePermit($event)">Get
+              study permit
+            </button>
+            <br><br/>
+            <button id="getImg5" class="btn btn-primary" type="submit" disabled
+                    (click)="getImageFromServiceConduct($event)">Get
+              permission toconduct work
+            </button>
+          </div>
+        </form>
       </ng-template>
     </ngb-tab>
-    </ngb-tabset>
-  </div>
+
+    <ngb-tab title="Claims Form">
+      <ng-template ngbTabContent>
+
+        <form (ngSubmit)="getStudentClaimsInfo(t)" #t="ngForm">
+          <div class="form-group">
+            <label for="nwunumber5" style="color: white">NWU number:</label>
+            <input type="text" id="nwunumber5" class="form-control" ngModel name="nwunumber5" pattern="\d*"
+                   maxlength="8"
+                   minlength="8" required #nwunumber5="ngModel" style="width: 20%">
+            <div *ngIf="nwunumber5.invalid && (nwunumber5.dirty || nwunumber5.touched)" class="alert alert-danger"
+                 style="width: 35vw">
+
+              <div *ngIf="nwunumber5.errors.required">
+                NWU number is required.
+              </div>
+              <div *ngIf="nwunumber5.errors.minlength">
+                NWU number must be 8 characters long.
+              </div>
+              <div *ngIf="nwunumber5.errors.pattern">
+                Must only be numbers.
+              </div>
+            </div>
+          </div>
+          <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!t.valid">Get Info
+          </button>
+        </form>
+        <br>
+        <form name="ClaimsForm">
+          <div class="form-group" id="contentToConvertClaims" style="background-color: white; padding: 5%">
+            <img src="\src\app\fotos\NWUlogo.PNG" alt="">
+            <br>
+
+            <table style="width: 100%; height: 2cm; border-color: black">
+              <tbody>
+              <tr>
+                <td style="width: 10%; color: black; background-color: white"><b>HC132F</b></td>
+                <td style="width: 90%; color: black; background-color: white; align-content: center"><b>CLAIM FORM</b>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <br>
+
+            <ul>
+              <li style="color: black">Please complete all information in full or the claim cannot be processed.
+                INCOMPLETE FORMS MAY DELAY PAYMENT.
+              </li>
+              <li style="color: black">This form and the relevant time sheet must be received by HC Operations before or
+                on the date of the month published by HC Operations, for payment at the end of the next month.
+              </li>
+              <li style="color: black">This form must only be used for appointments on form HC001F (fixed-term) or
+                HC131F (temporary) which are paid by claim.
+              </li>
+              <li style="color: black">Claims may NOT be pre-dated and only work that already has been COMPLETED may be
+                claimed for.
+              </li>
+              <li style="color: black">The correct time sheet must accompany the claim form, otherwise it will NOT be
+                processed.
+              </li>
+            </ul>
+            <br>
+
+            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                   style="width: 100%; border-color: black">
+              <tbody>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Campus
+                      (tick)
+                    </td>
+                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">
+                      Institutional
+                    </td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Mafikeng</td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">
+                      Potchefstroom
+                    </td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black">X</td>
+                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Vaal
+                      Triangle
+                    </td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">
+                      Faculty/Division
+                    </td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">
+                      School/Department
+                    </td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">Subject
+                      Group
+                    </td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">NWU
+                      Number
+                    </td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">Surname
+                    </td>
+                    <td style="background-color: white; width: 35%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Title</td>
+                    <td style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">Full
+                      Names
+                    </td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">Identity
+                      Number
+                    </td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">Passport
+                      Number
+                    </td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              </tbody>
+            </table>
+            <br>
+
+            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                   style="width: 100%; border-color: black">
+              <tbody>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Period of
+                      Claim
+                    </td>
+                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black">Start</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">0</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">1</td>
+                    <td style="background-color: lightgray; width: 3%; border-color: black; color: black">-</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">0</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">7</td>
+                    <td style="background-color: lightgray; width: 3%; border-color: black; color: black">-</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">2</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">0</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">1</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">8</td>
+                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black">Tot</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">3</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">0</td>
+                    <td style="background-color: lightgray; width: 3%; border-color: black; color: black">-</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">1</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">1</td>
+                    <td style="background-color: lightgray; width: 3%; border-color: black; color: black">-</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">2</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">0</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">1</td>
+                    <td style="background-color: white; width: 3%; border-color: black; color: black">8</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 26%; border-color: black; color: black">Rate</td>
+                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black">R</td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Per Hour</td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black">X</td>
+                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Per Session
+                    </td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 15%; border-color: black; color: black">Per Module
+                    </td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Please
+                      specify if remuneration is made using any other unit (E.g. per page/word etc.)
+                    </td>
+                    <td style="background-color: white; width: 50%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 26%; border-color: black; color: black">Amount
+                      Claimed
+                    </td>
+                    <td style="background-color: lightgray; width: 5%; border-color: black; color: black">R</td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 2.5%; border-color: black; color: black">-</td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2.5%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 44%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Module Code
+                      (for Student Assistant, SI Leaders & Facilitators)
+                    </td>
+                    <td style="background-color: white; width: 50%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 26.6%; border-color: black; color: black">Accounting
+                      Combination
+                    </td>
+                    <td style="background-color: white; width: 5.3%; border-color: black; color: black">P</td>
+                    <td style="background-color: lightgray; width: 5.3%; border-color: black; color: black">
+                      <ul>
+                        <li style="color: black"></li>
+                      </ul>
+                    </td>
+                    <td style="background-color: white; width: 5.3%; border-color: black; color: black">1</td>
+                    <td style="background-color: white; width: 5.3%; border-color: black; color: black">A</td>
+                    <td style="background-color: white; width: 5.3%; border-color: black; color: black">0</td>
+                    <td style="background-color: white; width: 5.3%; border-color: black; color: black">0</td>
+                    <td style="background-color: white; width: 5.3%; border-color: black; color: black">8</td>
+                    <td style="background-color: white; width: 5.3%; border-color: black; color: black">3</td>
+                    <td style="background-color: white; width: 5.3%; border-color: black; color: black">5</td>
+                    <td style="background-color: lightgray; width: 5.3%; border-color: black; color: black">
+                      <ul>
+                        <li style="color: black"></li>
+                      </ul>
+                    </td>
+                    <td style="background-color: white; width: 5.3%; border-color: black; color: black">1</td>
+                    <td style="background-color: white; width: 5.3%; border-color: black; color: black">2</td>
+                    <td style="background-color: white; width: 5.3%; border-color: black; color: black">0</td>
+                    <td style="background-color: white; width: 5.3%; border-color: black; color: black">1</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+
+            <table cellpadding="0" cellspacing="0" ng-show="IsVisible" class="container-fluid"
+                   style="width: 100%; border-color: black">
+              <tbody>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Initials &
+                      Surname
+                    </td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Signature
+                    </td>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black">Date</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black; height: 2cm">
+                      Claimant
+                    </td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td style="background-color: lightgray; width: 25%; border-color: black; color: black; height: 2cm">
+                      Line Manager
+                    </td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black">PROF E Taylor
+                    </td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+
+            <img src="\src\app\fotos\NWUlogo.PNG" alt="">
+            <br>
+
+            <label style="color: black"><b>Module:</b></label><br>
+            <label style="color: black"><b>Name & Surname:</b></label>
+
+            <table style="width: 100%; height: 2cm; border-color: black">
+              <tbody>
+              <tr>
+                <td style="width: 10%; color: black; background-color: white"><b>HC132F</b></td>
+                <td style="width: 90%; color: black; background-color: white; align-content: center"><b>CLAIM FORM</b>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <p style="color: black"><b>Time Sheet of Service Delivery</b> (if space provided is inadequate, attach a
+              similar separate statement)</p>
+            <br>
+
+            <table style="width: 100%; border-color: white">
+              <tbody>
+              <tr>
+                <table style="width: 100%; border-color: black; color: black">
+                  <tbody>
+                  <tr>
+                    <td align="center"
+                        style="background-color: lightgray; width: 35%; border-color: black; color: black">
+                      <b>Activity</b></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 20%; border-color: black; color: black"><b>Date</b>
+                    </td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 20%; border-color: black; color: black"><b>Hours:
+                      From - To</b></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 20%; border-color: black; color: black"><b>Total
+                      Hours</b></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              <tr>
+                <table style="width: 100%; border-color: lightgray; color: black">
+                  <tbody>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 2%; border-bottom: lightgray; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: lightgray; width: 2%; border-bottom: lightgray; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: black; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: lightgray; width: 2%; border-bottom: black; border-top-color: lightgray;color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td align="center"
+                        style="background-color: lightgray; width: 2%; border-bottom: black; border-top-color: lightgray;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                    <td
+                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
+                    <td align="center"
+                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </tr>
+              </tbody>
+            </table>
+            <label>Lecture Signature:</label>
+
+            <hr>
+            <p style="color: black">Document number: HC132F– Version 3 25.8.2015 </p>
+          </div>
+
+          <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="generateClaimsPDF()">Download PDF
+          </button>
+
+        </form>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>
 </body>

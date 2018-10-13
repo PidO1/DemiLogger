@@ -1,0 +1,33 @@
+<br><br><br><br><br><br><br><br><br><br>
+
+<body>
+<div id="container" class="container">
+  <div id="main" class="col-md-12">
+    <h2>Find out more about your students</h2>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="form-group">
+      <label for="module1">Module code:</label>
+      <input type="text" class="form-control" id="module1" value placeholder="e.g ITRW324" ngModel name="module1"
+             required #module1="ngModel">
+      <div *ngIf="module1.invalid && (module1.dirty || module1.touched)" class="alert alert-danger" style="width: 35vw">
+
+        <div *ngIf="module1.errors.required">
+          A module code is required.
+        </div>
+      </div>
+    </div>
+    <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit
+    </button>
+    </form>
+    <p>{{data | json}}</p>
+    <table class="table table-responsive table-condensed">
+      <tr>
+        <th *ngFor="let label of tableLabel">{{label}}</th>
+      </tr>
+      <tr *ngFor="let d of tableData">
+        <td *ngFor="let label of tableLabel; let j=index">{{d && d.data[j]}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+</body>

@@ -132,7 +132,7 @@ export class ManageComponent implements OnInit {
         });
     }
     this.arr++;
-    if (this.arr > this.data.length) {
+    if (this.arr = this.data.length) {
       this.studentnumber = 'done';
       this.demiName = '';
       this.modulename = '';
@@ -219,7 +219,31 @@ export class ManageComponent implements OnInit {
         pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
-      pdf.save('MYPdf.pdf'); // Generated PDF
+      pdf.save('-AppointmentForm.pdf'); // Generated PDF
+    });
+  }
+  public generateClaimsPDF() {
+    const data = document.getElementById('contentToConvertClaims');
+    html2canvas(data).then(canvas => {
+      // Few necessary setting options
+      const imgWidth = 210;
+      const pageHeight = 295;
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+      let heightLeft = imgHeight;
+
+      const contentDataURL = canvas.toDataURL('image/png')
+      const pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+      let position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+      pdf.save('-ClaimsForm.pdf'); // Generated PDF
     });
   }
   activateButtons(event) {
