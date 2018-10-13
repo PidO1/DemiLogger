@@ -2,17 +2,16 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 const mysql = require('promise-mysql');
-const fs = require("fs");
- const bcrypt = require('bcrypt');
- const saltRounds = 10;
+
+ 
  const multer = require('multer');
- var jwt = require('jsonwebtoken');
+
  const checkAuth = require('../Auth/checkAuth');
  const checkAuthAdmin = require('../Auth/checkAuthAdmin');
  const checkAuthDosent = require('../Auth/checkAuthDosent');
  var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
-var JWT_private = 'secret';
+
  const storage = multer.diskStorage({
   destination: function(req,file,cb){cb(null,'./uploads');} , 
   filename : function(req,file,cb){ cb(null, file.originalname);}});
@@ -46,7 +45,7 @@ var transporter = nodemailer.createTransport({
 
 
 
-router.post('/applicationform/sa',upload.any(),(req,res,next)=>{ console.log('yebo');//REGISTER
+router.post('/applicationform/sa',checkAuth ,upload.any(),(req,res,next)=>{ console.log('yebo');//REGISTER
 console.log(req.body);
 console.log(req.files);
 
@@ -134,7 +133,7 @@ var post  = {NwuNumber : req.body.nwunumber,
   
 
 });
-router.post('/applicationform/foreign',upload.any(),(req,res,next)=>{ console.log('yebo');//REGISTER
+router.post('/applicationform/foreign',checkAuth,upload.any(),(req,res,next)=>{ console.log('yebo');//REGISTER
 
 console.log(req.files);
 
@@ -226,20 +225,20 @@ var post  = {NwuNumber : req.body.nwunumber,
   
 
 });
-router.get('/all',(req,res,next)=>{
-  if(req.adminYN){
+router.get('/all',checkAuthAdmin,(req,res,next)=>{
+  
   var sql =  'Select NwuNumber, DemiId, demiName, modulename, ModuleId, moduleMark From application';
       con.getConnection()
       .then(function(connection){connection.query(sql,function(error,results,fields){ if(results){return res.status(200).json(results);}});})
-      .catch(err=>{if(err){res.status(400).json({message:'something went wrong please try'});}});}
-      else{res.status(400)};
+      .catch(err=>{if(err){res.status(400).json({message:'something went wrong please try'});}});
+      
       
     
 });
 
 
 
-router.post('/demiGet',jsonParser,(req,res,next)=>{
+router.post('/demiGet',checkAuthAdmin,jsonParser,(req,res,next)=>{
   
    console.log(req.body);
   

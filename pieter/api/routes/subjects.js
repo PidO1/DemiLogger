@@ -36,10 +36,22 @@ router.post('/',jsonParser,(req,res,next)=>{
       });
   
 });
-router.get('/:subjectID',(req,res,next)=>{
-  res.status(201).json({message:'Subject FOUND by ID',subjectid:req.params.subjectID});
+router.get('/get',jsonParser,(req,res,next)=>{
+
+sql = 'SELECT ModuleCode , ModuleId FROM module';
+con.getConnection()
+.then(conn=>{
+
+  conn.query(sql,(err,result,fields)=>{
+  res.status(200).json(result);
+    
+
+
+  });
+})  
+.catch(err=>{
+  res.send(err);
 });
-router.delete('/:subjectID',(req,res,next)=>{
-  res.status(201).json({message:'Subject DELETED',subjectid:req.params.subjectID});
+
 });
 module.exports = router;

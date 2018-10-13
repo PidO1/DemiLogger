@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 const mysql = require('promise-mysql');
-const fs = require("fs");
- const bcrypt = require('bcrypt');
+
+
  const checkAuth = require('../Auth/checkAuth');
  const checkAuthAdmin = require('../Auth/checkAuthAdmin');
  const checkAuthDosent = require('../Auth/checkAuthDosent');
@@ -28,7 +28,7 @@ var transporter = nodemailer.createTransport({
     }
   });
 
-  router.post('/module',jsonParser,(req,res,next)=>{
+  router.post('/module',checkAuth,jsonParser,(req,res,next)=>{
     
    
       console.log(req.body);
@@ -91,11 +91,11 @@ var transporter = nodemailer.createTransport({
         });
     
   });
-  router.post('/delete',jsonParser,(req,res,next)=>{
+  router.post('/delete',checkAuthAdmin,jsonParser,(req,res,next)=>{
     console.log(req.body);
     var module1 = req.body.ModuleId;
     var demi1 = req.body.DemiId;
-    sql = 'delete FROM application WHERE ModuleId = ? AND DemiId = ?';
+   var sql = 'delete FROM application WHERE ModuleId = ? AND DemiId = ?';
     con.getConnection()
         .then(function(conn){
 
@@ -117,9 +117,12 @@ var transporter = nodemailer.createTransport({
         });
   });
 
-  router.post('/accept',jsonParser,(req,res,next)=>{
-    console.log(req.body.DemiId+'helllooooooooooooo');
+  router.post('/accept',checkAuthAdmin,checkAuthAdmin,jsonParser,(req,res,next)=>{
+    console.log(req.body.DemiId);
     var sql = 'INSERT INTO demimodule set ?';
+    var sql2 = 'delete FROM application WHERE ModuleId = ? AND DemiId = ?';
+    var module1 = req.body.ModuleId;
+    var demi1 = req.body.DemiId;
     var post = {
 
         DemiId: req.body.DemiId,
@@ -130,36 +133,25 @@ var transporter = nodemailer.createTransport({
 
             conn.query(sql,post,function (err, result, fields) {
               
-                if(result)
-                {
-                    res.status(200).json({message:'acceptance Successfull'});
-                }
+                
+                    conn.query(sql2 ,[module1 , demi1 ] ,function (err, result, fields) {
+               
+                        if(result)
+                        {
+                            console.log('Accept se delete');
+                            res.status(200).json({message:'acceptance Successfull'});
+                        }
+                        
+                         
+                    
+                         });
+                    
+                
               
                  
             
          });
-         conn.query('SELECT * From demi WHERE DemiId = ?',req.body.demiId,function (err, result, fields) {
-            
-            if(result)
-            {
-                var mailOptions = {
-                    from: 'demilogger@gmail.com',
-                    to: result[0].Email,
-                    cc: 'pieterswanepoel108@gmail.com',
-                    subject: 'ANOUNCEMENT',
-                    text: 'Demi acceptance for a subject'
-                  };  
-                  transporter.sendMail(mailOptions, function(error, info){
-                    if (error) {
-                      console.log(error);
-                    } else {
-                      console.log('Email sent: ' + info.response);
-                    }
-                  })
-                
-            }
-        }
-        );
+
 
         })
         .catch(err=>{

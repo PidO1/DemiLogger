@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 const mysql = require('promise-mysql');
-const fs = require("fs");
- const bcrypt = require('bcrypt');
- const saltRounds = 10;
+
+
+ 
  const checkAuth = require('../Auth/checkAuth');
  const checkAuthAdmin = require('../Auth/checkAuthAdmin');
  
@@ -28,7 +28,7 @@ var transporter = nodemailer.createTransport({
   });
 
 
-router.post('/make',jsonParser,(req,res,next)=>{
+router.post('/make',checkAuthAdmin,jsonParser,(req,res,next)=>{
     var post;
     var getS;
     var getL;
@@ -197,3 +197,4 @@ router.get('/get',(req,res,next)=>{
 
 
 module.exports = router;
+//C:\Users\piete\Desktop\DemiLogger\pieter

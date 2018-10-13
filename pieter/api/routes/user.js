@@ -3,7 +3,7 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 const mysql = require('promise-mysql');
 const fs = require("fs");
- const bcrypt = require('bcrypt');
+ const bcrypt = require('bcryptjs');
  const saltRounds = 10;
  const multer = require('multer');
  var jwt = require('jsonwebtoken');
@@ -52,7 +52,7 @@ var mailOptions = {
   subject: 'Registering for Demi Work',
   text: 'You have just registered to be a Demi'
 };
-
+console.log(req.headers);
 var post;
 var hashing = bcrypt.hash(req.body.password,saltRounds,(err,hash)=>{
   if(err)
@@ -62,7 +62,7 @@ var hashing = bcrypt.hash(req.body.password,saltRounds,(err,hash)=>{
   else
     {
       console.log('password hash success');
-     var post  = {NwuNumber : req.body.nwunumber ,pasword: hash, Email: req.body.email, demi:0,admins:1,dosent:0};
+     var post  = {NwuNumber : req.body.nwunumber ,pasword: hash, Email: req.body.email, demi:1,admins:1,dosent:0};
      var sql = 'INSERT INTO users set ?';
         console.log(post);
       con.getConnection()

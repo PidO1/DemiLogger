@@ -1,12 +1,29 @@
+console.log('checkAuth');
 var JWT_private = 'secret';
 var jwt = require('jsonwebtoken');
 
 module.exports = (req,res,next)=>{
     
     try{
-        const decoded = jwt.verify(req.headers.authentication,JWT_private);
-        req.userData = decoded;
-        next();
+        const decoded = jwt.verify(req.headers.authorization,JWT_private);
+        if(decoded)
+        {
+            req.userData = decoded;
+        const data = jwt.decode(req.headers.authorization);
+        if(data.demi===1)
+        {
+            req.demi = data.NwuNumber;
+            
+            next();
+        }
+        else{
+            return res.status(401).json({message:'auth failed'});
+        }
+        
+        
+        }
+        
+        
     }catch(error){
         return res.status(401).json({message:'auth failed'});
 

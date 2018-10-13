@@ -3,9 +3,10 @@ const router = express.Router();
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 const mysql = require('promise-mysql');
-const fs = require("fs");
- const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
  const saltRounds = 10;
+
+
  const checkAuth = require('../Auth/checkAuth');
  const checkAuthAdmin = require('../Auth/checkAuthAdmin');
  const checkAuthDosent = require('../Auth/checkAuthDosent');
@@ -30,7 +31,7 @@ router.get('/',(req,res,next)=>{
 
 
 router.post('/register',jsonParser,(req,res,next)=>{ console.log('yebo');//REGISTER
-console.log(req.headers);
+
 var post;
 var hashing = bcrypt.hash(req.body.password,saltRounds,(err,hash)=>{
   if(err)
@@ -66,8 +67,38 @@ var hashing = bcrypt.hash(req.body.password,saltRounds,(err,hash)=>{
 
 
 
-router.get('/:dosentID',(req,res,next)=>{
-      
+router.post('/get/dosent/demi',(req,res,next)=>{
+  var data = [];
+ 
+  var connection;    
+  console.log(req.body);
+  con.getConnection()
+      .then(conn=>{
+        var sql ='SELECT ModuleId FROM module WHERE ModuleCode = ?';
+        connection = conn;
+        return conn.query(sql,req.body.module1);
+
+
+      }).then(rows=>{
+        //console.log(rows[0].ModuleId);
+        var sql2 = 'SELECT * From demi_module_details WHERE ModuleId = ?';
+       connection.query(sql2,rows[0].ModuleId,(err,result,fields)=>{
+
+        for(x=0;x<result.length;x++)
+        {
+        data.push({ data:[result[x].NwuNumber,result[x].PrefferedName, result[x].Surname, result[x].Email ]  , label: ['Nwu-Number','Name','Surname','Email'] });
+          console.log(data);
+
+        }
+        res.status(202).json(data);
+
+       });
+
+      })
+      .catch();
+
+
+
 });
 
 
