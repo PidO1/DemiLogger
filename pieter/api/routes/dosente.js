@@ -76,11 +76,12 @@ router.post('/get/dosent/demi',(req,res,next)=>{
       .then(conn=>{
         var sql ='SELECT ModuleId FROM module WHERE ModuleCode = ?';
         connection = conn;
+        
         return conn.query(sql,req.body.module1);
 
 
       }).then(rows=>{
-        //console.log(rows[0].ModuleId);
+        console.log(rows[0].ModuleId);
         var sql2 = 'SELECT * From demi_module_details WHERE ModuleId = ?';
        connection.query(sql2,rows[0].ModuleId,(err,result,fields)=>{
 
@@ -95,7 +96,10 @@ router.post('/get/dosent/demi',(req,res,next)=>{
        });
 
       })
-      .catch();
+      .catch(err=>{
+
+        res.status(400);
+      });
 
 
 
