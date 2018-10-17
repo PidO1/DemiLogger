@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-var request = require('request');
-var progress = require('request-progress');
+
 const mysql = require('promise-mysql');
 const fs = require("fs");
  var jwt = require('jsonwebtoken');
@@ -10,7 +9,9 @@ const fs = require("fs");
 var jsonParser = bodyParser.json();
 var JWT_private = 'secret';
 var mime = require('mime-types');
-
+const checkAuth = require('../Auth/checkAuth');
+ const checkAuthAdmin = require('../Auth/checkAuthAdmin');
+ const checkAuthDosent = require('../Auth/checkAuthDosent');
 
 var con = mysql.createPool({
   host: "localhost",
@@ -20,7 +21,7 @@ var con = mysql.createPool({
 });
 
 
-router.get('/getID/:id',(req,res,next)=>{  //*********************  ID */
+router.get('/getID/:id',checkAuthAdmin,(req,res,next)=>{  //*********************  ID */
   
   var sql = 'SELECT * FROM demi WHERE NwuNumber = ?';
   
@@ -80,8 +81,8 @@ router.get('/getID/:id',(req,res,next)=>{  //*********************  ID */
    
     
   });
-  router.get('/getPassport/:id',(req,res,next)=>{  //*****Paspoort */
-  
+  router.get('/getPassport/:id',checkAuthAdmin,(req,res,next)=>{  //*****Paspoort */
+    console.log(req.params.id);
     var sql = 'SELECT * FROM demi WHERE NwuNumber = ?';
     
     con.getConnection()
@@ -140,7 +141,7 @@ router.get('/getID/:id',(req,res,next)=>{  //*********************  ID */
       
     });
 
-    router.get('/getReg/:id',(req,res,next)=>{         //registration
+    router.get('/getReg/:id',checkAuthAdmin,(req,res,next)=>{         //registration
   
       var sql = 'SELECT * FROM demi WHERE NwuNumber = ?';
       
@@ -200,7 +201,7 @@ router.get('/getID/:id',(req,res,next)=>{  //*********************  ID */
         
       });
 
-      router.get('/getPermit/:id',(req,res,next)=>{   //***************permit */
+      router.get('/getPermit/:id',checkAuthAdmin,(req,res,next)=>{   //***************permit */
   
         var sql = 'SELECT * FROM demi WHERE NwuNumber = ?';
         
@@ -260,7 +261,7 @@ router.get('/getID/:id',(req,res,next)=>{  //*********************  ID */
           
         });
 
-router.get('/getCWork/:id',(req,res,next)=>{   //**************conduct work */
+router.get('/getCWork/:id',checkAuthAdmin,(req,res,next)=>{   //**************conduct work */
   
     var sql = 'SELECT * FROM demi WHERE NwuNumber = ?';
           

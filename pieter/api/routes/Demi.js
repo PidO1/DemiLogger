@@ -2,17 +2,16 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 const mysql = require('promise-mysql');
-const fs = require("fs");
- const bcrypt = require('bcrypt');
- const saltRounds = 10;
+
+ 
  const multer = require('multer');
- var jwt = require('jsonwebtoken');
+
  const checkAuth = require('../Auth/checkAuth');
  const checkAuthAdmin = require('../Auth/checkAuthAdmin');
  const checkAuthDosent = require('../Auth/checkAuthDosent');
  var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
-var JWT_private = 'secret';
+
  const storage = multer.diskStorage({
   destination: function(req,file,cb){cb(null,'./uploads');} , 
   filename : function(req,file,cb){ cb(null, file.originalname);}});
@@ -46,7 +45,7 @@ var transporter = nodemailer.createTransport({
 
 
 
-router.post('/applicationform/sa',upload.any(),(req,res,next)=>{ console.log('yebo');//REGISTER
+router.post('/applicationform/sa',checkAuth ,upload.any(),(req,res,next)=>{ console.log('yebo');//REGISTER
 console.log(req.body);
 console.log(req.files);
 
@@ -59,7 +58,9 @@ var mailOptions = {
 
 var post  = {NwuNumber : req.body.nwunumber,
   IDdoc:req.files[0].path,
+  IDdocName: req.files[0].originalname,
  RegistrationForm:req.files[1].path,
+ RegistrationFormName: req.files[1].originalname,
   Title: req.body.title,
   Initials: req.body.initials,
   Surname: req.body.surname,
@@ -114,18 +115,18 @@ var post  = {NwuNumber : req.body.nwunumber,
   var sql =  'INSERT INTO demi set ?';
   con.getConnection()
       .then(function(connection) {
-        connection.query(sql,post,(err,ress)=>{if(ress){res.status(201).json({message: ress} ); transporter.sendMail(mailOptions, function(error, info){
+        connection.query(sql,post,(err,ress)=>{if(ress){res.status(201).json({message: 'Demi applied SA'} ); transporter.sendMail(mailOptions, function(error, info){
           if (error) {
-            console.log(error);
+           throw error;
           } else {
             console.log('Email sent: ' + info.response);
           }
         });}
-        else if(err){res.status(422).json({message: err});console.log(err);} });
+        else if(err){res.status(422).json({message: 'error occurred'});console.log(err);} });
         
       })
       .catch(function(errs) {
-        res.status(500).json({message: errs});
+        res.status(500).json({message: 'error'});
         console.log(errs);
       });
 
@@ -134,9 +135,9 @@ var post  = {NwuNumber : req.body.nwunumber,
   
 
 });
-router.post('/applicationform/foreign',upload.any(),(req,res,next)=>{ console.log('yebo');//REGISTER
+router.post('/applicationform/foreign',checkAuth  ,upload.any(),(req,res,next)=>{ console.log('yebo');//REGISTER
 
-console.log(req.files);
+console.log(req.headers);
 
 var mailOptions = {
   from: 'demilogger@gmail.com',
@@ -210,6 +211,8 @@ var post  = {NwuNumber : req.body.nwunumber,
         connection.query(sql,post,(err,ress)=>{if(ress){res.status(201).json({message:'Foreign student added success'} ); transporter.sendMail(mailOptions, function(error, info){
           if (error) {
             console.log(error);
+            throw error;
+            
           } else {
             console.log('Email sent: ' + info.response);
           }
@@ -226,20 +229,24 @@ var post  = {NwuNumber : req.body.nwunumber,
   
 
 });
-router.get('/all',(req,res,next)=>{
-  if(req.adminYN){
+router.get('/all',checkAuthAdmin,(req,res,next)=>{
+  
   var sql =  'Select NwuNumber, DemiId, demiName, modulename, ModuleId, moduleMark From application';
       con.getConnection()
-      .then(function(connection){connection.query(sql,function(error,results,fields){ if(results){return res.status(200).json(results);}});})
-      .catch(err=>{if(err){res.status(400).json({message:'something went wrong please try'});}});}
-      else{res.status(400)};
+      .then(function(connection){connection.query(sql,function(error,results,fields){
+        if(error){
+          throw error;
+        }
+        if(results){return res.status(200).json(results);}});})
+      .catch(err=>{if(err){res.status(400).json({message:'something went wrong please try'});}});
+      
       
     
 });
 
 
 
-router.post('/demiGet',jsonParser,(req,res,next)=>{
+router.post('/demiGet',checkAuthAdmin,jsonParser,(req,res,next)=>{
   
    console.log(req.body);
   
@@ -248,6 +255,7 @@ router.post('/demiGet',jsonParser,(req,res,next)=>{
   .then(function(connection){connection.query(sql,req.body.nwunumber3,function(error,results,fields){ 
     console.log(results);
     if(results){return res.status(200).json(results[0]);}
+    if(error){throw error;}
   
   });})
   .catch(err=>{if(err){res.status(400).json({message:'something went wrong please try'});}});
