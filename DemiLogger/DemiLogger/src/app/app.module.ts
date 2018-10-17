@@ -21,6 +21,7 @@ import { TokenInterceptor } from './token.interceptor';
 import { ModuleapplicationComponent } from './forms/moduleapplication/moduleapplication.component';
 import { FooterComponent } from './footer/footer.component';
 import { QueriesComponent } from './queries/queries.component';
+import { StudantapplicationsComponent } from './queries/studantapplications/studantapplications.component';
 
 const appRoutes: Routes = [
   { path: 'home', component:  HomeComponent },
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
   { path: 'forms/application-form', component: ApplicationFormComponent},
   { path: 'forms/moduleapplication', component: ModuleapplicationComponent},
   { path: 'queries', component: QueriesComponent},
+  { path: 'queries/studantapplications', component: StudantapplicationsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
@@ -51,6 +53,7 @@ const appRoutes: Routes = [
     ModuleapplicationComponent,
     FooterComponent,
     QueriesComponent,
+    StudantapplicationsComponent,
   ],
   imports: [
     BrowserModule,

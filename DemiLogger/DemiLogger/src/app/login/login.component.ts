@@ -32,7 +32,11 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/home']);
           }
         },
-        (error) => console.log(error)
+        (error) => {
+          if (error != null){
+            alert('Something went wrong or the connection timed out.');
+          }
+        }
       );
   }
 }

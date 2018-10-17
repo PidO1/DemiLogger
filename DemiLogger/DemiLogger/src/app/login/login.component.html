@@ -18,7 +18,11 @@
           <div *ngIf="nwunumber.errors.pattern">
             Must only be numbers.
           </div>
+          <div *ngIf="f.submitted && nwunumber.invalid" class="invalid-feedback">
+            <div *ngIf="nwunumber.errors.required">NWU number is required</div>
+          </div>
         </div>
+
       </div>
       <div class="form-group">
         <label for="password">Password</label>
@@ -32,7 +36,12 @@
             Password mus be at least 6 characters long.
           </div>
         </div>
+        <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
       </div>
+
       <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!f.valid">Login
       </button>
     </form>

@@ -191,7 +191,7 @@
       </div>
 
       <div class="form-group">
-        <label for="dateofbirth">Date of Birth:</label>
+        <label for="dateofbirth">Date of Birth: (yyyy-mm-dd)</label>
         <input type="text" class="form-control" id="dateofbirth" placeholder="yyyy-mm-dd" ngModel (change)="onDataSelected($event)"
           name="dateofbirth">
       </div>
@@ -412,7 +412,7 @@
       </div>
 
       <div class="form-group">
-        <label for="expirydate">Passport Expiry Date:</label>
+        <label for="expirydate">Passport Expiry Date: (yyyy-mm-dd)</label>
         <input type="text" class="form-control" id="expirydate" placeholder="yyyy-mm-dd" ngModel (change)="onDataSelected($event)"
           name="expirydate" required>
       </div>
@@ -431,7 +431,7 @@
       </div>
 
       <div class="form-group">
-        <label for="permitexpiry">Work Permit Expiry Date:</label>
+        <label for="permitexpiry">Work Permit Expiry Date: (yyyy-mm-dd)</label>
         <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="permitexpiry" (change)="onDataSelected($event)"
           ngModel name="permitexpiry" required>
       </div>
@@ -532,14 +532,14 @@
       </div>
 
       <div class="form-group">
-        <label for="date">Date (Today):</label>
+        <label for="date">Date (Today): (yyyy-mm-dd)</label>
         <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="date" ngModel (change)="onDataSelected($event)"
           name="date" required>
       </div>
 
       <p>NB! In order to apply for a module you want to assist in, please go to the module form!</p>
       <div>
-        <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="onUpload()" [disabled]="!f.valid" routerLink="/forms/moduleapplication">Submit</button>
+        <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="onUpload()" [disabled]="!f.valid">Submit</button>
       </div>
     </form>
   </div>

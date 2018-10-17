@@ -9,6 +9,7 @@ export class PgpdServiceService {
   comm = 'http://192.168.1.9:3000'
   constructor(private http: HttpClient) {}
 
+  // Register and Login Posts.
   storeLoginData(loginData: any[]) {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post(this.comm + '/user/login', loginData, {headers: header});
@@ -17,6 +18,8 @@ export class PgpdServiceService {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post(this.comm + '/user/register', formData, {headers: header});
   }
+
+  //Manage componant's gets and posts
   storeAnnouncementData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post(this.comm + '/anounce/make', formData, {headers: header});
@@ -25,10 +28,22 @@ export class PgpdServiceService {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post(this.comm + '/dosente/register', formData, {headers: header});
   }
+
+  storeAdminData(formData: any[]) {
+    const header = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.post(this.comm + '/dosente/register', formData, {headers: header});
+  }
+
+  storeExistingAdminData(formData: any[]) {
+    const header = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.post(this.comm + '/dosente/register', formData, {headers: header});
+  }
+
   storeAddModule(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post(this.comm + '/subjects/', formData, {headers: header});
   }
+
   getToken() {
     return sessionStorage.getItem('token');
   }
@@ -40,7 +55,7 @@ export class PgpdServiceService {
     return this.http.get(this.comm + '/demi/all');
   }
   getAnnouncement() {
-    return this.http.get('http://192.168.1.8:3000/anounce/get');
+    return this.http.get(this.comm + '/anounce/get');
   }
   getImg(imgUrl: string): Observable<Blob> {
     return this.http.get(imgUrl, {responseType: 'blob'});
@@ -51,11 +66,21 @@ export class PgpdServiceService {
   getLecStudentInfo(value) {
     return this.http.post(this.comm + '/dosente/get/dosent/demi', value);
   }
+  getLecStudentApp(value) {
+    return this.http.post(this.comm + '/dosente/get/dosent/demi', value);
+  }
+
   getNextStudentDelete(value) {
     return this.http.post(this.comm + '/application/delete', value);
   }
   getinfoForPDF(value) {
     return this.http.post(this.comm + '/demi/demiGet', value);
+  }
+  getClaimsInfoForPDF(value) {
+    return this.http.post(this.comm + '/hours/getdetails', value);
+  }
+  getClaimsHours(value) {
+    return this.http.post(this.comm + '/hours/get', value);
   }
   uploadSAForm(value) {
     return this.http.post(this.comm + '/demi/applicationform/sa', value);

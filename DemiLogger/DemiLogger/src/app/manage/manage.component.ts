@@ -88,10 +88,50 @@ export class ManageComponent implements OnInit {
     console.log(form.value);
     this.submitService.storeLecturerData(form.value)
       .subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
+        (response) => {
+          // @ts-ignore
+          alert(response.message);
+        },
+        (error) => {
+          if (error != null){
+            alert('Something went wrong or the connection timed out.');
+          }
+        }
       );
   }
+
+  onSubmitAdmin(form: NgForm) {
+    console.log(form.value);
+    this.submitService.storeAdminData(form.value)
+      .subscribe(
+        (response) => {
+          // @ts-ignore
+          alert(response.message);
+        },
+        (error) => {
+          if (error != null){
+            alert('Something went wrong or the connection timed out.');
+          }
+        }
+      );
+  }
+
+  onSubmitExistingAdmin(form: NgForm) {
+    console.log(form.value);
+    this.submitService.storeExistingAdminData(form.value)
+      .subscribe(
+        (response) => {
+          // @ts-ignore
+          alert(response.message);
+        },
+        (error) => {
+          if (error != null){
+            alert('Something went wrong or the connection timed out.');
+          }
+        }
+      );
+  }
+
   onSubmitModule(form: NgForm) {
     console.log(form.value);
     this.submitService.storeAddModule(form.value)
@@ -132,22 +172,24 @@ export class ManageComponent implements OnInit {
         });
     }
     this.arr++;
-    if (this.arr = this.data.length) {
+    if (this.arr > this.data.length) {
       this.studentnumber = 'done';
       this.demiName = '';
       this.modulename = '';
       this.modulemark = '';
+    }else {
+      this.studentnumber = this.data[this.arr].NwuNumber;
+      this.demiName = this.data[this.arr].demiName;
+      this.modulename = this.data[this.arr].modulename;
+      this.modulemark = this.data[this.arr].moduleMark;
     }
-    this.studentnumber = this.data[this.arr].NwuNumber;
-    this.demiName = this.data[this.arr].demiName;
-    this.modulename = this.data[this.arr].modulename;
-    this.modulemark = this.data[this.arr].moduleMark;
+
   }
 
   getStudentPDFInfo(form: NgForm) {
     const header = new HttpHeaders().set('Content-Type', 'application-json');
     console.log(form.value);
-    this.studentnumber.getinfoForPDF(form.value)
+    this.submitService.getinfoForPDF(form.value)
       .subscribe(
         (response) => {
           console.log(response);
@@ -198,6 +240,81 @@ export class ManageComponent implements OnInit {
       );
   }
 
+  claimsHours;
+  activity = 'Class assistance'
+  day;
+  month;
+  year;
+  hour;
+  uur;
+  minuut;
+  Endhours;
+  Endminuut;
+  stnum;
+  date = new Date();
+  todayDate;
+
+  stInfo;
+  FullNames1;
+  IDNumber1;
+  Initials1;
+  Surname1;
+  Title1;
+  passport;
+  stNum;
+  moduleCode;
+  getStudentClaimsInfo(form: NgForm) {
+    const header = new HttpHeaders().set('Content-Type', 'application-json');
+    console.log(form.value);
+    this.stNum = form.value.nwunumber5;
+    this.moduleCode = form.value.module1;
+    this.submitService.getClaimsInfoForPDF(form.value)
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.stInfo = response;
+          this.FullNames1 = this.stInfo[0].FullNames;
+          this.IDNumber1 = this.stInfo[0].IDNumber;
+          this.Initials1 = this.stInfo[0].Initials;
+          this.Surname1 = this.stInfo[0].Surname;
+          this.Title1 = this.stInfo[0].Title;
+          this.passport = this.stInfo[0].passport;
+          this.date.getDate();
+          console.log(this.date);
+        },
+        (error) => console.log(error)
+      );
+    this.todayDate = this.date.toLocaleDateString();
+    console.log(this.date.toLocaleDateString());
+  }
+
+  getHours(form: NgForm) {
+    const header = new HttpHeaders().set('Content-Type', 'application-json');
+    console.log(form.value);
+    this.stnum = form.value.nwunumber5;
+    this.submitService.getClaimsHours(form.value)
+      .subscribe(
+        (response) => {
+          this.claimsHours = response;
+          console.log(this.claimsHours);
+          let arr = 0;
+          while(this.claimsHours[arr] != null)
+          {
+            this.day = this.claimsHours[arr].dag;
+            this.month = this.claimsHours[arr].maand;
+            this.year = this.claimsHours[arr].jaar;
+            this.hour = this.claimsHours[arr].hours;
+            this.uur = this.claimsHours[arr].uur;
+            this.minuut = this.claimsHours[arr].minuut;
+            this.Endhours = this.claimsHours[arr].Endhours;
+            this.Endminuut = this.claimsHours[arr].Endminuut;
+            arr++;
+          }
+        },
+        (error) => console.log(error)
+      );
+  }
+
   public generatePDF() {
     const data = document.getElementById('contentToConvert');
     html2canvas(data).then(canvas => {
@@ -219,7 +336,7 @@ export class ManageComponent implements OnInit {
         pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
-      pdf.save('-AppointmentForm.pdf'); // Generated PDF
+      pdf.save(this.NwuNumber + '-AppointmentForm.pdf'); // Generated PDF
     });
   }
   public generateClaimsPDF() {
@@ -243,7 +360,7 @@ export class ManageComponent implements OnInit {
         pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
-      pdf.save('-ClaimsForm.pdf'); // Generated PDF
+      pdf.save(this.stnum + '-ClaimsForm.pdf'); // Generated PDF
     });
   }
   activateButtons(event) {
@@ -259,6 +376,7 @@ export class ManageComponent implements OnInit {
     el5.disabled = false;
     this.pulled = 'Images pulled, they may now be downlaoded.';
   }
+  conn = 'http://192.168.1.9:3000';
   setNwuNumber(form: NgForm) {
     this.imgNumber = form.value.nwunumber4;
     console.log(this.imgNumber);
@@ -273,7 +391,7 @@ export class ManageComponent implements OnInit {
     }
   }
   getImageFromServiceID(event) {
-    this.imgUrl = 'http://192.168.1.8:3000/image/getID/' + this.imgNumber;
+    this.imgUrl = this.conn + '/image/getID/' + this.imgNumber;
     this.submitService.getImg(this.imgUrl)
       .subscribe(data => {
         this.createImageFromBlob(data);
@@ -286,8 +404,9 @@ export class ManageComponent implements OnInit {
           }
         });
   }
+
   getImageFromServicePassPort(event) {
-    this.imgUrl = 'http://192.168.1.8:3000/image/getPassport/' + this.imgNumber;
+    this.imgUrl = this.conn + '/image/getPassport/' + this.imgNumber;
     this.submitService.getImg(this.imgUrl)
       .subscribe(data => {
         this.createImageFromBlob(data);
@@ -301,7 +420,7 @@ export class ManageComponent implements OnInit {
     });
   }
   getImageFromServiceProof(event) {
-    this.imgUrl = 'http://192.168.1.8:3000/image/getReg/' + this.imgNumber;
+    this.imgUrl = this.conn + '/image/getReg/' + this.imgNumber;
     this.submitService.getImg(this.imgUrl)
       .subscribe(data => {
         this.createImageFromBlob(data);
@@ -315,7 +434,7 @@ export class ManageComponent implements OnInit {
     });
   }
   getImageFromServicePermit(event) {
-    this.imgUrl = 'http://192.168.1.8:3000/image/getPermit/' + this.imgNumber;
+    this.imgUrl = this.conn + '/image/getPermit/' + this.imgNumber;
     this.submitService.getImg(this.imgUrl)
       .subscribe(data => {
         this.createImageFromBlob(data);
@@ -329,7 +448,7 @@ export class ManageComponent implements OnInit {
     });
   }
   getImageFromServiceConduct(event) {
-    this.imgUrl = 'http://192.168.1.8:3000/image/getCWork/' + this.imgNumber;
+    this.imgUrl = this.conn + '/image/getCWork/' + this.imgNumber;
     this.submitService.getImg(this.imgUrl)
       .subscribe(data => {
         this.createImageFromBlob(data);

@@ -212,7 +212,6 @@
 
     <ngb-tab title="Add module">
       <ng-template ngbTabContent>
-        <br>
         <form (ngSubmit)="onSubmitModule(p)" #p="ngForm">
           <div class="form-group">
             <label for="code">Module code</label>
@@ -1294,8 +1293,7 @@
 
     <ngb-tab title="Claims Form">
       <ng-template ngbTabContent>
-
-        <form (ngSubmit)="getStudentClaimsInfo(t)" #t="ngForm">
+        <form (ngSubmit)="getStudentClaimsInfo(t)" (ngSubmit)="getHours(t)" #t="ngForm">
           <div class="form-group">
             <label for="nwunumber5" style="color: white">NWU number:</label>
             <input type="text" id="nwunumber5" class="form-control" ngModel name="nwunumber5" pattern="\d*"
@@ -1303,7 +1301,6 @@
                    minlength="8" required #nwunumber5="ngModel" style="width: 20%">
             <div *ngIf="nwunumber5.invalid && (nwunumber5.dirty || nwunumber5.touched)" class="alert alert-danger"
                  style="width: 35vw">
-
               <div *ngIf="nwunumber5.errors.required">
                 NWU number is required.
               </div>
@@ -1312,6 +1309,17 @@
               </div>
               <div *ngIf="nwunumber5.errors.pattern">
                 Must only be numbers.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="module1">Module Code:</label>
+            <input type="text" class="form-control" id="module1" value placeholder="e.g ITRW324" ngModel name="module1"
+                   required #module1="ngModel" style="width: 20%">
+            <div *ngIf="module1.invalid && (module1.dirty || module1.touched)" class="alert alert-danger" style="width: 35vw">
+
+              <div *ngIf="module1.errors.required">
+                A module code is required.
               </div>
             </div>
           </div>
@@ -1389,7 +1397,7 @@
                     <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">
                       Faculty/Division
                     </td>
-                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black">NATURAL AND AGRICULTURAL SCIENCES</td>
                   </tr>
                   </tbody>
                 </table>
@@ -1401,7 +1409,7 @@
                     <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">
                       School/Department
                     </td>
-                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black">Computer Science and Information Systems</td>
                   </tr>
                   </tbody>
                 </table>
@@ -1413,7 +1421,7 @@
                     <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">Subject
                       Group
                     </td>
-                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black">{{moduleCode}}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -1425,7 +1433,7 @@
                     <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">NWU
                       Number
                     </td>
-                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black">{{stNum}}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -1436,9 +1444,9 @@
                   <tr>
                     <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">Surname
                     </td>
-                    <td style="background-color: white; width: 35%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 35%; border-color: black; color: black">{{Surname1}}</td>
                     <td style="background-color: lightgray; width: 20%; border-color: black; color: black">Title</td>
-                    <td style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 20%; border-color: black; color: black">{{Title1}}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -1450,7 +1458,7 @@
                     <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">Full
                       Names
                     </td>
-                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black">{{FullNames1}}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -1462,7 +1470,7 @@
                     <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">Identity
                       Number
                     </td>
-                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black">{{IDNumber1}}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -1474,7 +1482,7 @@
                     <td style="background-color: lightgray; width: 26.4%; border-color: black; color: black">Passport
                       Number
                     </td>
-                    <td style="background-color: white; width: 74%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 74%; border-color: black; color: black">{{passport}}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -1584,7 +1592,7 @@
                     <td style="background-color: lightgray; width: 50%; border-color: black; color: black">Module Code
                       (for Student Assistant, SI Leaders & Facilitators)
                     </td>
-                    <td style="background-color: white; width: 50%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 50%; border-color: black; color: black">{{moduleCode}}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -1652,9 +1660,9 @@
                     <td style="background-color: lightgray; width: 25%; border-color: black; color: black; height: 2cm">
                       Claimant
                     </td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black">{{Initials1}} {{Surname1}}</td>
                     <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black">{{todayDate}}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -1669,7 +1677,7 @@
                     <td style="background-color: white; width: 25%; border-color: black; color: black">PROF E Taylor
                     </td>
                     <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 25%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 25%; border-color: black; color: black">{{todayDate}}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -1729,423 +1737,28 @@
               <tr>
                 <table style="width: 100%; border-color: lightgray; color: black">
                   <tbody>
-                  <tr>
+                  <tr *ngFor="let d of claimsHours">
                     <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
+                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm">{{activity}}</td>
                     <td
                       style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 4%; border-color: black; color: black">{{day}}</td>
                     <td style="background-color: lightgray; width: 2%; border-bottom: lightgray; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 4%; border-color: black; color: black">{{month}}</td>
                     <td style="background-color: lightgray; width: 2%; border-bottom: lightgray; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
+                    <td style="background-color: white; width: 8%; border-color: black; color: black">{{year}}</td>
                     <td
                       style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
                     <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                        style="background-color: white; width: 9%; border-color: black; color: black">{{uur}}:{{minuut}}</td>
                     <td align="center"
                         style="background-color: lightgray; width: 2%; border-bottom: lightgray; color: black"></td>
                     <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
+                        style="background-color: white; width: 9%; border-color: black; color: black">{{Endhours}}:{{Endminuut}}</td>
                     <td
                       style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
                     <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
-                  </tr>
-                  <tr>
-                    <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td align="center"
-                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
-                  </tr>
-                  <tr>
-                    <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td align="center"
-                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
-                  </tr>
-                  <tr>
-                    <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td align="center"
-                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
-                  </tr>
-                  <tr>
-                    <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td align="center"
-                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
-                  </tr>
-                  <tr>
-                    <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td align="center"
-                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
-                  </tr>
-                  <tr>
-                    <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td align="center"
-                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
-                  </tr>
-                  <tr>
-                    <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td align="center"
-                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
-                  </tr>
-                  <tr>
-                    <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td align="center"
-                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
-                  </tr>
-                  <tr>
-                    <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td align="center"
-                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
-                  </tr>
-                  <tr>
-                    <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td align="center"
-                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
-                  </tr>
-                  <tr>
-                    <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td align="center"
-                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
-                  </tr>
-                  <tr>
-                    <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td align="center"
-                        style="background-color: lightgray; width: 2%; border-bottom: lightgray; border-top-color: lightgray;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
-                  </tr>
-                  <tr>
-                    <td align="center"
-                        style="background-color: white; width: 35%; border-color: black; color: black; height: 0.7cm"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: black; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: lightgray; width: 2%; border-bottom: black; border-top-color: lightgray;color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td style="background-color: white; width: 2%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td align="center"
-                        style="background-color: lightgray; width: 2%; border-bottom: black; border-top-color: lightgray;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 9%; border-color: black; color: black"></td>
-                    <td
-                      style="background-color: white; width: 2%; border-top-color: white; border-bottom-color: white;color: black"></td>
-                    <td align="center"
-                        style="background-color: white; width: 20%; border-color: black; color: black"></td>
+                        style="background-color: white; width: 20%; border-color: black; color: black">{{hour}}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -2161,6 +1774,179 @@
           <button id="btnSubmit" class="btn btn-primary" type="submit" (click)="generateClaimsPDF()">Download PDF
           </button>
 
+        </form>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="Add Administrator">
+      <ng-template ngbTabContent>
+        <form (ngSubmit)="onSubmitExistingAdmin(k)" #k="ngForm">
+          <h1>If user already exist in database</h1>
+          <hr>
+          <br>
+
+          <div class="form-group">
+            <label for="nwunumber">NWU number:</label>
+            <input type="text" id="nwunumber" class="form-control" ngModel name="nwunumber" pattern="\d*" maxlength="8"
+                   minlength="8" required #nwunumber="ngModel">
+            <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)" class="alert alert-danger"
+                 style="width: 35vw">
+              <div *ngIf="nwunumber.errors.required">
+                NWU number is required.
+              </div>
+              <div *ngIf="nwunumber.errors.minlength">
+                NWU number must be 8 characters long.
+              </div>
+              <div *ngIf="nwunumber.errors.pattern">
+                Must only be numbers.
+              </div>
+            </div>
+          </div>
+
+          <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!k.valid">Submit</button>
+        </form>
+        <form (ngSubmit)="onSubmitAdmin(s)" #s="ngForm">
+          <h1>If user does not exist in database</h1>
+          <hr>
+          <br>
+          <div class="form-group">
+            <label for="prefadminame">Preferred Name:</label>
+            <input type="text" class="form-control" id="prefadminame" ngModel name="prefadminame" pattern="[a-zA-Z ]*"
+                   required name="prefadminame" maxlength="20" #prefadminame="ngModel">
+            <div *ngIf="prefadminame.invalid && (prefadminame.dirty || prefadminame.touched)"
+                 class="alert alert-danger"
+                 style="width: 35vw">
+              <div *ngIf="prefadminame.errors.required">
+                A name is required.
+              </div>
+              <div *ngIf="prefadminame.errors.maxlength">
+                Name cannot be longer than 20 characters.
+              </div>
+              <div *ngIf="prefadminame.errors.pattern">
+                Can only contain letters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" class="form-control" id="surname" ngModel name="surname" pattern="[a-zA-Z ]*" required
+                   #surname="ngModel" maxlength="20">
+            <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="alert alert-danger"
+                 style="width: 35vw">
+              <div *ngIf="surname.errors.required">
+                Surname is required.
+              </div>
+              <div *ngIf="surname.errors.maxlength">
+                Title cannot be longer than 20 characters.
+              </div>
+              <div *ngIf="surname.errors.pattern">
+                Can only contain letters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss" pattern="[a-zA-Z ]*"
+                   maxlength="4" ngModel name="title" required #title="ngModel">
+            <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger" style="width: 35vw">
+              <div *ngIf="title.errors.required">
+                Title is required.
+              </div>
+              <div *ngIf="title.errors.maxlength">
+                Title cannot be longer than 4 characters.
+              </div>
+              <div *ngIf="title.errors.pattern">
+                Can only contain letters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="nwunumber">NWU number:</label>
+            <input type="text" id="nwunumber" class="form-control" ngModel name="nwunumber" pattern="\d*" maxlength="8"
+                   minlength="8" required #nwunumber="ngModel">
+            <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)" class="alert alert-danger"
+                 style="width: 35vw">
+              <div *ngIf="nwunumber.errors.required">
+                NWU number is required.
+              </div>
+              <div *ngIf="nwunumber.errors.minlength">
+                NWU number must be 8 characters long.
+              </div>
+              <div *ngIf="nwunumber.errors.pattern">
+                Must only be numbers.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="role">Role:</label>
+            <input type="text" id="role" class="form-control" placeholder="Lecturer" pattern="[a-zA-Z ]*" maxlength="20"
+                   ngModel name="role" required #role="ngModel">
+            <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert alert-danger" style="width: 35vw">
+              <div *ngIf="role.errors.required">
+                Role is required.
+              </div>
+              <div *ngIf="role.errors.maxlength">
+                Role cannot be longer than 15 characters.
+              </div>
+              <div *ngIf="title.errors.pattern">
+                Can only contain letters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="telephonenumber">Telephone number:</label>
+            <input type="text" id="telephonenumber" class="form-control" pattern="\d*" maxlength="10" ngModel
+                   name="telephonenumber"
+                   required #telephonenumber="ngModel">
+            <div *ngIf="telephonenumber.invalid && (telephonenumber.dirty || telephonenumber.touched)"
+                 class="alert alert-danger"
+                 style="width: 35vw">
+              <div *ngIf="telephonenumber.errors.required">
+                Telephone number is required.
+              </div>
+              <div *ngIf="nwunumber.errors.pattern">
+                Must only be numbers.
+              </div>
+              <div *ngIf="telephonenumber.errors.maxlength">
+                Telephone number cannot be longer than 10 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail address:</label>
+            <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" ngModel name="email"
+                   email #email="ngModel" required maxlength="50">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger" style="width: 35vw">
+              <div *ngIf="email.errors.required">
+                E-mail address is required.
+              </div>
+              <div *ngIf="telephonenumber.errors.maxlength">
+                E-mail cannot be longer than 50 characters.
+              </div>
+              <div *ngIf="email.errors.email">
+                Not a valid E-mail address.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" class="form-control" ngModel name="password" required
+                   #password="ngModel">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger"
+                 style="width: 35vw">
+              <div *ngIf="password.errors.required">
+                Password address is required.
+              </div>
+            </div>
+          </div>
+          <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!s.valid">Submit</button>
         </form>
       </ng-template>
     </ngb-tab>

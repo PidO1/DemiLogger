@@ -19,19 +19,15 @@ export class ModuleapplicationComponent implements OnInit {
     this.submitService.storeModuleData(form.value)
       .subscribe(
         (response) => {
-          console.log(response);
-          if (sessionStorage.length < 0) {
             // @ts-ignore
-            sessionStorage.setItem('token', response.body);
-            // this.router.navigate(['/home']);
-          } else {
-            sessionStorage.clear();
-            // @ts-ignore
-            sessionStorage.setItem('token', response.body);
-            // this.router.navigate(['/home']);
-          }
-        },
-        (error) => console.log(error)
+            alert(response.message);
+          },
+            (error) => {
+          console.log(error);
+              if (error != null){
+                alert('Something went wrong, make sure your data is correct or the connection may have timed out.');
+              }
+            }
       );
   }
 

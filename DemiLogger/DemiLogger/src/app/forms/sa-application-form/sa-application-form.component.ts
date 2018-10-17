@@ -1,7 +1,6 @@
 import { PgpdServiceService } from './../../pgpd-service.service';
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '../../../../node_modules/@angular/common/http';
-import {until} from 'selenium-webdriver';
 import { Router } from '@angular/router';
 
 @Component({
@@ -46,6 +45,7 @@ export class SaApplicationFormComponent implements OnInit {
       this.fd.append(this.selectedDataName, this.selectedDataValue);
     }
   }
+
   onRadioSelected(event) {
     console.log(event);
     this.selectedDataValue = event.target.id;
@@ -57,6 +57,7 @@ export class SaApplicationFormComponent implements OnInit {
       this.fd.append(this.selectedDataName, this.selectedDataValue);
     }
   }
+
   onFileSelected(event) {
     console.log(event);
     this.selectedDataValue = event.target.id;
@@ -69,16 +70,24 @@ export class SaApplicationFormComponent implements OnInit {
       this.fd.append(this.selectedDataValue, this.selectedFile, this.selectedFile.name);
     }
   }
+
   public onUpload() {
     this.submitService.uploadSAForm(this.fd)
       .subscribe(res => {
-        console.log(res);
-        console.log(this.fd);
-        // @ts-ignore
-        if (res.status < 400) {
-          alert('Application recorded, please submit a module(s) application.');
-          this.router.navigate(['/forms/moduleapplication']);
+          console.log(res);
+          console.log(this.fd);
+          // @ts-ignore
+          if (res != null) {
+            alert('Application recorded, please submit a module(s) application.');
+            this.router.navigate(['/forms/moduleapplication']);
+          }
+        },
+        (error) => {
+          if (error != null) {
+            console.log(error);
+            alert('Something went wrong make sure your data is correct. Connection timed out or .');
+          }
         }
-      });
+      );
   }
 }

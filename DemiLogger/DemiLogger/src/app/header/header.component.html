@@ -1,7 +1,7 @@
 <div id="mainNav" class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <img id="logo" src="/src/app/fotos/logo.png">
+      <a href="http://www.nwu.ac.za/"><img id="logo" src="/src/app/fotos/logo.png"></a>
     </div>
     <div class="collapse navbar-collapse" style="padding-top: 2px; padding-right: 10px;">
       <ul id="nav" class="nav navbar-nav">
@@ -38,8 +38,14 @@
       </ul>
       <ul id="nav" class="nav navbar-nav">
         <li>
-          <button class="btn btn-success" (click)="routeQueries($event)">Queries
-          </button>
+          <div ngbDropdown class="d-inline-block">
+            <button id="btnLec" class="btn btn-success" ngbDropdownToggle>Lecturer <span class="glyphicon glyphicon-triangle-bottom"></span></button>
+            <div id="drop" ngbDropdownMenu aria-labelledby="drop">
+              <button class="dropdown-item" (click)="routeQueries($event)">Student info</button>
+              <br />
+              <button class="dropdown-item" (click)="studentApplication($event)">Applications</button>
+            </div>
+          </div>
         </li>
       </ul>
       <ul id="nav" class="nav navbar-nav navbar-right">

@@ -26,10 +26,8 @@ export class QueriesComponent implements OnInit {
   modulemark;
   modulename;
   arr = 0;
-  tableLabel = [9,9,9,9,9,9,9,9,9];
-  tableData = [[]];
-  dataArr = [];
-
+  tableLabel;
+  tableData = [];
   constructor(private submitService: PgpdServiceService, private router: Router) { }
 
   ngOnInit() {
@@ -41,28 +39,20 @@ export class QueriesComponent implements OnInit {
         .subscribe(
             (response) => {
               this.data = response;
-              // console.log(this.data);
-              // for(let j = 0; j < this.data.length; j++)
-              // {
-              //   for(let i = 0; i < this.data[j].data.length; i++)
-              //   {
-              //     this.dataArr.push(this.data[j].data[i]);
-              //   }
-              //   let _tableData: Array<any> = [{data: this.dataArr, label: j}];
-              // }
-              //
-              // for(let i = 0; i < this.data; i++)
-              // {
-              //   this.tableLabel.push(this.toets[0])
-              // }
-
-          // @ts-ignore
-          // this.studentnumber = this.data[this.arr].NwuNumber;
-          // this.demiName = this.data[this.arr].demiName;
-          // this.modulename = this.data[this.arr].modulename;
-          // this.modulemark = this.data[this.arr].moduleMark;
+              console.log(this.data);
+              this.tableLabel = this.data[0].label;
+              let arr = 0;
+              while(this.data[arr] != null)
+              {
+                this.tableData.push(this.data[arr]);
+                arr++;
+              }
+              console.log(this.tableData);
+              console.log(this.tableLabel);
         },
         (error) => console.log(error)
       );
+
+
   }
 }

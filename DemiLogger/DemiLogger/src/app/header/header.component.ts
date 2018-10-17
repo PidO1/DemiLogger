@@ -56,6 +56,24 @@ export class HeaderComponent {
       }
     }
   }
+
+  studentApplication(event) {
+    if (sessionStorage.length === 0) {
+      alert('Please login.');
+    } else {
+      this.token = jwt_decode(sessionStorage.getItem('token'));
+      // @ts-ignore
+      if (this.token.dosent === 1) {
+        this.router.navigate(['/queries/studantapplications']);
+      } else {
+        // @ts-ignore
+        if (this.token.dosent === 0) {
+          alert('Lecturer permissions required.');
+        }
+      }
+    }
+  }
+
   routeInfo(event) {
     if (sessionStorage.length === 0) {
       alert('Please login.');

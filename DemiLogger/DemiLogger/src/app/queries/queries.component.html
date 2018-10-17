@@ -19,13 +19,12 @@
     <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit
     </button>
     </form>
-    <p>{{data | json}}</p>
     <table class="table table-responsive table-condensed">
       <tr>
-        <th *ngFor="let label of tableLabel">{{label}}</th>
+        <th *ngFor="let t of tableLabel">{{t}}</th>
       </tr>
       <tr *ngFor="let d of tableData">
-        <td *ngFor="let label of tableLabel; let j=index">{{d && d.data[j]}}</td>
+        <td *ngFor="let t of tableLabel; let j=index">{{d && d.data[j]}}</td>
       </tr>
     </table>
   </div>

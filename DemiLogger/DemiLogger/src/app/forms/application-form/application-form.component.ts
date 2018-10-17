@@ -71,11 +71,17 @@ export class ApplicationFormComponent implements OnInit {
         console.log(res);
         console.log(this.fd);
         // @ts-ignore
-        if (res.status < 400) {
+        if (res != null) {
           alert('Application recorded, please submit a module(s) application.');
           this.router.navigate(['/forms/moduleapplication']);
         }
-      });
+      },
+        (error) => {
+          if (error != null) {
+            console.log(error);
+            alert('Something went wrong make sure your data is correct. Connection timed out or .');
+          }
+        });
   }
 
   ngOnInit() {
