@@ -15,6 +15,7 @@ const userRoute = require('./api/routes/user');
 const anounceRoute = require('./api/routes/anounce');
 const applicationRoute = require('./api/routes/application');
 const imageRoute = require('./api/routes/images');
+const hoursRoute = require('./api/routes/hours');
 
 
 console.log('APP.js net voor middleware');
@@ -35,7 +36,7 @@ next();
 });
 //CORS ERROR HANDLING EINDE******************
 //routes to handle requests///////
-app.use('/uploads',express.static('uploads'));
+
 app.use('/dosente',dosentRoute);
 app.use('/subjects',vakkeRoute);
 app.use('/demi',demiRoute);
@@ -43,7 +44,10 @@ app.use('/user',userRoute);
 app.use('/anounce',anounceRoute);
 app.use('/application',applicationRoute);
 app.use('/image',imageRoute);
+app.use('/hours',hoursRoute);
+
 app.use('./uploads',express.static('uploads'));
+
 
 app.use((req,res,next)=>{
   const error = new Error('not found');
