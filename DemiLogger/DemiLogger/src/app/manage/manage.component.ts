@@ -80,8 +80,16 @@ export class ManageComponent implements OnInit {
     console.log(form.value);
     this.submitService.storeAnnouncementData(form.value)
       .subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
+        (response) => {
+          // @ts-ignore
+          alert(response.message);
+        },
+        (error) => {
+          console.log(error);
+          if (error != null){
+            alert('Something went wrong, make sure your data is correct or the connection may have timed out.');
+          }
+        }
       );
   }
   onSubmitLecturer(form: NgForm) {
@@ -100,9 +108,9 @@ export class ManageComponent implements OnInit {
       );
   }
 
-  onSubmitAdmin(form: NgForm) {
+  onSubmitLecturerModule(form: NgForm) {
     console.log(form.value);
-    this.submitService.storeAdminData(form.value)
+    this.submitService.storeLecturerModule(form.value)
       .subscribe(
         (response) => {
           // @ts-ignore
@@ -121,10 +129,12 @@ export class ManageComponent implements OnInit {
     this.submitService.storeExistingAdminData(form.value)
       .subscribe(
         (response) => {
+          console.log(response);
           // @ts-ignore
           alert(response.message);
         },
         (error) => {
+          console.log(error);
           if (error != null){
             alert('Something went wrong or the connection timed out.');
           }
@@ -136,8 +146,15 @@ export class ManageComponent implements OnInit {
     console.log(form.value);
     this.submitService.storeAddModule(form.value)
       .subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
+        (response) => {
+          alert('Module added.');
+        },
+        (error) => {
+          console.log(error);
+          if (error != null){
+            alert('Something went wrong, make sure your data is correct or the connection may have timed out.');
+          }
+        }
       );
   }
   onGetStudentApplication() {
@@ -152,7 +169,12 @@ export class ManageComponent implements OnInit {
           this.modulemark = this.data[this.arr].moduleMark;
           console.log(this.data);
         },
-        (error) => console.log(error)
+        (error) => {
+          console.log(error);
+          if (error != null){
+            alert('Something went wrong, make sure your data is correct or the connection may have timed out.');
+          }
+        }
       );
   }
   onRadioSelected(event) {
@@ -172,7 +194,7 @@ export class ManageComponent implements OnInit {
         });
     }
     this.arr++;
-    if (this.arr > this.data.length) {
+    if (this.arr >= this.data.length) {
       this.studentnumber = 'done';
       this.demiName = '';
       this.modulename = '';
@@ -236,7 +258,12 @@ export class ManageComponent implements OnInit {
           this.AccountTypeInfo = this.studentPDFData.AccountTypeInfo;
           console.log(this.Title)
         },
-        (error) => console.log(error)
+        (error) => {
+          console.log(error);
+          if (error != null){
+            alert('Something went wrong, make sure your data is correct or the connection may have timed out.');
+          }
+        }
       );
   }
 
@@ -282,7 +309,12 @@ export class ManageComponent implements OnInit {
           this.date.getDate();
           console.log(this.date);
         },
-        (error) => console.log(error)
+        (error) => {
+          console.log(error);
+          if (error != null){
+            alert('Something went wrong, make sure your data is correct or the connection may have timed out.');
+          }
+        }
       );
     this.todayDate = this.date.toLocaleDateString();
     console.log(this.date.toLocaleDateString());
@@ -311,7 +343,12 @@ export class ManageComponent implements OnInit {
             arr++;
           }
         },
-        (error) => console.log(error)
+        (error) => {
+          console.log(error);
+          if (error != null){
+            alert('Something went wrong, make sure your data is correct or the connection may have timed out.');
+          }
+        }
       );
   }
 
@@ -376,7 +413,7 @@ export class ManageComponent implements OnInit {
     el5.disabled = false;
     this.pulled = 'Images pulled, they may now be downlaoded.';
   }
-  conn = 'http://192.168.1.9:3000';
+  conn = 'http://192.168.1.7:3000';
   setNwuNumber(form: NgForm) {
     this.imgNumber = form.value.nwunumber4;
     console.log(this.imgNumber);

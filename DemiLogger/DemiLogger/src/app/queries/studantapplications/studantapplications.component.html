@@ -3,7 +3,7 @@
 <body>
 <div id="container" class="container">
   <div id="main" class="col-md-12">
-    <h2>Pull student applications:</h2>
+    <h2>Pull Demi applications:</h2>
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="form-group">
         <label for="module1">Module code:</label>
@@ -18,6 +18,8 @@
       </div>
       <button id="btnSubmit" class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit
       </button>
+      <br>
+      <br>
     </form>
     <table class="table table-responsive table-condensed">
       <tr>

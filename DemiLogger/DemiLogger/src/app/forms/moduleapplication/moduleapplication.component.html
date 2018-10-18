@@ -29,7 +29,7 @@
       </div>
 
       <div class="form-group">
-        <label for="module1">Module you want to assist in:</label>
+        <label for="module1">Module you want to assist in: (UPPERCASE ALL)</label>
         <input type="text" class="form-control" id="module1" value placeholder="e.g ITRW324" ngModel name="module1"
           required #module1="ngModel">
         <div *ngIf="module1.invalid && (module1.dirty || module1.touched)" class="alert alert-danger" style="width: 20vw">

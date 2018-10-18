@@ -50,7 +50,12 @@ export class QueriesComponent implements OnInit {
               console.log(this.tableData);
               console.log(this.tableLabel);
         },
-        (error) => console.log(error)
+        (error) => {
+          console.log(error);
+          if (error != null){
+            alert('Something went wrong, make sure your data is correct or the connection may have timed out.');
+          }
+        }
       );
 
 

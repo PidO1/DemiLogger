@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PgpdServiceService {
-  comm = 'http://192.168.1.9:3000'
+  comm = 'http://192.168.1.7:3000'
   constructor(private http: HttpClient) {}
 
   // Register and Login Posts.
@@ -29,14 +29,14 @@ export class PgpdServiceService {
     return this.http.post(this.comm + '/dosente/register', formData, {headers: header});
   }
 
-  storeAdminData(formData: any[]) {
+  storeLecturerModule(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(this.comm + '/dosente/register', formData, {headers: header});
+    return this.http.post(this.comm + '/dosente/assign/module', formData, {headers: header});
   }
 
   storeExistingAdminData(formData: any[]) {
     const header = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(this.comm + '/dosente/register', formData, {headers: header});
+    return this.http.post(this.comm + '/user/assign/admin', formData, {headers: header});
   }
 
   storeAddModule(formData: any[]) {
@@ -67,7 +67,7 @@ export class PgpdServiceService {
     return this.http.post(this.comm + '/dosente/get/dosent/demi', value);
   }
   getLecStudentApp(value) {
-    return this.http.post(this.comm + '/dosente/get/dosent/demi', value);
+    return this.http.post(this.comm + '/application/get/applicants', value);
   }
 
   getNextStudentDelete(value) {

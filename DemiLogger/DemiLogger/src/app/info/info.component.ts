@@ -54,7 +54,12 @@ export class InfoComponent implements OnInit {
             this.announcement[2] = (response.announce3.message);
             console.log(response);
         },
-        (error) => console.log(error)
+        (error) => {
+          console.log(error);
+          if (error != null){
+            alert('Something went wrong, make sure your data is correct or the connection may have timed out.');
+          }
+        }
       );
   }
 }

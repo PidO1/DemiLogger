@@ -121,7 +121,7 @@
       <div class="form-group">
         <label for="extension">Extension:</label>
         <input type="text" class="form-control" placeholder="e.g 992531" (change)="onDataSelected($event)" pattern="\d*"
-          id="extension" ngModel name="extension" required #extension="ngModel">
+          id="extension" ngModel name="extension" required #extension="ngModel" maxlength="10">
         <div *ngIf="extension.invalid && (extension.dirty || extension.touched)" class="alert alert-danger" style="width: 35vw">
 
           <div *ngIf="extension.errors.required">

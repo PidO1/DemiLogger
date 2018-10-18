@@ -25,8 +25,10 @@
       </ng-template>
     </ngb-tab>
 
-    <ngb-tab title="Add Lecturers">
+    <ngb-tab title="Lecturers">
       <ng-template ngbTabContent>
+        <h2>Add Lecturer</h2>
+        <hr>
         <form (ngSubmit)="onSubmitLecturer(d)" #d="ngForm">
           <br>
           <div class="form-group">
@@ -35,7 +37,7 @@
                    required name="preferredname" maxlength="20" #preferredname="ngModel">
             <div *ngIf="preferredname.invalid && (preferredname.dirty || preferredname.touched)"
                  class="alert alert-danger"
-                 style="width: 35vw">
+                 style="width: 20%">
               <div *ngIf="preferredname.errors.required">
                 A name is required.
               </div>
@@ -53,7 +55,7 @@
             <input type="text" class="form-control" id="surname" ngModel name="surname" pattern="[a-zA-Z ]*" required
                    #surname="ngModel" maxlength="20">
             <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="alert alert-danger"
-                 style="width: 35vw">
+                 style="width: 20%">
               <div *ngIf="surname.errors.required">
                 Surname is required.
               </div>
@@ -70,7 +72,7 @@
             <label for="title">Title:</label>
             <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss" pattern="[a-zA-Z ]*"
                    maxlength="4" ngModel name="title" required #title="ngModel">
-            <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger" style="width: 35vw">
+            <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger" style="width: 20%">
               <div *ngIf="title.errors.required">
                 Title is required.
               </div>
@@ -88,7 +90,7 @@
             <input type="text" id="nwunumber" class="form-control" ngModel name="nwunumber" pattern="\d*" maxlength="8"
                    minlength="8" required #nwunumber="ngModel">
             <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)" class="alert alert-danger"
-                 style="width: 35vw">
+                 style="width: 20%">
               <div *ngIf="nwunumber.errors.required">
                 NWU number is required.
               </div>
@@ -105,14 +107,14 @@
             <label for="role">Role:</label>
             <input type="text" id="role" class="form-control" placeholder="Lecturer" pattern="[a-zA-Z ]*" maxlength="20"
                    ngModel name="role" required #role="ngModel">
-            <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert alert-danger" style="width: 35vw">
+            <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert alert-danger" style="width: 20%">
               <div *ngIf="role.errors.required">
                 Role is required.
               </div>
               <div *ngIf="role.errors.maxlength">
                 Role cannot be longer than 15 characters.
               </div>
-              <div *ngIf="title.errors.pattern">
+              <div *ngIf="role.errors.pattern">
                 Can only contain letters.
               </div>
             </div>
@@ -125,12 +127,12 @@
                    required #telephonenumber="ngModel">
             <div *ngIf="telephonenumber.invalid && (telephonenumber.dirty || telephonenumber.touched)"
                  class="alert alert-danger"
-                 style="width: 35vw">
+                 style="width: 20%">
               <div *ngIf="telephonenumber.errors.required">
                 Telephone number is required.
               </div>
-              <div *ngIf="nwunumber.errors.pattern">
-                Must only be numbers.
+              <div *ngIf="telephonenumber.errors.pattern">
+                Can only contain numbers.
               </div>
               <div *ngIf="telephonenumber.errors.maxlength">
                 Telephone number cannot be longer than 10 characters.
@@ -142,11 +144,11 @@
             <label for="email">E-mail address:</label>
             <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" ngModel name="email"
                    email #email="ngModel" required maxlength="50">
-            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger" style="width: 35vw">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger" style="width: 20%">
               <div *ngIf="email.errors.required">
                 E-mail address is required.
               </div>
-              <div *ngIf="telephonenumber.errors.maxlength">
+              <div *ngIf="email.errors.maxlength">
                 E-mail cannot be longer than 50 characters.
               </div>
               <div *ngIf="email.errors.email">
@@ -160,13 +162,51 @@
             <input type="password" id="password" class="form-control" ngModel name="password" required
                    #password="ngModel">
             <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger"
-                 style="width: 35vw">
+                 style="width: 20%">
               <div *ngIf="password.errors.required">
                 Password address is required.
               </div>
             </div>
           </div>
           <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!d.valid">Submit</button>
+        </form>
+
+        <h2>Add modules to a lecturer</h2>
+        <hr>
+        <form (ngSubmit)="onSubmitLecturerModule(n)" #n="ngForm">
+          <br>
+          <div class="form-group">
+            <label for="nwunumber9">NWU number:</label>
+            <input type="text" id="nwunumber9" class="form-control" ngModel name="nwunumber9" pattern="\d*" maxlength="8"
+                   minlength="8" required #nwunumber9="ngModel">
+            <div *ngIf="nwunumber9.invalid && (nwunumber9.dirty || nwunumber9.touched)" class="alert alert-danger"
+                 style="width: 20%">
+              <div *ngIf="nwunumber9.errors.required">
+                NWU number is required.
+              </div>
+              <div *ngIf="nwunumber9.errors.minlength">
+                NWU number must be 8 characters long.
+              </div>
+              <div *ngIf="nwunumber9.errors.pattern">
+                Must only be numbers.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="code">Module code (UPPERCASE ALL)</label>
+            <input type="text" class="form-control" id="code" ngModel name="code" required name="code" maxlength="10"
+                   #code="ngModel">
+            <div *ngIf="code.invalid && (code.dirty || code.touched)" class="alert alert-danger" style="width: 20%">
+              <div *ngIf="code.errors.required">
+                A Module code is required.
+              </div>
+              <div *ngIf="code.errors.maxlength">
+                Module code cannot be longer than 10 characters.
+              </div>
+            </div>
+          </div>
+
+          <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!n.valid">Submit</button>
         </form>
       </ng-template>
     </ngb-tab>
@@ -214,10 +254,10 @@
       <ng-template ngbTabContent>
         <form (ngSubmit)="onSubmitModule(p)" #p="ngForm">
           <div class="form-group">
-            <label for="code">Module code</label>
+            <label for="code">Module code (UPPERCASE ALL)</label>
             <input type="text" class="form-control" id="code" ngModel name="code" required name="code" maxlength="10"
                    #code="ngModel">
-            <div *ngIf="code.invalid && (code.dirty || code.touched)" class="alert alert-danger" style="width: 35vw">
+            <div *ngIf="code.invalid && (code.dirty || code.touched)" class="alert alert-danger" style="width: 20%">
               <div *ngIf="code.errors.required">
                 A Module code is required.
               </div>
@@ -228,28 +268,34 @@
           </div>
           <div class="form-group">
             <label for="name">Module name</label>
-            <input type="text" class="form-control" id="name" ngModel name="name" required name="name" maxlength="50"
+            <input type="text" class="form-control" id="name" ngModel name="name" pattern="[a-zA-Z ]*" required name="name" maxlength="50"
                    #name="ngModel">
-            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="width: 35vw">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="width: 20%">
               <div *ngIf="name.errors.required">
                 A Module name is required.
               </div>
               <div *ngIf="name.errors.maxlength">
                 Module name cannot be longer than 50 characters.
               </div>
+              <div *ngIf="name.errors.pattern">
+                Module name can only contain letters.
+              </div>
             </div>
           </div>
           <div class="form-group">
             <label for="credits">Module Credit</label>
-            <input type="text" class="form-control" id="credits" ngModel name="credits" required name="credits"
+            <input type="text" class="form-control" id="credits" ngModel name="credits" pattern="\d*" required name="credits"
                    maxlength="2" #credits="ngModel">
             <div *ngIf="credits.invalid && (credits.dirty || credits.touched)" class="alert alert-danger"
-                 style="width: 35vw">
+                 style="width: 20%">
               <div *ngIf="credits.errors.required">
                 Module credit is required.
               </div>
               <div *ngIf="credits.errors.maxlength">
                 Title cannot be longer than 2 characters.
+              </div>
+              <div *ngIf="credits.errors.pattern">
+                Must only be numbers.
               </div>
             </div>
           </div>
@@ -860,8 +906,8 @@
               </tr>
               </tbody>
             </table>
-            <br>
-            <br>
+
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
             <label style="color: black">SECTION C: PERSONAL PARTICULARS OF TEMPORARY EMPLOYEES</label>
             <table style="width: 100%">
@@ -1781,7 +1827,7 @@
     <ngb-tab title="Add Administrator">
       <ng-template ngbTabContent>
         <form (ngSubmit)="onSubmitExistingAdmin(k)" #k="ngForm">
-          <h1>If user already exist in database</h1>
+          <h1>Give admin rights</h1>
           <hr>
           <br>
 
@@ -1790,7 +1836,7 @@
             <input type="text" id="nwunumber" class="form-control" ngModel name="nwunumber" pattern="\d*" maxlength="8"
                    minlength="8" required #nwunumber="ngModel">
             <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)" class="alert alert-danger"
-                 style="width: 35vw">
+                 style="width: 20%">
               <div *ngIf="nwunumber.errors.required">
                 NWU number is required.
               </div>
@@ -1804,149 +1850,6 @@
           </div>
 
           <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!k.valid">Submit</button>
-        </form>
-        <form (ngSubmit)="onSubmitAdmin(s)" #s="ngForm">
-          <h1>If user does not exist in database</h1>
-          <hr>
-          <br>
-          <div class="form-group">
-            <label for="prefadminame">Preferred Name:</label>
-            <input type="text" class="form-control" id="prefadminame" ngModel name="prefadminame" pattern="[a-zA-Z ]*"
-                   required name="prefadminame" maxlength="20" #prefadminame="ngModel">
-            <div *ngIf="prefadminame.invalid && (prefadminame.dirty || prefadminame.touched)"
-                 class="alert alert-danger"
-                 style="width: 35vw">
-              <div *ngIf="prefadminame.errors.required">
-                A name is required.
-              </div>
-              <div *ngIf="prefadminame.errors.maxlength">
-                Name cannot be longer than 20 characters.
-              </div>
-              <div *ngIf="prefadminame.errors.pattern">
-                Can only contain letters.
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="surname">Surname:</label>
-            <input type="text" class="form-control" id="surname" ngModel name="surname" pattern="[a-zA-Z ]*" required
-                   #surname="ngModel" maxlength="20">
-            <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="alert alert-danger"
-                 style="width: 35vw">
-              <div *ngIf="surname.errors.required">
-                Surname is required.
-              </div>
-              <div *ngIf="surname.errors.maxlength">
-                Title cannot be longer than 20 characters.
-              </div>
-              <div *ngIf="surname.errors.pattern">
-                Can only contain letters.
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" id="title" class="form-control" placeholder="e.g Mr/Miss" pattern="[a-zA-Z ]*"
-                   maxlength="4" ngModel name="title" required #title="ngModel">
-            <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger" style="width: 35vw">
-              <div *ngIf="title.errors.required">
-                Title is required.
-              </div>
-              <div *ngIf="title.errors.maxlength">
-                Title cannot be longer than 4 characters.
-              </div>
-              <div *ngIf="title.errors.pattern">
-                Can only contain letters.
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="nwunumber">NWU number:</label>
-            <input type="text" id="nwunumber" class="form-control" ngModel name="nwunumber" pattern="\d*" maxlength="8"
-                   minlength="8" required #nwunumber="ngModel">
-            <div *ngIf="nwunumber.invalid && (nwunumber.dirty || nwunumber.touched)" class="alert alert-danger"
-                 style="width: 35vw">
-              <div *ngIf="nwunumber.errors.required">
-                NWU number is required.
-              </div>
-              <div *ngIf="nwunumber.errors.minlength">
-                NWU number must be 8 characters long.
-              </div>
-              <div *ngIf="nwunumber.errors.pattern">
-                Must only be numbers.
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="role">Role:</label>
-            <input type="text" id="role" class="form-control" placeholder="Lecturer" pattern="[a-zA-Z ]*" maxlength="20"
-                   ngModel name="role" required #role="ngModel">
-            <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert alert-danger" style="width: 35vw">
-              <div *ngIf="role.errors.required">
-                Role is required.
-              </div>
-              <div *ngIf="role.errors.maxlength">
-                Role cannot be longer than 15 characters.
-              </div>
-              <div *ngIf="title.errors.pattern">
-                Can only contain letters.
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="telephonenumber">Telephone number:</label>
-            <input type="text" id="telephonenumber" class="form-control" pattern="\d*" maxlength="10" ngModel
-                   name="telephonenumber"
-                   required #telephonenumber="ngModel">
-            <div *ngIf="telephonenumber.invalid && (telephonenumber.dirty || telephonenumber.touched)"
-                 class="alert alert-danger"
-                 style="width: 35vw">
-              <div *ngIf="telephonenumber.errors.required">
-                Telephone number is required.
-              </div>
-              <div *ngIf="nwunumber.errors.pattern">
-                Must only be numbers.
-              </div>
-              <div *ngIf="telephonenumber.errors.maxlength">
-                Telephone number cannot be longer than 10 characters.
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="email">E-mail address:</label>
-            <input type="email" class="form-control" placeholder="@student.g.nwu.ac.za" id="email" ngModel name="email"
-                   email #email="ngModel" required maxlength="50">
-            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger" style="width: 35vw">
-              <div *ngIf="email.errors.required">
-                E-mail address is required.
-              </div>
-              <div *ngIf="telephonenumber.errors.maxlength">
-                E-mail cannot be longer than 50 characters.
-              </div>
-              <div *ngIf="email.errors.email">
-                Not a valid E-mail address.
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" class="form-control" ngModel name="password" required
-                   #password="ngModel">
-            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger"
-                 style="width: 35vw">
-              <div *ngIf="password.errors.required">
-                Password address is required.
-              </div>
-            </div>
-          </div>
-          <button id="btnSubmit" class="btn btn-primary" type="submit" required [disabled]="!s.valid">Submit</button>
         </form>
       </ng-template>
     </ngb-tab>
